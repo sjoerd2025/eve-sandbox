@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_call: # reused by the Release workflow's test gate
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: lint, type-check, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".tool-versions"
+          cache: pnpm
+
+      - name: Configure pnpm
+        run: pnpm config set auto-install-peers true
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm run format:check
+      - run: pnpm run lint
+      - run: pnpm run type-check
+      - run: pnpm test
+      - run: pnpm run build

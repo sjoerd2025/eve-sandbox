@@ -1,0 +1,77 @@
+{
+  "name": "@e2b/eve-sandbox",
+  "version": "0.1.0",
+  "description": "E2B sandbox backend for Vercel's Eve agent framework",
+  "keywords": [
+    "agent",
+    "e2b",
+    "eve",
+    "sandbox",
+    "vercel"
+  ],
+  "homepage": "https://github.com/e2b-dev/eve-sandbox#readme",
+  "bugs": {
+    "url": "https://github.com/e2b-dev/eve-sandbox/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "FoundryLabs, Inc.",
+    "email": "hello@e2b.dev",
+    "url": "https://e2b.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e2b-dev/eve-sandbox.git"
+  },
+  "files": [
+    "dist/**/*",
+    "src",
+    "README.md"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint .",
+    "version": "changeset version",
+    "publish": "pnpm run build && changeset publish"
+  },
+  "dependencies": {
+    "e2b": "^2.31.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "@types/node": "^22.19.21",
+    "ai": "^7.0.9",
+    "eve": "^0.17.1",
+    "oxfmt": "^0.55.0",
+    "oxlint": "^1.70.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.9"
+  },
+  "peerDependencies": {
+    "ai": "^7.0.0",
+    "eve": ">=0.13.0 <0.18.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@9.15.9"
+}
