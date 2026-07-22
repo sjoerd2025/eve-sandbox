@@ -10,14 +10,20 @@ vi.mock("e2b", () => ({
 
 import { sanitizeSnapshotName, findSnapshotByName, ensureSnapshot } from "./snapshot";
 
-/** A fake paginator over the given pages of SnapshotInfo items. */
-function paginator(pages: Array<Array<{ snapshotId: string; names: string[] }>>) {
-  let i = 0;
+/**
+ * A fake paginator returning `items` from its first (and only) page. E2B's list
+ * API filters by name server-side now, so `findSnapshotByName` reads one page.
+ */
+function paginator(items: Array<{ snapshotId: string; names: string[] }>) {
+  let done = false;
   return {
     get hasNext() {
-      return i < pages.length;
+      return !done;
     },
-    nextItems: async () => pages[i++] ?? [],
+    nextItems: async () => {
+      done = true;
+      return items;
+    },
   };
 }
 
@@ -55,10 +61,12 @@ describe("sanitizeSnapshotName", () => {
 describe("findSnapshotByName", () => {
   it("matches by bare name, stripping namespace and tag", async () => {
     listSnapshotsMock.mockImplementation(() =>
-      paginator([[{ snapshotId: "team-x/eve-foo:default", names: ["team-x/eve-foo:default"] }]]),
+      paginator([{ snapshotId: "team-x/eve-foo:default", names: ["team-x/eve-foo:default"] }]),
     );
     const found = await findSnapshotByName("eve-foo", {});
     expect(found?.snapshotId).toBe("team-x/eve-foo:default");
+    // The bare name is forwarded to E2B's server-side `name` filter.
+    expect(listSnapshotsMock).toHaveBeenCalledWith(expect.objectContaining({ name: "eve-foo" }));
   });
 
   it("returns null when nothing matches", async () => {
@@ -70,7 +78,7 @@ describe("findSnapshotByName", () => {
 describe("ensureSnapshot", () => {
   it("reuses an existing snapshot without building", async () => {
     listSnapshotsMock.mockImplementation(() =>
-      paginator([[{ snapshotId: "eve-cached:default", names: ["eve-cached:default"] }]]),
+      paginator([{ snapshotId: "eve-cached:default", names: ["eve-cached:default"] }]),
     );
     const build = vi.fn(async () => "fresh-id");
     const result = await ensureSnapshot("eve-cached", {}, build);

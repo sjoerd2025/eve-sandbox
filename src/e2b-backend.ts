@@ -1,5 +1,6 @@
-import { Sandbox, SandboxError, SandboxNotFoundError } from "e2b";
+import { ConnectionConfig, Sandbox, SandboxError, SandboxNotFoundError } from "e2b";
 import type { SandboxOpts } from "e2b";
+import pkg from "../package.json" with { type: "json" };
 import {
   SandboxTemplateNotProvisionedError,
   type SandboxBackend,
@@ -19,6 +20,12 @@ import {
 } from "./snapshot";
 
 const BACKEND_NAME = "e2b";
+
+// Tag every E2B API request's `User-Agent` so E2B can attribute traffic coming
+// through this wrapper (e2b's set-once integration hook, JS SDK >= 2.33). It's a
+// process-wide static that ConnectionConfig reads at construction time, so it
+// must run before any Sandbox call — hence at module load, not per `e2b()` call.
+ConnectionConfig.setIntegration(`eve-sandbox/${pkg.version}`);
 
 /** 30 minutes — agent turns run long; E2B's 5-minute default expires mid-session. */
 const DEFAULT_SANDBOX_TIMEOUT_MS = 30 * 60 * 1_000;
@@ -218,9 +225,9 @@ export function e2b(
         };
       },
       // No-op: rely on `autoPause` + Eve's reconnect, matching the upstream
-      // reference backend (whose dispose() is also a no-op). Killing here would
+      // reference backend (whose shutdown() is also a no-op). Killing here would
       // drop background work and force Eve to re-create without rerunning onSession().
-      async dispose() {},
+      async shutdown() {},
     };
   }
 

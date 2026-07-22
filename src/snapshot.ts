@@ -9,10 +9,6 @@ export interface ConnectionOptions {
 }
 
 const SNAPSHOT_PREFIX = "eve";
-// Pages of 100 to scan when matching a snapshot by name (E2B's list API has no
-// name filter). Past this, we treat it as a miss and rebuild — a bounded
-// duplicate build, never wrong execution. Generous so real fleets don't false-miss.
-const SNAPSHOT_LOOKUP_MAX_PAGES = 100;
 
 /**
  * In-process dedup of in-flight template builds, keyed by snapshot name. The
@@ -55,15 +51,17 @@ export async function findSnapshotByName(
   name: string,
   conn: ConnectionOptions,
 ): Promise<SnapshotInfo | null> {
-  const paginator = Sandbox.listSnapshots({ ...conn, limit: 100 });
-  for (let page = 0; paginator.hasNext && page < SNAPSHOT_LOOKUP_MAX_PAGES; page++) {
-    const items = await paginator.nextItems(conn);
-    for (const info of items) {
-      const matches =
-        info.names?.some((n) => snapshotBaseName(n) === name) ||
-        snapshotBaseName(info.snapshotId) === name;
-      if (matches) return info;
-    }
+  // E2B's list API now filters by name server-side (e2b >= 2.34), so we ask for
+  // this exact snapshot instead of scanning every page and matching client-side.
+  // We still re-check the bare name below: the server filter also matches
+  // tag-qualified / namespaced forms, and we only want the snapshot created under
+  // this exact name.
+  const items = await Sandbox.listSnapshots({ ...conn, name }).nextItems(conn);
+  for (const info of items) {
+    const matches =
+      info.names?.some((n) => snapshotBaseName(n) === name) ||
+      snapshotBaseName(info.snapshotId) === name;
+    if (matches) return info;
   }
   return null;
 }

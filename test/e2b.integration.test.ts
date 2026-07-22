@@ -31,7 +31,7 @@ describe.skipIf(!hasKey)("e2b backend (live)", () => {
       await handle.session.removePath({ path: "t.txt" });
       expect(await handle.session.readTextFile({ path: "t.txt" })).toBeNull();
     } finally {
-      // dispose() is intentionally a no-op, so kill the sandbox to clean up.
+      // shutdown() is intentionally a no-op, so kill the sandbox to clean up.
       await Sandbox.connect(sandboxId)
         .then((s) => s.kill())
         .catch(() => {});
