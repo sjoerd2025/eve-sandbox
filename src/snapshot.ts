@@ -53,17 +53,21 @@ export async function findSnapshotByName(
 ): Promise<SnapshotInfo | null> {
   // E2B's list API now filters by name server-side (e2b >= 2.34), so we ask for
   // this exact snapshot instead of scanning every page and matching client-side.
-  // We still re-check the bare name below: the server filter also matches
-  // tag-qualified / namespaced forms, and we only want the snapshot created under
-  // this exact name.
+  // We still re-check the bare name: the filter runs on an untrusted API boundary
+  // whose match semantics are undocumented (exact vs prefix vs an unknown-name
+  // "latest" fallback), so we only accept a snapshot created under this exact
+  // name. A server false positive then degrades to a harmless rebuild rather than
+  // wrong execution — "a bounded duplicate build, never wrong execution". The
+  // filter narrows results to this one template's builds/tags, so the first page
+  // is enough (a match beyond it would only cost a rebuild, never correctness).
   const items = await Sandbox.listSnapshots({ ...conn, name }).nextItems(conn);
-  for (const info of items) {
-    const matches =
-      info.names?.some((n) => snapshotBaseName(n) === name) ||
-      snapshotBaseName(info.snapshotId) === name;
-    if (matches) return info;
-  }
-  return null;
+  return (
+    items.find(
+      (info) =>
+        info.names?.some((n) => snapshotBaseName(n) === name) ||
+        snapshotBaseName(info.snapshotId) === name,
+    ) ?? null
+  );
 }
 
 /**
