@@ -59,17 +59,18 @@ describe("sanitizeSnapshotName", () => {
 });
 
 describe("findSnapshotByName", () => {
-  it("matches by bare name, stripping namespace and tag", async () => {
+  it("forwards the bare name to E2B's server-side filter and returns its match", async () => {
     listSnapshotsMock.mockImplementation(() =>
       paginator([{ snapshotId: "team-x/eve-foo:default", names: ["team-x/eve-foo:default"] }]),
     );
     const found = await findSnapshotByName("eve-foo", {});
     expect(found?.snapshotId).toBe("team-x/eve-foo:default");
-    // The bare name is forwarded to E2B's server-side `name` filter.
+    // The bare name is forwarded to E2B's server-side `name` filter, which does
+    // the exact (namespace/tag-qualified) matching for us.
     expect(listSnapshotsMock).toHaveBeenCalledWith(expect.objectContaining({ name: "eve-foo" }));
   });
 
-  it("returns null when nothing matches", async () => {
+  it("returns null when the filter matches nothing (unknown names → empty list)", async () => {
     listSnapshotsMock.mockImplementation(() => paginator([]));
     expect(await findSnapshotByName("eve-missing", {})).toBeNull();
   });

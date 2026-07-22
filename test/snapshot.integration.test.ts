@@ -5,14 +5,16 @@ import { findSnapshotByName, sanitizeSnapshotName } from "../src/snapshot";
 // Live test: only runs when E2B_API_KEY is set. It builds a real named snapshot
 // (slow + billable), then cleans it up. Run with: E2B_API_KEY=... npm test
 //
-// Purpose: verify — empirically, no assumptions — what E2B's server-side
-// `listSnapshots({ name })` filter actually does (exact / prefix / unknown-name
-// fallback), and prove our `findSnapshotByName` stays an EXACT match regardless,
-// per "a bounded duplicate build, never wrong execution".
+// Purpose: `findSnapshotByName` trusts E2B's documented name-filter contract
+// (e2b-dev/E2B#1523: exact, namespace/tag-qualified match; unknown names return an
+// empty list) instead of re-matching client-side. This test verifies that
+// contract end-to-end against the live API — an exact name resolves, and a prefix
+// or unknown name does not — so a server-side regression is caught here rather
+// than silently reusing the wrong snapshot in production.
 const hasKey = Boolean(process.env.E2B_API_KEY);
 
 describe.skipIf(!hasKey)("e2b snapshot name filter (live)", () => {
-  it("finds an exact name and rejects near-misses, whatever the server does", async () => {
+  it("resolves an exact name and rejects prefix / unknown names", async () => {
     const conn = {}; // uses E2B_API_KEY from the environment
     const unique = `${process.pid}-${Date.now()}`;
     const name = sanitizeSnapshotName(`live-name-probe-${unique}`);
@@ -37,20 +39,20 @@ describe.skipIf(!hasKey)("e2b snapshot name filter (live)", () => {
         bogus: rawBogus.map((s) => s.names),
       });
 
-      // --- Invariants our code must uphold regardless of server behavior. ---
+      // --- Contract E2B must uphold for our lookup to be correct. ---
 
       // 1. The exact name resolves to the snapshot we just created.
       const found = await findSnapshotByName(name, conn);
       expect(found).not.toBeNull();
       expect(found?.names.some((n) => n.includes(name))).toBe(true);
 
-      // 2. A strict prefix must NOT resolve — even if the server returns our
-      //    snapshot for a prefix query, our exact re-check rejects it (a rebuild,
-      //    never wrong execution).
+      // 2. A strict prefix must NOT resolve — the filter is exact, not a prefix
+      //    match. If E2B ever regressed to prefix matching, this would return the
+      //    snapshot and we'd catch it here instead of reusing the wrong one.
       expect(await findSnapshotByName(prefixName, conn)).toBeNull();
 
-      // 3. An unknown name must NOT resolve — guards against any server-side
-      //    "return latest for an unknown name" fallback.
+      // 3. An unknown name must NOT resolve — E2B returns an empty list for
+      //    unknown names (no "latest" fallback). This locks that in.
       expect(await findSnapshotByName(bogusName, conn)).toBeNull();
     } finally {
       await sandbox.kill().catch(() => {});

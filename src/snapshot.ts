@@ -41,35 +41,20 @@ export function sanitizeSnapshotName(templateKey: string, identity = ""): string
   return `${SNAPSHOT_PREFIX}-${slug || "template"}-${hash}`;
 }
 
-/** Strip the team namespace and tag from a snapshot ref to its bare name. */
-function snapshotBaseName(ref: string): string {
-  return (ref.split("/").pop() ?? ref).replace(/:[^/:]+$/, "");
-}
-
 /** Find an existing snapshot by its bare name (any process), or null. */
 export async function findSnapshotByName(
   name: string,
   conn: ConnectionOptions,
 ): Promise<SnapshotInfo | null> {
-  // E2B's list API now filters by name server-side (e2b >= 2.34), so we ask for
-  // this exact snapshot instead of scanning every page and matching client-side.
-  // A live probe (test/snapshot.integration.test.ts) confirms the filter is an
-  // exact, namespace-aware match today — no prefix/substring match, no
-  // unknown-name "latest" fallback. We still re-check the bare name anyway: the
-  // filter is an untrusted API boundary with undocumented semantics, so accepting
-  // only a snapshot created under this exact name keeps a future server change a
-  // harmless rebuild rather than wrong execution — "a bounded duplicate build,
-  // never wrong execution". The filter narrows results to this one template's
-  // builds/tags, so the first page is enough (a match beyond it would only cost a
-  // rebuild, never correctness).
-  const items = await Sandbox.listSnapshots({ ...conn, name }).nextItems(conn);
-  return (
-    items.find(
-      (info) =>
-        info.names?.some((n) => snapshotBaseName(n) === name) ||
-        snapshotBaseName(info.snapshotId) === name,
-    ) ?? null
-  );
+  // E2B's list API filters by name server-side (e2b >= 2.34). Per its documented
+  // contract (e2b-dev/E2B#1523) the filter is an EXACT match on a name or ID,
+  // namespace/tag-qualified, and unknown names return an empty list — so any row
+  // it returns is this exact snapshot (or another interchangeable build/tag of
+  // it). We rely on that contract rather than re-matching client-side; the live
+  // test (test/snapshot.integration.test.ts) verifies it end-to-end and would
+  // catch a server-side regression.
+  const [info] = await Sandbox.listSnapshots({ ...conn, name }).nextItems(conn);
+  return info ?? null;
 }
 
 /**
