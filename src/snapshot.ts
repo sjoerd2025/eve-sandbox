@@ -9,10 +9,6 @@ export interface ConnectionOptions {
 }
 
 const SNAPSHOT_PREFIX = "eve";
-// Pages of 100 to scan when matching a snapshot by name (E2B's list API has no
-// name filter). Past this, we treat it as a miss and rebuild — a bounded
-// duplicate build, never wrong execution. Generous so real fleets don't false-miss.
-const SNAPSHOT_LOOKUP_MAX_PAGES = 100;
 
 /**
  * In-process dedup of in-flight template builds, keyed by snapshot name. The
@@ -45,27 +41,20 @@ export function sanitizeSnapshotName(templateKey: string, identity = ""): string
   return `${SNAPSHOT_PREFIX}-${slug || "template"}-${hash}`;
 }
 
-/** Strip the team namespace and tag from a snapshot ref to its bare name. */
-function snapshotBaseName(ref: string): string {
-  return (ref.split("/").pop() ?? ref).replace(/:[^/:]+$/, "");
-}
-
 /** Find an existing snapshot by its bare name (any process), or null. */
 export async function findSnapshotByName(
   name: string,
   conn: ConnectionOptions,
 ): Promise<SnapshotInfo | null> {
-  const paginator = Sandbox.listSnapshots({ ...conn, limit: 100 });
-  for (let page = 0; paginator.hasNext && page < SNAPSHOT_LOOKUP_MAX_PAGES; page++) {
-    const items = await paginator.nextItems(conn);
-    for (const info of items) {
-      const matches =
-        info.names?.some((n) => snapshotBaseName(n) === name) ||
-        snapshotBaseName(info.snapshotId) === name;
-      if (matches) return info;
-    }
-  }
-  return null;
+  // E2B's list API filters by name server-side (e2b >= 2.34). Per its documented
+  // contract (e2b-dev/E2B#1523) the filter is an EXACT match on a name or ID,
+  // namespace/tag-qualified, and unknown names return an empty list — so any row
+  // it returns is this exact snapshot (or another interchangeable build/tag of
+  // it). We rely on that contract rather than re-matching client-side; the live
+  // test (test/snapshot.integration.test.ts) verifies it end-to-end and would
+  // catch a server-side regression.
+  const [info] = await Sandbox.listSnapshots({ ...conn, name }).nextItems(conn);
+  return info ?? null;
 }
 
 /**
