@@ -1,6 +1,6 @@
 {
   "name": "@e2b/eve-sandbox",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "E2B sandbox backend for Vercel's Eve agent framework",
   "keywords": [
     "agent",
