@@ -56,6 +56,28 @@ describe("sanitizeSnapshotName", () => {
   it("falls back to a stable name for empty input", () => {
     expect(sanitizeSnapshotName("")).toMatch(/^eve-template-[0-9a-f]{12}$/);
   });
+
+  // Eve scopes its templateKey by app root for non-`vercel` backends, so a Vercel
+  // deploy prewarms under hash("/vercel/path0") but looks the snapshot up under
+  // hash("bundled") at runtime. Both keys must name the same snapshot.
+  it("ignores Eve's environment-dependent scope segment", () => {
+    const build = "eve-sbx-tpl-e2b-1e1c9bcd9b3bd900-6e1f87ba175e05a4b5f1";
+    const runtime = "eve-sbx-tpl-e2b-4c4164b5039c3606-6e1f87ba175e05a4b5f1";
+    expect(sanitizeSnapshotName(build)).toBe(sanitizeSnapshotName(runtime));
+  });
+
+  it("still separates templates that differ in content, not just scope", () => {
+    const a = sanitizeSnapshotName("eve-sbx-tpl-e2b-1e1c9bcd9b3bd900-6e1f87ba175e05a4b5f1");
+    const b = sanitizeSnapshotName("eve-sbx-tpl-e2b-1e1c9bcd9b3bd900-891e9f8a175e05a4b5f1");
+    expect(a).not.toBe(b);
+  });
+
+  it("passes through keys that do not match Eve's template-key shape", () => {
+    // A hand-rolled or future-format key keeps its scope-like segments intact.
+    const a = sanitizeSnapshotName("custom-key-1e1c9bcd9b3bd900-6e1f87ba175e05a4b5f1");
+    const b = sanitizeSnapshotName("custom-key-4c4164b5039c3606-6e1f87ba175e05a4b5f1");
+    expect(a).not.toBe(b);
+  });
 });
 
 describe("findSnapshotByName", () => {

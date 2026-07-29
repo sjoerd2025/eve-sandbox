@@ -18,26 +18,46 @@ const SNAPSHOT_PREFIX = "eve";
 const buildCache = new Map<string, Promise<string>>();
 
 /**
+ * Eve's `templateKey` is `eve-sbx-tpl-<backend>-<scope16>-<versionHash20>`. The
+ * scope is `hash(appRoot)` — or `hash("bundled")` when artifacts are bundled —
+ * for every backend except Eve's own `vercel`, which short-circuits to a stable
+ * project-id scope. So on a Vercel deploy the same app yields two different keys:
+ * `hash("/vercel/path0")` while `eve build` prewarms, `hash("bundled")` inside
+ * the serverless runtime — and the snapshot captured at build time is
+ * unreachable at runtime (`SandboxTemplateNotProvisionedError` on every turn,
+ * with no self-heal since Eve's re-prewarm retry is disk-artifacts only).
+ *
+ * Dropping the scope makes the name purely content-addressed: `versionHash`
+ * already folds in the Eve version, sandbox source, seed content, nodeId and
+ * sourceId, and our own `identity` covers the backend options. Keys that don't
+ * match Eve's shape (a future format, or a hand-rolled key) pass through whole.
+ */
+const EVE_TEMPLATE_KEY = /^(eve-sbx-tpl-.+?)-[0-9a-f]{16}-([0-9a-f]{20})$/;
+
+function stripTemplateKeyScope(templateKey: string): string {
+  const match = EVE_TEMPLATE_KEY.exec(templateKey);
+  return match ? `${match[1]}-${match[2]}` : templateKey;
+}
+
+/**
  * Deterministic, E2B-safe snapshot name for an Eve `templateKey`.
  *
- * The hash covers both the Eve `templateKey` AND a backend-identity string.
- * Eve's `templateKey` is derived from authored sandbox source + seeds, but NOT
- * from our backend options — so without folding `identity` in, changing
- * `e2b({ template })` (a different base image) would silently reuse the old
- * snapshot. `identity` is hashed, never placed raw in the name, so it is safe
- * to include secrets (envs / network transforms).
+ * The hash covers both the (scope-stripped) Eve `templateKey` AND a
+ * backend-identity string. Eve's `templateKey` is derived from authored sandbox
+ * source + seeds, but NOT from our backend options — so without folding
+ * `identity` in, changing `e2b({ template })` (a different base image) would
+ * silently reuse the old snapshot. `identity` is hashed, never placed raw in the
+ * name, so it is safe to include secrets (envs / network transforms).
  */
 export function sanitizeSnapshotName(templateKey: string, identity = ""): string {
-  const slug = templateKey
+  const key = stripTemplateKeyScope(templateKey);
+  const slug = key
     .toLowerCase()
     .replace(/[^a-z0-9-]+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 40);
-  const hash = createHash("sha256")
-    .update(`${templateKey}\0${identity}`)
-    .digest("hex")
-    .slice(0, 12);
+  const hash = createHash("sha256").update(`${key}\0${identity}`).digest("hex").slice(0, 12);
   return `${SNAPSHOT_PREFIX}-${slug || "template"}-${hash}`;
 }
 
