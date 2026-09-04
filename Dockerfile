@@ -1,4 +1,4 @@
-FROM node:24-slim AS builder
+FROM node:24-slim
 
 WORKDIR /app
 
@@ -9,17 +9,6 @@ RUN pnpm install --frozen-lockfile
 
 COPY . .
 RUN pnpm run build
-
-FROM node:24-slim
-
-WORKDIR /app
-
-RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
-
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --prod --frozen-lockfile
-
-COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
