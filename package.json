@@ -42,7 +42,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --clean",
+    "build": "tsup src/index.ts --format esm --dts --clean && tsup src/server.ts --format esm",
     "type-check": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -53,7 +53,12 @@
     "publish": "pnpm run build && changeset publish"
   },
   "dependencies": {
-    "e2b": "^2.35.0"
+    "@rivet-dev/agent-os-common": "^0.0.260331072558",
+    "@rivet-dev/agent-os-pi": "^0.1.1",
+    "@rivet-dev/agentos": "^0.2.19",
+    "@rivet-dev/agentos-eve": "^0.2.19",
+    "e2b": "^2.35.0",
+    "rivetkit": "^2.3.14"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
@@ -73,5 +78,10 @@
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "pnpm@9.15.9"
+  "packageManager": "pnpm@9.15.9",
+  "pnpm": {
+    "overrides": {
+      "drizzle-orm": "^0.45.1"
+    }
+  }
 }
