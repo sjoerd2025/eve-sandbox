@@ -1,0 +1,23 @@
+{
+  "name": "eve-sandbox-example-agent",
+  "private": true,
+  "description": "Example: Vercel Eve agent using @e2b/eve-sandbox, with Rivet agentOS + Rivet World orchestration",
+  "type": "module",
+  "imports": {
+    "#world": "./world.ts"
+  },
+  "scripts": {
+    "dev": "eve dev"
+  },
+  "dependencies": {
+    "@e2b/eve-sandbox": "*",
+    "@rivet-dev/agentos": "^0.2.19",
+    "@rivet-dev/agentos-core": "^0.2.19",
+    "@rivet-dev/agentos-eve": "^0.2.19",
+    "@rivet-dev/agentos-runtime-core": "^0.2.19",
+    "@rivet-dev/agentos-sidecar": "^0.2.19",
+    "@rivet-dev/vercel-world": "latest",
+    "@rivetkit/engine-cli": "latest",
+    "eve": "^0.27.0"
+  }
+}

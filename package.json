@@ -53,9 +53,10 @@
     "publish": "pnpm run build && changeset publish"
   },
   "dependencies": {
-    "@rivet-dev/agent-os-common": "^0.0.260331072558",
-    "@rivet-dev/agent-os-pi": "^0.1.1",
+    "@agentos-software/common": "0.2.19",
+    "@agentos-software/pi": "0.2.7",
     "@rivet-dev/agentos": "^0.2.19",
+    "@rivet-dev/agentos-core": "^0.2.19",
     "@rivet-dev/agentos-eve": "^0.2.19",
     "e2b": "^2.35.0",
     "rivetkit": "^2.3.14"
