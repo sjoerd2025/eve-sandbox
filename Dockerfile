@@ -10,6 +10,9 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile --prod
 
 COPY dist ./dist
+# Dashboard + static assets (served automatically by registry.start()).
+COPY public ./public
+ENV RIVETKIT_PUBLIC_DIR=/app/public
 
 EXPOSE 3000
 
