@@ -1,0 +1,30 @@
+#!/bin/sh
+# Local CI gate — mirrors .github/workflows/ci.yml exactly.
+# GitHub Actions is billing-locked on this account, so this pre-push hook
+# runs the same checks before any push leaves the machine. CI still runs
+# when the account is unlocked; this hook is the always-available backstop.
+#
+# Bypass in an emergency with: git push --no-verify
+
+set -e
+cd "$(git rev-parse --show-toplevel)"
+
+# Resolve pnpm: PATH first, then the common install locations on this machine.
+if command -v pnpm >/dev/null 2>&1; then
+  PNPM=pnpm
+elif [ -x "$HOME/Library/pnpm/pnpm" ]; then
+  PNPM="$HOME/Library/pnpm/pnpm"
+elif [ -x "/opt/homebrew/bin/pnpm" ]; then
+  PNPM=/opt/homebrew/bin/pnpm
+else
+  echo "pre-push: pnpm not found — skipping gate (NOT recommended)" >&2
+  exit 0
+fi
+
+echo "pre-push: running CI gate (format, lint, type-check, test, build)..."
+"$PNPM" run format:check
+"$PNPM" run lint
+"$PNPM" run type-check
+"$PNPM" test
+"$PNPM" run build
+echo "pre-push: CI gate passed ✓"

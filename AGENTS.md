@@ -1,6 +1,5 @@
 REDACTED_OPENROUTER_KEY h3 openrouter
 
-
 # RivetKit Setup & Deploy
 
 > **Important:** Run every step below against the `beta-7g2s-production-d1j5` namespace only, and pass `--namespace beta-7g2s-production-d1j5` with the deploy command. Do not deploy to or modify any other namespace (for example the default `production` namespace).
@@ -43,6 +42,7 @@ Scaffold a minimal project with RivetKit:
 - Add a local dev script (e.g. `npm run dev`) that builds the frontend and starts the server.
 
 Reference quickstarts:
+
 - Node.js / Bun: https://rivet.dev/docs/actors/quickstart/backend
 - React: https://rivet.dev/docs/actors/quickstart/react
 
@@ -64,8 +64,8 @@ Give the user:
 
 1. Review the deploy guide for rivet at https://rivet.dev/docs/deploy/
 2. Configure and deploy using the following environment variables:
-  RIVET_PUBLIC_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
-  RIVET_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
+   RIVET_PUBLIC_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
+   RIVET_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
 3. Tell the user to paste their deployment's public URL with the `/api/rivet` path (e.g. `https://<app>/api/rivet`) into the Rivet dashboard connect form. This registers the serverless endpoint that Rivet calls into.
 
 ---
@@ -79,6 +79,7 @@ Read through the project to understand what it does. Then ask:
 > What do you want to build, or how do you want to integrate RivetKit?
 
 Give recommendations grounded in what you see. Examples:
+
 - Chat app with video → move chat into a RivetKit actor for realtime + state.
 - Todo app → per-list actor for collaborative editing.
 - Dashboard → per-user actor for live metrics / presence.
@@ -86,6 +87,7 @@ Give recommendations grounded in what you see. Examples:
 ### 2. Plan
 
 Describe the plan before writing code:
+
 - Which features become actors.
 - What state each actor holds.
 - Which actions + events the frontend will use.
@@ -104,6 +106,7 @@ Verify with `/api/rivet/metadata` and the inspector API (https://rivet.dev/docs/
 ### 4. Wrap up
 
 Give the user:
+
 - A short overview of what was added.
 - The command to run locally.
 
@@ -112,13 +115,14 @@ Then ask:
 1. **Want to integrate this into the frontend?** Point at https://rivet.dev/docs/clients/react (or the relevant client doc) and wire it up if yes.
 2. **Want to deploy?** If yes, **Deploy steps:**
 
-1. Review the deploy guide for rivet at https://rivet.dev/docs/deploy/
-2. Configure and deploy using the following environment variables:
-  RIVET_PUBLIC_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
-  RIVET_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
-3. Tell the user to paste their deployment's public URL with the `/api/rivet` path (e.g. `https://<app>/api/rivet`) into the Rivet dashboard connect form. This registers the serverless endpoint that Rivet calls into.
+3. Review the deploy guide for rivet at https://rivet.dev/docs/deploy/
+4. Configure and deploy using the following environment variables:
+   RIVET_PUBLIC_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
+   RIVET_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
+5. Tell the user to paste their deployment's public URL with the `/api/rivet` path (e.g. `https://<app>/api/rivet`) into the Rivet dashboard connect form. This registers the serverless endpoint that Rivet calls into.
 
 Link docs:
+
 - Actors: https://rivet.dev/docs/actors
 - Clients: https://rivet.dev/docs/clients
 - Troubleshooting: https://rivet.dev/docs/actors/troubleshooting
@@ -128,6 +132,7 @@ Link docs:
 ## If you get stuck
 
 Check https://rivet.dev/docs/actors/troubleshooting. If that doesn't help, point the user at:
+
 - Discord: https://rivet.dev/discord
 - GitHub issues: https://github.com/rivet-dev/rivet
 
@@ -136,6 +141,7 @@ Include in the report: symptoms, what was tried, RivetKit version, runtime, HTTP
 ---
 
 # Compute Deployment Steps
+
 ## Step 1: Load the RivetKit docs
 
 Read https://rivet.dev/llms.txt to understand how RivetKit works (actors, state, events, actions, connections, clients).
@@ -206,6 +212,7 @@ npx @rivetkit/cli deploy --token "REDACTED_RIVET_CLOUD_TOKEN" --namespace beta-7
 ```
 
 Notes:
+
 - The image is built for `linux/amd64`. `--env PORT=3000` tells Rivet Compute which port to route to. `registry.start()` binds the port from `RIVET_PORT` (default 3000), so the two line up by default. To use a different port, set both `--env PORT=<port>` and `--env RIVET_PORT=<port>` to the same value and update the `EXPOSE` line to match. Setting `PORT` alone does not change the port the app listens on.
 - `--token` is the `cloud_api_*` Cloud API token. The command also caches it to `~/.rivet/credentials`, so later `deploy` calls can omit `--token`.
 - Pass `--yes` to skip interactive prompts in non-interactive environments.
@@ -215,6 +222,7 @@ When the command finishes successfully, proceed to Step 5 to verify the deployme
 ## Step 5: Verify Deployment
 
 **Token types used in this step:**
+
 - `cloud_api_*` is the `--token` passed to `@rivetkit/cli deploy`, cached in `~/.rivet/credentials`. It is a management token scoped to the Cloud API (cloud-api.rivet.dev). The CLI uses it for logs.
 - `pk_*` is the publishable token below, a public key scoped to the Rivet Engine API (api.rivet.dev). Use this for creating actors and calling gateway endpoints.
 
@@ -233,22 +241,27 @@ npx @rivetkit/cli logs
 Verify actors work end-to-end:
 
 1. Create an actor. Actors require a key field (string, not array):
+
    ```bash
    curl -X POST "https://api.rivet.dev/actors?namespace=beta-7g2s-production-d1j5" \
      -H "Authorization: Bearer REDACTED_RIVET_TOKEN" \
      -H "Content-Type: application/json" \
      -d '{"name": "<ACTOR_NAME>", "key": "<KEY>", "runner_name_selector": "default", "crash_policy": "restart"}'
    ```
+
    Replace `<ACTOR_NAME>` with a valid actor name from the registry and `<KEY>` with an appropriate key string (e.g. "general"). Note the `actor_id` from the response.
 
 2. Wait ~10 seconds for the actor to start, then hit its health endpoint through the gateway using the public token:
+
    ```bash
    curl "https://api.rivet.dev/gateway/<ACTOR_ID>/health" \
      -H "x-rivet-token: REDACTED_RIVET_TOKEN"
    ```
+
    This should return ok with a 200 status.
 
 3. If the health check returns actor_runner_failed, check the logs to diagnose:
+
    ```bash
    npx @rivetkit/cli logs\\
 
@@ -267,7 +280,6 @@ Verify actors work end-to-end:
 - Architecture: `@rivetkit/cli deploy` builds your Docker image and pushes it to Rivet. Rivet runs the container serverlessly. When you create an actor, Rivet communicates with the `/api/rivet/*` endpoint inside the container to manage its lifecycle.
 - For more troubleshooting help, see: https://rivet.dev/docs/actors/troubleshooting/
 
-
 npm install rivetkit @rivet-dev/agent-os-common @rivet-dev/agent-os-pi
 
 import { agentOs } from "rivetkit/agent-os";
@@ -276,12 +288,11 @@ import common from "@rivet-dev/agent-os-common";
 import pi from "@rivet-dev/agent-os-pi";
 
 const vm = agentOs({
-	options: { software: [common, pi] },
+options: { software: [common, pi] },
 });
 
 export const registry = setup({ use: { vm } });
 registry.start();
-
 
 # RivetKit Setup & Deploy
 
@@ -325,6 +336,7 @@ Scaffold a minimal project with RivetKit:
 - Add a local dev script (e.g. `npm run dev`) that builds the frontend and starts the server.
 
 Reference quickstarts:
+
 - Node.js / Bun: https://rivet.dev/docs/actors/quickstart/backend
 - React: https://rivet.dev/docs/actors/quickstart/react
 
@@ -346,8 +358,8 @@ Give the user:
 
 1. Review the deploy guide for rivet at https://rivet.dev/docs/deploy/
 2. Configure and deploy using the following environment variables:
-  RIVET_PUBLIC_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
-  RIVET_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
+   RIVET_PUBLIC_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
+   RIVET_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
 3. Tell the user to paste their deployment's public URL with the `/api/rivet` path (e.g. `https://<app>/api/rivet`) into the Rivet dashboard connect form. This registers the serverless endpoint that Rivet calls into.
 
 ---
@@ -361,6 +373,7 @@ Read through the project to understand what it does. Then ask:
 > What do you want to build, or how do you want to integrate RivetKit?
 
 Give recommendations grounded in what you see. Examples:
+
 - Chat app with video → move chat into a RivetKit actor for realtime + state.
 - Todo app → per-list actor for collaborative editing.
 - Dashboard → per-user actor for live metrics / presence.
@@ -368,6 +381,7 @@ Give recommendations grounded in what you see. Examples:
 ### 2. Plan
 
 Describe the plan before writing code:
+
 - Which features become actors.
 - What state each actor holds.
 - Which actions + events the frontend will use.
@@ -386,6 +400,7 @@ Verify with `/api/rivet/metadata` and the inspector API (https://rivet.dev/docs/
 ### 4. Wrap up
 
 Give the user:
+
 - A short overview of what was added.
 - The command to run locally.
 
@@ -394,13 +409,14 @@ Then ask:
 1. **Want to integrate this into the frontend?** Point at https://rivet.dev/docs/clients/react (or the relevant client doc) and wire it up if yes.
 2. **Want to deploy?** If yes, **Deploy steps:**
 
-1. Review the deploy guide for rivet at https://rivet.dev/docs/deploy/
-2. Configure and deploy using the following environment variables:
-  RIVET_PUBLIC_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
-  RIVET_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
-3. Tell the user to paste their deployment's public URL with the `/api/rivet` path (e.g. `https://<app>/api/rivet`) into the Rivet dashboard connect form. This registers the serverless endpoint that Rivet calls into.
+3. Review the deploy guide for rivet at https://rivet.dev/docs/deploy/
+4. Configure and deploy using the following environment variables:
+   RIVET_PUBLIC_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
+   RIVET_ENDPOINT=https://beta-7g2s-production-d1j5:REDACTED_RIVET_TOKEN@api.rivet.dev
+5. Tell the user to paste their deployment's public URL with the `/api/rivet` path (e.g. `https://<app>/api/rivet`) into the Rivet dashboard connect form. This registers the serverless endpoint that Rivet calls into.
 
 Link docs:
+
 - Actors: https://rivet.dev/docs/actors
 - Clients: https://rivet.dev/docs/clients
 - Troubleshooting: https://rivet.dev/docs/actors/troubleshooting
@@ -410,6 +426,7 @@ Link docs:
 ## If you get stuck
 
 Check https://rivet.dev/docs/actors/troubleshooting. If that doesn't help, point the user at:
+
 - Discord: https://rivet.dev/discord
 - GitHub issues: https://github.com/rivet-dev/rivet
 
@@ -418,6 +435,7 @@ Include in the report: symptoms, what was tried, RivetKit version, runtime, HTTP
 ---
 
 # Compute Deployment Steps
+
 ## Step 1: Load the RivetKit docs
 
 Read https://rivet.dev/llms.txt to understand how RivetKit works (actors, state, events, actions, connections, clients).
@@ -488,6 +506,7 @@ npx @rivetkit/cli deploy --token "REDACTED_RIVET_CLOUD_TOKEN" --namespace beta-7
 ```
 
 Notes:
+
 - The image is built for `linux/amd64`. `--env PORT=3000` tells Rivet Compute which port to route to. `registry.start()` binds the port from `RIVET_PORT` (default 3000), so the two line up by default. To use a different port, set both `--env PORT=<port>` and `--env RIVET_PORT=<port>` to the same value and update the `EXPOSE` line to match. Setting `PORT` alone does not change the port the app listens on.
 - `--token` is the `cloud_api_*` Cloud API token. The command also caches it to `~/.rivet/credentials`, so later `deploy` calls can omit `--token`.
 - Pass `--yes` to skip interactive prompts in non-interactive environments.
@@ -497,6 +516,7 @@ When the command finishes successfully, proceed to Step 5 to verify the deployme
 ## Step 5: Verify Deployment
 
 **Token types used in this step:**
+
 - `cloud_api_*` is the `--token` passed to `@rivetkit/cli deploy`, cached in `~/.rivet/credentials`. It is a management token scoped to the Cloud API (cloud-api.rivet.dev). The CLI uses it for logs.
 - `pk_*` is the publishable token below, a public key scoped to the Rivet Engine API (api.rivet.dev). Use this for creating actors and calling gateway endpoints.
 
@@ -515,22 +535,27 @@ npx @rivetkit/cli logs
 Verify actors work end-to-end:
 
 1. Create an actor. Actors require a key field (string, not array):
+
    ```bash
    curl -X POST "https://api.rivet.dev/actors?namespace=beta-7g2s-production-d1j5" \
      -H "Authorization: Bearer REDACTED_RIVET_TOKEN" \
      -H "Content-Type: application/json" \
      -d '{"name": "<ACTOR_NAME>", "key": "<KEY>", "runner_name_selector": "default", "crash_policy": "restart"}'
    ```
+
    Replace `<ACTOR_NAME>` with a valid actor name from the registry and `<KEY>` with an appropriate key string (e.g. "general"). Note the `actor_id` from the response.
 
 2. Wait ~10 seconds for the actor to start, then hit its health endpoint through the gateway using the public token:
+
    ```bash
    curl "https://api.rivet.dev/gateway/<ACTOR_ID>/health" \
      -H "x-rivet-token: REDACTED_RIVET_TOKEN"
    ```
+
    This should return ok with a 200 status.
 
 3. If the health check returns actor_runner_failed, check the logs to diagnose:
+
    ```bash
    npx @rivetkit/cli logs
    ```
@@ -546,12 +571,11 @@ Verify actors work end-to-end:
 - Architecture: `@rivetkit/cli deploy` builds your Docker image and pushes it to Rivet. Rivet runs the container serverlessly. When you create an actor, Rivet communicates with the `/api/rivet/*` endpoint inside the container to manage its lifecycle.
 - For more troubleshooting help, see: https://rivet.dev/docs/actors/troubleshooting/
 
-
 npx @rivetkit/cli deploy --token REDACTED_RIVET_CLOUD_TOKEN# RivetKit Reference
 
 For all RivetKit development, architecture (actors, state, events, actions, connections, clients), and APIs, refer to:
-- https://rivet.dev/llms.txt
 
+- https://rivet.dev/llms.txt
 
 # Rivet Documentation Index
 

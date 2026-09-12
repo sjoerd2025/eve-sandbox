@@ -5,5 +5,5 @@ import { rivet } from "@rivet-dev/flue";
 // registry (vm + swarmWorker from src/server.ts). The registry's auto-start
 // guard stays quiet: importing this module never boots the server.
 export default defineConfig({
-	target: rivet({ actors: "./src/server.ts" }),
+  target: rivet({ actors: "./src/server.ts" }),
 });
