@@ -1,0 +1,14 @@
+src/hatchet-worker.ts
+  h_d562f3e035a03a 1,5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "63758ae97a68c6ebfa21d53fa1593ea86b7170a0",
+  "prompts": {},
+  "humans": {
+    "h_d562f3e035a03a": {
+      "author": "sjoerd2025 <bodbijlsjoerd@gmail.com>"
+    }
+  }
+}
