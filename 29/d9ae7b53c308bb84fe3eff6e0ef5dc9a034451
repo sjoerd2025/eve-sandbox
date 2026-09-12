@@ -1,0 +1,44 @@
+.agents/pr-review/prompts/repo-conventions.md
+  h_d562f3e035a03a 1-28
+.github/workflows/pr-review.yml
+  h_d562f3e035a03a 1-24
+bridge/swarm/queue.go
+  h_d562f3e035a03a 9,47-86,93-94,96,127,131-132
+bridge/swarm/service.go
+  h_d562f3e035a03a 100
+src/agents/personas/correctness.ts
+  h_d562f3e035a03a 1-19
+src/agents/personas/index.ts
+  h_d562f3e035a03a 1-10
+src/agents/personas/security.ts
+  h_d562f3e035a03a 1-19
+src/agents/prompts/swarm.md
+  h_d562f3e035a03a 1-4
+src/agents/skills/sandboxed-task/SKILL.md
+  h_d562f3e035a03a 1-49
+src/agents/swarm.ts
+  h_d562f3e035a03a 5-16,26-32
+src/dashboard.ts
+  h_d562f3e035a03a 134,150-151
+src/swarm/actor.ts
+  h_d562f3e035a03a 58-65,87,107,168,207,225-226,322,380
+src/swarm/db.ts
+  h_d562f3e035a03a 44,95-100
+src/swarm/hatchet.ts
+  h_d562f3e035a03a 3,210
+src/swarm/queue.ts
+  h_d562f3e035a03a 10-11,28-29,48-49,59-77,116,159-160,166,194,218
+src/swarm/schemas.sql
+  h_d562f3e035a03a 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "29d9ae7b53c308bb84fe3eff6e0ef5dc9a034451",
+  "prompts": {},
+  "humans": {
+    "h_d562f3e035a03a": {
+      "author": "sjoerd2025 <bodbijlsjoerd@gmail.com>"
+    }
+  }
+}
