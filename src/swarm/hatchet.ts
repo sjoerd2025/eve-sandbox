@@ -1,5 +1,6 @@
 import { HatchetClient } from "@hatchet-dev/typescript-sdk";
 import { createSwarmDb, migrateSwarmSchema, swarmDbConfigFromEnv } from "./db";
+import { defaultQueueName } from "./actor";
 import { TaskQueue, type ClaimedTask } from "./queue";
 import { createOpenRouterPlanner } from "./planner";
 import { createWeaviateMemory } from "./memory";
@@ -206,6 +207,7 @@ export const dispatchNextTask = hatchet.task({
     await migrateSwarmSchema(db);
     const queue = new TaskQueue(db);
     const claimed: ClaimedTask | null = await queue.claimNextTask("hatchet-worker", {
+      queueName: defaultQueueName(),
       leaseMs: 35 * 60 * 1000,
     });
     if (!claimed) return { claimed: false };

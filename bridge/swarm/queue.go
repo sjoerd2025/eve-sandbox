@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	_ "github.com/tursodatabase/libsql-client-go/libsql"
@@ -43,18 +44,56 @@ func OpenQueue() (*Queue, error) {
 	return &Queue{db: db}, nil
 }
 
-// Enqueue inserts a task; idempotent per id (existing row returned unchanged).
-func (q *Queue) Enqueue(ctx context.Context, id, prompt string, priority int, payload map[string]any) (*Task, error) {
+// deriveTaskName slugs an issue title into a short human-readable task name.
+func deriveTaskName(title string) string {
+	fields := strings.Fields(title)
+	words := make([]string, 0, len(fields))
+	for _, f := range fields {
+		var b strings.Builder
+		for _, r := range strings.ToLower(f) {
+			if (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') {
+				b.WriteRune(r)
+			}
+		}
+		if b.Len() > 0 {
+			words = append(words, b.String())
+		}
+	}
+	const maxWords = 8
+	if len(words) > maxWords {
+		words = words[:maxWords]
+	}
+	name := strings.Join(words, "-")
+	if len(name) > 48 {
+		name = strings.TrimRight(name[:48], "-")
+	}
+	if name == "" {
+		return fmt.Sprintf("task-%s", time.Now().UTC().Format("2006-01-02"))
+	}
+	return name
+}
+
+// queueName is the queue tasks are enqueued to and claimed from: the repo
+// (GITHUB_REPO, e.g. "eve-sandbox"), so each repo's issues get their own queue.
+func queueName() string {
+	if repo := os.Getenv("GITHUB_REPO"); repo != "" {
+		return repo
+	}
+	return "default"
+}
+
+// Enqueue inserts a named task; idempotent per id (existing row returned unchanged).
+func (q *Queue) Enqueue(ctx context.Context, id, name, prompt string, priority int, payload map[string]any) (*Task, error) {
 	if payload == nil {
 		payload = map[string]any{}
 	}
 	pl, _ := json.Marshal(payload)
 	now := time.Now().UnixMilli()
 	_, err := q.db.ExecContext(ctx, `
-		INSERT INTO task_queue (id, queue_name, prompt, status, priority, attempts, max_attempts, payload, created_at, updated_at)
-		VALUES (?, 'default', ?, 'PENDING', ?, 0, 3, ?, ?, ?)
+		INSERT INTO task_queue (id, queue_name, name, prompt, status, priority, attempts, max_attempts, payload, created_at, updated_at)
+		VALUES (?, ?, ?, ?, 'PENDING', ?, 0, 3, ?, ?, ?)
 		ON CONFLICT(id) DO NOTHING`,
-		id, prompt, priority, string(pl), now, now)
+		id, queueName(), name, prompt, priority, string(pl), now, now)
 	if err != nil {
 		return nil, err
 	}
@@ -85,11 +124,12 @@ func (q *Queue) Get(ctx context.Context, id string) (*Task, error) {
 	return &t, nil
 }
 
-// Depth counts PENDING tasks in the default queue.
+// Depth counts PENDING tasks in this repo's queue.
 func (q *Queue) Depth(ctx context.Context) (int, error) {
 	var n int
 	err := q.db.QueryRowContext(ctx,
-		`SELECT COUNT(*) FROM task_queue WHERE status = 'PENDING' AND queue_name = 'default'`).Scan(&n)
+		`SELECT COUNT(*) FROM task_queue WHERE status = 'PENDING' AND queue_name = ?`,
+		queueName()).Scan(&n)
 	return n, err
 }
 

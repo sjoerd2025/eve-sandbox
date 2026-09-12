@@ -7,6 +7,8 @@ export type TaskStatus = "PENDING" | "LEASED" | "COMPLETED" | "FAILED";
 export interface TaskRow {
   id: string;
   queue_name: string;
+  /** Human-readable task name (slug derived from the prompt when not given). */
+  name: string;
   prompt: string;
   status: TaskStatus;
   priority: number;
@@ -23,6 +25,8 @@ export interface TaskRow {
 
 export interface EnqueueTaskInput {
   prompt: string;
+  /** Human-readable name; derived from the prompt when omitted. */
+  name?: string;
   queueName?: string;
   priority?: number;
   maxAttempts?: number;
@@ -41,6 +45,8 @@ export interface ClaimedTask {
 }
 
 export interface ClaimOptions {
+  /** Queue to claim from. Default "default" (or the constructor default). */
+  queueName?: string;
   /** Lease duration in ms. Default 60s; renewed via heartbeat. */
   leaseMs?: number;
   /** Reap expired leases before claiming (default true). */
@@ -49,6 +55,25 @@ export interface ClaimOptions {
 
 const DEFAULT_LEASE_MS = 60_000;
 const DEFAULT_QUEUE = "default";
+
+/**
+ * Derive a short human-readable task name from a prompt (or issue title):
+ * lowercase, alphanumeric words joined with dashes, truncated to 48 chars.
+ * Falls back to a timestamped name when nothing usable survives slugification.
+ */
+export function deriveTaskName(prompt: string): string {
+  const slug = prompt
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 8)
+    .join("-")
+    .slice(0, 48)
+    .replace(/-+$/, "");
+  return slug || `task-${new Date().toISOString().slice(0, 10)}`;
+}
 
 /**
  * Execute a statement with retry on libSQL lock contention — many workers
@@ -88,6 +113,7 @@ function mapTaskRow(row: Record<string, unknown>): TaskRow {
   return {
     id: String(row.id),
     queue_name: String(row.queue_name),
+    name: String(row.name ?? ""),
     prompt: String(row.prompt),
     status: String(row.status) as TaskStatus,
     priority: num(row.priority),
@@ -130,13 +156,14 @@ export class TaskQueue {
     const t = Date.now();
     const rs = await execWithRetry(this.db, {
       sql: `INSERT INTO task_queue
-              (id, queue_name, prompt, status, priority, attempts, max_attempts, payload, created_at, updated_at)
-            VALUES (?, ?, ?, 'PENDING', ?, 0, ?, ?, ?, ?)
+              (id, queue_name, name, prompt, status, priority, attempts, max_attempts, payload, created_at, updated_at)
+            VALUES (?, ?, ?, ?, 'PENDING', ?, 0, ?, ?, ?, ?)
             ON CONFLICT(id) DO NOTHING
             RETURNING *`,
       args: [
         id,
         input.queueName ?? DEFAULT_QUEUE,
+        input.name ?? deriveTaskName(input.prompt),
         input.prompt,
         input.priority ?? 0,
         input.maxAttempts ?? 3,
@@ -164,6 +191,7 @@ export class TaskQueue {
    */
   async claimNextTask(workerId: string, options: ClaimOptions = {}): Promise<ClaimedTask | null> {
     const leaseMs = options.leaseMs ?? this.defaults.leaseMs ?? DEFAULT_LEASE_MS;
+    const queueName = options.queueName ?? DEFAULT_QUEUE;
     const t = Date.now();
 
     if (options.reap !== false) await this.reapExpiredLeases();
@@ -187,7 +215,7 @@ export class TaskQueue {
                     LIMIT 1
                 )
                 RETURNING *`,
-          args: [workerId, t + leaseMs, t, DEFAULT_QUEUE],
+          args: [workerId, t + leaseMs, t, queueName],
         },
       ],
       "write",

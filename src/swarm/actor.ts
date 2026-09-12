@@ -56,6 +56,14 @@ const DEFAULT_MODEL = "anthropic/claude-sonnet-4.5";
 const DEFAULT_QUEUE = "default";
 
 /**
+ * Default queue name: the repo (each repo's issues get their own queue via the
+ * bridge), overridable with SWARM_QUEUE_NAME, falling back to "default".
+ */
+export function defaultQueueName(env: NodeJS.ProcessEnv = process.env): string {
+  return env.SWARM_QUEUE_NAME ?? env.GITHUB_REPO ?? DEFAULT_QUEUE;
+}
+
+/**
  * Env-driven worker config. Services degrade independently: no Weaviate → no
  * recall; no OpenRouter → planner finishes immediately; no Turso platform
  * token → no CoW branch. A missing Turso queue config surfaces on first claim.
@@ -76,7 +84,7 @@ export function swarmWorkerConfigFromEnv(env: NodeJS.ProcessEnv = process.env): 
   return {
     ...swarmDbConfigFromEnv(env),
     workerId: env.SWARM_WORKER_ID,
-    queueName: env.SWARM_QUEUE_NAME ?? DEFAULT_QUEUE,
+    queueName: defaultQueueName(env),
     leaseMs: numEnv(env.SWARM_LEASE_MS) ?? 60_000,
     heartbeatMs: numEnv(env.SWARM_HEARTBEAT_MS) ?? 20_000,
     maxRetries: numEnv(env.SWARM_MAX_RETRIES) ?? 2,
@@ -96,6 +104,7 @@ function numEnv(v: string | undefined): number | undefined {
 /** Actor state — durable across sleeps (Rivet persists state automatically). */
 interface SwarmWorkerState {
   currentTaskId: string | null;
+  currentTaskName: string | null;
   lastDepth: QueueStatusEvent["depth"] | null;
   processedTasks: number;
 }
@@ -156,6 +165,7 @@ export const swarmWorker: SwarmWorkerDefinition = actor({
 
   createState: (): SwarmWorkerState => ({
     currentTaskId: null,
+    currentTaskName: null,
     lastDepth: null,
     processedTasks: 0,
   }),
@@ -194,6 +204,7 @@ export const swarmWorker: SwarmWorkerDefinition = actor({
       const agentId = config.workerId ?? String(c.key);
       const queue = await ensureInit(c);
       const claimed: ClaimedTask | null = await queue.claimNextTask(agentId, {
+        queueName: config.queueName,
         leaseMs: config.leaseMs,
       });
       if (!claimed) {
@@ -211,7 +222,8 @@ export const swarmWorker: SwarmWorkerDefinition = actor({
       c.vars.metrics.observeQueueWait(queueName, waitSeconds);
 
       c.state.currentTaskId = claimed.task.id;
-      broadcast(c, "workspaceStatus", { agentId, step: "task_started", detail: claimed.task.id });
+      c.state.currentTaskName = claimed.task.name || claimed.task.id;
+      broadcast(c, "workspaceStatus", { agentId, step: "task_started", detail: claimed.task.name || claimed.task.id });
 
       // Heartbeat lease renewal (20s default; ADR-001 Phase 3 step 11).
       const heartbeatTimer = setInterval(() => {
@@ -307,6 +319,7 @@ export const swarmWorker: SwarmWorkerDefinition = actor({
       } finally {
         clearInterval(heartbeatTimer);
         c.state.currentTaskId = null;
+        c.state.currentTaskName = null;
       }
     },
 
@@ -364,6 +377,7 @@ export const swarmWorker: SwarmWorkerDefinition = actor({
       return {
         agentId: swarmWorkerConfigFromEnv().workerId ?? String(c.key),
         currentTaskId: c.state.currentTaskId,
+        currentTaskName: c.state.currentTaskName,
         processedTasks: c.state.processedTasks,
         lastDepth: c.state.lastDepth,
         hasBranch: c.vars.branch !== null,

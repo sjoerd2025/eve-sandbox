@@ -1,0 +1,24 @@
+# PR Review (flipt-io/agents fleet agent)
+# Reviews pull requests against repo conventions (layered from
+# .agents/pr-review/) and posts the review. The swarm's SAM executor opens
+# PRs from worker branches; this is the automated verify pass on them.
+name: PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write # posts the review
+  models: read # default model (github/openai/gpt-4.1) auth — no API key
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: flipt-io/agents/actions/pr-review@main
+        with:
+          pr-number: ${{ github.event.pull_request.number }}
+          local-config-dir: .agents/pr-review

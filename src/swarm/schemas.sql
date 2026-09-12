@@ -5,6 +5,7 @@
 CREATE TABLE IF NOT EXISTS task_queue (
     id               TEXT PRIMARY KEY,
     queue_name       TEXT NOT NULL DEFAULT 'default',
+    name             TEXT NOT NULL DEFAULT '',
     prompt           TEXT NOT NULL,
     status           TEXT NOT NULL DEFAULT 'PENDING'
                      CHECK (status IN ('PENDING', 'LEASED', 'COMPLETED', 'FAILED')),

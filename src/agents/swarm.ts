@@ -2,6 +2,18 @@ import { createAgent } from "@flue/runtime";
 import { agentOSSandbox } from "@rivet-dev/agentos-flue";
 import { registry } from "../server.js";
 
+// Fleet pattern (flipt-io/agents): the agent's behavior is assembled from
+// registered pieces instead of one inline string.
+//
+// - skills/sandboxed-task/SKILL.md — the registered skill: how a task is
+//   executed in the sandbox and what structured result to return.
+// - prompts/swarm.md — the runtime prompt file, loaded as base instructions.
+// - personas/ — delegateable subagent profiles (security, correctness) the
+//   agent hands focused deep-dives to via session.task(_, { agent }).
+import swarmPrompt from "./prompts/swarm.md" with { type: "markdown" };
+import sandboxedTask from "./skills/sandboxed-task/SKILL.md" with { type: "skill" };
+import { personas } from "./personas/index.js";
+
 /**
  * The swarm coding agent. Every conversation context runs inside its own
  * agentOS `vm` actor — an isolated virtual Linux with a persistent
@@ -11,8 +23,12 @@ import { registry } from "../server.js";
  */
 export default createAgent(() => ({
 	model: `openrouter/${process.env.SWARM_MODEL ?? "anthropic/claude-sonnet-4.5"}`,
-	instructions:
-		"You are a sandboxed coding agent working in /workspace. " +
-		"Use the filesystem and shell tools to complete the task, then report what you did.",
+	instructions: swarmPrompt,
+	skills: [sandboxedTask],
+	subagents: personas,
+	// Task execution is a bounded, well-specified job — the skill spells out
+	// exactly what to do — so "low" keeps the model decisive instead of
+	// deliberating. Non-reasoning models ignore it.
+	thinkingLevel: "low",
 	sandbox: agentOSSandbox({ actor: "vm", registry }),
 }));

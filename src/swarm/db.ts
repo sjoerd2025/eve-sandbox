@@ -41,6 +41,7 @@ export const SWARM_SCHEMA_SQL =
     `CREATE TABLE IF NOT EXISTS task_queue (
     id               TEXT PRIMARY KEY,
     queue_name       TEXT NOT NULL DEFAULT 'default',
+    name             TEXT NOT NULL DEFAULT '',
     prompt           TEXT NOT NULL,
     status           TEXT NOT NULL DEFAULT 'PENDING'
                      CHECK (status IN ('PENDING', 'LEASED', 'COMPLETED', 'FAILED')),
@@ -90,5 +91,11 @@ export const SWARM_SCHEMA_SQL =
 export async function migrateSwarmSchema(db: Client): Promise<void> {
   for (const statement of SWARM_SCHEMA_SQL.split(";")) {
     if (statement.trim()) await db.execute(statement);
+  }
+  // Migration: databases created before task naming existed lack the column.
+  try {
+    await db.execute("ALTER TABLE task_queue ADD COLUMN name TEXT NOT NULL DEFAULT ''");
+  } catch (error) {
+    if (!String(error).includes("duplicate column")) throw error;
   }
 }

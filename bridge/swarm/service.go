@@ -97,7 +97,7 @@ func Sync(ctx context.Context, req *SyncRequest) (*SyncResponse, error) {
 			res.Skipped++
 			continue
 		}
-		if _, err := queue.Enqueue(ctx, id,
+		if _, err := queue.Enqueue(ctx, id, deriveTaskName(issue.Title),
 			fmt.Sprintf("%s\n\n(source: %s)", issue.Title, issue.HTMLURL),
 			0, map[string]any{
 				"issue":   issue.Number,
