@@ -1,0 +1,24 @@
+# Issue Health Check (flipt-io/agents fleet agent)
+# Scores newly opened issues for actionability, posts a health-check comment,
+# and applies existing labels. The swarm bridge only enqueues issues labeled
+# `swarm`, so this check is the intake gate: unhealthy issues never burn a
+# SAM cycle.
+name: Issue Health Check
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+  issues: write # the workflow comments and may apply labels
+  models: read # GitHub Models auth (no API key)
+
+jobs:
+  issue-health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: flipt-io/agents/actions/issue-health@main
+        with:
+          issue-number: ${{ github.event.issue.number }}

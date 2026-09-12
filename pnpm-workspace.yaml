@@ -1,0 +1,4 @@
+packages:
+  - .
+overrides:
+  "@flue/runtime": npm:@rivet-dev/labs-flue-runtime@1.0.0-beta.9-rivet.2

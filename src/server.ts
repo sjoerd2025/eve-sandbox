@@ -1,6 +1,7 @@
 import { agentOS, setup, type Registry } from "@rivet-dev/agentos";
 import common from "@agentos-software/common";
 import pi from "@agentos-software/pi";
+import { swarmWorker } from "./swarm/actor";
 
 /**
  * The agentOS VM actor: one isolated virtual Linux per actor key, with durable
@@ -28,8 +29,11 @@ export type AgentOsActorDefinition = ReturnType<typeof agentOS>;
  * embedders) can construct a registry without side effects; the default
  * `registry` below is what the entrypoint and `agentOSBackend()` consumers use.
  */
-export function createAgentOsRegistry(): Registry<{ vm: typeof vm }> {
-  return setup({ use: { vm } });
+export function createAgentOsRegistry(): Registry<{
+  vm: typeof vm;
+  swarmWorker: typeof swarmWorker;
+}> {
+  return setup({ use: { vm, swarmWorker } });
 }
 
 /**
@@ -37,7 +41,8 @@ export function createAgentOsRegistry(): Registry<{ vm: typeof vm }> {
  * `@rivet-dev/agentos-eve`, re-exported by this package) points Eve at this
  * actor, mapping every Eve sandbox session onto a `vm` actor instance.
  */
-export const registry: Registry<{ vm: typeof vm }> = createAgentOsRegistry();
+export const registry: Registry<{ vm: typeof vm; swarmWorker: typeof swarmWorker }> =
+  createAgentOsRegistry();
 
 // Only auto-start when run directly as the entrypoint (dist/server.js), not
 // when imported by tests or `agentOSBackend()` consumers that own the

@@ -4,3 +4,7 @@ dist/
 .env
 .env.*
 .DS_Store
+.tools/
+.freebuff/
+e2b..md
+flipt/flags/
