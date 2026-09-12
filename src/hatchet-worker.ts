@@ -1,8 +1,8 @@
-import { hatchet, dispatchNextTask, samCycle } from "./swarm/hatchet";
+import { hatchet, dispatchNextTask, samCycle, samLoop } from "./swarm/hatchet";
 
 async function main() {
   const worker = await hatchet.worker("swarm-worker", {
-    workflows: [dispatchNextTask, samCycle],
+    workflows: [dispatchNextTask, samCycle, samLoop],
   });
 
   // Tick the dispatcher every 5s: claims PENDING tasks from Turso and runs a
