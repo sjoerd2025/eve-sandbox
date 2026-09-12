@@ -76,3 +76,27 @@ npx @rivetkit/cli deploy --token $RIVET_CLOUD_TOKEN \
 Then verify `https://<app>/api/rivet/health` returns 200 and create a `vm`
 actor (`{"name":"vm","key":"my-agent","crash_policy":"restart"}`) via the
 Engine API or the inspector.
+
+## Swarm workers (ADR-001)
+
+`src/swarm/` adds a durable agent swarm on the same registry:
+
+- **TaskQueue** (Turso/libSQL): pull-based competing-consumer queue with
+  atomic claims, heartbeat leases, and expired-lease reaping — no
+  Redis/RabbitMQ.
+- **SamEngine**: finite state machine `IDLE→RECALL→PLAN→EXECUTE→VERIFY→COMMIT`
+  with bounded retries and an `ESCALATE` phase for human-in-the-loop.
+- **swarmWorker actor**: claims tasks, runs SAM (OpenRouter planner, optional
+  Weaviate recall, executor seam), and broadcasts `samTransition`,
+  `sandboxStdout`, `workspaceStatus`, and `queueStatus` events for the
+  dashboard/TUI.
+- **Turso CoW branches**: `setupWorkspace` / `teardownWorkspace` fork an
+  ephemeral database branch per worker with a branch-scoped token.
+- **SwarmMetrics**: Prometheus metrics with strictly bounded labels — no
+  session ids, prompts, or paths; those go to the audit log instead.
+
+Configure via env: `TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN` (queue),
+`OPENROUTER_API_KEY` (planner), `WEAVIATE_URL` / `WEAVIATE_API_KEY` (optional
+memory), `TURSO_PLATFORM_API_TOKEN` / `TURSO_ORG_SLUG` (CoW branches). Apply
+`src/swarm/schemas.sql` with `turso db shell <db> < schemas.sql`, or let the
+migrator create the tables on first use.

@@ -4,3 +4,4 @@ export { WORKSPACE_ROOT } from "./internal-session";
 export { agentOSBackend, agentOSCoreBackend } from "@rivet-dev/agentos-eve";
 export { AgentOs, nodeModulesMount } from "@rivet-dev/agentos-core";
 export { createAgentOsRegistry, registry, vm } from "./server";
+export * from "./swarm/mod";

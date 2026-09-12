@@ -1,0 +1,12 @@
+storage:
+  local:
+    name: local
+    backend:
+      type: local
+      path: /Users/sjoerd/Github/eve-sandbox/flipt/flags
+      branch: main
+environments:
+  default:
+    name: Default
+    storage: local
+    default: true

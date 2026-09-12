@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      namespace:
+        description: "Rivet namespace to deploy to"
+        required: true
+        default: beta-g2ly-beta-7g2s-produc-xne6
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: build, test, deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".tool-versions"
+          cache: pnpm
+
+      - name: Configure pnpm
+        run: pnpm config set auto-install-peers true
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Test gate
+        run: |
+          pnpm run type-check
+          pnpm run lint
+          pnpm test
+
+      - name: Build dist
+        run: pnpm run build
+
+      - name: Deploy to Rivet
+        run: |
+          npx @rivetkit/cli deploy \
+            --token "${{ secrets.RIVET_CLOUD_TOKEN }}" \
+            --namespace "${{ github.event.inputs.namespace }}" \
+            --env PORT=3000 \
+            --env OPENROUTER_API_KEY="${{ secrets.OPENROUTER_API_KEY }}" \
+            --env TURSO_DATABASE_URL="${{ secrets.TURSO_DATABASE_URL }}" \
+            --env TURSO_AUTH_TOKEN="${{ secrets.TURSO_AUTH_TOKEN }}" \
+            --env WEAVIATE_URL="${{ secrets.WEAVIATE_URL }}" \
+            --env WEAVIATE_API_KEY="${{ secrets.WEAVIATE_API_KEY }}" \
+            --env E2B_API_KEY="${{ secrets.E2B_API_KEY }}" \
+            --env JINA_API_KEY="${{ secrets.JINA_API_KEY }}" \
+            --env ENGRAM_TOKEN="${{ secrets.ENGRAM_TOKEN }}" \
+            --yes

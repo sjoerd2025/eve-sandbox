@@ -18,10 +18,10 @@ function parsedVmActor(): ParsedActorDef {
 }
 
 describe("RivetKit agentOS server", () => {
-  it("the registry registers exactly the vm actor", () => {
+  it("the registry registers the vm and swarmWorker actors", () => {
     const registry = createAgentOsRegistry();
     const config = registry.parseConfig() as unknown as { use: Record<string, unknown> };
-    expect(Object.keys(config.use)).toEqual(["vm"]);
+    expect(Object.keys(config.use).sort()).toEqual(["swarmWorker", "vm"].sort());
     expect(config.namespace).toBeTypeOf("string");
   });
 
