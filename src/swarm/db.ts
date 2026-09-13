@@ -98,4 +98,40 @@ export async function migrateSwarmSchema(db: Client): Promise<void> {
   } catch (error) {
     if (!String(error).includes("duplicate column")) throw error;
   }
+  await backfillQueueNamesFromPayload(db);
+}
+
+/**
+ * Migration: rows enqueued before repo-named queues landed still carry
+ * queue_name='default'. Their payload url (a GitHub issue link) identifies the
+ * repo, so historical tasks group with newly enqueued ones. Idempotent: only
+ * rows still on 'default' with a parseable url are touched.
+ */
+export async function backfillQueueNamesFromPayload(db: Client): Promise<number> {
+  const rs = await db.execute(
+    "SELECT id, payload FROM task_queue WHERE queue_name = 'default'",
+  );
+  let updated = 0;
+  for (const row of rs.rows) {
+    const repo = repoFromPayloadUrl(String(row.payload));
+    if (repo === null) continue;
+    await db.execute({
+      sql: "UPDATE task_queue SET queue_name = ? WHERE id = ? AND queue_name = 'default'",
+      args: [repo, String(row.id)],
+    });
+    updated++;
+  }
+  return updated;
+}
+
+/** Extract the repo name from a payload url like …/github.com/<owner>/<repo>/issues/<n>. */
+function repoFromPayloadUrl(payload: string): string | null {
+  try {
+    const url: unknown = JSON.parse(payload)?.url;
+    if (typeof url !== "string") return null;
+    const m = url.match(/^https:\/\/github\.com\/[^/]+\/([^/]+)\/issues\//);
+    return m?.[1] ?? null;
+  } catch {
+    return null;
+  }
 }
