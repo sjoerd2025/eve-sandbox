@@ -1,0 +1,20 @@
+src/hatchet-worker.ts
+  h_d562f3e035a03a 1,8-10,12-16
+src/swarm/hatchet.ts
+  h_d562f3e035a03a 196-209
+src/swarm/queue-gate.test.ts
+  h_d562f3e035a03a 1-47
+src/swarm/queue.ts
+  h_d562f3e035a03a 229-238,265-282
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "83c653865558350c37a6a5321c278374786df803",
+  "prompts": {},
+  "humans": {
+    "h_d562f3e035a03a": {
+      "author": "sjoerd2025 <bodbijlsjoerd@gmail.com>"
+    }
+  }
+}
