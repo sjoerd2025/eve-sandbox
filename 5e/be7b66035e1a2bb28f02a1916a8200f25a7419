@@ -1,0 +1,14 @@
+test/swarm.integration.test.ts
+  h_d562f3e035a03a 36-41,43-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "5ebe7b66035e1a2bb28f02a1916a8200f25a7419",
+  "prompts": {},
+  "humans": {
+    "h_d562f3e035a03a": {
+      "author": "sjoerd2025 <bodbijlsjoerd@gmail.com>"
+    }
+  }
+}
