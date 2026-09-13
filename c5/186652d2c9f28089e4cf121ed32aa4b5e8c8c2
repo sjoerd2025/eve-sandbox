@@ -1,0 +1,16 @@
+bridge/swarm/multica.go
+  h_d562f3e035a03a 1-146
+bridge/swarm/service.go
+  h_d562f3e035a03a 32-34,51,58,65-75,88,119-155,187,191-195,207-215
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c5186652d2c9f28089e4cf121ed32aa4b5e8c8c2",
+  "prompts": {},
+  "humans": {
+    "h_d562f3e035a03a": {
+      "author": "sjoerd2025 <bodbijlsjoerd@gmail.com>"
+    }
+  }
+}
