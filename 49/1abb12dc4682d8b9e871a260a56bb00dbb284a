@@ -1,0 +1,16 @@
+package.json
+  h_d562f3e035a03a 55-59
+pnpm-lock.yaml
+  h_d562f3e035a03a 7-9,57,7063,7113,7315,7359,9312
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "491abb12dc4682d8b9e871a260a56bb00dbb284a",
+  "prompts": {},
+  "humans": {
+    "h_d562f3e035a03a": {
+      "author": "sjoerd2025 <bodbijlsjoerd@gmail.com>"
+    }
+  }
+}
