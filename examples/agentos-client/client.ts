@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { createClient } from "rivetkit/client";
 import type { registry } from "./server.js";
 
@@ -5,39 +6,46 @@ import type { registry } from "./server.js";
  * Boots an agentOS VM instance (the `vm` actor, key "my-agent"), runs a pi
  * session prompt, and reads back the file the agent wrote.
  *
- * Model credentials come from the environment (never hardcoded):
- * - ANTHROPIC_BASE_URL  e.g. https://openrouter.ai/api (Anthropic-compatible)
- * - ANTHROPIC_AUTH_TOKEN  provider auth token
- * (ANTHROPIC_API_KEY works too if you have a native key.)
+ * Action surface (rivetkit 2.3.10 agentOS actor):
+ * - openSession({ sessionId, agent, env })  — client supplies the sessionId
+ * - prompt({ sessionId, content: [{ type: "text", text }] })
+ * - readFile(path) -> Uint8Array
+ *
+ * The VM's home directory is /home/agentos (not /home/user).
+ *
+ * Model credentials come from the environment (never hardcoded). pi reads:
+ * - OPENROUTER_API_KEY      native OpenRouter key
+ * - ANTHROPIC_API_KEY       or an Anthropic-compatible endpoint via
+ * - ANTHROPIC_BASE_URL / ANTHROPIC_AUTH_TOKEN
  *
  * Usage:
- *   node --experimental-strip-types client.ts          # local server
+ *   node --experimental-strip-types client.ts          # local engine
  *   ENDPOINT=https://<app>/api/rivet node client.ts    # deployed endpoint
  */
-const client = createClient<typeof registry>(process.env.ENDPOINT);
+const client = createClient<typeof registry>(process.env.ENDPOINT ?? "http://127.0.0.1:6420");
 
 // getOrCreate boots the agentOS instance on first call.
 const agent = client.vm.getOrCreate(["my-agent"]);
 
-// Stream session events (agent messages, tool calls, prompt lifecycle).
-agent.on("sessionEvent", (data) => console.log(data.event));
+const env = {
+  ...(process.env.OPENROUTER_API_KEY ? { OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY } : {}),
+  ...(process.env.ANTHROPIC_API_KEY ? { ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY } : {}),
+  ...(process.env.ANTHROPIC_BASE_URL ? { ANTHROPIC_BASE_URL: process.env.ANTHROPIC_BASE_URL } : {}),
+  ...(process.env.ANTHROPIC_AUTH_TOKEN
+    ? { ANTHROPIC_AUTH_TOKEN: process.env.ANTHROPIC_AUTH_TOKEN }
+    : {}),
+};
 
-const session = await agent.createSession("pi", {
-  env: {
-    ...(process.env.ANTHROPIC_API_KEY ? { ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY } : {}),
-    ...(process.env.ANTHROPIC_BASE_URL
-      ? { ANTHROPIC_BASE_URL: process.env.ANTHROPIC_BASE_URL }
-      : {}),
-    ...(process.env.ANTHROPIC_AUTH_TOKEN
-      ? { ANTHROPIC_AUTH_TOKEN: process.env.ANTHROPIC_AUTH_TOKEN }
-      : {}),
-  },
-});
+const sessionId = randomUUID();
+await agent.openSession({ sessionId, agent: "pi", env });
 
-const prompt = process.argv[2] ?? "Write a hello world script to /home/user/hello.js";
-const result = await agent.sendPrompt(session.sessionId, prompt);
+const FILE = "/home/agentos/hello.js";
+const prompt =
+  process.argv[2] ?? `Create the file ${FILE} containing a hello-world script, then finish.`;
+const result = await agent.prompt({ sessionId, content: [{ type: "text", text: prompt }] });
 
-const content = await agent.readFile("/home/user/hello.js");
-console.log("--- /home/user/hello.js ---");
+const content = await agent.readFile(FILE);
+console.log(`--- ${FILE} ---`);
 console.log(new TextDecoder().decode(content));
-console.log("prompt result:", JSON.stringify(result));
+console.log("--- prompt result ---");
+console.log(JSON.stringify(result));
