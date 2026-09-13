@@ -1,4 +1,3 @@
-
 import { actor, event, type ActorDefinition, type Actions, type Type } from "rivetkit";
 import { Registry } from "prom-client";
 import { createSwarmDb, migrateSwarmSchema, swarmDbConfigFromEnv, type SwarmDbConfig } from "./db";
@@ -98,8 +97,6 @@ function numEnv(v: string | undefined): number | undefined {
   const n = v === undefined ? NaN : Number(v);
   return Number.isFinite(n) ? n : undefined;
 }
-
-
 
 /** Actor state — durable across sleeps (Rivet persists state automatically). */
 interface SwarmWorkerState {
@@ -223,7 +220,11 @@ export const swarmWorker: SwarmWorkerDefinition = actor({
 
       c.state.currentTaskId = claimed.task.id;
       c.state.currentTaskName = claimed.task.name || claimed.task.id;
-      broadcast(c, "workspaceStatus", { agentId, step: "task_started", detail: claimed.task.name || claimed.task.id });
+      broadcast(c, "workspaceStatus", {
+        agentId,
+        step: "task_started",
+        detail: claimed.task.name || claimed.task.id,
+      });
 
       // Heartbeat lease renewal (20s default; ADR-001 Phase 3 step 11).
       const heartbeatTimer = setInterval(() => {

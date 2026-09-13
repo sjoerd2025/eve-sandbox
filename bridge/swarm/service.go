@@ -29,8 +29,9 @@ type SyncResponse struct {
 	QueueDone int      `json:"queue_done"`
 }
 
-// Sync pulls open GitHub issues into the swarm queue and reports completed
-// tasks back as issue comments. Call from curl, cron, or Multica webhooks.
+// Sync pulls open GitHub issues and Multica tickets into the swarm queue and
+// reports completed tasks back (issue comments / ticket comments + close).
+// Call from curl, cron, or Multica webhooks.
 //
 //encore:api public method=POST path=/sync
 func Sync(ctx context.Context, req *SyncRequest) (*SyncResponse, error) {
@@ -47,27 +48,32 @@ func Sync(ctx context.Context, req *SyncRequest) (*SyncResponse, error) {
 	res := &SyncResponse{}
 
 	gh := NewGitHub()
+	mc := NewMultica()
 	queue, err := OpenQueue()
 	if err != nil {
 		return nil, err
 	}
 	defer queue.Close()
 
-	// 1. Report COMPLETED tasks back to their issues, then close them.
+	// 1. Report COMPLETED tasks back to their source, then close it.
 	done, err := listCompleted(ctx, queue)
 	if err != nil {
 		return nil, err
 	}
 	for _, t := range done {
-		num, ok := issueNumber(t)
-		if !ok {
+		comment := formatReport(t)
+		if num, ok := issueNumber(t); ok {
+			if err := gh.CloseIssue(ctx, num, comment); err != nil {
+				return nil, err
+			}
+			res.Reported = append(res.Reported, num)
+		} else if mcID, ok := multicaIssueID(t); ok && mc.Configured() {
+			if err := mc.Complete(ctx, mcID, comment); err != nil {
+				return nil, err
+			}
+		} else {
 			continue
 		}
-		comment := formatReport(t)
-		if err := gh.CloseIssue(ctx, num, comment); err != nil {
-			return nil, err
-		}
-		res.Reported = append(res.Reported, num)
 		if err := markReported(ctx, queue, t.ID); err != nil {
 			return nil, err
 		}
@@ -79,7 +85,7 @@ func Sync(ctx context.Context, req *SyncRequest) (*SyncResponse, error) {
 		return res, nil
 	}
 
-	// 3. Enqueue open issues as tasks (idempotent: stable task id per issue).
+	// 3. Enqueue open GitHub issues (idempotent: stable task id per issue).
 	issues, err := gh.ListOpenIssues(ctx, label)
 	if err != nil {
 		return nil, err
@@ -109,6 +115,43 @@ func Sync(ctx context.Context, req *SyncRequest) (*SyncResponse, error) {
 			return nil, err
 		}
 		res.Enqueued = append(res.Enqueued, id)
+	}
+
+	// 4. Enqueue open Multica tickets the same way (id: mc-<IDENTIFIER>).
+	if mc.Configured() {
+		tickets, err := mc.listOpenTickets(ctx, 20)
+		if err != nil {
+			return nil, err
+		}
+		for _, tk := range tickets {
+			if len(res.Enqueued) >= limit {
+				break
+			}
+			id := taskIDForMultica(tk.Identifier)
+			existing, err := queue.Get(ctx, id)
+			if err != nil {
+				return nil, err
+			}
+			if existing != nil {
+				res.Skipped++
+				continue
+			}
+			prompt := tk.Title
+			if tk.Description != nil && *tk.Description != "" {
+				prompt = tk.Title + "\n\n" + *tk.Description
+			}
+			if _, err := queue.Enqueue(ctx, id, deriveTaskName(tk.Title), prompt,
+				0, map[string]any{
+					"multica_id":   tk.ID,
+					"identifier":   tk.Identifier,
+					"title":        tk.Title,
+					"executor":     flags.Variant(ctx, "swarm-executor"),
+					"planner":      flags.Variant(ctx, "swarm-planner"),
+				}); err != nil {
+				return nil, err
+			}
+			res.Enqueued = append(res.Enqueued, id)
+		}
 	}
 	return res, nil
 }
@@ -141,8 +184,14 @@ var _ = cron.NewJob("github-sync", cron.JobConfig{
 // ---- helpers --------------------------------------------------------------
 
 const taskIDPrefix = "gh-"
+const multicaIDPrefix = "mc-"
 
 func taskIDForIssue(n int) string { return fmt.Sprintf("%s%d", taskIDPrefix, n) }
+
+// taskIDForMultica maps a ticket identifier (BETA-7) to a stable task id.
+func taskIDForMultica(identifier string) string {
+	return multicaIDPrefix + identifier
+}
 
 func issueNumber(t *Task) (int, bool) {
 	if len(t.ID) <= len(taskIDPrefix) || t.ID[:len(taskIDPrefix)] != taskIDPrefix {
@@ -153,6 +202,15 @@ func issueNumber(t *Task) (int, bool) {
 		return 0, false
 	}
 	return n, true
+}
+
+// multicaIssueID returns the ticket's API id from its payload, for mc- tasks.
+func multicaIssueID(t *Task) (string, bool) {
+	if len(t.ID) <= len(multicaIDPrefix) || t.ID[:len(multicaIDPrefix)] != multicaIDPrefix {
+		return "", false
+	}
+	id, _ := t.Payload["multica_id"].(string)
+	return id, id != ""
 }
 
 // listCompleted fetches COMPLETED tasks that have not been reported yet.

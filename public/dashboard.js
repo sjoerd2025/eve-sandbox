@@ -4,33 +4,46 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
+var __commonJS = (cb, mod) =>
+  function __require() {
+    return (
+      mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports
+    );
+  };
 var __export = (target2, all) => {
-  for (var name in all)
-    __defProp(target2, name, { get: all[name], enumerable: true });
+  for (var name in all) __defProp(target2, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
+  if ((from && typeof from === "object") || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+        __defProp(to, key, {
+          get: () => from[key],
+          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
+        });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target2) => (target2 = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target2, "default", { value: mod, enumerable: true }) : target2,
-  mod
-));
+var __toESM = (mod, isNodeMode, target2) => (
+  (target2 = mod != null ? __create(__getProtoOf(mod)) : {}),
+  __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule
+      ? __defProp(target2, "default", { value: mod, enumerable: true })
+      : target2,
+    mod,
+  )
+);
 
 // node_modules/.pnpm/quick-format-unescaped@4.0.4/node_modules/quick-format-unescaped/index.js
 var require_quick_format_unescaped = __commonJS({
-  "node_modules/.pnpm/quick-format-unescaped@4.0.4/node_modules/quick-format-unescaped/index.js"(exports, module) {
+  "node_modules/.pnpm/quick-format-unescaped@4.0.4/node_modules/quick-format-unescaped/index.js"(
+    exports,
+    module,
+  ) {
     "use strict";
     function tryStringify(o) {
       try {
@@ -41,7 +54,7 @@ var require_quick_format_unescaped = __commonJS({
     }
     module.exports = format;
     function format(f, args, opts) {
-      var ss = opts && opts.stringify || tryStringify;
+      var ss = (opts && opts.stringify) || tryStringify;
       var offset = 1;
       if (typeof f === "object" && f !== null) {
         var len = args.length + offset;
@@ -61,7 +74,7 @@ var require_quick_format_unescaped = __commonJS({
       var str = "";
       var a = 1 - offset;
       var lastPos = -1;
-      var flen = f && f.length || 0;
+      var flen = (f && f.length) || 0;
       for (var i = 0; i < flen; ) {
         if (f.charCodeAt(i) === 37 && i + 1 < flen) {
           lastPos = lastPos > -1 ? lastPos : 0;
@@ -69,21 +82,17 @@ var require_quick_format_unescaped = __commonJS({
             case 100:
             // 'd'
             case 102:
-              if (a >= argLen)
-                break;
+              if (a >= argLen) break;
               if (args[a] == null) break;
-              if (lastPos < i)
-                str += f.slice(lastPos, i);
+              if (lastPos < i) str += f.slice(lastPos, i);
               str += Number(args[a]);
               lastPos = i + 2;
               i++;
               break;
             case 105:
-              if (a >= argLen)
-                break;
+              if (a >= argLen) break;
               if (args[a] == null) break;
-              if (lastPos < i)
-                str += f.slice(lastPos, i);
+              if (lastPos < i) str += f.slice(lastPos, i);
               str += Math.floor(Number(args[a]));
               lastPos = i + 2;
               i++;
@@ -93,11 +102,9 @@ var require_quick_format_unescaped = __commonJS({
             case 111:
             // 'o'
             case 106:
-              if (a >= argLen)
-                break;
+              if (a >= argLen) break;
               if (args[a] === void 0) break;
-              if (lastPos < i)
-                str += f.slice(lastPos, i);
+              if (lastPos < i) str += f.slice(lastPos, i);
               var type = typeof args[a];
               if (type === "string") {
                 str += "'" + args[a] + "'";
@@ -116,17 +123,14 @@ var require_quick_format_unescaped = __commonJS({
               i++;
               break;
             case 115:
-              if (a >= argLen)
-                break;
-              if (lastPos < i)
-                str += f.slice(lastPos, i);
+              if (a >= argLen) break;
+              if (lastPos < i) str += f.slice(lastPos, i);
               str += String(args[a]);
               lastPos = i + 2;
               i++;
               break;
             case 37:
-              if (lastPos < i)
-                str += f.slice(lastPos, i);
+              if (lastPos < i) str += f.slice(lastPos, i);
               str += "%";
               lastPos = i + 2;
               i++;
@@ -137,14 +141,13 @@ var require_quick_format_unescaped = __commonJS({
         }
         ++i;
       }
-      if (lastPos === -1)
-        return f;
+      if (lastPos === -1) return f;
       else if (lastPos < flen) {
         str += f.slice(lastPos);
       }
       return str;
     }
-  }
+  },
 });
 
 // node_modules/.pnpm/pino@9.14.0/node_modules/pino/browser.js
@@ -163,7 +166,7 @@ var require_browser = __commonJS({
       req: mock,
       res: mock,
       err: asErrValue,
-      errWithCause: asErrValue
+      errWithCause: asErrValue,
     };
     function levelToValue(level, logger4) {
       return level === "silent" ? Infinity : logger4.levels.values[level];
@@ -176,25 +179,27 @@ var require_browser = __commonJS({
       warn: "error",
       info: "log",
       debug: "log",
-      trace: "log"
+      trace: "log",
     };
     function appendChildLogger(parentLogger, childLogger) {
       const newEntry = {
         logger: childLogger,
-        parent: parentLogger[hierarchySymbol]
+        parent: parentLogger[hierarchySymbol],
       };
       childLogger[hierarchySymbol] = newEntry;
     }
     function setupBaseLogFunctions(logger4, levels, proto) {
       const logFunctions = {};
       levels.forEach((level) => {
-        logFunctions[level] = proto[level] ? proto[level] : _console[level] || _console[logFallbackMap[level] || "log"] || noop;
+        logFunctions[level] = proto[level]
+          ? proto[level]
+          : _console[level] || _console[logFallbackMap[level] || "log"] || noop;
       });
       logger4[baseLogFunctionSymbol] = logFunctions;
     }
     function shouldSerialize(serialize, serializers) {
       if (Array.isArray(serialize)) {
-        const hasToFilter = serialize.filter(function(k) {
+        const hasToFilter = serialize.filter(function (k) {
           return k !== "!stdSerializers.err";
         });
         return hasToFilter;
@@ -215,11 +220,15 @@ var require_browser = __commonJS({
       const serializers = opts.serializers || {};
       const serialize = shouldSerialize(opts.browser.serialize, serializers);
       let stdErrSerialize = opts.browser.serialize;
-      if (Array.isArray(opts.browser.serialize) && opts.browser.serialize.indexOf("!stdSerializers.err") > -1) stdErrSerialize = false;
+      if (
+        Array.isArray(opts.browser.serialize) &&
+        opts.browser.serialize.indexOf("!stdSerializers.err") > -1
+      )
+        stdErrSerialize = false;
       const customLevels = Object.keys(opts.customLevels || {});
       const levels = ["error", "fatal", "warn", "info", "debug", "trace"].concat(customLevels);
       if (typeof proto === "function") {
-        levels.forEach(function(level2) {
+        levels.forEach(function (level2) {
           proto[level2] = proto;
         });
       }
@@ -230,11 +239,11 @@ var require_browser = __commonJS({
       setupBaseLogFunctions(logger4, levels, proto);
       appendChildLogger({}, logger4);
       Object.defineProperty(logger4, "levelVal", {
-        get: getLevelVal
+        get: getLevelVal,
       });
       Object.defineProperty(logger4, "level", {
         get: getLevel,
-        set: setLevel
+        set: setLevel,
       });
       const setOpts = {
         transmit: transmit2,
@@ -245,21 +254,36 @@ var require_browser = __commonJS({
         levels,
         timestamp: getTimeFunction(opts),
         messageKey: opts.messageKey || "msg",
-        onChild: opts.onChild || noop
+        onChild: opts.onChild || noop,
       };
       logger4.levels = getLevels(opts);
       logger4.level = level;
-      logger4.isLevelEnabled = function(level2) {
+      logger4.isLevelEnabled = function (level2) {
         if (!this.levels.values[level2]) {
           return false;
         }
         return this.levels.values[level2] >= this.levels.values[this.level];
       };
-      logger4.setMaxListeners = logger4.getMaxListeners = logger4.emit = logger4.addListener = logger4.on = logger4.prependListener = logger4.once = logger4.prependOnceListener = logger4.removeListener = logger4.removeAllListeners = logger4.listeners = logger4.listenerCount = logger4.eventNames = logger4.write = logger4.flush = noop;
+      logger4.setMaxListeners =
+        logger4.getMaxListeners =
+        logger4.emit =
+        logger4.addListener =
+        logger4.on =
+        logger4.prependListener =
+        logger4.once =
+        logger4.prependOnceListener =
+        logger4.removeListener =
+        logger4.removeAllListeners =
+        logger4.listeners =
+        logger4.listenerCount =
+        logger4.eventNames =
+        logger4.write =
+        logger4.flush =
+          noop;
       logger4.serializers = serializers;
       logger4._serialize = serialize;
       logger4._stdErrSerialize = stdErrSerialize;
-      logger4.child = function(...args) {
+      logger4.child = function (...args) {
         return child.call(this, setOpts, ...args);
       };
       if (transmit2) logger4._logEvent = createLogEventShape();
@@ -295,7 +319,8 @@ var require_browser = __commonJS({
         const childOptionsSerializers = childOptions.serializers;
         if (serialize && childOptionsSerializers) {
           var childSerializers = Object.assign({}, serializers, childOptionsSerializers);
-          var childSerialize = opts.browser.serialize === true ? Object.keys(childSerializers) : serialize;
+          var childSerialize =
+            opts.browser.serialize === true ? Object.keys(childSerializers) : serialize;
           delete bindings.serializers;
           applySerializers([bindings], childSerialize, childSerializers, this._stdErrSerialize);
         }
@@ -307,15 +332,13 @@ var require_browser = __commonJS({
             this._serialize = childSerialize;
           }
           if (transmit2) {
-            this._logEvent = createLogEventShape(
-              [].concat(parent._logEvent.bindings, bindings)
-            );
+            this._logEvent = createLogEventShape([].concat(parent._logEvent.bindings, bindings));
           }
         }
         Child.prototype = this;
         const newLogger = new Child(this);
         appendChildLogger(this, newLogger);
-        newLogger.child = function(...args) {
+        newLogger.child = function (...args) {
           return child.call(this, setOpts2, ...args);
         };
         newLogger.level = childOptions.level || this.level;
@@ -330,12 +353,12 @@ var require_browser = __commonJS({
       const labels = Object.assign({}, pino2.levels.labels, invertObject(customLevels));
       return {
         values,
-        labels
+        labels,
       };
     }
     function invertObject(obj) {
       const inverted = {};
-      Object.keys(obj).forEach(function(key) {
+      Object.keys(obj).forEach(function (key) {
         inverted[obj[key]] = key;
       });
       return inverted;
@@ -347,7 +370,7 @@ var require_browser = __commonJS({
         warn: 40,
         info: 30,
         debug: 20,
-        trace: 10
+        trace: 10,
       },
       labels: {
         10: "trace",
@@ -355,8 +378,8 @@ var require_browser = __commonJS({
         30: "info",
         40: "warn",
         50: "error",
-        60: "fatal"
-      }
+        60: "fatal",
+      },
     };
     pino2.stdSerializers = stdSerializers;
     pino2.stdTimeFunctions = Object.assign({}, { nullTime, epochTime, unixTime, isoTime });
@@ -376,10 +399,13 @@ var require_browser = __commonJS({
     }
     function set2(self2, opts, rootLogger, level) {
       Object.defineProperty(self2, level, {
-        value: levelToValue(self2.level, rootLogger) > levelToValue(level, rootLogger) ? noop : rootLogger[baseLogFunctionSymbol][level],
+        value:
+          levelToValue(self2.level, rootLogger) > levelToValue(level, rootLogger)
+            ? noop
+            : rootLogger[baseLogFunctionSymbol][level],
         writable: true,
         enumerable: true,
-        configurable: true
+        configurable: true,
       });
       if (self2[level] === noop) {
         if (!opts.transmit) return;
@@ -396,16 +422,17 @@ var require_browser = __commonJS({
       self2[level] = prependBindingsInArguments(bindings, self2[level]);
     }
     function prependBindingsInArguments(bindings, logFunc) {
-      return function() {
+      return function () {
         return logFunc.apply(this, [...bindings, ...arguments]);
       };
     }
     function createWrap(self2, opts, rootLogger, level) {
-      return /* @__PURE__ */ (function(write) {
+      return /* @__PURE__ */ (function (write) {
         return function LOG() {
           const ts = opts.timestamp();
           const args = new Array(arguments.length);
-          const proto = Object.getPrototypeOf && Object.getPrototypeOf(this) === _console ? _console : this;
+          const proto =
+            Object.getPrototypeOf && Object.getPrototypeOf(this) === _console ? _console : this;
           for (var i = 0; i < args.length; i++) args[i] = arguments[i];
           var argsIsSerialized = false;
           if (opts.serialize) {
@@ -420,24 +447,27 @@ var require_browser = __commonJS({
             const transmitValue = levelToValue(transmitLevel, rootLogger);
             const methodValue = levelToValue(level, rootLogger);
             if (methodValue < transmitValue) return;
-            transmit(this, {
-              ts,
-              methodLevel: level,
-              methodValue,
-              transmitLevel,
-              transmitValue: rootLogger.levels.values[opts.transmit.level || self2._level],
-              send: opts.transmit.send,
-              val: levelToValue(self2._level, rootLogger)
-            }, args, argsIsSerialized);
+            transmit(
+              this,
+              {
+                ts,
+                methodLevel: level,
+                methodValue,
+                transmitLevel,
+                transmitValue: rootLogger.levels.values[opts.transmit.level || self2._level],
+                send: opts.transmit.send,
+                val: levelToValue(self2._level, rootLogger),
+              },
+              args,
+              argsIsSerialized,
+            );
           }
         };
       })(self2[baseLogFunctionSymbol][level]);
     }
     function asObject(logger4, level, args, ts, opts) {
-      const {
-        level: levelFormatter,
-        log: logObjectFormatter = (obj) => obj
-      } = opts.formatters || {};
+      const { level: levelFormatter, log: logObjectFormatter = (obj) => obj } =
+        opts.formatters || {};
       const argsCloned = args.slice();
       let msg = argsCloned[0];
       const logObject = {};
@@ -497,11 +527,11 @@ var require_browser = __commonJS({
           args,
           logger4._serialize || Object.keys(logger4.serializers),
           logger4.serializers,
-          logger4._stdErrSerialize === void 0 ? true : logger4._stdErrSerialize
+          logger4._stdErrSerialize === void 0 ? true : logger4._stdErrSerialize,
         );
       }
       logger4._logEvent.ts = ts;
-      logger4._logEvent.messages = args.filter(function(arg) {
+      logger4._logEvent.messages = args.filter(function (arg) {
         return bindings.indexOf(arg) === -1;
       });
       logger4._logEvent.level.label = methodLevel;
@@ -514,14 +544,14 @@ var require_browser = __commonJS({
         ts: 0,
         messages: [],
         bindings: bindings || [],
-        level: { label: "", value: 0 }
+        level: { label: "", value: 0 },
       };
     }
     function asErrValue(err) {
       const obj = {
         type: err.constructor.name,
         msg: err.message,
-        stack: err.stack
+        stack: err.stack,
       };
       for (const key in err) {
         if (obj[key] === void 0) {
@@ -545,8 +575,7 @@ var require_browser = __commonJS({
     function passthrough(a) {
       return a;
     }
-    function noop() {
-    }
+    function noop() {}
     function nullTime() {
       return false;
     }
@@ -566,11 +595,11 @@ var require_browser = __commonJS({
       try {
         if (typeof globalThis !== "undefined") return globalThis;
         Object.defineProperty(Object.prototype, "globalThis", {
-          get: function() {
+          get: function () {
             delete Object.prototype.globalThis;
-            return this.globalThis = this;
+            return (this.globalThis = this);
           },
-          configurable: true
+          configurable: true,
         });
         return globalThis;
       } catch (e) {
@@ -579,14 +608,14 @@ var require_browser = __commonJS({
     }
     module.exports.default = pino2;
     module.exports.pino = pino2;
-  }
+  },
 });
 
 // node_modules/.pnpm/invariant@2.2.4/node_modules/invariant/browser.js
 var require_browser2 = __commonJS({
   "node_modules/.pnpm/invariant@2.2.4/node_modules/invariant/browser.js"(exports, module) {
     "use strict";
-    var invariant5 = function(condition, format, a, b, c, d, e, f) {
+    var invariant5 = function (condition, format, a, b, c, d, e, f) {
       if (true) {
         if (format === void 0) {
           throw new Error("invariant requires an error message argument");
@@ -596,15 +625,15 @@ var require_browser2 = __commonJS({
         var error51;
         if (format === void 0) {
           error51 = new Error(
-            "Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings."
+            "Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.",
           );
         } else {
           var args = [a, b, c, d, e, f];
           var argIndex = 0;
           error51 = new Error(
-            format.replace(/%s/g, function() {
+            format.replace(/%s/g, function () {
               return args[argIndex++];
-            })
+            }),
           );
           error51.name = "Invariant Violation";
         }
@@ -613,7 +642,7 @@ var require_browser2 = __commonJS({
       }
     };
     module.exports = invariant5;
-  }
+  },
 });
 
 // node_modules/.pnpm/retry@0.13.1/node_modules/retry/lib/retry_operation.js
@@ -626,7 +655,7 @@ var require_retry_operation = __commonJS({
       this._originalTimeouts = JSON.parse(JSON.stringify(timeouts));
       this._timeouts = timeouts;
       this._options = options || {};
-      this._maxRetryTime = options && options.maxRetryTime || Infinity;
+      this._maxRetryTime = (options && options.maxRetryTime) || Infinity;
       this._fn = null;
       this._errors = [];
       this._attempts = 1;
@@ -640,11 +669,11 @@ var require_retry_operation = __commonJS({
       }
     }
     module.exports = RetryOperation;
-    RetryOperation.prototype.reset = function() {
+    RetryOperation.prototype.reset = function () {
       this._attempts = 1;
       this._timeouts = this._originalTimeouts.slice(0);
     };
-    RetryOperation.prototype.stop = function() {
+    RetryOperation.prototype.stop = function () {
       if (this._timeout) {
         clearTimeout(this._timeout);
       }
@@ -654,14 +683,14 @@ var require_retry_operation = __commonJS({
       this._timeouts = [];
       this._cachedTimeouts = null;
     };
-    RetryOperation.prototype.retry = function(err) {
+    RetryOperation.prototype.retry = function (err) {
       if (this._timeout) {
         clearTimeout(this._timeout);
       }
       if (!err) {
         return false;
       }
-      var currentTime = (/* @__PURE__ */ new Date()).getTime();
+      var currentTime = /* @__PURE__ */ new Date().getTime();
       if (err && currentTime - this._operationStart >= this._maxRetryTime) {
         this._errors.push(err);
         this._errors.unshift(new Error("RetryOperation timeout occurred"));
@@ -678,10 +707,10 @@ var require_retry_operation = __commonJS({
         }
       }
       var self2 = this;
-      this._timer = setTimeout(function() {
+      this._timer = setTimeout(function () {
         self2._attempts++;
         if (self2._operationTimeoutCb) {
-          self2._timeout = setTimeout(function() {
+          self2._timeout = setTimeout(function () {
             self2._operationTimeoutCb(self2._attempts);
           }, self2._operationTimeout);
           if (self2._options.unref) {
@@ -695,7 +724,7 @@ var require_retry_operation = __commonJS({
       }
       return true;
     };
-    RetryOperation.prototype.attempt = function(fn, timeoutOps) {
+    RetryOperation.prototype.attempt = function (fn, timeoutOps) {
       this._fn = fn;
       if (timeoutOps) {
         if (timeoutOps.timeout) {
@@ -707,29 +736,29 @@ var require_retry_operation = __commonJS({
       }
       var self2 = this;
       if (this._operationTimeoutCb) {
-        this._timeout = setTimeout(function() {
+        this._timeout = setTimeout(function () {
           self2._operationTimeoutCb();
         }, self2._operationTimeout);
       }
-      this._operationStart = (/* @__PURE__ */ new Date()).getTime();
+      this._operationStart = /* @__PURE__ */ new Date().getTime();
       this._fn(this._attempts);
     };
-    RetryOperation.prototype.try = function(fn) {
+    RetryOperation.prototype.try = function (fn) {
       console.log("Using RetryOperation.try() is deprecated");
       this.attempt(fn);
     };
-    RetryOperation.prototype.start = function(fn) {
+    RetryOperation.prototype.start = function (fn) {
       console.log("Using RetryOperation.start() is deprecated");
       this.attempt(fn);
     };
     RetryOperation.prototype.start = RetryOperation.prototype.try;
-    RetryOperation.prototype.errors = function() {
+    RetryOperation.prototype.errors = function () {
       return this._errors;
     };
-    RetryOperation.prototype.attempts = function() {
+    RetryOperation.prototype.attempts = function () {
       return this._attempts;
     };
-    RetryOperation.prototype.mainError = function() {
+    RetryOperation.prototype.mainError = function () {
       if (this._errors.length === 0) {
         return null;
       }
@@ -748,22 +777,22 @@ var require_retry_operation = __commonJS({
       }
       return mainError;
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/retry@0.13.1/node_modules/retry/lib/retry.js
 var require_retry = __commonJS({
   "node_modules/.pnpm/retry@0.13.1/node_modules/retry/lib/retry.js"(exports) {
     var RetryOperation = require_retry_operation();
-    exports.operation = function(options) {
+    exports.operation = function (options) {
       var timeouts = exports.timeouts(options);
       return new RetryOperation(timeouts, {
         forever: options && (options.forever || options.retries === Infinity),
         unref: options && options.unref,
-        maxRetryTime: options && options.maxRetryTime
+        maxRetryTime: options && options.maxRetryTime,
       });
     };
-    exports.timeouts = function(options) {
+    exports.timeouts = function (options) {
       if (options instanceof Array) {
         return [].concat(options);
       }
@@ -772,7 +801,7 @@ var require_retry = __commonJS({
         factor: 2,
         minTimeout: 1 * 1e3,
         maxTimeout: Infinity,
-        randomize: false
+        randomize: false,
       };
       for (var key in options) {
         opts[key] = options[key];
@@ -787,18 +816,20 @@ var require_retry = __commonJS({
       if (options && options.forever && !timeouts.length) {
         timeouts.push(this.createTimeout(i, opts));
       }
-      timeouts.sort(function(a, b) {
+      timeouts.sort(function (a, b) {
         return a - b;
       });
       return timeouts;
     };
-    exports.createTimeout = function(attempt, opts) {
+    exports.createTimeout = function (attempt, opts) {
       var random = opts.randomize ? Math.random() + 1 : 1;
-      var timeout = Math.round(random * Math.max(opts.minTimeout, 1) * Math.pow(opts.factor, attempt));
+      var timeout = Math.round(
+        random * Math.max(opts.minTimeout, 1) * Math.pow(opts.factor, attempt),
+      );
       timeout = Math.min(timeout, opts.maxTimeout);
       return timeout;
     };
-    exports.wrap = function(obj, options, methods) {
+    exports.wrap = function (obj, options, methods) {
       if (options instanceof Array) {
         methods = options;
         options = null;
@@ -818,7 +849,7 @@ var require_retry = __commonJS({
           var op = exports.operation(options);
           var args = Array.prototype.slice.call(arguments, 1);
           var callback = args.pop();
-          args.push(function(err) {
+          args.push(function (err) {
             if (op.retry(err)) {
               return;
             }
@@ -827,21 +858,21 @@ var require_retry = __commonJS({
             }
             callback.apply(this, arguments);
           });
-          op.attempt(function() {
+          op.attempt(function () {
             original2.apply(obj, args);
           });
         }.bind(obj, original);
         obj[method].options = options;
       }
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/retry@0.13.1/node_modules/retry/index.js
 var require_retry2 = __commonJS({
   "node_modules/.pnpm/retry@0.13.1/node_modules/retry/index.js"(exports, module) {
     module.exports = require_retry();
-  }
+  },
 });
 
 // node_modules/.pnpm/rivetkit@2.3.14_@libsql+client@0.18.0_@opentelemetry+api@1.9.0_better-sqlite3@12.11.1_sql.js@1.14.2_ws@8.21.3/node_modules/rivetkit/dist/browser/client.js
@@ -1087,7 +1118,7 @@ __export(external_exports, {
   uuidv7: () => uuidv7,
   void: () => _void2,
   xid: () => xid2,
-  xor: () => xor
+  xor: () => xor,
 });
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/core/index.js
@@ -1366,13 +1397,13 @@ __export(core_exports2, {
   toJSONSchema: () => toJSONSchema,
   treeifyError: () => treeifyError,
   util: () => util_exports,
-  version: () => version
+  version: () => version,
 });
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/core/core.js
 var _a;
 var NEVER = /* @__PURE__ */ Object.freeze({
-  status: "aborted"
+  status: "aborted",
 });
 // @__NO_SIDE_EFFECTS__
 function $constructor(name, initializer3, params) {
@@ -1382,9 +1413,9 @@ function $constructor(name, initializer3, params) {
         value: {
           def,
           constr: _,
-          traits: /* @__PURE__ */ new Set()
+          traits: /* @__PURE__ */ new Set(),
         },
-        enumerable: false
+        enumerable: false,
       });
     }
     if (inst._zod.traits.has(name)) {
@@ -1402,8 +1433,7 @@ function $constructor(name, initializer3, params) {
     }
   }
   const Parent = params?.Parent ?? Object;
-  class Definition extends Parent {
-  }
+  class Definition extends Parent {}
   Object.defineProperty(Definition, "name", { value: name });
   function _(def) {
     var _a3;
@@ -1418,10 +1448,9 @@ function $constructor(name, initializer3, params) {
   Object.defineProperty(_, "init", { value: init });
   Object.defineProperty(_, Symbol.hasInstance, {
     value: (inst) => {
-      if (params?.Parent && inst instanceof params.Parent)
-        return true;
+      if (params?.Parent && inst instanceof params.Parent) return true;
       return inst?._zod?.traits?.has(name);
-    }
+    },
   });
   Object.defineProperty(_, "name", { value: name });
   return _;
@@ -1441,8 +1470,7 @@ var $ZodEncodeError = class extends Error {
 (_a = globalThis).__zod_globalConfig ?? (_a.__zod_globalConfig = {});
 var globalConfig = globalThis.__zod_globalConfig;
 function config(newConfig) {
-  if (newConfig)
-    Object.assign(globalConfig, newConfig);
+  if (newConfig) Object.assign(globalConfig, newConfig);
   return globalConfig;
 }
 
@@ -1511,7 +1539,7 @@ __export(util_exports, {
   uint8ArrayToBase64: () => uint8ArrayToBase64,
   uint8ArrayToBase64url: () => uint8ArrayToBase64url,
   uint8ArrayToHex: () => uint8ArrayToHex,
-  unwrapMessage: () => unwrapMessage
+  unwrapMessage: () => unwrapMessage,
 });
 function assertEqual(val) {
   return val;
@@ -1519,24 +1547,23 @@ function assertEqual(val) {
 function assertNotEqual(val) {
   return val;
 }
-function assertIs(_arg) {
-}
+function assertIs(_arg) {}
 function assertNever(_x) {
   throw new Error("Unexpected value in exhaustive check");
 }
-function assert(_) {
-}
+function assert(_) {}
 function getEnumValues(entries) {
   const numericValues = Object.values(entries).filter((v) => typeof v === "number");
-  const values = Object.entries(entries).filter(([k, _]) => numericValues.indexOf(+k) === -1).map(([_, v]) => v);
+  const values = Object.entries(entries)
+    .filter(([k, _]) => numericValues.indexOf(+k) === -1)
+    .map(([_, v]) => v);
   return values;
 }
 function joinValues(array2, separator = "|") {
   return array2.map((val) => stringifyPrimitive(val)).join(separator);
 }
 function jsonStringifyReplacer(_, value) {
-  if (typeof value === "bigint")
-    return value.toString();
+  if (typeof value === "bigint") return value.toString();
   return value;
 }
 function cached(getter) {
@@ -1549,7 +1576,7 @@ function cached(getter) {
         return value;
       }
       throw new Error("cached value already set");
-    }
+    },
   };
 }
 function nullish(input) {
@@ -1564,8 +1591,7 @@ function floatSafeRemainder(val, step) {
   const ratio = val / step;
   const roundedRatio = Math.round(ratio);
   const tolerance = Number.EPSILON * Math.max(Math.abs(ratio), 1);
-  if (Math.abs(ratio - roundedRatio) < tolerance)
-    return 0;
+  if (Math.abs(ratio - roundedRatio) < tolerance) return 0;
   return ratio - roundedRatio;
 }
 var EVALUATING = /* @__PURE__ */ Symbol("evaluating");
@@ -1584,11 +1610,11 @@ function defineLazy(object2, key, getter) {
     },
     set(v) {
       Object.defineProperty(object2, key, {
-        value: v
+        value: v,
         // configurable: true,
       });
     },
-    configurable: true
+    configurable: true,
   });
 }
 function objectClone(obj) {
@@ -1599,7 +1625,7 @@ function assignProp(target2, prop, value) {
     value,
     writable: true,
     enumerable: true,
-    configurable: true
+    configurable: true,
   });
 }
 function mergeDefs(...defs) {
@@ -1614,8 +1640,7 @@ function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
 function getElementAtPath(obj, path) {
-  if (!path)
-    return obj;
+  if (!path) return obj;
   return path.reduce((acc, key) => acc?.[key], obj);
 }
 function promiseAllObject(promisesObj) {
@@ -1641,10 +1666,14 @@ function esc(str) {
   return JSON.stringify(str);
 }
 function slugify(input) {
-  return input.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-").replace(/^-+|-+$/g, "");
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
-var captureStackTrace = "captureStackTrace" in Error ? Error.captureStackTrace : (..._args) => {
-};
+var captureStackTrace = "captureStackTrace" in Error ? Error.captureStackTrace : (..._args) => {};
 function isObject(data) {
   return typeof data === "object" && data !== null && !Array.isArray(data);
 }
@@ -1664,30 +1693,22 @@ var allowsEval = /* @__PURE__ */ cached(() => {
   }
 });
 function isPlainObject(o) {
-  if (isObject(o) === false)
-    return false;
+  if (isObject(o) === false) return false;
   const ctor = o.constructor;
-  if (ctor === void 0)
-    return true;
-  if (typeof ctor !== "function")
-    return true;
+  if (ctor === void 0) return true;
+  if (typeof ctor !== "function") return true;
   const prot = ctor.prototype;
-  if (isObject(prot) === false)
-    return false;
+  if (isObject(prot) === false) return false;
   if (Object.prototype.hasOwnProperty.call(prot, "isPrototypeOf") === false) {
     return false;
   }
   return true;
 }
 function shallowClone(o) {
-  if (isPlainObject(o))
-    return { ...o };
-  if (Array.isArray(o))
-    return [...o];
-  if (o instanceof Map)
-    return new Map(o);
-  if (o instanceof Set)
-    return new Set(o);
+  if (isPlainObject(o)) return { ...o };
+  if (Array.isArray(o)) return [...o];
+  if (o instanceof Map) return new Map(o);
+  if (o instanceof Set) return new Set(o);
   return o;
 }
 function numKeys(data) {
@@ -1723,7 +1744,12 @@ var getParsedType = (data) => {
       if (data === null) {
         return "null";
       }
-      if (data.then && typeof data.then === "function" && data.catch && typeof data.catch === "function") {
+      if (
+        data.then &&
+        typeof data.then === "function" &&
+        data.catch &&
+        typeof data.catch === "function"
+      ) {
         return "promise";
       }
       if (typeof Map !== "undefined" && data instanceof Map) {
@@ -1750,71 +1776,68 @@ var primitiveTypes = /* @__PURE__ */ new Set([
   "bigint",
   "boolean",
   "symbol",
-  "undefined"
+  "undefined",
 ]);
 function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 function clone(inst, def, params) {
   const cl = new inst._zod.constr(def ?? inst._zod.def);
-  if (!def || params?.parent)
-    cl._zod.parent = inst;
+  if (!def || params?.parent) cl._zod.parent = inst;
   return cl;
 }
 function normalizeParams(_params) {
   const params = _params;
-  if (!params)
-    return {};
-  if (typeof params === "string")
-    return { error: () => params };
+  if (!params) return {};
+  if (typeof params === "string") return { error: () => params };
   if (params?.message !== void 0) {
     if (params?.error !== void 0)
       throw new Error("Cannot specify both `message` and `error` params");
     params.error = params.message;
   }
   delete params.message;
-  if (typeof params.error === "string")
-    return { ...params, error: () => params.error };
+  if (typeof params.error === "string") return { ...params, error: () => params.error };
   return params;
 }
 function createTransparentProxy(getter) {
   let target2;
-  return new Proxy({}, {
-    get(_, prop, receiver) {
-      target2 ?? (target2 = getter());
-      return Reflect.get(target2, prop, receiver);
+  return new Proxy(
+    {},
+    {
+      get(_, prop, receiver) {
+        target2 ?? (target2 = getter());
+        return Reflect.get(target2, prop, receiver);
+      },
+      set(_, prop, value, receiver) {
+        target2 ?? (target2 = getter());
+        return Reflect.set(target2, prop, value, receiver);
+      },
+      has(_, prop) {
+        target2 ?? (target2 = getter());
+        return Reflect.has(target2, prop);
+      },
+      deleteProperty(_, prop) {
+        target2 ?? (target2 = getter());
+        return Reflect.deleteProperty(target2, prop);
+      },
+      ownKeys(_) {
+        target2 ?? (target2 = getter());
+        return Reflect.ownKeys(target2);
+      },
+      getOwnPropertyDescriptor(_, prop) {
+        target2 ?? (target2 = getter());
+        return Reflect.getOwnPropertyDescriptor(target2, prop);
+      },
+      defineProperty(_, prop, descriptor) {
+        target2 ?? (target2 = getter());
+        return Reflect.defineProperty(target2, prop, descriptor);
+      },
     },
-    set(_, prop, value, receiver) {
-      target2 ?? (target2 = getter());
-      return Reflect.set(target2, prop, value, receiver);
-    },
-    has(_, prop) {
-      target2 ?? (target2 = getter());
-      return Reflect.has(target2, prop);
-    },
-    deleteProperty(_, prop) {
-      target2 ?? (target2 = getter());
-      return Reflect.deleteProperty(target2, prop);
-    },
-    ownKeys(_) {
-      target2 ?? (target2 = getter());
-      return Reflect.ownKeys(target2);
-    },
-    getOwnPropertyDescriptor(_, prop) {
-      target2 ?? (target2 = getter());
-      return Reflect.getOwnPropertyDescriptor(target2, prop);
-    },
-    defineProperty(_, prop, descriptor) {
-      target2 ?? (target2 = getter());
-      return Reflect.defineProperty(target2, prop, descriptor);
-    }
-  });
+  );
 }
 function stringifyPrimitive(value) {
-  if (typeof value === "bigint")
-    return value.toString() + "n";
-  if (typeof value === "string")
-    return `"${value}"`;
+  if (typeof value === "bigint") return value.toString() + "n";
+  if (typeof value === "string") return `"${value}"`;
   return `${value}`;
 }
 function optionalKeys(shape) {
@@ -1827,11 +1850,14 @@ var NUMBER_FORMAT_RANGES = {
   int32: [-2147483648, 2147483647],
   uint32: [0, 4294967295],
   float32: [-34028234663852886e22, 34028234663852886e22],
-  float64: [-Number.MAX_VALUE, Number.MAX_VALUE]
+  float64: [-Number.MAX_VALUE, Number.MAX_VALUE],
 };
 var BIGINT_FORMAT_RANGES = {
-  int64: [/* @__PURE__ */ BigInt("-9223372036854775808"), /* @__PURE__ */ BigInt("9223372036854775807")],
-  uint64: [/* @__PURE__ */ BigInt(0), /* @__PURE__ */ BigInt("18446744073709551615")]
+  int64: [
+    /* @__PURE__ */ BigInt("-9223372036854775808"),
+    /* @__PURE__ */ BigInt("9223372036854775807"),
+  ],
+  uint64: [/* @__PURE__ */ BigInt(0), /* @__PURE__ */ BigInt("18446744073709551615")],
 };
 function pick(schema, mask) {
   const currDef = schema._zod.def;
@@ -1847,14 +1873,13 @@ function pick(schema, mask) {
         if (!(key in currDef.shape)) {
           throw new Error(`Unrecognized key: "${key}"`);
         }
-        if (!mask[key])
-          continue;
+        if (!mask[key]) continue;
         newShape[key] = currDef.shape[key];
       }
       assignProp(this, "shape", newShape);
       return newShape;
     },
-    checks: []
+    checks: [],
   });
   return clone(schema, def);
 }
@@ -1872,14 +1897,13 @@ function omit(schema, mask) {
         if (!(key in currDef.shape)) {
           throw new Error(`Unrecognized key: "${key}"`);
         }
-        if (!mask[key])
-          continue;
+        if (!mask[key]) continue;
         delete newShape[key];
       }
       assignProp(this, "shape", newShape);
       return newShape;
     },
-    checks: []
+    checks: [],
   });
   return clone(schema, def);
 }
@@ -1893,7 +1917,9 @@ function extend(schema, shape) {
     const existingShape = schema._zod.def.shape;
     for (const key in shape) {
       if (Object.getOwnPropertyDescriptor(existingShape, key) !== void 0) {
-        throw new Error("Cannot overwrite keys on object schemas containing refinements. Use `.safeExtend()` instead.");
+        throw new Error(
+          "Cannot overwrite keys on object schemas containing refinements. Use `.safeExtend()` instead.",
+        );
       }
     }
   }
@@ -1902,7 +1928,7 @@ function extend(schema, shape) {
       const _shape = { ...schema._zod.def.shape, ...shape };
       assignProp(this, "shape", _shape);
       return _shape;
-    }
+    },
   });
   return clone(schema, def);
 }
@@ -1915,13 +1941,15 @@ function safeExtend(schema, shape) {
       const _shape = { ...schema._zod.def.shape, ...shape };
       assignProp(this, "shape", _shape);
       return _shape;
-    }
+    },
   });
   return clone(schema, def);
 }
 function merge(a, b) {
   if (a._zod.def.checks?.length) {
-    throw new Error(".merge() cannot be used on object schemas containing refinements. Use .safeExtend() instead.");
+    throw new Error(
+      ".merge() cannot be used on object schemas containing refinements. Use .safeExtend() instead.",
+    );
   }
   const def = mergeDefs(a._zod.def, {
     get shape() {
@@ -1932,7 +1960,7 @@ function merge(a, b) {
     get catchall() {
       return b._zod.def.catchall;
     },
-    checks: b._zod.def.checks ?? []
+    checks: b._zod.def.checks ?? [],
   });
   return clone(a, def);
 }
@@ -1952,25 +1980,28 @@ function partial(Class2, schema, mask) {
           if (!(key in oldShape)) {
             throw new Error(`Unrecognized key: "${key}"`);
           }
-          if (!mask[key])
-            continue;
-          shape[key] = Class2 ? new Class2({
-            type: "optional",
-            innerType: oldShape[key]
-          }) : oldShape[key];
+          if (!mask[key]) continue;
+          shape[key] = Class2
+            ? new Class2({
+                type: "optional",
+                innerType: oldShape[key],
+              })
+            : oldShape[key];
         }
       } else {
         for (const key in oldShape) {
-          shape[key] = Class2 ? new Class2({
-            type: "optional",
-            innerType: oldShape[key]
-          }) : oldShape[key];
+          shape[key] = Class2
+            ? new Class2({
+                type: "optional",
+                innerType: oldShape[key],
+              })
+            : oldShape[key];
         }
       }
       assignProp(this, "shape", shape);
       return shape;
     },
-    checks: []
+    checks: [],
   });
   return clone(schema, def);
 }
@@ -1984,30 +2015,28 @@ function required(Class2, schema, mask) {
           if (!(key in shape)) {
             throw new Error(`Unrecognized key: "${key}"`);
           }
-          if (!mask[key])
-            continue;
+          if (!mask[key]) continue;
           shape[key] = new Class2({
             type: "nonoptional",
-            innerType: oldShape[key]
+            innerType: oldShape[key],
           });
         }
       } else {
         for (const key in oldShape) {
           shape[key] = new Class2({
             type: "nonoptional",
-            innerType: oldShape[key]
+            innerType: oldShape[key],
           });
         }
       }
       assignProp(this, "shape", shape);
       return shape;
-    }
+    },
   });
   return clone(schema, def);
 }
 function aborted(x, startIndex = 0) {
-  if (x.aborted === true)
-    return true;
+  if (x.aborted === true) return true;
   for (let i = startIndex; i < x.issues.length; i++) {
     if (x.issues[i]?.continue !== true) {
       return true;
@@ -2016,8 +2045,7 @@ function aborted(x, startIndex = 0) {
   return false;
 }
 function explicitlyAborted(x, startIndex = 0) {
-  if (x.aborted === true)
-    return true;
+  if (x.aborted === true) return true;
   for (let i = startIndex; i < x.issues.length; i++) {
     if (x.issues[i]?.continue === false) {
       return true;
@@ -2037,7 +2065,13 @@ function unwrapMessage(message) {
   return typeof message === "string" ? message : message?.message;
 }
 function finalizeIssue(iss, ctx, config2) {
-  const message = iss.message ? iss.message : unwrapMessage(iss.inst?._zod.def?.error?.(iss)) ?? unwrapMessage(ctx?.error?.(iss)) ?? unwrapMessage(config2.customError?.(iss)) ?? unwrapMessage(config2.localeError?.(iss)) ?? "Invalid input";
+  const message = iss.message
+    ? iss.message
+    : (unwrapMessage(iss.inst?._zod.def?.error?.(iss)) ??
+      unwrapMessage(ctx?.error?.(iss)) ??
+      unwrapMessage(config2.customError?.(iss)) ??
+      unwrapMessage(config2.localeError?.(iss)) ??
+      "Invalid input");
   const { inst: _inst, continue: _continue, input: _input, ...rest } = iss;
   rest.path ?? (rest.path = []);
   rest.message = message;
@@ -2047,19 +2081,14 @@ function finalizeIssue(iss, ctx, config2) {
   return rest;
 }
 function getSizableOrigin(input) {
-  if (input instanceof Set)
-    return "set";
-  if (input instanceof Map)
-    return "map";
-  if (input instanceof File)
-    return "file";
+  if (input instanceof Set) return "set";
+  if (input instanceof Map) return "map";
+  if (input instanceof File) return "file";
   return "unknown";
 }
 function getLengthableOrigin(input) {
-  if (Array.isArray(input))
-    return "array";
-  if (typeof input === "string")
-    return "string";
+  if (Array.isArray(input)) return "array";
+  if (typeof input === "string") return "string";
   return "unknown";
 }
 function parsedType(data) {
@@ -2076,7 +2105,12 @@ function parsedType(data) {
         return "array";
       }
       const obj = data;
-      if (obj && Object.getPrototypeOf(obj) !== Object.prototype && "constructor" in obj && obj.constructor) {
+      if (
+        obj &&
+        Object.getPrototypeOf(obj) !== Object.prototype &&
+        "constructor" in obj &&
+        obj.constructor
+      ) {
         return obj.constructor.name;
       }
     }
@@ -2090,15 +2124,17 @@ function issue(...args) {
       message: iss,
       code: "custom",
       input,
-      inst
+      inst,
     };
   }
   return { ...iss };
 }
 function cleanEnum(obj) {
-  return Object.entries(obj).filter(([k, _]) => {
-    return Number.isNaN(Number.parseInt(k, 10));
-  }).map((el2) => el2[1]);
+  return Object.entries(obj)
+    .filter(([k, _]) => {
+      return Number.isNaN(Number.parseInt(k, 10));
+    })
+    .map((el2) => el2[1]);
 }
 function base64ToUint8Array(base643) {
   const binaryString = atob(base643);
@@ -2117,7 +2153,7 @@ function uint8ArrayToBase64(bytes) {
 }
 function base64urlToUint8Array(base64url3) {
   const base643 = base64url3.replace(/-/g, "+").replace(/_/g, "/");
-  const padding = "=".repeat((4 - base643.length % 4) % 4);
+  const padding = "=".repeat((4 - (base643.length % 4)) % 4);
   return base64ToUint8Array(base643 + padding);
 }
 function uint8ArrayToBase64url(bytes) {
@@ -2135,11 +2171,12 @@ function hexToUint8Array(hex3) {
   return bytes;
 }
 function uint8ArrayToHex(bytes) {
-  return Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
+  return Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 var Class = class {
-  constructor(..._args) {
-  }
+  constructor(..._args) {}
 };
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/core/errors.js
@@ -2147,16 +2184,16 @@ var initializer = (inst, def) => {
   inst.name = "$ZodError";
   Object.defineProperty(inst, "_zod", {
     value: inst._zod,
-    enumerable: false
+    enumerable: false,
   });
   Object.defineProperty(inst, "issues", {
     value: def,
-    enumerable: false
+    enumerable: false,
   });
   inst.message = JSON.stringify(def, jsonStringifyReplacer, 2);
   Object.defineProperty(inst, "toString", {
     value: () => inst.message,
-    enumerable: false
+    enumerable: false,
   });
 };
 var $ZodError = $constructor("$ZodError", initializer);
@@ -2254,17 +2291,13 @@ function treeifyError(error51, mapper = (issue2) => issue2.message) {
 }
 function toDotPath(_path) {
   const segs = [];
-  const path = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
+  const path = _path.map((seg) => (typeof seg === "object" ? seg.key : seg));
   for (const seg of path) {
-    if (typeof seg === "number")
-      segs.push(`[${seg}]`);
-    else if (typeof seg === "symbol")
-      segs.push(`[${JSON.stringify(String(seg))}]`);
-    else if (/[^\w$]/.test(seg))
-      segs.push(`[${JSON.stringify(seg)}]`);
+    if (typeof seg === "number") segs.push(`[${seg}]`);
+    else if (typeof seg === "symbol") segs.push(`[${JSON.stringify(String(seg))}]`);
+    else if (/[^\w$]/.test(seg)) segs.push(`[${JSON.stringify(seg)}]`);
     else {
-      if (segs.length)
-        segs.push(".");
+      if (segs.length) segs.push(".");
       segs.push(seg);
     }
   }
@@ -2275,8 +2308,7 @@ function prettifyError(error51) {
   const issues = [...error51.issues].sort((a, b) => (a.path ?? []).length - (b.path ?? []).length);
   for (const issue2 of issues) {
     lines.push(`\u2716 ${issue2.message}`);
-    if (issue2.path?.length)
-      lines.push(`  \u2192 at ${toDotPath(issue2.path)}`);
+    if (issue2.path?.length) lines.push(`  \u2192 at ${toDotPath(issue2.path)}`);
   }
   return lines.join("\n");
 }
@@ -2289,7 +2321,9 @@ var _parse = (_Err) => (schema, value, _ctx, _params) => {
     throw new $ZodAsyncError();
   }
   if (result.issues.length) {
-    const e = new (_params?.Err ?? _Err)(result.issues.map((iss) => finalizeIssue(iss, ctx, config())));
+    const e = new (_params?.Err ?? _Err)(
+      result.issues.map((iss) => finalizeIssue(iss, ctx, config())),
+    );
     captureStackTrace(e, _params?.callee);
     throw e;
   }
@@ -2299,10 +2333,11 @@ var parse = /* @__PURE__ */ _parse($ZodRealError);
 var _parseAsync = (_Err) => async (schema, value, _ctx, params) => {
   const ctx = _ctx ? { ..._ctx, async: true } : { async: true };
   let result = schema._zod.run({ value, issues: [] }, ctx);
-  if (result instanceof Promise)
-    result = await result;
+  if (result instanceof Promise) result = await result;
   if (result.issues.length) {
-    const e = new (params?.Err ?? _Err)(result.issues.map((iss) => finalizeIssue(iss, ctx, config())));
+    const e = new (params?.Err ?? _Err)(
+      result.issues.map((iss) => finalizeIssue(iss, ctx, config())),
+    );
     captureStackTrace(e, params?.callee);
     throw e;
   }
@@ -2315,21 +2350,26 @@ var _safeParse = (_Err) => (schema, value, _ctx) => {
   if (result instanceof Promise) {
     throw new $ZodAsyncError();
   }
-  return result.issues.length ? {
-    success: false,
-    error: new (_Err ?? $ZodError)(result.issues.map((iss) => finalizeIssue(iss, ctx, config())))
-  } : { success: true, data: result.value };
+  return result.issues.length
+    ? {
+        success: false,
+        error: new (_Err ?? $ZodError)(
+          result.issues.map((iss) => finalizeIssue(iss, ctx, config())),
+        ),
+      }
+    : { success: true, data: result.value };
 };
 var safeParse = /* @__PURE__ */ _safeParse($ZodRealError);
 var _safeParseAsync = (_Err) => async (schema, value, _ctx) => {
   const ctx = _ctx ? { ..._ctx, async: true } : { async: true };
   let result = schema._zod.run({ value, issues: [] }, ctx);
-  if (result instanceof Promise)
-    result = await result;
-  return result.issues.length ? {
-    success: false,
-    error: new _Err(result.issues.map((iss) => finalizeIssue(iss, ctx, config())))
-  } : { success: true, data: result.value };
+  if (result instanceof Promise) result = await result;
+  return result.issues.length
+    ? {
+        success: false,
+        error: new _Err(result.issues.map((iss) => finalizeIssue(iss, ctx, config()))),
+      }
+    : { success: true, data: result.value };
 };
 var safeParseAsync = /* @__PURE__ */ _safeParseAsync($ZodRealError);
 var _encode = (_Err) => (schema, value, _ctx) => {
@@ -2430,7 +2470,7 @@ __export(regexes_exports, {
   uuid4: () => uuid4,
   uuid6: () => uuid6,
   uuid7: () => uuid7,
-  xid: () => xid
+  xid: () => xid,
 });
 var cuid = /^[cC][0-9a-z]{6,}$/;
 var cuid2 = /^[0-9a-z]+$/;
@@ -2438,38 +2478,53 @@ var ulid = /^[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/;
 var xid = /^[0-9a-vA-V]{20}$/;
 var ksuid = /^[A-Za-z0-9]{27}$/;
 var nanoid = /^[a-zA-Z0-9_-]{21}$/;
-var duration = /^P(?:(\d+W)|(?!.*W)(?=\d|T\d)(\d+Y)?(\d+M)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+([.,]\d+)?S)?)?)$/;
-var extendedDuration = /^[-+]?P(?!$)(?:(?:[-+]?\d+Y)|(?:[-+]?\d+[.,]\d+Y$))?(?:(?:[-+]?\d+M)|(?:[-+]?\d+[.,]\d+M$))?(?:(?:[-+]?\d+W)|(?:[-+]?\d+[.,]\d+W$))?(?:(?:[-+]?\d+D)|(?:[-+]?\d+[.,]\d+D$))?(?:T(?=[\d+-])(?:(?:[-+]?\d+H)|(?:[-+]?\d+[.,]\d+H$))?(?:(?:[-+]?\d+M)|(?:[-+]?\d+[.,]\d+M$))?(?:[-+]?\d+(?:[.,]\d+)?S)?)??$/;
+var duration =
+  /^P(?:(\d+W)|(?!.*W)(?=\d|T\d)(\d+Y)?(\d+M)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+([.,]\d+)?S)?)?)$/;
+var extendedDuration =
+  /^[-+]?P(?!$)(?:(?:[-+]?\d+Y)|(?:[-+]?\d+[.,]\d+Y$))?(?:(?:[-+]?\d+M)|(?:[-+]?\d+[.,]\d+M$))?(?:(?:[-+]?\d+W)|(?:[-+]?\d+[.,]\d+W$))?(?:(?:[-+]?\d+D)|(?:[-+]?\d+[.,]\d+D$))?(?:T(?=[\d+-])(?:(?:[-+]?\d+H)|(?:[-+]?\d+[.,]\d+H$))?(?:(?:[-+]?\d+M)|(?:[-+]?\d+[.,]\d+M$))?(?:[-+]?\d+(?:[.,]\d+)?S)?)??$/;
 var guid = /^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$/;
 var uuid = (version2) => {
   if (!version2)
     return /^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$/;
-  return new RegExp(`^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-${version2}[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$`);
+  return new RegExp(
+    `^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-${version2}[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$`,
+  );
 };
 var uuid4 = /* @__PURE__ */ uuid(4);
 var uuid6 = /* @__PURE__ */ uuid(6);
 var uuid7 = /* @__PURE__ */ uuid(7);
-var email = /^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/;
-var html5Email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-var rfc5322Email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var email =
+  /^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/;
+var html5Email =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+var rfc5322Email =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var unicodeEmail = /^[^\s@"]{1,64}@[^\s@]{1,255}$/u;
 var idnEmail = unicodeEmail;
-var browserEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+var browserEmail =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 var _emoji = `^(\\p{Extended_Pictographic}|\\p{Emoji_Component})+$`;
 function emoji() {
   return new RegExp(_emoji, "u");
 }
-var ipv4 = /^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$/;
-var ipv6 = /^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:))$/;
+var ipv4 =
+  /^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$/;
+var ipv6 =
+  /^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:))$/;
 var mac = (delimiter) => {
   const escapedDelim = escapeRegex(delimiter ?? ":");
-  return new RegExp(`^(?:[0-9A-F]{2}${escapedDelim}){5}[0-9A-F]{2}$|^(?:[0-9a-f]{2}${escapedDelim}){5}[0-9a-f]{2}$`);
+  return new RegExp(
+    `^(?:[0-9A-F]{2}${escapedDelim}){5}[0-9A-F]{2}$|^(?:[0-9a-f]{2}${escapedDelim}){5}[0-9a-f]{2}$`,
+  );
 };
-var cidrv4 = /^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\/([0-9]|[1-2][0-9]|3[0-2])$/;
-var cidrv6 = /^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|::|([0-9a-fA-F]{1,4})?::([0-9a-fA-F]{1,4}:?){0,6})\/(12[0-8]|1[01][0-9]|[1-9]?[0-9])$/;
+var cidrv4 =
+  /^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\/([0-9]|[1-2][0-9]|3[0-2])$/;
+var cidrv6 =
+  /^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|::|([0-9a-fA-F]{1,4})?::([0-9a-fA-F]{1,4}:?){0,6})\/(12[0-8]|1[01][0-9]|[1-9]?[0-9])$/;
 var base64 = /^$|^(?:[0-9a-zA-Z+/]{4})*(?:(?:[0-9a-zA-Z+/]{2}==)|(?:[0-9a-zA-Z+/]{3}=))?$/;
 var base64url = /^[A-Za-z0-9_-]*$/;
-var hostname = /^(?=.{1,253}\.?$)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?$/;
+var hostname =
+  /^(?=.{1,253}\.?$)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?$/;
 var domain = /^([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
 var httpProtocol = /^https?$/;
 var e164 = /^\+[1-9]\d{6,14}$/;
@@ -2477,7 +2532,14 @@ var dateSource = `(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][
 var date = /* @__PURE__ */ new RegExp(`^${dateSource}$`);
 function timeSource(args) {
   const hhmm = `(?:[01]\\d|2[0-3]):[0-5]\\d`;
-  const regex = typeof args.precision === "number" ? args.precision === -1 ? `${hhmm}` : args.precision === 0 ? `${hhmm}:[0-5]\\d` : `${hhmm}:[0-5]\\d\\.\\d{${args.precision}}` : `${hhmm}(?::[0-5]\\d(?:\\.\\d+)?)?`;
+  const regex =
+    typeof args.precision === "number"
+      ? args.precision === -1
+        ? `${hhmm}`
+        : args.precision === 0
+          ? `${hhmm}:[0-5]\\d`
+          : `${hhmm}:[0-5]\\d\\.\\d{${args.precision}}`
+      : `${hhmm}(?::[0-5]\\d(?:\\.\\d+)?)?`;
   return regex;
 }
 function time(args) {
@@ -2486,10 +2548,8 @@ function time(args) {
 function datetime(args) {
   const time3 = timeSource({ precision: args.precision });
   const opts = ["Z"];
-  if (args.local)
-    opts.push("");
-  if (args.offset)
-    opts.push(`([+-](?:[01]\\d|2[0-3]):[0-5]\\d)`);
+  if (args.local) opts.push("");
+  if (args.offset) opts.push(`([+-](?:[01]\\d|2[0-3]):[0-5]\\d)`);
   const timeRegex = `${time3}(?:${opts.join("|")})`;
   return new RegExp(`^${dateSource}T(?:${timeRegex})$`);
 }
@@ -2538,7 +2598,7 @@ var $ZodCheck = /* @__PURE__ */ $constructor("$ZodCheck", (inst, def) => {
 var numericOriginMap = {
   number: "number",
   bigint: "bigint",
-  object: "date"
+  object: "date",
 };
 var $ZodCheckLessThan = /* @__PURE__ */ $constructor("$ZodCheckLessThan", (inst, def) => {
   $ZodCheck.init(inst, def);
@@ -2547,10 +2607,8 @@ var $ZodCheckLessThan = /* @__PURE__ */ $constructor("$ZodCheckLessThan", (inst,
     const bag = inst2._zod.bag;
     const curr = (def.inclusive ? bag.maximum : bag.exclusiveMaximum) ?? Number.POSITIVE_INFINITY;
     if (def.value < curr) {
-      if (def.inclusive)
-        bag.maximum = def.value;
-      else
-        bag.exclusiveMaximum = def.value;
+      if (def.inclusive) bag.maximum = def.value;
+      else bag.exclusiveMaximum = def.value;
     }
   });
   inst._zod.check = (payload) => {
@@ -2564,7 +2622,7 @@ var $ZodCheckLessThan = /* @__PURE__ */ $constructor("$ZodCheckLessThan", (inst,
       input: payload.value,
       inclusive: def.inclusive,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -2575,10 +2633,8 @@ var $ZodCheckGreaterThan = /* @__PURE__ */ $constructor("$ZodCheckGreaterThan", 
     const bag = inst2._zod.bag;
     const curr = (def.inclusive ? bag.minimum : bag.exclusiveMinimum) ?? Number.NEGATIVE_INFINITY;
     if (def.value > curr) {
-      if (def.inclusive)
-        bag.minimum = def.value;
-      else
-        bag.exclusiveMinimum = def.value;
+      if (def.inclusive) bag.minimum = def.value;
+      else bag.exclusiveMinimum = def.value;
     }
   });
   inst._zod.check = (payload) => {
@@ -2592,7 +2648,7 @@ var $ZodCheckGreaterThan = /* @__PURE__ */ $constructor("$ZodCheckGreaterThan", 
       input: payload.value,
       inclusive: def.inclusive,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -2605,16 +2661,18 @@ var $ZodCheckMultipleOf = /* @__PURE__ */ $constructor("$ZodCheckMultipleOf", (i
   inst._zod.check = (payload) => {
     if (typeof payload.value !== typeof def.value)
       throw new Error("Cannot mix number and bigint in multiple_of check.");
-    const isMultiple = typeof payload.value === "bigint" ? payload.value % def.value === BigInt(0) : floatSafeRemainder(payload.value, def.value) === 0;
-    if (isMultiple)
-      return;
+    const isMultiple =
+      typeof payload.value === "bigint"
+        ? payload.value % def.value === BigInt(0)
+        : floatSafeRemainder(payload.value, def.value) === 0;
+    if (isMultiple) return;
     payload.issues.push({
       origin: typeof payload.value,
       code: "not_multiple_of",
       divisor: def.value,
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -2629,8 +2687,7 @@ var $ZodCheckNumberFormat = /* @__PURE__ */ $constructor("$ZodCheckNumberFormat"
     bag.format = def.format;
     bag.minimum = minimum;
     bag.maximum = maximum;
-    if (isInt)
-      bag.pattern = integer;
+    if (isInt) bag.pattern = integer;
   });
   inst._zod.check = (payload) => {
     const input = payload.value;
@@ -2642,7 +2699,7 @@ var $ZodCheckNumberFormat = /* @__PURE__ */ $constructor("$ZodCheckNumberFormat"
           code: "invalid_type",
           continue: false,
           input,
-          inst
+          inst,
         });
         return;
       }
@@ -2656,7 +2713,7 @@ var $ZodCheckNumberFormat = /* @__PURE__ */ $constructor("$ZodCheckNumberFormat"
             inst,
             origin,
             inclusive: true,
-            continue: !def.abort
+            continue: !def.abort,
           });
         } else {
           payload.issues.push({
@@ -2667,7 +2724,7 @@ var $ZodCheckNumberFormat = /* @__PURE__ */ $constructor("$ZodCheckNumberFormat"
             inst,
             origin,
             inclusive: true,
-            continue: !def.abort
+            continue: !def.abort,
           });
         }
         return;
@@ -2681,7 +2738,7 @@ var $ZodCheckNumberFormat = /* @__PURE__ */ $constructor("$ZodCheckNumberFormat"
         minimum,
         inclusive: true,
         inst,
-        continue: !def.abort
+        continue: !def.abort,
       });
     }
     if (input > maximum) {
@@ -2692,7 +2749,7 @@ var $ZodCheckNumberFormat = /* @__PURE__ */ $constructor("$ZodCheckNumberFormat"
         maximum,
         inclusive: true,
         inst,
-        continue: !def.abort
+        continue: !def.abort,
       });
     }
   };
@@ -2716,7 +2773,7 @@ var $ZodCheckBigIntFormat = /* @__PURE__ */ $constructor("$ZodCheckBigIntFormat"
         minimum,
         inclusive: true,
         inst,
-        continue: !def.abort
+        continue: !def.abort,
       });
     }
     if (input > maximum) {
@@ -2727,7 +2784,7 @@ var $ZodCheckBigIntFormat = /* @__PURE__ */ $constructor("$ZodCheckBigIntFormat"
         maximum,
         inclusive: true,
         inst,
-        continue: !def.abort
+        continue: !def.abort,
       });
     }
   };
@@ -2735,20 +2792,19 @@ var $ZodCheckBigIntFormat = /* @__PURE__ */ $constructor("$ZodCheckBigIntFormat"
 var $ZodCheckMaxSize = /* @__PURE__ */ $constructor("$ZodCheckMaxSize", (inst, def) => {
   var _a3;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
-    const val = payload.value;
-    return !nullish(val) && val.size !== void 0;
-  });
+  (_a3 = inst._zod.def).when ??
+    (_a3.when = (payload) => {
+      const val = payload.value;
+      return !nullish(val) && val.size !== void 0;
+    });
   inst._zod.onattach.push((inst2) => {
     const curr = inst2._zod.bag.maximum ?? Number.POSITIVE_INFINITY;
-    if (def.maximum < curr)
-      inst2._zod.bag.maximum = def.maximum;
+    if (def.maximum < curr) inst2._zod.bag.maximum = def.maximum;
   });
   inst._zod.check = (payload) => {
     const input = payload.value;
     const size = input.size;
-    if (size <= def.maximum)
-      return;
+    if (size <= def.maximum) return;
     payload.issues.push({
       origin: getSizableOrigin(input),
       code: "too_big",
@@ -2756,27 +2812,26 @@ var $ZodCheckMaxSize = /* @__PURE__ */ $constructor("$ZodCheckMaxSize", (inst, d
       inclusive: true,
       input,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
 var $ZodCheckMinSize = /* @__PURE__ */ $constructor("$ZodCheckMinSize", (inst, def) => {
   var _a3;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
-    const val = payload.value;
-    return !nullish(val) && val.size !== void 0;
-  });
+  (_a3 = inst._zod.def).when ??
+    (_a3.when = (payload) => {
+      const val = payload.value;
+      return !nullish(val) && val.size !== void 0;
+    });
   inst._zod.onattach.push((inst2) => {
     const curr = inst2._zod.bag.minimum ?? Number.NEGATIVE_INFINITY;
-    if (def.minimum > curr)
-      inst2._zod.bag.minimum = def.minimum;
+    if (def.minimum > curr) inst2._zod.bag.minimum = def.minimum;
   });
   inst._zod.check = (payload) => {
     const input = payload.value;
     const size = input.size;
-    if (size >= def.minimum)
-      return;
+    if (size >= def.minimum) return;
     payload.issues.push({
       origin: getSizableOrigin(input),
       code: "too_small",
@@ -2784,17 +2839,18 @@ var $ZodCheckMinSize = /* @__PURE__ */ $constructor("$ZodCheckMinSize", (inst, d
       inclusive: true,
       input,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
 var $ZodCheckSizeEquals = /* @__PURE__ */ $constructor("$ZodCheckSizeEquals", (inst, def) => {
   var _a3;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
-    const val = payload.value;
-    return !nullish(val) && val.size !== void 0;
-  });
+  (_a3 = inst._zod.def).when ??
+    (_a3.when = (payload) => {
+      const val = payload.value;
+      return !nullish(val) && val.size !== void 0;
+    });
   inst._zod.onattach.push((inst2) => {
     const bag = inst2._zod.bag;
     bag.minimum = def.size;
@@ -2804,37 +2860,37 @@ var $ZodCheckSizeEquals = /* @__PURE__ */ $constructor("$ZodCheckSizeEquals", (i
   inst._zod.check = (payload) => {
     const input = payload.value;
     const size = input.size;
-    if (size === def.size)
-      return;
+    if (size === def.size) return;
     const tooBig = size > def.size;
     payload.issues.push({
       origin: getSizableOrigin(input),
-      ...tooBig ? { code: "too_big", maximum: def.size } : { code: "too_small", minimum: def.size },
+      ...(tooBig
+        ? { code: "too_big", maximum: def.size }
+        : { code: "too_small", minimum: def.size }),
       inclusive: true,
       exact: true,
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
 var $ZodCheckMaxLength = /* @__PURE__ */ $constructor("$ZodCheckMaxLength", (inst, def) => {
   var _a3;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
-    const val = payload.value;
-    return !nullish(val) && val.length !== void 0;
-  });
+  (_a3 = inst._zod.def).when ??
+    (_a3.when = (payload) => {
+      const val = payload.value;
+      return !nullish(val) && val.length !== void 0;
+    });
   inst._zod.onattach.push((inst2) => {
     const curr = inst2._zod.bag.maximum ?? Number.POSITIVE_INFINITY;
-    if (def.maximum < curr)
-      inst2._zod.bag.maximum = def.maximum;
+    if (def.maximum < curr) inst2._zod.bag.maximum = def.maximum;
   });
   inst._zod.check = (payload) => {
     const input = payload.value;
     const length = input.length;
-    if (length <= def.maximum)
-      return;
+    if (length <= def.maximum) return;
     const origin = getLengthableOrigin(input);
     payload.issues.push({
       origin,
@@ -2843,27 +2899,26 @@ var $ZodCheckMaxLength = /* @__PURE__ */ $constructor("$ZodCheckMaxLength", (ins
       inclusive: true,
       input,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
 var $ZodCheckMinLength = /* @__PURE__ */ $constructor("$ZodCheckMinLength", (inst, def) => {
   var _a3;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
-    const val = payload.value;
-    return !nullish(val) && val.length !== void 0;
-  });
+  (_a3 = inst._zod.def).when ??
+    (_a3.when = (payload) => {
+      const val = payload.value;
+      return !nullish(val) && val.length !== void 0;
+    });
   inst._zod.onattach.push((inst2) => {
     const curr = inst2._zod.bag.minimum ?? Number.NEGATIVE_INFINITY;
-    if (def.minimum > curr)
-      inst2._zod.bag.minimum = def.minimum;
+    if (def.minimum > curr) inst2._zod.bag.minimum = def.minimum;
   });
   inst._zod.check = (payload) => {
     const input = payload.value;
     const length = input.length;
-    if (length >= def.minimum)
-      return;
+    if (length >= def.minimum) return;
     const origin = getLengthableOrigin(input);
     payload.issues.push({
       origin,
@@ -2872,17 +2927,18 @@ var $ZodCheckMinLength = /* @__PURE__ */ $constructor("$ZodCheckMinLength", (ins
       inclusive: true,
       input,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
 var $ZodCheckLengthEquals = /* @__PURE__ */ $constructor("$ZodCheckLengthEquals", (inst, def) => {
   var _a3;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
-    const val = payload.value;
-    return !nullish(val) && val.length !== void 0;
-  });
+  (_a3 = inst._zod.def).when ??
+    (_a3.when = (payload) => {
+      const val = payload.value;
+      return !nullish(val) && val.length !== void 0;
+    });
   inst._zod.onattach.push((inst2) => {
     const bag = inst2._zod.bag;
     bag.minimum = def.length;
@@ -2892,18 +2948,19 @@ var $ZodCheckLengthEquals = /* @__PURE__ */ $constructor("$ZodCheckLengthEquals"
   inst._zod.check = (payload) => {
     const input = payload.value;
     const length = input.length;
-    if (length === def.length)
-      return;
+    if (length === def.length) return;
     const origin = getLengthableOrigin(input);
     const tooBig = length > def.length;
     payload.issues.push({
       origin,
-      ...tooBig ? { code: "too_big", maximum: def.length } : { code: "too_small", minimum: def.length },
+      ...(tooBig
+        ? { code: "too_big", maximum: def.length }
+        : { code: "too_small", minimum: def.length }),
       inclusive: true,
       exact: true,
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -2919,30 +2976,27 @@ var $ZodCheckStringFormat = /* @__PURE__ */ $constructor("$ZodCheckStringFormat"
     }
   });
   if (def.pattern)
-    (_a3 = inst._zod).check ?? (_a3.check = (payload) => {
-      def.pattern.lastIndex = 0;
-      if (def.pattern.test(payload.value))
-        return;
-      payload.issues.push({
-        origin: "string",
-        code: "invalid_format",
-        format: def.format,
-        input: payload.value,
-        ...def.pattern ? { pattern: def.pattern.toString() } : {},
-        inst,
-        continue: !def.abort
+    (_a3 = inst._zod).check ??
+      (_a3.check = (payload) => {
+        def.pattern.lastIndex = 0;
+        if (def.pattern.test(payload.value)) return;
+        payload.issues.push({
+          origin: "string",
+          code: "invalid_format",
+          format: def.format,
+          input: payload.value,
+          ...(def.pattern ? { pattern: def.pattern.toString() } : {}),
+          inst,
+          continue: !def.abort,
+        });
       });
-    });
-  else
-    (_b = inst._zod).check ?? (_b.check = () => {
-    });
+  else (_b = inst._zod).check ?? (_b.check = () => {});
 });
 var $ZodCheckRegex = /* @__PURE__ */ $constructor("$ZodCheckRegex", (inst, def) => {
   $ZodCheckStringFormat.init(inst, def);
   inst._zod.check = (payload) => {
     def.pattern.lastIndex = 0;
-    if (def.pattern.test(payload.value))
-      return;
+    if (def.pattern.test(payload.value)) return;
     payload.issues.push({
       origin: "string",
       code: "invalid_format",
@@ -2950,7 +3004,7 @@ var $ZodCheckRegex = /* @__PURE__ */ $constructor("$ZodCheckRegex", (inst, def) 
       input: payload.value,
       pattern: def.pattern.toString(),
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -2965,7 +3019,9 @@ var $ZodCheckUpperCase = /* @__PURE__ */ $constructor("$ZodCheckUpperCase", (ins
 var $ZodCheckIncludes = /* @__PURE__ */ $constructor("$ZodCheckIncludes", (inst, def) => {
   $ZodCheck.init(inst, def);
   const escapedRegex = escapeRegex(def.includes);
-  const pattern = new RegExp(typeof def.position === "number" ? `^.{${def.position}}${escapedRegex}` : escapedRegex);
+  const pattern = new RegExp(
+    typeof def.position === "number" ? `^.{${def.position}}${escapedRegex}` : escapedRegex,
+  );
   def.pattern = pattern;
   inst._zod.onattach.push((inst2) => {
     const bag = inst2._zod.bag;
@@ -2973,8 +3029,7 @@ var $ZodCheckIncludes = /* @__PURE__ */ $constructor("$ZodCheckIncludes", (inst,
     bag.patterns.add(pattern);
   });
   inst._zod.check = (payload) => {
-    if (payload.value.includes(def.includes, def.position))
-      return;
+    if (payload.value.includes(def.includes, def.position)) return;
     payload.issues.push({
       origin: "string",
       code: "invalid_format",
@@ -2982,7 +3037,7 @@ var $ZodCheckIncludes = /* @__PURE__ */ $constructor("$ZodCheckIncludes", (inst,
       includes: def.includes,
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -2996,8 +3051,7 @@ var $ZodCheckStartsWith = /* @__PURE__ */ $constructor("$ZodCheckStartsWith", (i
     bag.patterns.add(pattern);
   });
   inst._zod.check = (payload) => {
-    if (payload.value.startsWith(def.prefix))
-      return;
+    if (payload.value.startsWith(def.prefix)) return;
     payload.issues.push({
       origin: "string",
       code: "invalid_format",
@@ -3005,7 +3059,7 @@ var $ZodCheckStartsWith = /* @__PURE__ */ $constructor("$ZodCheckStartsWith", (i
       prefix: def.prefix,
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -3019,8 +3073,7 @@ var $ZodCheckEndsWith = /* @__PURE__ */ $constructor("$ZodCheckEndsWith", (inst,
     bag.patterns.add(pattern);
   });
   inst._zod.check = (payload) => {
-    if (payload.value.endsWith(def.suffix))
-      return;
+    if (payload.value.endsWith(def.suffix)) return;
     payload.issues.push({
       origin: "string",
       code: "invalid_format",
@@ -3028,7 +3081,7 @@ var $ZodCheckEndsWith = /* @__PURE__ */ $constructor("$ZodCheckEndsWith", (inst,
       suffix: def.suffix,
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -3040,10 +3093,13 @@ function handleCheckPropertyResult(result, payload, property) {
 var $ZodCheckProperty = /* @__PURE__ */ $constructor("$ZodCheckProperty", (inst, def) => {
   $ZodCheck.init(inst, def);
   inst._zod.check = (payload) => {
-    const result = def.schema._zod.run({
-      value: payload.value[def.property],
-      issues: []
-    }, {});
+    const result = def.schema._zod.run(
+      {
+        value: payload.value[def.property],
+        issues: [],
+      },
+      {},
+    );
     if (result instanceof Promise) {
       return result.then((result2) => handleCheckPropertyResult(result2, payload, def.property));
     }
@@ -3058,14 +3114,13 @@ var $ZodCheckMimeType = /* @__PURE__ */ $constructor("$ZodCheckMimeType", (inst,
     inst2._zod.bag.mime = def.mime;
   });
   inst._zod.check = (payload) => {
-    if (mimeSet.has(payload.value.type))
-      return;
+    if (mimeSet.has(payload.value.type)) return;
     payload.issues.push({
       code: "invalid_value",
       values: def.mime,
       input: payload.value.type,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -3081,8 +3136,7 @@ var Doc = class {
   constructor(args = []) {
     this.content = [];
     this.indent = 0;
-    if (this)
-      this.args = args;
+    if (this) this.args = args;
   }
   indented(fn) {
     this.indent += 1;
@@ -3098,7 +3152,9 @@ var Doc = class {
     const content = arg;
     const lines = content.split("\n").filter((x) => x);
     const minIndent = Math.min(...lines.map((x) => x.length - x.trimStart().length));
-    const dedented = lines.map((x) => x.slice(minIndent)).map((x) => " ".repeat(this.indent * 2) + x);
+    const dedented = lines
+      .map((x) => x.slice(minIndent))
+      .map((x) => " ".repeat(this.indent * 2) + x);
     for (const line of dedented) {
       this.content.push(line);
     }
@@ -3116,7 +3172,7 @@ var Doc = class {
 var version = {
   major: 4,
   minor: 4,
-  patch: 3
+  patch: 3,
 };
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/core/schemas.js
@@ -3126,7 +3182,7 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
   inst._zod.def = def;
   inst._zod.bag = inst._zod.bag || {};
   inst._zod.version = version;
-  const checks = [...inst._zod.def.checks ?? []];
+  const checks = [...(inst._zod.def.checks ?? [])];
   if (inst._zod.traits.has("$ZodCheck")) {
     checks.unshift(inst);
   }
@@ -3146,11 +3202,9 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
       let asyncResult;
       for (const ch of checks2) {
         if (ch._zod.def.when) {
-          if (explicitlyAborted(payload))
-            continue;
+          if (explicitlyAborted(payload)) continue;
           const shouldRun = ch._zod.def.when(payload);
-          if (!shouldRun)
-            continue;
+          if (!shouldRun) continue;
         } else if (isAborted) {
           continue;
         }
@@ -3163,17 +3217,13 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
           asyncResult = (asyncResult ?? Promise.resolve()).then(async () => {
             await _;
             const nextLen = payload.issues.length;
-            if (nextLen === currLen)
-              return;
-            if (!isAborted)
-              isAborted = aborted(payload, currLen);
+            if (nextLen === currLen) return;
+            if (!isAborted) isAborted = aborted(payload, currLen);
           });
         } else {
           const nextLen = payload.issues.length;
-          if (nextLen === currLen)
-            continue;
-          if (!isAborted)
-            isAborted = aborted(payload, currLen);
+          if (nextLen === currLen) continue;
+          if (!isAborted) isAborted = aborted(payload, currLen);
         }
       }
       if (asyncResult) {
@@ -3190,8 +3240,7 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
       }
       const checkResult = runChecks(payload, checks, ctx);
       if (checkResult instanceof Promise) {
-        if (ctx.async === false)
-          throw new $ZodAsyncError();
+        if (ctx.async === false) throw new $ZodAsyncError();
         return checkResult.then((checkResult2) => inst._zod.parse(checkResult2, ctx));
       }
       return inst._zod.parse(checkResult, ctx);
@@ -3201,7 +3250,10 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
         return inst._zod.parse(payload, ctx);
       }
       if (ctx.direction === "backward") {
-        const canary = inst._zod.parse({ value: payload.value, issues: [] }, { ...ctx, skipChecks: true });
+        const canary = inst._zod.parse(
+          { value: payload.value, issues: [] },
+          { ...ctx, skipChecks: true },
+        );
         if (canary instanceof Promise) {
           return canary.then((canary2) => {
             return handleCanaryResult(canary2, payload, ctx);
@@ -3211,8 +3263,7 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
       }
       const result = inst._zod.parse(payload, ctx);
       if (result instanceof Promise) {
-        if (ctx.async === false)
-          throw new $ZodAsyncError();
+        if (ctx.async === false) throw new $ZodAsyncError();
         return result.then((result2) => runChecks(result2, checks, ctx));
       }
       return runChecks(result, checks, ctx);
@@ -3224,29 +3275,29 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
         const r = safeParse(inst, value);
         return r.success ? { value: r.data } : { issues: r.error?.issues };
       } catch (_) {
-        return safeParseAsync(inst, value).then((r) => r.success ? { value: r.data } : { issues: r.error?.issues });
+        return safeParseAsync(inst, value).then((r) =>
+          r.success ? { value: r.data } : { issues: r.error?.issues },
+        );
       }
     },
     vendor: "zod",
-    version: 1
+    version: 1,
   }));
 });
 var $ZodString = /* @__PURE__ */ $constructor("$ZodString", (inst, def) => {
   $ZodType.init(inst, def);
-  inst._zod.pattern = [...inst?._zod.bag?.patterns ?? []].pop() ?? string(inst._zod.bag);
+  inst._zod.pattern = [...(inst?._zod.bag?.patterns ?? [])].pop() ?? string(inst._zod.bag);
   inst._zod.parse = (payload, _) => {
     if (def.coerce)
       try {
         payload.value = String(payload.value);
-      } catch (_2) {
-      }
-    if (typeof payload.value === "string")
-      return payload;
+      } catch (_2) {}
+    if (typeof payload.value === "string") return payload;
     payload.issues.push({
       expected: "string",
       code: "invalid_type",
       input: payload.value,
-      inst
+      inst,
     });
     return payload;
   };
@@ -3269,14 +3320,12 @@ var $ZodUUID = /* @__PURE__ */ $constructor("$ZodUUID", (inst, def) => {
       v5: 5,
       v6: 6,
       v7: 7,
-      v8: 8
+      v8: 8,
     };
     const v = versionMap[def.version];
-    if (v === void 0)
-      throw new Error(`Invalid UUID version: "${def.version}"`);
+    if (v === void 0) throw new Error(`Invalid UUID version: "${def.version}"`);
     def.pattern ?? (def.pattern = uuid(v));
-  } else
-    def.pattern ?? (def.pattern = uuid());
+  } else def.pattern ?? (def.pattern = uuid());
   $ZodStringFormat.init(inst, def);
 });
 var $ZodEmail = /* @__PURE__ */ $constructor("$ZodEmail", (inst, def) => {
@@ -3296,7 +3345,7 @@ var $ZodURL = /* @__PURE__ */ $constructor("$ZodURL", (inst, def) => {
             note: "Invalid URL format",
             input: payload.value,
             inst,
-            continue: !def.abort
+            continue: !def.abort,
           });
           return;
         }
@@ -3312,13 +3361,17 @@ var $ZodURL = /* @__PURE__ */ $constructor("$ZodURL", (inst, def) => {
             pattern: def.hostname.source,
             input: payload.value,
             inst,
-            continue: !def.abort
+            continue: !def.abort,
           });
         }
       }
       if (def.protocol) {
         def.protocol.lastIndex = 0;
-        if (!def.protocol.test(url2.protocol.endsWith(":") ? url2.protocol.slice(0, -1) : url2.protocol)) {
+        if (
+          !def.protocol.test(
+            url2.protocol.endsWith(":") ? url2.protocol.slice(0, -1) : url2.protocol,
+          )
+        ) {
           payload.issues.push({
             code: "invalid_format",
             format: "url",
@@ -3326,7 +3379,7 @@ var $ZodURL = /* @__PURE__ */ $constructor("$ZodURL", (inst, def) => {
             pattern: def.protocol.source,
             input: payload.value,
             inst,
-            continue: !def.abort
+            continue: !def.abort,
           });
         }
       }
@@ -3342,7 +3395,7 @@ var $ZodURL = /* @__PURE__ */ $constructor("$ZodURL", (inst, def) => {
         format: "url",
         input: payload.value,
         inst,
-        continue: !def.abort
+        continue: !def.abort,
       });
     }
   };
@@ -3409,7 +3462,7 @@ var $ZodIPv6 = /* @__PURE__ */ $constructor("$ZodIPv6", (inst, def) => {
         format: "ipv6",
         input: payload.value,
         inst,
-        continue: !def.abort
+        continue: !def.abort,
       });
     }
   };
@@ -3429,16 +3482,12 @@ var $ZodCIDRv6 = /* @__PURE__ */ $constructor("$ZodCIDRv6", (inst, def) => {
   inst._zod.check = (payload) => {
     const parts = payload.value.split("/");
     try {
-      if (parts.length !== 2)
-        throw new Error();
+      if (parts.length !== 2) throw new Error();
       const [address, prefix] = parts;
-      if (!prefix)
-        throw new Error();
+      if (!prefix) throw new Error();
       const prefixNum = Number(prefix);
-      if (`${prefixNum}` !== prefix)
-        throw new Error();
-      if (prefixNum < 0 || prefixNum > 128)
-        throw new Error();
+      if (`${prefixNum}` !== prefix) throw new Error();
+      if (prefixNum < 0 || prefixNum > 128) throw new Error();
       new URL(`http://[${address}]`);
     } catch {
       payload.issues.push({
@@ -3446,18 +3495,15 @@ var $ZodCIDRv6 = /* @__PURE__ */ $constructor("$ZodCIDRv6", (inst, def) => {
         format: "cidrv6",
         input: payload.value,
         inst,
-        continue: !def.abort
+        continue: !def.abort,
       });
     }
   };
 });
 function isValidBase64(data) {
-  if (data === "")
-    return true;
-  if (/\s/.test(data))
-    return false;
-  if (data.length % 4 !== 0)
-    return false;
+  if (data === "") return true;
+  if (/\s/.test(data)) return false;
+  if (data.length % 4 !== 0) return false;
   try {
     atob(data);
     return true;
@@ -3470,21 +3516,19 @@ var $ZodBase64 = /* @__PURE__ */ $constructor("$ZodBase64", (inst, def) => {
   $ZodStringFormat.init(inst, def);
   inst._zod.bag.contentEncoding = "base64";
   inst._zod.check = (payload) => {
-    if (isValidBase64(payload.value))
-      return;
+    if (isValidBase64(payload.value)) return;
     payload.issues.push({
       code: "invalid_format",
       format: "base64",
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
 function isValidBase64URL(data) {
-  if (!base64url.test(data))
-    return false;
-  const base643 = data.replace(/[-_]/g, (c) => c === "-" ? "+" : "/");
+  if (!base64url.test(data)) return false;
+  const base643 = data.replace(/[-_]/g, (c) => (c === "-" ? "+" : "/"));
   const padded = base643.padEnd(Math.ceil(base643.length / 4) * 4, "=");
   return isValidBase64(padded);
 }
@@ -3493,14 +3537,13 @@ var $ZodBase64URL = /* @__PURE__ */ $constructor("$ZodBase64URL", (inst, def) =>
   $ZodStringFormat.init(inst, def);
   inst._zod.bag.contentEncoding = "base64url";
   inst._zod.check = (payload) => {
-    if (isValidBase64URL(payload.value))
-      return;
+    if (isValidBase64URL(payload.value)) return;
     payload.issues.push({
       code: "invalid_format",
       format: "base64url",
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -3511,18 +3554,13 @@ var $ZodE164 = /* @__PURE__ */ $constructor("$ZodE164", (inst, def) => {
 function isValidJWT(token, algorithm = null) {
   try {
     const tokensParts = token.split(".");
-    if (tokensParts.length !== 3)
-      return false;
+    if (tokensParts.length !== 3) return false;
     const [header] = tokensParts;
-    if (!header)
-      return false;
+    if (!header) return false;
     const parsedHeader = JSON.parse(atob(header));
-    if ("typ" in parsedHeader && parsedHeader?.typ !== "JWT")
-      return false;
-    if (!parsedHeader.alg)
-      return false;
-    if (algorithm && (!("alg" in parsedHeader) || parsedHeader.alg !== algorithm))
-      return false;
+    if ("typ" in parsedHeader && parsedHeader?.typ !== "JWT") return false;
+    if (!parsedHeader.alg) return false;
+    if (algorithm && (!("alg" in parsedHeader) || parsedHeader.alg !== algorithm)) return false;
     return true;
   } catch {
     return false;
@@ -3531,28 +3569,26 @@ function isValidJWT(token, algorithm = null) {
 var $ZodJWT = /* @__PURE__ */ $constructor("$ZodJWT", (inst, def) => {
   $ZodStringFormat.init(inst, def);
   inst._zod.check = (payload) => {
-    if (isValidJWT(payload.value, def.alg))
-      return;
+    if (isValidJWT(payload.value, def.alg)) return;
     payload.issues.push({
       code: "invalid_format",
       format: "jwt",
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
 var $ZodCustomStringFormat = /* @__PURE__ */ $constructor("$ZodCustomStringFormat", (inst, def) => {
   $ZodStringFormat.init(inst, def);
   inst._zod.check = (payload) => {
-    if (def.fn(payload.value))
-      return;
+    if (def.fn(payload.value)) return;
     payload.issues.push({
       code: "invalid_format",
       format: def.format,
       input: payload.value,
       inst,
-      continue: !def.abort
+      continue: !def.abort,
     });
   };
 });
@@ -3563,19 +3599,25 @@ var $ZodNumber = /* @__PURE__ */ $constructor("$ZodNumber", (inst, def) => {
     if (def.coerce)
       try {
         payload.value = Number(payload.value);
-      } catch (_) {
-      }
+      } catch (_) {}
     const input = payload.value;
     if (typeof input === "number" && !Number.isNaN(input) && Number.isFinite(input)) {
       return payload;
     }
-    const received = typeof input === "number" ? Number.isNaN(input) ? "NaN" : !Number.isFinite(input) ? "Infinity" : void 0 : void 0;
+    const received =
+      typeof input === "number"
+        ? Number.isNaN(input)
+          ? "NaN"
+          : !Number.isFinite(input)
+            ? "Infinity"
+            : void 0
+        : void 0;
     payload.issues.push({
       expected: "number",
       code: "invalid_type",
       input,
       inst,
-      ...received ? { received } : {}
+      ...(received ? { received } : {}),
     });
     return payload;
   };
@@ -3591,16 +3633,14 @@ var $ZodBoolean = /* @__PURE__ */ $constructor("$ZodBoolean", (inst, def) => {
     if (def.coerce)
       try {
         payload.value = Boolean(payload.value);
-      } catch (_) {
-      }
+      } catch (_) {}
     const input = payload.value;
-    if (typeof input === "boolean")
-      return payload;
+    if (typeof input === "boolean") return payload;
     payload.issues.push({
       expected: "boolean",
       code: "invalid_type",
       input,
-      inst
+      inst,
     });
     return payload;
   };
@@ -3612,15 +3652,13 @@ var $ZodBigInt = /* @__PURE__ */ $constructor("$ZodBigInt", (inst, def) => {
     if (def.coerce)
       try {
         payload.value = BigInt(payload.value);
-      } catch (_) {
-      }
-    if (typeof payload.value === "bigint")
-      return payload;
+      } catch (_) {}
+    if (typeof payload.value === "bigint") return payload;
     payload.issues.push({
       expected: "bigint",
       code: "invalid_type",
       input: payload.value,
-      inst
+      inst,
     });
     return payload;
   };
@@ -3633,13 +3671,12 @@ var $ZodSymbol = /* @__PURE__ */ $constructor("$ZodSymbol", (inst, def) => {
   $ZodType.init(inst, def);
   inst._zod.parse = (payload, _ctx) => {
     const input = payload.value;
-    if (typeof input === "symbol")
-      return payload;
+    if (typeof input === "symbol") return payload;
     payload.issues.push({
       expected: "symbol",
       code: "invalid_type",
       input,
-      inst
+      inst,
     });
     return payload;
   };
@@ -3650,13 +3687,12 @@ var $ZodUndefined = /* @__PURE__ */ $constructor("$ZodUndefined", (inst, def) =>
   inst._zod.values = /* @__PURE__ */ new Set([void 0]);
   inst._zod.parse = (payload, _ctx) => {
     const input = payload.value;
-    if (typeof input === "undefined")
-      return payload;
+    if (typeof input === "undefined") return payload;
     payload.issues.push({
       expected: "undefined",
       code: "invalid_type",
       input,
-      inst
+      inst,
     });
     return payload;
   };
@@ -3667,13 +3703,12 @@ var $ZodNull = /* @__PURE__ */ $constructor("$ZodNull", (inst, def) => {
   inst._zod.values = /* @__PURE__ */ new Set([null]);
   inst._zod.parse = (payload, _ctx) => {
     const input = payload.value;
-    if (input === null)
-      return payload;
+    if (input === null) return payload;
     payload.issues.push({
       expected: "null",
       code: "invalid_type",
       input,
-      inst
+      inst,
     });
     return payload;
   };
@@ -3693,7 +3728,7 @@ var $ZodNever = /* @__PURE__ */ $constructor("$ZodNever", (inst, def) => {
       expected: "never",
       code: "invalid_type",
       input: payload.value,
-      inst
+      inst,
     });
     return payload;
   };
@@ -3702,13 +3737,12 @@ var $ZodVoid = /* @__PURE__ */ $constructor("$ZodVoid", (inst, def) => {
   $ZodType.init(inst, def);
   inst._zod.parse = (payload, _ctx) => {
     const input = payload.value;
-    if (typeof input === "undefined")
-      return payload;
+    if (typeof input === "undefined") return payload;
     payload.issues.push({
       expected: "void",
       code: "invalid_type",
       input,
-      inst
+      inst,
     });
     return payload;
   };
@@ -3719,20 +3753,18 @@ var $ZodDate = /* @__PURE__ */ $constructor("$ZodDate", (inst, def) => {
     if (def.coerce) {
       try {
         payload.value = new Date(payload.value);
-      } catch (_err) {
-      }
+      } catch (_err) {}
     }
     const input = payload.value;
     const isDate = input instanceof Date;
     const isValidDate = isDate && !Number.isNaN(input.getTime());
-    if (isValidDate)
-      return payload;
+    if (isValidDate) return payload;
     payload.issues.push({
       expected: "date",
       code: "invalid_type",
       input,
-      ...isDate ? { received: "Invalid Date" } : {},
-      inst
+      ...(isDate ? { received: "Invalid Date" } : {}),
+      inst,
     });
     return payload;
   };
@@ -3752,7 +3784,7 @@ var $ZodArray = /* @__PURE__ */ $constructor("$ZodArray", (inst, def) => {
         expected: "array",
         code: "invalid_type",
         input,
-        inst
+        inst,
       });
       return payload;
     }
@@ -3760,10 +3792,13 @@ var $ZodArray = /* @__PURE__ */ $constructor("$ZodArray", (inst, def) => {
     const proms = [];
     for (let i = 0; i < input.length; i++) {
       const item = input[i];
-      const result = def.element._zod.run({
-        value: item,
-        issues: []
-      }, ctx);
+      const result = def.element._zod.run(
+        {
+          value: item,
+          issues: [],
+        },
+        ctx,
+      );
       if (result instanceof Promise) {
         proms.push(result.then((result2) => handleArrayResult(result2, payload, i)));
       } else {
@@ -3790,7 +3825,7 @@ function handlePropertyResult(result, final, key, input, isOptionalIn, isOptiona
         code: "invalid_type",
         expected: "nonoptional",
         input: void 0,
-        path: [key]
+        path: [key],
       });
     }
     return;
@@ -3816,7 +3851,7 @@ function normalizeDef(def) {
     keys,
     keySet: new Set(keys),
     numKeys: keys.length,
-    optionalKeys: new Set(okeys)
+    optionalKeys: new Set(okeys),
   };
 }
 function handleCatchall(proms, input, payload, ctx, def, inst) {
@@ -3827,17 +3862,17 @@ function handleCatchall(proms, input, payload, ctx, def, inst) {
   const isOptionalIn = _catchall.optin === "optional";
   const isOptionalOut = _catchall.optout === "optional";
   for (const key in input) {
-    if (key === "__proto__")
-      continue;
-    if (keySet.has(key))
-      continue;
+    if (key === "__proto__") continue;
+    if (keySet.has(key)) continue;
     if (t === "never") {
       unrecognized.push(key);
       continue;
     }
     const r = _catchall.run({ value: input[key], issues: [] }, ctx);
     if (r instanceof Promise) {
-      proms.push(r.then((r2) => handlePropertyResult(r2, payload, key, input, isOptionalIn, isOptionalOut)));
+      proms.push(
+        r.then((r2) => handlePropertyResult(r2, payload, key, input, isOptionalIn, isOptionalOut)),
+      );
     } else {
       handlePropertyResult(r, payload, key, input, isOptionalIn, isOptionalOut);
     }
@@ -3847,11 +3882,10 @@ function handleCatchall(proms, input, payload, ctx, def, inst) {
       code: "unrecognized_keys",
       keys: unrecognized,
       input,
-      inst
+      inst,
     });
   }
-  if (!proms.length)
-    return payload;
+  if (!proms.length) return payload;
   return Promise.all(proms).then(() => {
     return payload;
   });
@@ -3865,10 +3899,10 @@ var $ZodObject = /* @__PURE__ */ $constructor("$ZodObject", (inst, def) => {
       get: () => {
         const newSh = { ...sh };
         Object.defineProperty(def, "shape", {
-          value: newSh
+          value: newSh,
         });
         return newSh;
-      }
+      },
     });
   }
   const _normalized = cached(() => normalizeDef(def));
@@ -3879,8 +3913,7 @@ var $ZodObject = /* @__PURE__ */ $constructor("$ZodObject", (inst, def) => {
       const field = shape[key]._zod;
       if (field.values) {
         propValues[key] ?? (propValues[key] = /* @__PURE__ */ new Set());
-        for (const v of field.values)
-          propValues[key].add(v);
+        for (const v of field.values) propValues[key].add(v);
       }
     }
     return propValues;
@@ -3896,7 +3929,7 @@ var $ZodObject = /* @__PURE__ */ $constructor("$ZodObject", (inst, def) => {
         expected: "object",
         code: "invalid_type",
         input,
-        inst
+        inst,
       });
       return payload;
     }
@@ -3909,7 +3942,11 @@ var $ZodObject = /* @__PURE__ */ $constructor("$ZodObject", (inst, def) => {
       const isOptionalOut = el2._zod.optout === "optional";
       const r = el2._zod.run({ value: input[key], issues: [] }, ctx);
       if (r instanceof Promise) {
-        proms.push(r.then((r2) => handlePropertyResult(r2, payload, key, input, isOptionalIn, isOptionalOut)));
+        proms.push(
+          r.then((r2) =>
+            handlePropertyResult(r2, payload, key, input, isOptionalIn, isOptionalOut),
+          ),
+        );
       } else {
         handlePropertyResult(r, payload, key, input, isOptionalIn, isOptionalOut);
       }
@@ -4032,16 +4069,14 @@ var $ZodObjectJIT = /* @__PURE__ */ $constructor("$ZodObjectJIT", (inst, def) =>
         expected: "object",
         code: "invalid_type",
         input,
-        inst
+        inst,
       });
       return payload;
     }
     if (jit && fastEnabled && ctx?.async === false && ctx.jitless !== true) {
-      if (!fastpass)
-        fastpass = generateFastpass(def.shape);
+      if (!fastpass) fastpass = generateFastpass(def.shape);
       payload = fastpass(payload, ctx);
-      if (!catchall)
-        return payload;
+      if (!catchall) return payload;
       return handleCatchall([], input, payload, ctx, value, inst);
     }
     return superParse(payload, ctx);
@@ -4063,14 +4098,18 @@ function handleUnionResults(results, final, inst, ctx) {
     code: "invalid_union",
     input: final.value,
     inst,
-    errors: results.map((result) => result.issues.map((iss) => finalizeIssue(iss, ctx, config())))
+    errors: results.map((result) => result.issues.map((iss) => finalizeIssue(iss, ctx, config()))),
   });
   return final;
 }
 var $ZodUnion = /* @__PURE__ */ $constructor("$ZodUnion", (inst, def) => {
   $ZodType.init(inst, def);
-  defineLazy(inst._zod, "optin", () => def.options.some((o) => o._zod.optin === "optional") ? "optional" : void 0);
-  defineLazy(inst._zod, "optout", () => def.options.some((o) => o._zod.optout === "optional") ? "optional" : void 0);
+  defineLazy(inst._zod, "optin", () =>
+    def.options.some((o) => o._zod.optin === "optional") ? "optional" : void 0,
+  );
+  defineLazy(inst._zod, "optout", () =>
+    def.options.some((o) => o._zod.optout === "optional") ? "optional" : void 0,
+  );
   defineLazy(inst._zod, "values", () => {
     if (def.options.every((o) => o._zod.values)) {
       return new Set(def.options.flatMap((option) => Array.from(option._zod.values)));
@@ -4092,21 +4131,22 @@ var $ZodUnion = /* @__PURE__ */ $constructor("$ZodUnion", (inst, def) => {
     let async = false;
     const results = [];
     for (const option of def.options) {
-      const result = option._zod.run({
-        value: payload.value,
-        issues: []
-      }, ctx);
+      const result = option._zod.run(
+        {
+          value: payload.value,
+          issues: [],
+        },
+        ctx,
+      );
       if (result instanceof Promise) {
         results.push(result);
         async = true;
       } else {
-        if (result.issues.length === 0)
-          return result;
+        if (result.issues.length === 0) return result;
         results.push(result);
       }
     }
-    if (!async)
-      return handleUnionResults(results, payload, inst, ctx);
+    if (!async) return handleUnionResults(results, payload, inst, ctx);
     return Promise.all(results).then((results2) => {
       return handleUnionResults(results2, payload, inst, ctx);
     });
@@ -4123,7 +4163,9 @@ function handleExclusiveUnionResults(results, final, inst, ctx) {
       code: "invalid_union",
       input: final.value,
       inst,
-      errors: results.map((result) => result.issues.map((iss) => finalizeIssue(iss, ctx, config())))
+      errors: results.map((result) =>
+        result.issues.map((iss) => finalizeIssue(iss, ctx, config())),
+      ),
     });
   } else {
     final.issues.push({
@@ -4131,7 +4173,7 @@ function handleExclusiveUnionResults(results, final, inst, ctx) {
       input: final.value,
       inst,
       errors: [],
-      inclusive: false
+      inclusive: false,
     });
   }
   return final;
@@ -4147,10 +4189,13 @@ var $ZodXor = /* @__PURE__ */ $constructor("$ZodXor", (inst, def) => {
     let async = false;
     const results = [];
     for (const option of def.options) {
-      const result = option._zod.run({
-        value: payload.value,
-        issues: []
-      }, ctx);
+      const result = option._zod.run(
+        {
+          value: payload.value,
+          issues: [],
+        },
+        ctx,
+      );
       if (result instanceof Promise) {
         results.push(result);
         async = true;
@@ -4158,8 +4203,7 @@ var $ZodXor = /* @__PURE__ */ $constructor("$ZodXor", (inst, def) => {
         results.push(result);
       }
     }
-    if (!async)
-      return handleExclusiveUnionResults(results, payload, inst, ctx);
+    if (!async) return handleExclusiveUnionResults(results, payload, inst, ctx);
     return Promise.all(results).then((results2) => {
       return handleExclusiveUnionResults(results2, payload, inst, ctx);
     });
@@ -4174,10 +4218,11 @@ var $ZodDiscriminatedUnion = /* @__PURE__ */ $constructor("$ZodDiscriminatedUnio
     for (const option of def.options) {
       const pv = option._zod.propValues;
       if (!pv || Object.keys(pv).length === 0)
-        throw new Error(`Invalid discriminated union option at index "${def.options.indexOf(option)}"`);
+        throw new Error(
+          `Invalid discriminated union option at index "${def.options.indexOf(option)}"`,
+        );
       for (const [k, v] of Object.entries(pv)) {
-        if (!propValues[k])
-          propValues[k] = /* @__PURE__ */ new Set();
+        if (!propValues[k]) propValues[k] = /* @__PURE__ */ new Set();
         for (const val of v) {
           propValues[k].add(val);
         }
@@ -4208,7 +4253,7 @@ var $ZodDiscriminatedUnion = /* @__PURE__ */ $constructor("$ZodDiscriminatedUnio
         code: "invalid_type",
         expected: "object",
         input,
-        inst
+        inst,
       });
       return payload;
     }
@@ -4227,7 +4272,7 @@ var $ZodDiscriminatedUnion = /* @__PURE__ */ $constructor("$ZodDiscriminatedUnio
       options: Array.from(disc.value.keys()),
       input,
       path: [def.discriminator],
-      inst
+      inst,
     });
     return payload;
   };
@@ -4263,7 +4308,7 @@ function mergeValues(a, b) {
       if (!sharedValue.valid) {
         return {
           valid: false,
-          mergeErrorPath: [key, ...sharedValue.mergeErrorPath]
+          mergeErrorPath: [key, ...sharedValue.mergeErrorPath],
         };
       }
       newObj[key] = sharedValue.data;
@@ -4282,7 +4327,7 @@ function mergeValues(a, b) {
       if (!sharedValue.valid) {
         return {
           valid: false,
-          mergeErrorPath: [index, ...sharedValue.mergeErrorPath]
+          mergeErrorPath: [index, ...sharedValue.mergeErrorPath],
         };
       }
       newArray.push(sharedValue.data);
@@ -4298,8 +4343,7 @@ function handleIntersectionResults(result, left, right) {
     if (iss.code === "unrecognized_keys") {
       unrecIssue ?? (unrecIssue = iss);
       for (const k of iss.keys) {
-        if (!unrecKeys.has(k))
-          unrecKeys.set(k, {});
+        if (!unrecKeys.has(k)) unrecKeys.set(k, {});
         unrecKeys.get(k).l = true;
       }
     } else {
@@ -4309,8 +4353,7 @@ function handleIntersectionResults(result, left, right) {
   for (const iss of right.issues) {
     if (iss.code === "unrecognized_keys") {
       for (const k of iss.keys) {
-        if (!unrecKeys.has(k))
-          unrecKeys.set(k, {});
+        if (!unrecKeys.has(k)) unrecKeys.set(k, {});
         unrecKeys.get(k).r = true;
       }
     } else {
@@ -4321,11 +4364,12 @@ function handleIntersectionResults(result, left, right) {
   if (bothKeys.length && unrecIssue) {
     result.issues.push({ ...unrecIssue, keys: bothKeys });
   }
-  if (aborted(result))
-    return result;
+  if (aborted(result)) return result;
   const merged = mergeValues(left.value, right.value);
   if (!merged.valid) {
-    throw new Error(`Unmergable intersection. Error path: ${JSON.stringify(merged.mergeErrorPath)}`);
+    throw new Error(
+      `Unmergable intersection. Error path: ${JSON.stringify(merged.mergeErrorPath)}`,
+    );
   }
   result.value = merged.data;
   return result;
@@ -4340,7 +4384,7 @@ var $ZodTuple = /* @__PURE__ */ $constructor("$ZodTuple", (inst, def) => {
         input,
         inst,
         expected: "tuple",
-        code: "invalid_type"
+        code: "invalid_type",
       });
       return payload;
     }
@@ -4356,7 +4400,7 @@ var $ZodTuple = /* @__PURE__ */ $constructor("$ZodTuple", (inst, def) => {
           inclusive: true,
           input,
           inst,
-          origin: "array"
+          origin: "array",
         });
         return payload;
       }
@@ -4367,7 +4411,7 @@ var $ZodTuple = /* @__PURE__ */ $constructor("$ZodTuple", (inst, def) => {
           inclusive: true,
           input,
           inst,
-          origin: "array"
+          origin: "array",
         });
       }
     }
@@ -4375,9 +4419,11 @@ var $ZodTuple = /* @__PURE__ */ $constructor("$ZodTuple", (inst, def) => {
     for (let i = 0; i < items.length; i++) {
       const r = items[i]._zod.run({ value: input[i], issues: [] }, ctx);
       if (r instanceof Promise) {
-        proms.push(r.then((rr) => {
-          itemResults[i] = rr;
-        }));
+        proms.push(
+          r.then((rr) => {
+            itemResults[i] = rr;
+          }),
+        );
       } else {
         itemResults[i] = r;
       }
@@ -4396,15 +4442,16 @@ var $ZodTuple = /* @__PURE__ */ $constructor("$ZodTuple", (inst, def) => {
       }
     }
     if (proms.length) {
-      return Promise.all(proms).then(() => handleTupleResults(itemResults, payload, items, input, optoutStart));
+      return Promise.all(proms).then(() =>
+        handleTupleResults(itemResults, payload, items, input, optoutStart),
+      );
     }
     return handleTupleResults(itemResults, payload, items, input, optoutStart);
   };
 });
 function getTupleOptStart(items, key) {
   for (let i = items.length - 1; i >= 0; i--) {
-    if (items[i]._zod[key] !== "optional")
-      return i + 1;
+    if (items[i]._zod[key] !== "optional") return i + 1;
   }
   return 0;
 }
@@ -4445,7 +4492,7 @@ var $ZodRecord = /* @__PURE__ */ $constructor("$ZodRecord", (inst, def) => {
         expected: "record",
         code: "invalid_type",
         input,
-        inst
+        inst,
       });
       return payload;
     }
@@ -4468,19 +4515,21 @@ var $ZodRecord = /* @__PURE__ */ $constructor("$ZodRecord", (inst, def) => {
               issues: keyResult.issues.map((iss) => finalizeIssue(iss, ctx, config())),
               input: key,
               path: [key],
-              inst
+              inst,
             });
             continue;
           }
           const outKey = keyResult.value;
           const result = def.valueType._zod.run({ value: input[key], issues: [] }, ctx);
           if (result instanceof Promise) {
-            proms.push(result.then((result2) => {
-              if (result2.issues.length) {
-                payload.issues.push(...prefixIssues(key, result2.issues));
-              }
-              payload.value[outKey] = result2.value;
-            }));
+            proms.push(
+              result.then((result2) => {
+                if (result2.issues.length) {
+                  payload.issues.push(...prefixIssues(key, result2.issues));
+                }
+                payload.value[outKey] = result2.value;
+              }),
+            );
           } else {
             if (result.issues.length) {
               payload.issues.push(...prefixIssues(key, result.issues));
@@ -4501,21 +4550,20 @@ var $ZodRecord = /* @__PURE__ */ $constructor("$ZodRecord", (inst, def) => {
           code: "unrecognized_keys",
           input,
           inst,
-          keys: unrecognized
+          keys: unrecognized,
         });
       }
     } else {
       payload.value = {};
       for (const key of Reflect.ownKeys(input)) {
-        if (key === "__proto__")
-          continue;
-        if (!Object.prototype.propertyIsEnumerable.call(input, key))
-          continue;
+        if (key === "__proto__") continue;
+        if (!Object.prototype.propertyIsEnumerable.call(input, key)) continue;
         let keyResult = def.keyType._zod.run({ value: key, issues: [] }, ctx);
         if (keyResult instanceof Promise) {
           throw new Error("Async schemas not supported in object keys currently");
         }
-        const checkNumericKey = typeof key === "string" && number.test(key) && keyResult.issues.length;
+        const checkNumericKey =
+          typeof key === "string" && number.test(key) && keyResult.issues.length;
         if (checkNumericKey) {
           const retryResult = def.keyType._zod.run({ value: Number(key), issues: [] }, ctx);
           if (retryResult instanceof Promise) {
@@ -4535,19 +4583,21 @@ var $ZodRecord = /* @__PURE__ */ $constructor("$ZodRecord", (inst, def) => {
               issues: keyResult.issues.map((iss) => finalizeIssue(iss, ctx, config())),
               input: key,
               path: [key],
-              inst
+              inst,
             });
           }
           continue;
         }
         const result = def.valueType._zod.run({ value: input[key], issues: [] }, ctx);
         if (result instanceof Promise) {
-          proms.push(result.then((result2) => {
-            if (result2.issues.length) {
-              payload.issues.push(...prefixIssues(key, result2.issues));
-            }
-            payload.value[keyResult.value] = result2.value;
-          }));
+          proms.push(
+            result.then((result2) => {
+              if (result2.issues.length) {
+                payload.issues.push(...prefixIssues(key, result2.issues));
+              }
+              payload.value[keyResult.value] = result2.value;
+            }),
+          );
         } else {
           if (result.issues.length) {
             payload.issues.push(...prefixIssues(key, result.issues));
@@ -4571,7 +4621,7 @@ var $ZodMap = /* @__PURE__ */ $constructor("$ZodMap", (inst, def) => {
         expected: "map",
         code: "invalid_type",
         input,
-        inst
+        inst,
       });
       return payload;
     }
@@ -4581,15 +4631,16 @@ var $ZodMap = /* @__PURE__ */ $constructor("$ZodMap", (inst, def) => {
       const keyResult = def.keyType._zod.run({ value: key, issues: [] }, ctx);
       const valueResult = def.valueType._zod.run({ value, issues: [] }, ctx);
       if (keyResult instanceof Promise || valueResult instanceof Promise) {
-        proms.push(Promise.all([keyResult, valueResult]).then(([keyResult2, valueResult2]) => {
-          handleMapResult(keyResult2, valueResult2, payload, key, input, inst, ctx);
-        }));
+        proms.push(
+          Promise.all([keyResult, valueResult]).then(([keyResult2, valueResult2]) => {
+            handleMapResult(keyResult2, valueResult2, payload, key, input, inst, ctx);
+          }),
+        );
       } else {
         handleMapResult(keyResult, valueResult, payload, key, input, inst, ctx);
       }
     }
-    if (proms.length)
-      return Promise.all(proms).then(() => payload);
+    if (proms.length) return Promise.all(proms).then(() => payload);
     return payload;
   };
 });
@@ -4603,7 +4654,7 @@ function handleMapResult(keyResult, valueResult, final, key, input, inst, ctx) {
         origin: "map",
         input,
         inst,
-        issues: keyResult.issues.map((iss) => finalizeIssue(iss, ctx, config()))
+        issues: keyResult.issues.map((iss) => finalizeIssue(iss, ctx, config())),
       });
     }
   }
@@ -4617,7 +4668,7 @@ function handleMapResult(keyResult, valueResult, final, key, input, inst, ctx) {
         input,
         inst,
         key,
-        issues: valueResult.issues.map((iss) => finalizeIssue(iss, ctx, config()))
+        issues: valueResult.issues.map((iss) => finalizeIssue(iss, ctx, config())),
       });
     }
   }
@@ -4632,7 +4683,7 @@ var $ZodSet = /* @__PURE__ */ $constructor("$ZodSet", (inst, def) => {
         input,
         inst,
         expected: "set",
-        code: "invalid_type"
+        code: "invalid_type",
       });
       return payload;
     }
@@ -4642,11 +4693,9 @@ var $ZodSet = /* @__PURE__ */ $constructor("$ZodSet", (inst, def) => {
       const result = def.valueType._zod.run({ value: item, issues: [] }, ctx);
       if (result instanceof Promise) {
         proms.push(result.then((result2) => handleSetResult(result2, payload)));
-      } else
-        handleSetResult(result, payload);
+      } else handleSetResult(result, payload);
     }
-    if (proms.length)
-      return Promise.all(proms).then(() => payload);
+    if (proms.length) return Promise.all(proms).then(() => payload);
     return payload;
   };
 });
@@ -4661,7 +4710,12 @@ var $ZodEnum = /* @__PURE__ */ $constructor("$ZodEnum", (inst, def) => {
   const values = getEnumValues(def.entries);
   const valuesSet = new Set(values);
   inst._zod.values = valuesSet;
-  inst._zod.pattern = new RegExp(`^(${values.filter((k) => propertyKeyTypes.has(typeof k)).map((o) => typeof o === "string" ? escapeRegex(o) : o.toString()).join("|")})$`);
+  inst._zod.pattern = new RegExp(
+    `^(${values
+      .filter((k) => propertyKeyTypes.has(typeof k))
+      .map((o) => (typeof o === "string" ? escapeRegex(o) : o.toString()))
+      .join("|")})$`,
+  );
   inst._zod.parse = (payload, _ctx) => {
     const input = payload.value;
     if (valuesSet.has(input)) {
@@ -4671,7 +4725,7 @@ var $ZodEnum = /* @__PURE__ */ $constructor("$ZodEnum", (inst, def) => {
       code: "invalid_value",
       values,
       input,
-      inst
+      inst,
     });
     return payload;
   };
@@ -4683,7 +4737,9 @@ var $ZodLiteral = /* @__PURE__ */ $constructor("$ZodLiteral", (inst, def) => {
   }
   const values = new Set(def.values);
   inst._zod.values = values;
-  inst._zod.pattern = new RegExp(`^(${def.values.map((o) => typeof o === "string" ? escapeRegex(o) : o ? escapeRegex(o.toString()) : String(o)).join("|")})$`);
+  inst._zod.pattern = new RegExp(
+    `^(${def.values.map((o) => (typeof o === "string" ? escapeRegex(o) : o ? escapeRegex(o.toString()) : String(o))).join("|")})$`,
+  );
   inst._zod.parse = (payload, _ctx) => {
     const input = payload.value;
     if (values.has(input)) {
@@ -4693,7 +4749,7 @@ var $ZodLiteral = /* @__PURE__ */ $constructor("$ZodLiteral", (inst, def) => {
       code: "invalid_value",
       values: def.values,
       input,
-      inst
+      inst,
     });
     return payload;
   };
@@ -4702,13 +4758,12 @@ var $ZodFile = /* @__PURE__ */ $constructor("$ZodFile", (inst, def) => {
   $ZodType.init(inst, def);
   inst._zod.parse = (payload, _ctx) => {
     const input = payload.value;
-    if (input instanceof File)
-      return payload;
+    if (input instanceof File) return payload;
     payload.issues.push({
       expected: "file",
       code: "invalid_type",
       input,
-      inst
+      inst,
     });
     return payload;
   };
@@ -4748,7 +4803,9 @@ var $ZodOptional = /* @__PURE__ */ $constructor("$ZodOptional", (inst, def) => {
   inst._zod.optin = "optional";
   inst._zod.optout = "optional";
   defineLazy(inst._zod, "values", () => {
-    return def.innerType._zod.values ? /* @__PURE__ */ new Set([...def.innerType._zod.values, void 0]) : void 0;
+    return def.innerType._zod.values
+      ? /* @__PURE__ */ new Set([...def.innerType._zod.values, void 0])
+      : void 0;
   });
   defineLazy(inst._zod, "pattern", () => {
     const pattern = def.innerType._zod.pattern;
@@ -4758,8 +4815,7 @@ var $ZodOptional = /* @__PURE__ */ $constructor("$ZodOptional", (inst, def) => {
     if (def.innerType._zod.optin === "optional") {
       const input = payload.value;
       const result = def.innerType._zod.run(payload, ctx);
-      if (result instanceof Promise)
-        return result.then((r) => handleOptionalResult(r, input));
+      if (result instanceof Promise) return result.then((r) => handleOptionalResult(r, input));
       return handleOptionalResult(result, input);
     }
     if (payload.value === void 0) {
@@ -4785,11 +4841,12 @@ var $ZodNullable = /* @__PURE__ */ $constructor("$ZodNullable", (inst, def) => {
     return pattern ? new RegExp(`^(${cleanRegex(pattern.source)}|null)$`) : void 0;
   });
   defineLazy(inst._zod, "values", () => {
-    return def.innerType._zod.values ? /* @__PURE__ */ new Set([...def.innerType._zod.values, null]) : void 0;
+    return def.innerType._zod.values
+      ? /* @__PURE__ */ new Set([...def.innerType._zod.values, null])
+      : void 0;
   });
   inst._zod.parse = (payload, ctx) => {
-    if (payload.value === null)
-      return payload;
+    if (payload.value === null) return payload;
     return def.innerType._zod.run(payload, ctx);
   };
 });
@@ -4852,7 +4909,7 @@ function handleNonOptionalResult(payload, inst) {
       code: "invalid_type",
       expected: "nonoptional",
       input: payload.value,
-      inst
+      inst,
     });
   }
   return payload;
@@ -4891,9 +4948,9 @@ var $ZodCatch = /* @__PURE__ */ $constructor("$ZodCatch", (inst, def) => {
           payload.value = def.catchValue({
             ...payload,
             error: {
-              issues: result2.issues.map((iss) => finalizeIssue(iss, ctx, config()))
+              issues: result2.issues.map((iss) => finalizeIssue(iss, ctx, config())),
             },
-            input: payload.value
+            input: payload.value,
           });
           payload.issues = [];
           payload.fallback = true;
@@ -4906,9 +4963,9 @@ var $ZodCatch = /* @__PURE__ */ $constructor("$ZodCatch", (inst, def) => {
       payload.value = def.catchValue({
         ...payload,
         error: {
-          issues: result.issues.map((iss) => finalizeIssue(iss, ctx, config()))
+          issues: result.issues.map((iss) => finalizeIssue(iss, ctx, config())),
         },
-        input: payload.value
+        input: payload.value,
       });
       payload.issues = [];
       payload.fallback = true;
@@ -4924,7 +4981,7 @@ var $ZodNaN = /* @__PURE__ */ $constructor("$ZodNaN", (inst, def) => {
         input: payload.value,
         inst,
         expected: "nan",
-        code: "invalid_type"
+        code: "invalid_type",
       });
       return payload;
     }
@@ -5039,11 +5096,13 @@ var $ZodTemplateLiteral = /* @__PURE__ */ $constructor("$ZodTemplateLiteral", (i
   for (const part of def.parts) {
     if (typeof part === "object" && part !== null) {
       if (!part._zod.pattern) {
-        throw new Error(`Invalid template literal part, no pattern found: ${[...part._zod.traits].shift()}`);
+        throw new Error(
+          `Invalid template literal part, no pattern found: ${[...part._zod.traits].shift()}`,
+        );
       }
-      const source = part._zod.pattern instanceof RegExp ? part._zod.pattern.source : part._zod.pattern;
-      if (!source)
-        throw new Error(`Invalid template literal part: ${part._zod.traits}`);
+      const source =
+        part._zod.pattern instanceof RegExp ? part._zod.pattern.source : part._zod.pattern;
+      if (!source) throw new Error(`Invalid template literal part: ${part._zod.traits}`);
       const start = source.startsWith("^") ? 1 : 0;
       const end = source.endsWith("$") ? source.length - 1 : source.length;
       regexParts.push(source.slice(start, end));
@@ -5060,7 +5119,7 @@ var $ZodTemplateLiteral = /* @__PURE__ */ $constructor("$ZodTemplateLiteral", (i
         input: payload.value,
         inst,
         expected: "string",
-        code: "invalid_type"
+        code: "invalid_type",
       });
       return payload;
     }
@@ -5071,7 +5130,7 @@ var $ZodTemplateLiteral = /* @__PURE__ */ $constructor("$ZodTemplateLiteral", (i
         inst,
         code: "invalid_format",
         format: def.format ?? "template_literal",
-        pattern: inst._zod.pattern.source
+        pattern: inst._zod.pattern.source,
       });
       return payload;
     }
@@ -5086,7 +5145,7 @@ var $ZodFunction = /* @__PURE__ */ $constructor("$ZodFunction", (inst, def) => {
     if (typeof func !== "function") {
       throw new Error("implement() must be called with a function");
     }
-    return function(...args) {
+    return function (...args) {
       const parsedArgs = inst._def.input ? parse(inst._def.input, args) : args;
       const result = Reflect.apply(func, this, parsedArgs);
       if (inst._def.output) {
@@ -5099,7 +5158,7 @@ var $ZodFunction = /* @__PURE__ */ $constructor("$ZodFunction", (inst, def) => {
     if (typeof func !== "function") {
       throw new Error("implementAsync() must be called with a function");
     }
-    return async function(...args) {
+    return async function (...args) {
       const parsedArgs = inst._def.input ? await parseAsync(inst._def.input, args) : args;
       const result = await Reflect.apply(func, this, parsedArgs);
       if (inst._def.output) {
@@ -5114,7 +5173,7 @@ var $ZodFunction = /* @__PURE__ */ $constructor("$ZodFunction", (inst, def) => {
         code: "invalid_type",
         expected: "function",
         input: payload.value,
-        inst
+        inst,
       });
       return payload;
     }
@@ -5134,15 +5193,15 @@ var $ZodFunction = /* @__PURE__ */ $constructor("$ZodFunction", (inst, def) => {
         input: new $ZodTuple({
           type: "tuple",
           items: args[0],
-          rest: args[1]
+          rest: args[1],
         }),
-        output: inst._def.output
+        output: inst._def.output,
       });
     }
     return new F({
       type: "function",
       input: args[0],
-      output: inst._def.output
+      output: inst._def.output,
     });
   };
   inst.output = (output) => {
@@ -5150,7 +5209,7 @@ var $ZodFunction = /* @__PURE__ */ $constructor("$ZodFunction", (inst, def) => {
     return new F({
       type: "function",
       input: inst._def.input,
-      output
+      output,
     });
   };
   return inst;
@@ -5158,15 +5217,16 @@ var $ZodFunction = /* @__PURE__ */ $constructor("$ZodFunction", (inst, def) => {
 var $ZodPromise = /* @__PURE__ */ $constructor("$ZodPromise", (inst, def) => {
   $ZodType.init(inst, def);
   inst._zod.parse = (payload, ctx) => {
-    return Promise.resolve(payload.value).then((inner) => def.innerType._zod.run({ value: inner, issues: [] }, ctx));
+    return Promise.resolve(payload.value).then((inner) =>
+      def.innerType._zod.run({ value: inner, issues: [] }, ctx),
+    );
   };
 });
 var $ZodLazy = /* @__PURE__ */ $constructor("$ZodLazy", (inst, def) => {
   $ZodType.init(inst, def);
   defineLazy(inst._zod, "innerType", () => {
     const d = def;
-    if (!d._cachedInner)
-      d._cachedInner = def.getter();
+    if (!d._cachedInner) d._cachedInner = def.getter();
     return d._cachedInner;
   });
   defineLazy(inst._zod, "pattern", () => inst._zod.innerType?._zod?.pattern);
@@ -5201,13 +5261,12 @@ function handleRefineResult(result, payload, input, inst) {
       input,
       inst,
       // incorporates params.error into issue reporting
-      path: [...inst._zod.def.path ?? []],
+      path: [...(inst._zod.def.path ?? [])],
       // incorporates params.error into issue reporting
-      continue: !inst._zod.def.abort
+      continue: !inst._zod.def.abort,
       // params: inst._zod.def.params,
     };
-    if (inst._zod.def.params)
-      _iss.params = inst._zod.def.params;
+    if (inst._zod.def.params) _iss.params = inst._zod.def.params;
     payload.issues.push(issue(_iss));
   }
 }
@@ -5266,7 +5325,7 @@ __export(locales_exports, {
   vi: () => vi_default,
   yo: () => yo_default,
   zhCN: () => zh_CN_default,
-  zhTW: () => zh_TW_default
+  zhTW: () => zh_TW_default,
 });
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/ar.js
@@ -5275,7 +5334,7 @@ var error = () => {
     string: { unit: "\u062D\u0631\u0641", verb: "\u0623\u0646 \u064A\u062D\u0648\u064A" },
     file: { unit: "\u0628\u0627\u064A\u062A", verb: "\u0623\u0646 \u064A\u062D\u0648\u064A" },
     array: { unit: "\u0639\u0646\u0635\u0631", verb: "\u0623\u0646 \u064A\u062D\u0648\u064A" },
-    set: { unit: "\u0639\u0646\u0635\u0631", verb: "\u0623\u0646 \u064A\u062D\u0648\u064A" }
+    set: { unit: "\u0639\u0646\u0635\u0631", verb: "\u0623\u0646 \u064A\u062D\u0648\u064A" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -5295,23 +5354,26 @@ var error = () => {
     ulid: "ULID",
     xid: "XID",
     ksuid: "KSUID",
-    datetime: "\u062A\u0627\u0631\u064A\u062E \u0648\u0648\u0642\u062A \u0628\u0645\u0639\u064A\u0627\u0631 ISO",
+    datetime:
+      "\u062A\u0627\u0631\u064A\u062E \u0648\u0648\u0642\u062A \u0628\u0645\u0639\u064A\u0627\u0631 ISO",
     date: "\u062A\u0627\u0631\u064A\u062E \u0628\u0645\u0639\u064A\u0627\u0631 ISO",
     time: "\u0648\u0642\u062A \u0628\u0645\u0639\u064A\u0627\u0631 ISO",
     duration: "\u0645\u062F\u0629 \u0628\u0645\u0639\u064A\u0627\u0631 ISO",
     ipv4: "\u0639\u0646\u0648\u0627\u0646 IPv4",
     ipv6: "\u0639\u0646\u0648\u0627\u0646 IPv6",
-    cidrv4: "\u0645\u062F\u0649 \u0639\u0646\u0627\u0648\u064A\u0646 \u0628\u0635\u064A\u063A\u0629 IPv4",
-    cidrv6: "\u0645\u062F\u0649 \u0639\u0646\u0627\u0648\u064A\u0646 \u0628\u0635\u064A\u063A\u0629 IPv6",
+    cidrv4:
+      "\u0645\u062F\u0649 \u0639\u0646\u0627\u0648\u064A\u0646 \u0628\u0635\u064A\u063A\u0629 IPv4",
+    cidrv6:
+      "\u0645\u062F\u0649 \u0639\u0646\u0627\u0648\u064A\u0646 \u0628\u0635\u064A\u063A\u0629 IPv6",
     base64: "\u0646\u064E\u0635 \u0628\u062A\u0631\u0645\u064A\u0632 base64-encoded",
     base64url: "\u0646\u064E\u0635 \u0628\u062A\u0631\u0645\u064A\u0632 base64url-encoded",
     json_string: "\u0646\u064E\u0635 \u0639\u0644\u0649 \u0647\u064A\u0626\u0629 JSON",
     e164: "\u0631\u0642\u0645 \u0647\u0627\u062A\u0641 \u0628\u0645\u0639\u064A\u0627\u0631 E.164",
     jwt: "JWT",
-    template_literal: "\u0645\u062F\u062E\u0644"
+    template_literal: "\u0645\u062F\u062E\u0644",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -5372,7 +5434,7 @@ var error = () => {
 };
 function ar_default() {
   return {
-    localeError: error()
+    localeError: error(),
   };
 }
 
@@ -5382,7 +5444,7 @@ var error2 = () => {
     string: { unit: "simvol", verb: "olmal\u0131d\u0131r" },
     file: { unit: "bayt", verb: "olmal\u0131d\u0131r" },
     array: { unit: "element", verb: "olmal\u0131d\u0131r" },
-    set: { unit: "element", verb: "olmal\u0131d\u0131r" }
+    set: { unit: "element", verb: "olmal\u0131d\u0131r" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -5415,10 +5477,10 @@ var error2 = () => {
     json_string: "JSON string",
     e164: "E.164 number",
     jwt: "JWT",
-    template_literal: "input"
+    template_literal: "input",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -5478,7 +5540,7 @@ var error2 = () => {
 };
 function az_default() {
   return {
-    localeError: error2()
+    localeError: error2(),
   };
 }
 
@@ -5504,34 +5566,34 @@ var error3 = () => {
       unit: {
         one: "\u0441\u0456\u043C\u0432\u0430\u043B",
         few: "\u0441\u0456\u043C\u0432\u0430\u043B\u044B",
-        many: "\u0441\u0456\u043C\u0432\u0430\u043B\u0430\u045E"
+        many: "\u0441\u0456\u043C\u0432\u0430\u043B\u0430\u045E",
       },
-      verb: "\u043C\u0435\u0446\u044C"
+      verb: "\u043C\u0435\u0446\u044C",
     },
     array: {
       unit: {
         one: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442",
         few: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u044B",
-        many: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u0430\u045E"
+        many: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u0430\u045E",
       },
-      verb: "\u043C\u0435\u0446\u044C"
+      verb: "\u043C\u0435\u0446\u044C",
     },
     set: {
       unit: {
         one: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442",
         few: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u044B",
-        many: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u0430\u045E"
+        many: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u0430\u045E",
       },
-      verb: "\u043C\u0435\u0446\u044C"
+      verb: "\u043C\u0435\u0446\u044C",
     },
     file: {
       unit: {
         one: "\u0431\u0430\u0439\u0442",
         few: "\u0431\u0430\u0439\u0442\u044B",
-        many: "\u0431\u0430\u0439\u0442\u0430\u045E"
+        many: "\u0431\u0430\u0439\u0442\u0430\u045E",
       },
-      verb: "\u043C\u0435\u0446\u044C"
-    }
+      verb: "\u043C\u0435\u0446\u044C",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -5559,17 +5621,19 @@ var error3 = () => {
     ipv6: "IPv6 \u0430\u0434\u0440\u0430\u0441",
     cidrv4: "IPv4 \u0434\u044B\u044F\u043F\u0430\u0437\u043E\u043D",
     cidrv6: "IPv6 \u0434\u044B\u044F\u043F\u0430\u0437\u043E\u043D",
-    base64: "\u0440\u0430\u0434\u043E\u043A \u0443 \u0444\u0430\u0440\u043C\u0430\u0446\u0435 base64",
-    base64url: "\u0440\u0430\u0434\u043E\u043A \u0443 \u0444\u0430\u0440\u043C\u0430\u0446\u0435 base64url",
+    base64:
+      "\u0440\u0430\u0434\u043E\u043A \u0443 \u0444\u0430\u0440\u043C\u0430\u0446\u0435 base64",
+    base64url:
+      "\u0440\u0430\u0434\u043E\u043A \u0443 \u0444\u0430\u0440\u043C\u0430\u0446\u0435 base64url",
     json_string: "JSON \u0440\u0430\u0434\u043E\u043A",
     e164: "\u043D\u0443\u043C\u0430\u0440 E.164",
     jwt: "JWT",
-    template_literal: "\u0443\u0432\u043E\u0434"
+    template_literal: "\u0443\u0432\u043E\u0434",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u043B\u0456\u043A",
-    array: "\u043C\u0430\u0441\u0456\u045E"
+    array: "\u043C\u0430\u0441\u0456\u045E",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -5591,7 +5655,12 @@ var error3 = () => {
         const sizing = getSizing(issue2.origin);
         if (sizing) {
           const maxValue = Number(issue2.maximum);
-          const unit = getBelarusianPlural(maxValue, sizing.unit.one, sizing.unit.few, sizing.unit.many);
+          const unit = getBelarusianPlural(
+            maxValue,
+            sizing.unit.one,
+            sizing.unit.few,
+            sizing.unit.many,
+          );
           return `\u0417\u0430\u043D\u0430\u0434\u0442\u0430 \u0432\u044F\u043B\u0456\u043A\u0456: \u0447\u0430\u043A\u0430\u043B\u0430\u0441\u044F, \u0448\u0442\u043E ${issue2.origin ?? "\u0437\u043D\u0430\u0447\u044D\u043D\u043D\u0435"} \u043F\u0430\u0432\u0456\u043D\u043D\u0430 ${sizing.verb} ${adj}${issue2.maximum.toString()} ${unit}`;
         }
         return `\u0417\u0430\u043D\u0430\u0434\u0442\u0430 \u0432\u044F\u043B\u0456\u043A\u0456: \u0447\u0430\u043A\u0430\u043B\u0430\u0441\u044F, \u0448\u0442\u043E ${issue2.origin ?? "\u0437\u043D\u0430\u0447\u044D\u043D\u043D\u0435"} \u043F\u0430\u0432\u0456\u043D\u043D\u0430 \u0431\u044B\u0446\u044C ${adj}${issue2.maximum.toString()}`;
@@ -5601,7 +5670,12 @@ var error3 = () => {
         const sizing = getSizing(issue2.origin);
         if (sizing) {
           const minValue = Number(issue2.minimum);
-          const unit = getBelarusianPlural(minValue, sizing.unit.one, sizing.unit.few, sizing.unit.many);
+          const unit = getBelarusianPlural(
+            minValue,
+            sizing.unit.one,
+            sizing.unit.few,
+            sizing.unit.many,
+          );
           return `\u0417\u0430\u043D\u0430\u0434\u0442\u0430 \u043C\u0430\u043B\u044B: \u0447\u0430\u043A\u0430\u043B\u0430\u0441\u044F, \u0448\u0442\u043E ${issue2.origin} \u043F\u0430\u0432\u0456\u043D\u043D\u0430 ${sizing.verb} ${adj}${issue2.minimum.toString()} ${unit}`;
         }
         return `\u0417\u0430\u043D\u0430\u0434\u0442\u0430 \u043C\u0430\u043B\u044B: \u0447\u0430\u043A\u0430\u043B\u0430\u0441\u044F, \u0448\u0442\u043E ${issue2.origin} \u043F\u0430\u0432\u0456\u043D\u043D\u0430 \u0431\u044B\u0446\u044C ${adj}${issue2.minimum.toString()}`;
@@ -5635,17 +5709,29 @@ var error3 = () => {
 };
 function be_default() {
   return {
-    localeError: error3()
+    localeError: error3(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/bg.js
 var error4 = () => {
   const Sizable = {
-    string: { unit: "\u0441\u0438\u043C\u0432\u043E\u043B\u0430", verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430" },
-    file: { unit: "\u0431\u0430\u0439\u0442\u0430", verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430" },
-    array: { unit: "\u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0430", verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430" },
-    set: { unit: "\u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0430", verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430" }
+    string: {
+      unit: "\u0441\u0438\u043C\u0432\u043E\u043B\u0430",
+      verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430",
+    },
+    file: {
+      unit: "\u0431\u0430\u0439\u0442\u0430",
+      verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430",
+    },
+    array: {
+      unit: "\u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0430",
+      verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430",
+    },
+    set: {
+      unit: "\u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0430",
+      verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -5668,7 +5754,8 @@ var error4 = () => {
     datetime: "ISO \u0432\u0440\u0435\u043C\u0435",
     date: "ISO \u0434\u0430\u0442\u0430",
     time: "ISO \u0432\u0440\u0435\u043C\u0435",
-    duration: "ISO \u043F\u0440\u043E\u0434\u044A\u043B\u0436\u0438\u0442\u0435\u043B\u043D\u043E\u0441\u0442",
+    duration:
+      "ISO \u043F\u0440\u043E\u0434\u044A\u043B\u0436\u0438\u0442\u0435\u043B\u043D\u043E\u0441\u0442",
     ipv4: "IPv4 \u0430\u0434\u0440\u0435\u0441",
     ipv6: "IPv6 \u0430\u0434\u0440\u0435\u0441",
     cidrv4: "IPv4 \u0434\u0438\u0430\u043F\u0430\u0437\u043E\u043D",
@@ -5678,12 +5765,12 @@ var error4 = () => {
     json_string: "JSON \u043D\u0438\u0437",
     e164: "E.164 \u043D\u043E\u043C\u0435\u0440",
     jwt: "JWT",
-    template_literal: "\u0432\u0445\u043E\u0434"
+    template_literal: "\u0432\u0445\u043E\u0434",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0447\u0438\u0441\u043B\u043E",
-    array: "\u043C\u0430\u0441\u0438\u0432"
+    array: "\u043C\u0430\u0441\u0438\u0432",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -5756,7 +5843,7 @@ var error4 = () => {
 };
 function bg_default() {
   return {
-    localeError: error4()
+    localeError: error4(),
   };
 }
 
@@ -5766,7 +5853,7 @@ var error5 = () => {
     string: { unit: "car\xE0cters", verb: "contenir" },
     file: { unit: "bytes", verb: "contenir" },
     array: { unit: "elements", verb: "contenir" },
-    set: { unit: "elements", verb: "contenir" }
+    set: { unit: "elements", verb: "contenir" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -5799,10 +5886,10 @@ var error5 = () => {
     json_string: "cadena JSON",
     e164: "n\xFAmero E.164",
     jwt: "JWT",
-    template_literal: "entrada"
+    template_literal: "entrada",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -5865,7 +5952,7 @@ var error5 = () => {
 };
 function ca_default() {
   return {
-    localeError: error5()
+    localeError: error5(),
   };
 }
 
@@ -5875,7 +5962,7 @@ var error6 = () => {
     string: { unit: "znak\u016F", verb: "m\xEDt" },
     file: { unit: "bajt\u016F", verb: "m\xEDt" },
     array: { unit: "prvk\u016F", verb: "m\xEDt" },
-    set: { unit: "prvk\u016F", verb: "m\xEDt" }
+    set: { unit: "prvk\u016F", verb: "m\xEDt" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -5908,14 +5995,14 @@ var error6 = () => {
     json_string: "\u0159et\u011Bzec ve form\xE1tu JSON",
     e164: "\u010D\xEDslo E.164",
     jwt: "JWT",
-    template_literal: "vstup"
+    template_literal: "vstup",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u010D\xEDslo",
     string: "\u0159et\u011Bzec",
     function: "funkce",
-    array: "pole"
+    array: "pole",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -5977,7 +6064,7 @@ var error6 = () => {
 };
 function cs_default() {
   return {
-    localeError: error6()
+    localeError: error6(),
   };
 }
 
@@ -5987,7 +6074,7 @@ var error7 = () => {
     string: { unit: "tegn", verb: "havde" },
     file: { unit: "bytes", verb: "havde" },
     array: { unit: "elementer", verb: "indeholdt" },
-    set: { unit: "elementer", verb: "indeholdt" }
+    set: { unit: "elementer", verb: "indeholdt" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6020,7 +6107,7 @@ var error7 = () => {
     json_string: "JSON-streng",
     e164: "E.164-nummer",
     jwt: "JWT",
-    template_literal: "input"
+    template_literal: "input",
   };
   const TypeDictionary = {
     nan: "NaN",
@@ -6030,7 +6117,7 @@ var error7 = () => {
     array: "liste",
     object: "objekt",
     set: "s\xE6t",
-    file: "fil"
+    file: "fil",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -6093,7 +6180,7 @@ var error7 = () => {
 };
 function da_default() {
   return {
-    localeError: error7()
+    localeError: error7(),
   };
 }
 
@@ -6103,7 +6190,7 @@ var error8 = () => {
     string: { unit: "Zeichen", verb: "zu haben" },
     file: { unit: "Bytes", verb: "zu haben" },
     array: { unit: "Elemente", verb: "zu haben" },
-    set: { unit: "Elemente", verb: "zu haben" }
+    set: { unit: "Elemente", verb: "zu haben" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6136,12 +6223,12 @@ var error8 = () => {
     json_string: "JSON-String",
     e164: "E.164-Nummer",
     jwt: "JWT",
-    template_literal: "Eingabe"
+    template_literal: "Eingabe",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "Zahl",
-    array: "Array"
+    array: "Array",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -6202,18 +6289,30 @@ var error8 = () => {
 };
 function de_default() {
   return {
-    localeError: error8()
+    localeError: error8(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/el.js
 var error9 = () => {
   const Sizable = {
-    string: { unit: "\u03C7\u03B1\u03C1\u03B1\u03BA\u03C4\u03AE\u03C1\u03B5\u03C2", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" },
+    string: {
+      unit: "\u03C7\u03B1\u03C1\u03B1\u03BA\u03C4\u03AE\u03C1\u03B5\u03C2",
+      verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9",
+    },
     file: { unit: "bytes", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" },
-    array: { unit: "\u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" },
-    set: { unit: "\u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" },
-    map: { unit: "\u03BA\u03B1\u03C4\u03B1\u03C7\u03C9\u03C1\u03AE\u03C3\u03B5\u03B9\u03C2", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" }
+    array: {
+      unit: "\u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1",
+      verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9",
+    },
+    set: {
+      unit: "\u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1",
+      verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9",
+    },
+    map: {
+      unit: "\u03BA\u03B1\u03C4\u03B1\u03C7\u03C9\u03C1\u03AE\u03C3\u03B5\u03B9\u03C2",
+      verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6233,7 +6332,8 @@ var error9 = () => {
     ulid: "ULID",
     xid: "XID",
     ksuid: "KSUID",
-    datetime: "ISO \u03B7\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1 \u03BA\u03B1\u03B9 \u03CE\u03C1\u03B1",
+    datetime:
+      "ISO \u03B7\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1 \u03BA\u03B1\u03B9 \u03CE\u03C1\u03B1",
     date: "ISO \u03B7\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1",
     time: "ISO \u03CE\u03C1\u03B1",
     duration: "ISO \u03B4\u03B9\u03AC\u03C1\u03BA\u03B5\u03B9\u03B1",
@@ -6242,15 +6342,17 @@ var error9 = () => {
     mac: "\u03B4\u03B9\u03B5\u03CD\u03B8\u03C5\u03BD\u03C3\u03B7 MAC",
     cidrv4: "\u03B5\u03CD\u03C1\u03BF\u03C2 IPv4",
     cidrv6: "\u03B5\u03CD\u03C1\u03BF\u03C2 IPv6",
-    base64: "\u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03C0\u03BF\u03B9\u03B7\u03BC\u03AD\u03BD\u03B7 \u03C3\u03B5 base64",
-    base64url: "\u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03C0\u03BF\u03B9\u03B7\u03BC\u03AD\u03BD\u03B7 \u03C3\u03B5 base64url",
+    base64:
+      "\u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03C0\u03BF\u03B9\u03B7\u03BC\u03AD\u03BD\u03B7 \u03C3\u03B5 base64",
+    base64url:
+      "\u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03C0\u03BF\u03B9\u03B7\u03BC\u03AD\u03BD\u03B7 \u03C3\u03B5 base64url",
     json_string: "\u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC JSON",
     e164: "\u03B1\u03C1\u03B9\u03B8\u03BC\u03CC\u03C2 E.164",
     jwt: "JWT",
-    template_literal: "\u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2"
+    template_literal: "\u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -6312,7 +6414,7 @@ var error9 = () => {
 };
 function el_default() {
   return {
-    localeError: error9()
+    localeError: error9(),
   };
 }
 
@@ -6323,7 +6425,7 @@ var error10 = () => {
     file: { unit: "bytes", verb: "to have" },
     array: { unit: "items", verb: "to have" },
     set: { unit: "items", verb: "to have" },
-    map: { unit: "entries", verb: "to have" }
+    map: { unit: "entries", verb: "to have" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6357,11 +6459,11 @@ var error10 = () => {
     json_string: "JSON string",
     e164: "E.164 number",
     jwt: "JWT",
-    template_literal: "input"
+    template_literal: "input",
   };
   const TypeDictionary = {
     // Compatibility: "nan" -> "NaN" for display
-    nan: "NaN"
+    nan: "NaN",
     // All other type names omitted - they fall back to raw values via ?? operator
   };
   return (issue2) => {
@@ -6425,7 +6527,7 @@ var error10 = () => {
 };
 function en_default() {
   return {
-    localeError: error10()
+    localeError: error10(),
   };
 }
 
@@ -6435,7 +6537,7 @@ var error11 = () => {
     string: { unit: "karaktrojn", verb: "havi" },
     file: { unit: "bajtojn", verb: "havi" },
     array: { unit: "elementojn", verb: "havi" },
-    set: { unit: "elementojn", verb: "havi" }
+    set: { unit: "elementojn", verb: "havi" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6468,13 +6570,13 @@ var error11 = () => {
     json_string: "JSON-karaktraro",
     e164: "E.164-nombro",
     jwt: "JWT",
-    template_literal: "enigo"
+    template_literal: "enigo",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "nombro",
     array: "tabelo",
-    null: "senvalora"
+    null: "senvalora",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -6535,7 +6637,7 @@ var error11 = () => {
 };
 function eo_default() {
   return {
-    localeError: error11()
+    localeError: error11(),
   };
 }
 
@@ -6545,7 +6647,7 @@ var error12 = () => {
     string: { unit: "caracteres", verb: "tener" },
     file: { unit: "bytes", verb: "tener" },
     array: { unit: "elementos", verb: "tener" },
-    set: { unit: "elementos", verb: "tener" }
+    set: { unit: "elementos", verb: "tener" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6578,7 +6680,7 @@ var error12 = () => {
     json_string: "cadena JSON",
     e164: "n\xFAmero E.164",
     jwt: "JWT",
-    template_literal: "entrada"
+    template_literal: "entrada",
   };
   const TypeDictionary = {
     nan: "NaN",
@@ -6605,7 +6707,7 @@ var error12 = () => {
     void: "vac\xEDo",
     never: "nunca",
     unknown: "desconocido",
-    any: "cualquiera"
+    any: "cualquiera",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -6668,17 +6770,29 @@ var error12 = () => {
 };
 function es_default() {
   return {
-    localeError: error12()
+    localeError: error12(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/fa.js
 var error13 = () => {
   const Sizable = {
-    string: { unit: "\u06A9\u0627\u0631\u0627\u06A9\u062A\u0631", verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F" },
-    file: { unit: "\u0628\u0627\u06CC\u062A", verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F" },
-    array: { unit: "\u0622\u06CC\u062A\u0645", verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F" },
-    set: { unit: "\u0622\u06CC\u062A\u0645", verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F" }
+    string: {
+      unit: "\u06A9\u0627\u0631\u0627\u06A9\u062A\u0631",
+      verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F",
+    },
+    file: {
+      unit: "\u0628\u0627\u06CC\u062A",
+      verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F",
+    },
+    array: {
+      unit: "\u0622\u06CC\u062A\u0645",
+      verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F",
+    },
+    set: {
+      unit: "\u0622\u06CC\u062A\u0645",
+      verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6698,7 +6812,8 @@ var error13 = () => {
     ulid: "ULID",
     xid: "XID",
     ksuid: "KSUID",
-    datetime: "\u062A\u0627\u0631\u06CC\u062E \u0648 \u0632\u0645\u0627\u0646 \u0627\u06CC\u0632\u0648",
+    datetime:
+      "\u062A\u0627\u0631\u06CC\u062E \u0648 \u0632\u0645\u0627\u0646 \u0627\u06CC\u0632\u0648",
     date: "\u062A\u0627\u0631\u06CC\u062E \u0627\u06CC\u0632\u0648",
     time: "\u0632\u0645\u0627\u0646 \u0627\u06CC\u0632\u0648",
     duration: "\u0645\u062F\u062A \u0632\u0645\u0627\u0646 \u0627\u06CC\u0632\u0648",
@@ -6711,12 +6826,12 @@ var error13 = () => {
     json_string: "JSON \u0631\u0634\u062A\u0647",
     e164: "E.164 \u0639\u062F\u062F",
     jwt: "JWT",
-    template_literal: "\u0648\u0631\u0648\u062F\u06CC"
+    template_literal: "\u0648\u0631\u0648\u062F\u06CC",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0639\u062F\u062F",
-    array: "\u0622\u0631\u0627\u06CC\u0647"
+    array: "\u0622\u0631\u0627\u06CC\u0647",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -6783,7 +6898,7 @@ var error13 = () => {
 };
 function fa_default() {
   return {
-    localeError: error13()
+    localeError: error13(),
   };
 }
 
@@ -6797,7 +6912,7 @@ var error14 = () => {
     number: { unit: "", subject: "luvun" },
     bigint: { unit: "", subject: "suuren kokonaisluvun" },
     int: { unit: "", subject: "kokonaisluvun" },
-    date: { unit: "", subject: "p\xE4iv\xE4m\xE4\xE4r\xE4n" }
+    date: { unit: "", subject: "p\xE4iv\xE4m\xE4\xE4r\xE4n" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6830,10 +6945,10 @@ var error14 = () => {
     json_string: "JSON-merkkijono",
     e164: "E.164-luku",
     jwt: "JWT",
-    template_literal: "templaattimerkkijono"
+    template_literal: "templaattimerkkijono",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -6896,7 +7011,7 @@ var error14 = () => {
 };
 function fi_default() {
   return {
-    localeError: error14()
+    localeError: error14(),
   };
 }
 
@@ -6906,7 +7021,7 @@ var error15 = () => {
     string: { unit: "caract\xE8res", verb: "avoir" },
     file: { unit: "octets", verb: "avoir" },
     array: { unit: "\xE9l\xE9ments", verb: "avoir" },
-    set: { unit: "\xE9l\xE9ments", verb: "avoir" }
+    set: { unit: "\xE9l\xE9ments", verb: "avoir" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -6939,7 +7054,7 @@ var error15 = () => {
     json_string: "cha\xEEne JSON",
     e164: "num\xE9ro E.164",
     jwt: "JWT",
-    template_literal: "entr\xE9e"
+    template_literal: "entr\xE9e",
   };
   const TypeDictionary = {
     string: "cha\xEEne",
@@ -6962,7 +7077,7 @@ var error15 = () => {
     file: "fichier",
     nonoptional: "non-optionnel",
     nan: "NaN",
-    function: "fonction"
+    function: "fonction",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -7022,7 +7137,7 @@ var error15 = () => {
 };
 function fr_default() {
   return {
-    localeError: error15()
+    localeError: error15(),
   };
 }
 
@@ -7032,7 +7147,7 @@ var error16 = () => {
     string: { unit: "caract\xE8res", verb: "avoir" },
     file: { unit: "octets", verb: "avoir" },
     array: { unit: "\xE9l\xE9ments", verb: "avoir" },
-    set: { unit: "\xE9l\xE9ments", verb: "avoir" }
+    set: { unit: "\xE9l\xE9ments", verb: "avoir" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -7065,10 +7180,10 @@ var error16 = () => {
     json_string: "cha\xEEne JSON",
     e164: "num\xE9ro E.164",
     jwt: "JWT",
-    template_literal: "entr\xE9e"
+    template_literal: "entr\xE9e",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -7130,7 +7245,7 @@ var error16 = () => {
 };
 function fr_CA_default() {
   return {
-    localeError: error16()
+    localeError: error16(),
   };
 }
 
@@ -7139,13 +7254,19 @@ var error17 = () => {
   const TypeNames = {
     string: { label: "\u05DE\u05D7\u05E8\u05D5\u05D6\u05EA", gender: "f" },
     number: { label: "\u05DE\u05E1\u05E4\u05E8", gender: "m" },
-    boolean: { label: "\u05E2\u05E8\u05DA \u05D1\u05D5\u05DC\u05D9\u05D0\u05E0\u05D9", gender: "m" },
+    boolean: {
+      label: "\u05E2\u05E8\u05DA \u05D1\u05D5\u05DC\u05D9\u05D0\u05E0\u05D9",
+      gender: "m",
+    },
     bigint: { label: "BigInt", gender: "m" },
     date: { label: "\u05EA\u05D0\u05E8\u05D9\u05DA", gender: "m" },
     array: { label: "\u05DE\u05E2\u05E8\u05DA", gender: "m" },
     object: { label: "\u05D0\u05D5\u05D1\u05D9\u05D9\u05E7\u05D8", gender: "m" },
     null: { label: "\u05E2\u05E8\u05DA \u05E8\u05D9\u05E7 (null)", gender: "m" },
-    undefined: { label: "\u05E2\u05E8\u05DA \u05DC\u05D0 \u05DE\u05D5\u05D2\u05D3\u05E8 (undefined)", gender: "m" },
+    undefined: {
+      label: "\u05E2\u05E8\u05DA \u05DC\u05D0 \u05DE\u05D5\u05D2\u05D3\u05E8 (undefined)",
+      gender: "m",
+    },
     symbol: { label: "\u05E1\u05D9\u05DE\u05D1\u05D5\u05DC (Symbol)", gender: "m" },
     function: { label: "\u05E4\u05D5\u05E0\u05E7\u05E6\u05D9\u05D4", gender: "f" },
     map: { label: "\u05DE\u05E4\u05D4 (Map)", gender: "f" },
@@ -7154,37 +7275,56 @@ var error17 = () => {
     promise: { label: "Promise", gender: "m" },
     NaN: { label: "NaN", gender: "m" },
     unknown: { label: "\u05E2\u05E8\u05DA \u05DC\u05D0 \u05D9\u05D3\u05D5\u05E2", gender: "m" },
-    value: { label: "\u05E2\u05E8\u05DA", gender: "m" }
+    value: { label: "\u05E2\u05E8\u05DA", gender: "m" },
   };
   const Sizable = {
-    string: { unit: "\u05EA\u05D5\u05D5\u05D9\u05DD", shortLabel: "\u05E7\u05E6\u05E8", longLabel: "\u05D0\u05E8\u05D5\u05DA" },
-    file: { unit: "\u05D1\u05D9\u05D9\u05D8\u05D9\u05DD", shortLabel: "\u05E7\u05D8\u05DF", longLabel: "\u05D2\u05D3\u05D5\u05DC" },
-    array: { unit: "\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD", shortLabel: "\u05E7\u05D8\u05DF", longLabel: "\u05D2\u05D3\u05D5\u05DC" },
-    set: { unit: "\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD", shortLabel: "\u05E7\u05D8\u05DF", longLabel: "\u05D2\u05D3\u05D5\u05DC" },
-    number: { unit: "", shortLabel: "\u05E7\u05D8\u05DF", longLabel: "\u05D2\u05D3\u05D5\u05DC" }
+    string: {
+      unit: "\u05EA\u05D5\u05D5\u05D9\u05DD",
+      shortLabel: "\u05E7\u05E6\u05E8",
+      longLabel: "\u05D0\u05E8\u05D5\u05DA",
+    },
+    file: {
+      unit: "\u05D1\u05D9\u05D9\u05D8\u05D9\u05DD",
+      shortLabel: "\u05E7\u05D8\u05DF",
+      longLabel: "\u05D2\u05D3\u05D5\u05DC",
+    },
+    array: {
+      unit: "\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD",
+      shortLabel: "\u05E7\u05D8\u05DF",
+      longLabel: "\u05D2\u05D3\u05D5\u05DC",
+    },
+    set: {
+      unit: "\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD",
+      shortLabel: "\u05E7\u05D8\u05DF",
+      longLabel: "\u05D2\u05D3\u05D5\u05DC",
+    },
+    number: { unit: "", shortLabel: "\u05E7\u05D8\u05DF", longLabel: "\u05D2\u05D3\u05D5\u05DC" },
     // no unit
   };
-  const typeEntry = (t) => t ? TypeNames[t] : void 0;
+  const typeEntry = (t) => (t ? TypeNames[t] : void 0);
   const typeLabel = (t) => {
     const e = typeEntry(t);
-    if (e)
-      return e.label;
+    if (e) return e.label;
     return t ?? TypeNames.unknown.label;
   };
   const withDefinite = (t) => `\u05D4${typeLabel(t)}`;
   const verbFor = (t) => {
     const e = typeEntry(t);
     const gender = e?.gender ?? "m";
-    return gender === "f" ? "\u05E6\u05E8\u05D9\u05DB\u05D4 \u05DC\u05D4\u05D9\u05D5\u05EA" : "\u05E6\u05E8\u05D9\u05DA \u05DC\u05D4\u05D9\u05D5\u05EA";
+    return gender === "f"
+      ? "\u05E6\u05E8\u05D9\u05DB\u05D4 \u05DC\u05D4\u05D9\u05D5\u05EA"
+      : "\u05E6\u05E8\u05D9\u05DA \u05DC\u05D4\u05D9\u05D5\u05EA";
   };
   const getSizing = (origin) => {
-    if (!origin)
-      return null;
+    if (!origin) return null;
     return Sizable[origin] ?? null;
   };
   const FormatDictionary = {
     regex: { label: "\u05E7\u05DC\u05D8", gender: "m" },
-    email: { label: "\u05DB\u05EA\u05D5\u05D1\u05EA \u05D0\u05D9\u05DE\u05D9\u05D9\u05DC", gender: "f" },
+    email: {
+      label: "\u05DB\u05EA\u05D5\u05D1\u05EA \u05D0\u05D9\u05DE\u05D9\u05D9\u05DC",
+      gender: "f",
+    },
     url: { label: "\u05DB\u05EA\u05D5\u05D1\u05EA \u05E8\u05E9\u05EA", gender: "f" },
     emoji: { label: "\u05D0\u05D9\u05DE\u05D5\u05D2'\u05D9", gender: "m" },
     uuid: { label: "UUID", gender: "m" },
@@ -7203,8 +7343,15 @@ var error17 = () => {
     ipv6: { label: "\u05DB\u05EA\u05D5\u05D1\u05EA IPv6", gender: "f" },
     cidrv4: { label: "\u05D8\u05D5\u05D5\u05D7 IPv4", gender: "m" },
     cidrv6: { label: "\u05D8\u05D5\u05D5\u05D7 IPv6", gender: "m" },
-    base64: { label: "\u05DE\u05D7\u05E8\u05D5\u05D6\u05EA \u05D1\u05D1\u05E1\u05D9\u05E1 64", gender: "f" },
-    base64url: { label: "\u05DE\u05D7\u05E8\u05D5\u05D6\u05EA \u05D1\u05D1\u05E1\u05D9\u05E1 64 \u05DC\u05DB\u05EA\u05D5\u05D1\u05D5\u05EA \u05E8\u05E9\u05EA", gender: "f" },
+    base64: {
+      label: "\u05DE\u05D7\u05E8\u05D5\u05D6\u05EA \u05D1\u05D1\u05E1\u05D9\u05E1 64",
+      gender: "f",
+    },
+    base64url: {
+      label:
+        "\u05DE\u05D7\u05E8\u05D5\u05D6\u05EA \u05D1\u05D1\u05E1\u05D9\u05E1 64 \u05DC\u05DB\u05EA\u05D5\u05D1\u05D5\u05EA \u05E8\u05E9\u05EA",
+      gender: "f",
+    },
     json_string: { label: "\u05DE\u05D7\u05E8\u05D5\u05D6\u05EA JSON", gender: "f" },
     e164: { label: "\u05DE\u05E1\u05E4\u05E8 E.164", gender: "m" },
     jwt: { label: "JWT", gender: "m" },
@@ -7212,10 +7359,10 @@ var error17 = () => {
     includes: { label: "\u05E7\u05DC\u05D8", gender: "m" },
     lowercase: { label: "\u05E7\u05DC\u05D8", gender: "m" },
     starts_with: { label: "\u05E7\u05DC\u05D8", gender: "m" },
-    uppercase: { label: "\u05E7\u05DC\u05D8", gender: "m" }
+    uppercase: { label: "\u05E7\u05DC\u05D8", gender: "m" },
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -7223,7 +7370,8 @@ var error17 = () => {
         const expectedKey = issue2.expected;
         const expected = TypeDictionary[expectedKey ?? ""] ?? typeLabel(expectedKey);
         const receivedType = parsedType(issue2.input);
-        const received = TypeDictionary[receivedType] ?? TypeNames[receivedType]?.label ?? receivedType;
+        const received =
+          TypeDictionary[receivedType] ?? TypeNames[receivedType]?.label ?? receivedType;
         if (/^[A-Z]/.test(issue2.expected)) {
           return `\u05E7\u05DC\u05D8 \u05DC\u05D0 \u05EA\u05E7\u05D9\u05DF: \u05E6\u05E8\u05D9\u05DA \u05DC\u05D4\u05D9\u05D5\u05EA instanceof ${issue2.expected}, \u05D4\u05EA\u05E7\u05D1\u05DC ${received}`;
         }
@@ -7248,12 +7396,17 @@ var error17 = () => {
           return `${sizing?.longLabel ?? "\u05D0\u05E8\u05D5\u05DA"} \u05DE\u05D3\u05D9: ${subject} \u05E6\u05E8\u05D9\u05DB\u05D4 \u05DC\u05D4\u05DB\u05D9\u05DC ${issue2.maximum.toString()} ${sizing?.unit ?? ""} ${issue2.inclusive ? "\u05D0\u05D5 \u05E4\u05D7\u05D5\u05EA" : "\u05DC\u05DB\u05DC \u05D4\u05D9\u05D5\u05EA\u05E8"}`.trim();
         }
         if (issue2.origin === "number") {
-          const comparison = issue2.inclusive ? `\u05E7\u05D8\u05DF \u05D0\u05D5 \u05E9\u05D5\u05D5\u05D4 \u05DC-${issue2.maximum}` : `\u05E7\u05D8\u05DF \u05DE-${issue2.maximum}`;
+          const comparison = issue2.inclusive
+            ? `\u05E7\u05D8\u05DF \u05D0\u05D5 \u05E9\u05D5\u05D5\u05D4 \u05DC-${issue2.maximum}`
+            : `\u05E7\u05D8\u05DF \u05DE-${issue2.maximum}`;
           return `\u05D2\u05D3\u05D5\u05DC \u05DE\u05D3\u05D9: ${subject} \u05E6\u05E8\u05D9\u05DA \u05DC\u05D4\u05D9\u05D5\u05EA ${comparison}`;
         }
         if (issue2.origin === "array" || issue2.origin === "set") {
-          const verb = issue2.origin === "set" ? "\u05E6\u05E8\u05D9\u05DB\u05D4" : "\u05E6\u05E8\u05D9\u05DA";
-          const comparison = issue2.inclusive ? `${issue2.maximum} ${sizing?.unit ?? ""} \u05D0\u05D5 \u05E4\u05D7\u05D5\u05EA` : `\u05E4\u05D7\u05D5\u05EA \u05DE-${issue2.maximum} ${sizing?.unit ?? ""}`;
+          const verb =
+            issue2.origin === "set" ? "\u05E6\u05E8\u05D9\u05DB\u05D4" : "\u05E6\u05E8\u05D9\u05DA";
+          const comparison = issue2.inclusive
+            ? `${issue2.maximum} ${sizing?.unit ?? ""} \u05D0\u05D5 \u05E4\u05D7\u05D5\u05EA`
+            : `\u05E4\u05D7\u05D5\u05EA \u05DE-${issue2.maximum} ${sizing?.unit ?? ""}`;
           return `\u05D2\u05D3\u05D5\u05DC \u05DE\u05D3\u05D9: ${subject} ${verb} \u05DC\u05D4\u05DB\u05D9\u05DC ${comparison}`.trim();
         }
         const adj = issue2.inclusive ? "<=" : "<";
@@ -7270,16 +7423,24 @@ var error17 = () => {
           return `${sizing?.shortLabel ?? "\u05E7\u05E6\u05E8"} \u05DE\u05D3\u05D9: ${subject} \u05E6\u05E8\u05D9\u05DB\u05D4 \u05DC\u05D4\u05DB\u05D9\u05DC ${issue2.minimum.toString()} ${sizing?.unit ?? ""} ${issue2.inclusive ? "\u05D0\u05D5 \u05D9\u05D5\u05EA\u05E8" : "\u05DC\u05E4\u05D7\u05D5\u05EA"}`.trim();
         }
         if (issue2.origin === "number") {
-          const comparison = issue2.inclusive ? `\u05D2\u05D3\u05D5\u05DC \u05D0\u05D5 \u05E9\u05D5\u05D5\u05D4 \u05DC-${issue2.minimum}` : `\u05D2\u05D3\u05D5\u05DC \u05DE-${issue2.minimum}`;
+          const comparison = issue2.inclusive
+            ? `\u05D2\u05D3\u05D5\u05DC \u05D0\u05D5 \u05E9\u05D5\u05D5\u05D4 \u05DC-${issue2.minimum}`
+            : `\u05D2\u05D3\u05D5\u05DC \u05DE-${issue2.minimum}`;
           return `\u05E7\u05D8\u05DF \u05DE\u05D3\u05D9: ${subject} \u05E6\u05E8\u05D9\u05DA \u05DC\u05D4\u05D9\u05D5\u05EA ${comparison}`;
         }
         if (issue2.origin === "array" || issue2.origin === "set") {
-          const verb = issue2.origin === "set" ? "\u05E6\u05E8\u05D9\u05DB\u05D4" : "\u05E6\u05E8\u05D9\u05DA";
+          const verb =
+            issue2.origin === "set" ? "\u05E6\u05E8\u05D9\u05DB\u05D4" : "\u05E6\u05E8\u05D9\u05DA";
           if (issue2.minimum === 1 && issue2.inclusive) {
-            const singularPhrase = issue2.origin === "set" ? "\u05DC\u05E4\u05D7\u05D5\u05EA \u05E4\u05E8\u05D9\u05D8 \u05D0\u05D7\u05D3" : "\u05DC\u05E4\u05D7\u05D5\u05EA \u05E4\u05E8\u05D9\u05D8 \u05D0\u05D7\u05D3";
+            const singularPhrase =
+              issue2.origin === "set"
+                ? "\u05DC\u05E4\u05D7\u05D5\u05EA \u05E4\u05E8\u05D9\u05D8 \u05D0\u05D7\u05D3"
+                : "\u05DC\u05E4\u05D7\u05D5\u05EA \u05E4\u05E8\u05D9\u05D8 \u05D0\u05D7\u05D3";
             return `\u05E7\u05D8\u05DF \u05DE\u05D3\u05D9: ${subject} ${verb} \u05DC\u05D4\u05DB\u05D9\u05DC ${singularPhrase}`;
           }
-          const comparison = issue2.inclusive ? `${issue2.minimum} ${sizing?.unit ?? ""} \u05D0\u05D5 \u05D9\u05D5\u05EA\u05E8` : `\u05D9\u05D5\u05EA\u05E8 \u05DE-${issue2.minimum} ${sizing?.unit ?? ""}`;
+          const comparison = issue2.inclusive
+            ? `${issue2.minimum} ${sizing?.unit ?? ""} \u05D0\u05D5 \u05D9\u05D5\u05EA\u05E8`
+            : `\u05D9\u05D5\u05EA\u05E8 \u05DE-${issue2.minimum} ${sizing?.unit ?? ""}`;
           return `\u05E7\u05D8\u05DF \u05DE\u05D3\u05D9: ${subject} ${verb} \u05DC\u05D4\u05DB\u05D9\u05DC ${comparison}`.trim();
         }
         const adj = issue2.inclusive ? ">=" : ">";
@@ -7302,7 +7463,8 @@ var error17 = () => {
         const nounEntry = FormatDictionary[_issue.format];
         const noun = nounEntry?.label ?? _issue.format;
         const gender = nounEntry?.gender ?? "m";
-        const adjective = gender === "f" ? "\u05EA\u05E7\u05D9\u05E0\u05D4" : "\u05EA\u05E7\u05D9\u05DF";
+        const adjective =
+          gender === "f" ? "\u05EA\u05E7\u05D9\u05E0\u05D4" : "\u05EA\u05E7\u05D9\u05DF";
         return `${noun} \u05DC\u05D0 ${adjective}`;
       }
       case "not_multiple_of":
@@ -7325,7 +7487,7 @@ var error17 = () => {
 };
 function he_default() {
   return {
-    localeError: error17()
+    localeError: error17(),
   };
 }
 
@@ -7335,7 +7497,7 @@ var error18 = () => {
     string: { unit: "znakova", verb: "imati" },
     file: { unit: "bajtova", verb: "imati" },
     array: { unit: "stavki", verb: "imati" },
-    set: { unit: "stavki", verb: "imati" }
+    set: { unit: "stavki", verb: "imati" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -7368,7 +7530,7 @@ var error18 = () => {
     json_string: "JSON tekst",
     e164: "E.164 broj",
     jwt: "JWT",
-    template_literal: "unos"
+    template_literal: "unos",
   };
   const TypeDictionary = {
     nan: "NaN",
@@ -7385,7 +7547,7 @@ var error18 = () => {
     undefined: "undefined",
     null: "null",
     function: "funkcija",
-    map: "mapa"
+    map: "mapa",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -7448,7 +7610,7 @@ var error18 = () => {
 };
 function hr_default() {
   return {
-    localeError: error18()
+    localeError: error18(),
   };
 }
 
@@ -7458,7 +7620,7 @@ var error19 = () => {
     string: { unit: "karakter", verb: "legyen" },
     file: { unit: "byte", verb: "legyen" },
     array: { unit: "elem", verb: "legyen" },
-    set: { unit: "elem", verb: "legyen" }
+    set: { unit: "elem", verb: "legyen" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -7491,12 +7653,12 @@ var error19 = () => {
     json_string: "JSON string",
     e164: "E.164 sz\xE1m",
     jwt: "JWT",
-    template_literal: "bemenet"
+    template_literal: "bemenet",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "sz\xE1m",
-    array: "t\xF6mb"
+    array: "t\xF6mb",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -7557,7 +7719,7 @@ var error19 = () => {
 };
 function hu_default() {
   return {
-    localeError: error19()
+    localeError: error19(),
   };
 }
 
@@ -7566,8 +7728,7 @@ function getArmenianPlural(count, one, many) {
   return Math.abs(count) === 1 ? one : many;
 }
 function withDefiniteArticle(word) {
-  if (!word)
-    return "";
+  if (!word) return "";
   const vowels = ["\u0561", "\u0565", "\u0568", "\u056B", "\u0578", "\u0578\u0582", "\u0585"];
   const lastChar = word[word.length - 1];
   return word + (vowels.includes(lastChar) ? "\u0576" : "\u0568");
@@ -7577,31 +7738,31 @@ var error20 = () => {
     string: {
       unit: {
         one: "\u0576\u0577\u0561\u0576",
-        many: "\u0576\u0577\u0561\u0576\u0576\u0565\u0580"
+        many: "\u0576\u0577\u0561\u0576\u0576\u0565\u0580",
       },
-      verb: "\u0578\u0582\u0576\u0565\u0576\u0561\u056C"
+      verb: "\u0578\u0582\u0576\u0565\u0576\u0561\u056C",
     },
     file: {
       unit: {
         one: "\u0562\u0561\u0575\u0569",
-        many: "\u0562\u0561\u0575\u0569\u0565\u0580"
+        many: "\u0562\u0561\u0575\u0569\u0565\u0580",
       },
-      verb: "\u0578\u0582\u0576\u0565\u0576\u0561\u056C"
+      verb: "\u0578\u0582\u0576\u0565\u0576\u0561\u056C",
     },
     array: {
       unit: {
         one: "\u057F\u0561\u0580\u0580",
-        many: "\u057F\u0561\u0580\u0580\u0565\u0580"
+        many: "\u057F\u0561\u0580\u0580\u0565\u0580",
       },
-      verb: "\u0578\u0582\u0576\u0565\u0576\u0561\u056C"
+      verb: "\u0578\u0582\u0576\u0565\u0576\u0561\u056C",
     },
     set: {
       unit: {
         one: "\u057F\u0561\u0580\u0580",
-        many: "\u057F\u0561\u0580\u0580\u0565\u0580"
+        many: "\u057F\u0561\u0580\u0580\u0565\u0580",
       },
-      verb: "\u0578\u0582\u0576\u0565\u0576\u0561\u056C"
-    }
+      verb: "\u0578\u0582\u0576\u0565\u0576\u0561\u056C",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -7634,12 +7795,12 @@ var error20 = () => {
     json_string: "JSON \u057F\u0578\u0572",
     e164: "E.164 \u0570\u0561\u0574\u0561\u0580",
     jwt: "JWT",
-    template_literal: "\u0574\u0578\u0582\u057F\u0584"
+    template_literal: "\u0574\u0578\u0582\u057F\u0584",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0569\u056B\u057E",
-    array: "\u0566\u0561\u0576\u0563\u057E\u0561\u056E"
+    array: "\u0566\u0561\u0576\u0563\u057E\u0561\u056E",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -7705,7 +7866,7 @@ var error20 = () => {
 };
 function hy_default() {
   return {
-    localeError: error20()
+    localeError: error20(),
   };
 }
 
@@ -7715,7 +7876,7 @@ var error21 = () => {
     string: { unit: "karakter", verb: "memiliki" },
     file: { unit: "byte", verb: "memiliki" },
     array: { unit: "item", verb: "memiliki" },
-    set: { unit: "item", verb: "memiliki" }
+    set: { unit: "item", verb: "memiliki" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -7748,10 +7909,10 @@ var error21 = () => {
     json_string: "string JSON",
     e164: "angka E.164",
     jwt: "JWT",
-    template_literal: "input"
+    template_literal: "input",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -7812,7 +7973,7 @@ var error21 = () => {
 };
 function id_default() {
   return {
-    localeError: error21()
+    localeError: error21(),
   };
 }
 
@@ -7822,7 +7983,7 @@ var error22 = () => {
     string: { unit: "stafi", verb: "a\xF0 hafa" },
     file: { unit: "b\xE6ti", verb: "a\xF0 hafa" },
     array: { unit: "hluti", verb: "a\xF0 hafa" },
-    set: { unit: "hluti", verb: "a\xF0 hafa" }
+    set: { unit: "hluti", verb: "a\xF0 hafa" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -7855,12 +8016,12 @@ var error22 = () => {
     json_string: "JSON strengur",
     e164: "E.164 t\xF6lugildi",
     jwt: "JWT",
-    template_literal: "gildi"
+    template_literal: "gildi",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "n\xFAmer",
-    array: "fylki"
+    array: "fylki",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -7922,7 +8083,7 @@ var error22 = () => {
 };
 function is_default() {
   return {
-    localeError: error22()
+    localeError: error22(),
   };
 }
 
@@ -7932,7 +8093,7 @@ var error23 = () => {
     string: { unit: "caratteri", verb: "avere" },
     file: { unit: "byte", verb: "avere" },
     array: { unit: "elementi", verb: "avere" },
-    set: { unit: "elementi", verb: "avere" }
+    set: { unit: "elementi", verb: "avere" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -7965,12 +8126,12 @@ var error23 = () => {
     json_string: "stringa JSON",
     e164: "numero E.164",
     jwt: "JWT",
-    template_literal: "input"
+    template_literal: "input",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "numero",
-    array: "vettore"
+    array: "vettore",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8031,7 +8192,7 @@ var error23 = () => {
 };
 function it_default() {
   return {
-    localeError: error23()
+    localeError: error23(),
   };
 }
 
@@ -8041,7 +8202,7 @@ var error24 = () => {
     string: { unit: "\u6587\u5B57", verb: "\u3067\u3042\u308B" },
     file: { unit: "\u30D0\u30A4\u30C8", verb: "\u3067\u3042\u308B" },
     array: { unit: "\u8981\u7D20", verb: "\u3067\u3042\u308B" },
-    set: { unit: "\u8981\u7D20", verb: "\u3067\u3042\u308B" }
+    set: { unit: "\u8981\u7D20", verb: "\u3067\u3042\u308B" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -8074,12 +8235,12 @@ var error24 = () => {
     json_string: "JSON\u6587\u5B57\u5217",
     e164: "E.164\u756A\u53F7",
     jwt: "JWT",
-    template_literal: "\u5165\u529B\u5024"
+    template_literal: "\u5165\u529B\u5024",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u6570\u5024",
-    array: "\u914D\u5217"
+    array: "\u914D\u5217",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8097,14 +8258,18 @@ var error24 = () => {
           return `\u7121\u52B9\u306A\u5165\u529B: ${stringifyPrimitive(issue2.values[0])}\u304C\u671F\u5F85\u3055\u308C\u307E\u3057\u305F`;
         return `\u7121\u52B9\u306A\u9078\u629E: ${joinValues(issue2.values, "\u3001")}\u306E\u3044\u305A\u308C\u304B\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059`;
       case "too_big": {
-        const adj = issue2.inclusive ? "\u4EE5\u4E0B\u3067\u3042\u308B" : "\u3088\u308A\u5C0F\u3055\u3044";
+        const adj = issue2.inclusive
+          ? "\u4EE5\u4E0B\u3067\u3042\u308B"
+          : "\u3088\u308A\u5C0F\u3055\u3044";
         const sizing = getSizing(issue2.origin);
         if (sizing)
           return `\u5927\u304D\u3059\u304E\u308B\u5024: ${issue2.origin ?? "\u5024"}\u306F${issue2.maximum.toString()}${sizing.unit ?? "\u8981\u7D20"}${adj}\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059`;
         return `\u5927\u304D\u3059\u304E\u308B\u5024: ${issue2.origin ?? "\u5024"}\u306F${issue2.maximum.toString()}${adj}\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059`;
       }
       case "too_small": {
-        const adj = issue2.inclusive ? "\u4EE5\u4E0A\u3067\u3042\u308B" : "\u3088\u308A\u5927\u304D\u3044";
+        const adj = issue2.inclusive
+          ? "\u4EE5\u4E0A\u3067\u3042\u308B"
+          : "\u3088\u308A\u5927\u304D\u3044";
         const sizing = getSizing(issue2.origin);
         if (sizing)
           return `\u5C0F\u3055\u3059\u304E\u308B\u5024: ${issue2.origin}\u306F${issue2.minimum.toString()}${sizing.unit}${adj}\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059`;
@@ -8139,24 +8304,37 @@ var error24 = () => {
 };
 function ja_default() {
   return {
-    localeError: error24()
+    localeError: error24(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/ka.js
 var error25 = () => {
   const Sizable = {
-    string: { unit: "\u10E1\u10D8\u10DB\u10D1\u10DD\u10DA\u10DD", verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1" },
-    file: { unit: "\u10D1\u10D0\u10D8\u10E2\u10D8", verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1" },
-    array: { unit: "\u10D4\u10DA\u10D4\u10DB\u10D4\u10DC\u10E2\u10D8", verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1" },
-    set: { unit: "\u10D4\u10DA\u10D4\u10DB\u10D4\u10DC\u10E2\u10D8", verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1" }
+    string: {
+      unit: "\u10E1\u10D8\u10DB\u10D1\u10DD\u10DA\u10DD",
+      verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1",
+    },
+    file: {
+      unit: "\u10D1\u10D0\u10D8\u10E2\u10D8",
+      verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1",
+    },
+    array: {
+      unit: "\u10D4\u10DA\u10D4\u10DB\u10D4\u10DC\u10E2\u10D8",
+      verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1",
+    },
+    set: {
+      unit: "\u10D4\u10DA\u10D4\u10DB\u10D4\u10DC\u10E2\u10D8",
+      verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
   }
   const FormatDictionary = {
     regex: "\u10E8\u10D4\u10E7\u10D5\u10D0\u10DC\u10D0",
-    email: "\u10D4\u10DA-\u10E4\u10DD\u10E1\u10E2\u10D8\u10E1 \u10DB\u10D8\u10E1\u10D0\u10DB\u10D0\u10E0\u10D7\u10D8",
+    email:
+      "\u10D4\u10DA-\u10E4\u10DD\u10E1\u10E2\u10D8\u10E1 \u10DB\u10D8\u10E1\u10D0\u10DB\u10D0\u10E0\u10D7\u10D8",
     url: "URL",
     emoji: "\u10D4\u10DB\u10DD\u10EF\u10D8",
     uuid: "UUID",
@@ -8177,12 +8355,14 @@ var error25 = () => {
     ipv6: "IPv6 \u10DB\u10D8\u10E1\u10D0\u10DB\u10D0\u10E0\u10D7\u10D8",
     cidrv4: "IPv4 \u10D3\u10D8\u10D0\u10DE\u10D0\u10D6\u10DD\u10DC\u10D8",
     cidrv6: "IPv6 \u10D3\u10D8\u10D0\u10DE\u10D0\u10D6\u10DD\u10DC\u10D8",
-    base64: "base64-\u10D9\u10DD\u10D3\u10D8\u10E0\u10D4\u10D1\u10E3\u10DA\u10D8 \u10D5\u10D4\u10DA\u10D8",
-    base64url: "base64url-\u10D9\u10DD\u10D3\u10D8\u10E0\u10D4\u10D1\u10E3\u10DA\u10D8 \u10D5\u10D4\u10DA\u10D8",
+    base64:
+      "base64-\u10D9\u10DD\u10D3\u10D8\u10E0\u10D4\u10D1\u10E3\u10DA\u10D8 \u10D5\u10D4\u10DA\u10D8",
+    base64url:
+      "base64url-\u10D9\u10DD\u10D3\u10D8\u10E0\u10D4\u10D1\u10E3\u10DA\u10D8 \u10D5\u10D4\u10DA\u10D8",
     json_string: "JSON \u10D5\u10D4\u10DA\u10D8",
     e164: "E.164 \u10DC\u10DD\u10DB\u10D4\u10E0\u10D8",
     jwt: "JWT",
-    template_literal: "\u10E8\u10D4\u10E7\u10D5\u10D0\u10DC\u10D0"
+    template_literal: "\u10E8\u10D4\u10E7\u10D5\u10D0\u10DC\u10D0",
   };
   const TypeDictionary = {
     nan: "NaN",
@@ -8190,7 +8370,7 @@ var error25 = () => {
     string: "\u10D5\u10D4\u10DA\u10D8",
     boolean: "\u10D1\u10E3\u10DA\u10D4\u10D0\u10DC\u10D8",
     function: "\u10E4\u10E3\u10DC\u10E5\u10EA\u10D8\u10D0",
-    array: "\u10DB\u10D0\u10E1\u10D8\u10D5\u10D8"
+    array: "\u10DB\u10D0\u10E1\u10D8\u10D5\u10D8",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8252,24 +8432,28 @@ var error25 = () => {
 };
 function ka_default() {
   return {
-    localeError: error25()
+    localeError: error25(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/km.js
 var error26 = () => {
   const Sizable = {
-    string: { unit: "\u178F\u17BD\u17A2\u1780\u17D2\u179F\u179A", verb: "\u1782\u17BD\u179A\u1798\u17B6\u1793" },
+    string: {
+      unit: "\u178F\u17BD\u17A2\u1780\u17D2\u179F\u179A",
+      verb: "\u1782\u17BD\u179A\u1798\u17B6\u1793",
+    },
     file: { unit: "\u1794\u17C3", verb: "\u1782\u17BD\u179A\u1798\u17B6\u1793" },
     array: { unit: "\u1792\u17B6\u178F\u17BB", verb: "\u1782\u17BD\u179A\u1798\u17B6\u1793" },
-    set: { unit: "\u1792\u17B6\u178F\u17BB", verb: "\u1782\u17BD\u179A\u1798\u17B6\u1793" }
+    set: { unit: "\u1792\u17B6\u178F\u17BB", verb: "\u1782\u17BD\u179A\u1798\u17B6\u1793" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
   }
   const FormatDictionary = {
     regex: "\u1791\u17B7\u1793\u17D2\u1793\u1793\u17D0\u1799\u1794\u1789\u17D2\u1785\u17BC\u179B",
-    email: "\u17A2\u17B6\u179F\u1799\u178A\u17D2\u178B\u17B6\u1793\u17A2\u17CA\u17B8\u1798\u17C2\u179B",
+    email:
+      "\u17A2\u17B6\u179F\u1799\u178A\u17D2\u178B\u17B6\u1793\u17A2\u17CA\u17B8\u1798\u17C2\u179B",
     url: "URL",
     emoji: "\u179F\u1789\u17D2\u1789\u17B6\u17A2\u17B6\u179A\u1798\u17D2\u1798\u178E\u17CD",
     uuid: "UUID",
@@ -8282,7 +8466,8 @@ var error26 = () => {
     ulid: "ULID",
     xid: "XID",
     ksuid: "KSUID",
-    datetime: "\u1780\u17B6\u179B\u1794\u179A\u17B7\u1785\u17D2\u1786\u17C1\u1791 \u1793\u17B7\u1784\u1798\u17C9\u17C4\u1784 ISO",
+    datetime:
+      "\u1780\u17B6\u179B\u1794\u179A\u17B7\u1785\u17D2\u1786\u17C1\u1791 \u1793\u17B7\u1784\u1798\u17C9\u17C4\u1784 ISO",
     date: "\u1780\u17B6\u179B\u1794\u179A\u17B7\u1785\u17D2\u1786\u17C1\u1791 ISO",
     time: "\u1798\u17C9\u17C4\u1784 ISO",
     duration: "\u179A\u1799\u17C8\u1796\u17C1\u179B ISO",
@@ -8290,18 +8475,21 @@ var error26 = () => {
     ipv6: "\u17A2\u17B6\u179F\u1799\u178A\u17D2\u178B\u17B6\u1793 IPv6",
     cidrv4: "\u178A\u17C2\u1793\u17A2\u17B6\u179F\u1799\u178A\u17D2\u178B\u17B6\u1793 IPv4",
     cidrv6: "\u178A\u17C2\u1793\u17A2\u17B6\u179F\u1799\u178A\u17D2\u178B\u17B6\u1793 IPv6",
-    base64: "\u1781\u17D2\u179F\u17C2\u17A2\u1780\u17D2\u179F\u179A\u17A2\u17CA\u17B7\u1780\u17BC\u178A base64",
-    base64url: "\u1781\u17D2\u179F\u17C2\u17A2\u1780\u17D2\u179F\u179A\u17A2\u17CA\u17B7\u1780\u17BC\u178A base64url",
+    base64:
+      "\u1781\u17D2\u179F\u17C2\u17A2\u1780\u17D2\u179F\u179A\u17A2\u17CA\u17B7\u1780\u17BC\u178A base64",
+    base64url:
+      "\u1781\u17D2\u179F\u17C2\u17A2\u1780\u17D2\u179F\u179A\u17A2\u17CA\u17B7\u1780\u17BC\u178A base64url",
     json_string: "\u1781\u17D2\u179F\u17C2\u17A2\u1780\u17D2\u179F\u179A JSON",
     e164: "\u179B\u17C1\u1781 E.164",
     jwt: "JWT",
-    template_literal: "\u1791\u17B7\u1793\u17D2\u1793\u1793\u17D0\u1799\u1794\u1789\u17D2\u1785\u17BC\u179B"
+    template_literal:
+      "\u1791\u17B7\u1793\u17D2\u1793\u1793\u17D0\u1799\u1794\u1789\u17D2\u1785\u17BC\u179B",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u179B\u17C1\u1781",
     array: "\u17A2\u17B6\u179A\u17C1 (Array)",
-    null: "\u1782\u17D2\u1798\u17B6\u1793\u178F\u1798\u17D2\u179B\u17C3 (null)"
+    null: "\u1782\u17D2\u1798\u17B6\u1793\u178F\u1798\u17D2\u179B\u17C3 (null)",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8363,7 +8551,7 @@ var error26 = () => {
 };
 function km_default() {
   return {
-    localeError: error26()
+    localeError: error26(),
   };
 }
 
@@ -8378,7 +8566,7 @@ var error27 = () => {
     string: { unit: "\uBB38\uC790", verb: "to have" },
     file: { unit: "\uBC14\uC774\uD2B8", verb: "to have" },
     array: { unit: "\uAC1C", verb: "to have" },
-    set: { unit: "\uAC1C", verb: "to have" }
+    set: { unit: "\uAC1C", verb: "to have" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -8411,10 +8599,10 @@ var error27 = () => {
     json_string: "JSON \uBB38\uC790\uC5F4",
     e164: "E.164 \uBC88\uD638",
     jwt: "JWT",
-    template_literal: "\uC785\uB825"
+    template_literal: "\uC785\uB825",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8433,7 +8621,10 @@ var error27 = () => {
         return `\uC798\uBABB\uB41C \uC635\uC158: ${joinValues(issue2.values, "\uB610\uB294 ")} \uC911 \uD558\uB098\uC5EC\uC57C \uD569\uB2C8\uB2E4`;
       case "too_big": {
         const adj = issue2.inclusive ? "\uC774\uD558" : "\uBBF8\uB9CC";
-        const suffix = adj === "\uBBF8\uB9CC" ? "\uC774\uC5B4\uC57C \uD569\uB2C8\uB2E4" : "\uC5EC\uC57C \uD569\uB2C8\uB2E4";
+        const suffix =
+          adj === "\uBBF8\uB9CC"
+            ? "\uC774\uC5B4\uC57C \uD569\uB2C8\uB2E4"
+            : "\uC5EC\uC57C \uD569\uB2C8\uB2E4";
         const sizing = getSizing(issue2.origin);
         const unit = sizing?.unit ?? "\uC694\uC18C";
         if (sizing)
@@ -8442,7 +8633,10 @@ var error27 = () => {
       }
       case "too_small": {
         const adj = issue2.inclusive ? "\uC774\uC0C1" : "\uCD08\uACFC";
-        const suffix = adj === "\uC774\uC0C1" ? "\uC774\uC5B4\uC57C \uD569\uB2C8\uB2E4" : "\uC5EC\uC57C \uD569\uB2C8\uB2E4";
+        const suffix =
+          adj === "\uC774\uC0C1"
+            ? "\uC774\uC5B4\uC57C \uD569\uB2C8\uB2E4"
+            : "\uC5EC\uC57C \uD569\uB2C8\uB2E4";
         const sizing = getSizing(issue2.origin);
         const unit = sizing?.unit ?? "\uC694\uC18C";
         if (sizing) {
@@ -8480,7 +8674,7 @@ var error27 = () => {
 };
 function ko_default() {
   return {
-    localeError: error27()
+    localeError: error27(),
   };
 }
 
@@ -8492,10 +8686,8 @@ function getUnitTypeFromNumber(number4) {
   const abs = Math.abs(number4);
   const last = abs % 10;
   const last2 = abs % 100;
-  if (last2 >= 11 && last2 <= 19 || last === 0)
-    return "many";
-  if (last === 1)
-    return "one";
+  if ((last2 >= 11 && last2 <= 19) || last === 0) return "many";
+  if (last === 1) return "one";
   return "few";
 }
 var error28 = () => {
@@ -8504,78 +8696,77 @@ var error28 = () => {
       unit: {
         one: "simbolis",
         few: "simboliai",
-        many: "simboli\u0173"
+        many: "simboli\u0173",
       },
       verb: {
         smaller: {
           inclusive: "turi b\u016Bti ne ilgesn\u0117 kaip",
-          notInclusive: "turi b\u016Bti trumpesn\u0117 kaip"
+          notInclusive: "turi b\u016Bti trumpesn\u0117 kaip",
         },
         bigger: {
           inclusive: "turi b\u016Bti ne trumpesn\u0117 kaip",
-          notInclusive: "turi b\u016Bti ilgesn\u0117 kaip"
-        }
-      }
+          notInclusive: "turi b\u016Bti ilgesn\u0117 kaip",
+        },
+      },
     },
     file: {
       unit: {
         one: "baitas",
         few: "baitai",
-        many: "bait\u0173"
+        many: "bait\u0173",
       },
       verb: {
         smaller: {
           inclusive: "turi b\u016Bti ne didesnis kaip",
-          notInclusive: "turi b\u016Bti ma\u017Eesnis kaip"
+          notInclusive: "turi b\u016Bti ma\u017Eesnis kaip",
         },
         bigger: {
           inclusive: "turi b\u016Bti ne ma\u017Eesnis kaip",
-          notInclusive: "turi b\u016Bti didesnis kaip"
-        }
-      }
+          notInclusive: "turi b\u016Bti didesnis kaip",
+        },
+      },
     },
     array: {
       unit: {
         one: "element\u0105",
         few: "elementus",
-        many: "element\u0173"
+        many: "element\u0173",
       },
       verb: {
         smaller: {
           inclusive: "turi tur\u0117ti ne daugiau kaip",
-          notInclusive: "turi tur\u0117ti ma\u017Eiau kaip"
+          notInclusive: "turi tur\u0117ti ma\u017Eiau kaip",
         },
         bigger: {
           inclusive: "turi tur\u0117ti ne ma\u017Eiau kaip",
-          notInclusive: "turi tur\u0117ti daugiau kaip"
-        }
-      }
+          notInclusive: "turi tur\u0117ti daugiau kaip",
+        },
+      },
     },
     set: {
       unit: {
         one: "element\u0105",
         few: "elementus",
-        many: "element\u0173"
+        many: "element\u0173",
       },
       verb: {
         smaller: {
           inclusive: "turi tur\u0117ti ne daugiau kaip",
-          notInclusive: "turi tur\u0117ti ma\u017Eiau kaip"
+          notInclusive: "turi tur\u0117ti ma\u017Eiau kaip",
         },
         bigger: {
           inclusive: "turi tur\u0117ti ne ma\u017Eiau kaip",
-          notInclusive: "turi tur\u0117ti daugiau kaip"
-        }
-      }
-    }
+          notInclusive: "turi tur\u0117ti daugiau kaip",
+        },
+      },
+    },
   };
   function getSizing(origin, unitType, inclusive, targetShouldBe) {
     const result = Sizable[origin] ?? null;
-    if (result === null)
-      return result;
+    if (result === null) return result;
     return {
       unit: result.unit[unitType],
-      verb: result.verb[targetShouldBe][inclusive ? "inclusive" : "notInclusive"]
+      verb: result.verb[targetShouldBe][inclusive ? "inclusive" : "notInclusive"],
     };
   }
   const FormatDictionary = {
@@ -8606,7 +8797,7 @@ var error28 = () => {
     json_string: "JSON eilut\u0117",
     e164: "E.164 numeris",
     jwt: "JWT",
-    template_literal: "\u012Fvestis"
+    template_literal: "\u012Fvestis",
   };
   const TypeDictionary = {
     nan: "NaN",
@@ -8619,7 +8810,7 @@ var error28 = () => {
     symbol: "simbolis",
     array: "masyvas",
     object: "objektas",
-    null: "nulin\u0117 reik\u0161m\u0117"
+    null: "nulin\u0117 reik\u0161m\u0117",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8638,7 +8829,12 @@ var error28 = () => {
         return `Privalo b\u016Bti vienas i\u0161 ${joinValues(issue2.values, "|")} pasirinkim\u0173`;
       case "too_big": {
         const origin = TypeDictionary[issue2.origin] ?? issue2.origin;
-        const sizing = getSizing(issue2.origin, getUnitTypeFromNumber(Number(issue2.maximum)), issue2.inclusive ?? false, "smaller");
+        const sizing = getSizing(
+          issue2.origin,
+          getUnitTypeFromNumber(Number(issue2.maximum)),
+          issue2.inclusive ?? false,
+          "smaller",
+        );
         if (sizing?.verb)
           return `${capitalizeFirstCharacter(origin ?? issue2.origin ?? "reik\u0161m\u0117")} ${sizing.verb} ${issue2.maximum.toString()} ${sizing.unit ?? "element\u0173"}`;
         const adj = issue2.inclusive ? "ne didesnis kaip" : "ma\u017Eesnis kaip";
@@ -8646,7 +8842,12 @@ var error28 = () => {
       }
       case "too_small": {
         const origin = TypeDictionary[issue2.origin] ?? issue2.origin;
-        const sizing = getSizing(issue2.origin, getUnitTypeFromNumber(Number(issue2.minimum)), issue2.inclusive ?? false, "bigger");
+        const sizing = getSizing(
+          issue2.origin,
+          getUnitTypeFromNumber(Number(issue2.minimum)),
+          issue2.inclusive ?? false,
+          "bigger",
+        );
         if (sizing?.verb)
           return `${capitalizeFirstCharacter(origin ?? issue2.origin ?? "reik\u0161m\u0117")} ${sizing.verb} ${issue2.minimum.toString()} ${sizing.unit ?? "element\u0173"}`;
         const adj = issue2.inclusive ? "ne ma\u017Eesnis kaip" : "didesnis kaip";
@@ -8661,8 +8862,7 @@ var error28 = () => {
           return `Eilut\u0117 privalo pasibaigti "${_issue.suffix}"`;
         if (_issue.format === "includes")
           return `Eilut\u0117 privalo \u012Ftraukti "${_issue.includes}"`;
-        if (_issue.format === "regex")
-          return `Eilut\u0117 privalo atitikti ${_issue.pattern}`;
+        if (_issue.format === "regex") return `Eilut\u0117 privalo atitikti ${_issue.pattern}`;
         return `Neteisingas ${FormatDictionary[_issue.format] ?? issue2.format}`;
       }
       case "not_multiple_of":
@@ -8684,24 +8884,37 @@ var error28 = () => {
 };
 function lt_default() {
   return {
-    localeError: error28()
+    localeError: error28(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/mk.js
 var error29 = () => {
   const Sizable = {
-    string: { unit: "\u0437\u043D\u0430\u0446\u0438", verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442" },
-    file: { unit: "\u0431\u0430\u0458\u0442\u0438", verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442" },
-    array: { unit: "\u0441\u0442\u0430\u0432\u043A\u0438", verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442" },
-    set: { unit: "\u0441\u0442\u0430\u0432\u043A\u0438", verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442" }
+    string: {
+      unit: "\u0437\u043D\u0430\u0446\u0438",
+      verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442",
+    },
+    file: {
+      unit: "\u0431\u0430\u0458\u0442\u0438",
+      verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442",
+    },
+    array: {
+      unit: "\u0441\u0442\u0430\u0432\u043A\u0438",
+      verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442",
+    },
+    set: {
+      unit: "\u0441\u0442\u0430\u0432\u043A\u0438",
+      verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
   }
   const FormatDictionary = {
     regex: "\u0432\u043D\u0435\u0441",
-    email: "\u0430\u0434\u0440\u0435\u0441\u0430 \u043D\u0430 \u0435-\u043F\u043E\u0448\u0442\u0430",
+    email:
+      "\u0430\u0434\u0440\u0435\u0441\u0430 \u043D\u0430 \u0435-\u043F\u043E\u0448\u0442\u0430",
     url: "URL",
     emoji: "\u0435\u043C\u043E\u045F\u0438",
     uuid: "UUID",
@@ -8722,17 +8935,19 @@ var error29 = () => {
     ipv6: "IPv6 \u0430\u0434\u0440\u0435\u0441\u0430",
     cidrv4: "IPv4 \u043E\u043F\u0441\u0435\u0433",
     cidrv6: "IPv6 \u043E\u043F\u0441\u0435\u0433",
-    base64: "base64-\u0435\u043D\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0430 \u043D\u0438\u0437\u0430",
-    base64url: "base64url-\u0435\u043D\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0430 \u043D\u0438\u0437\u0430",
+    base64:
+      "base64-\u0435\u043D\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0430 \u043D\u0438\u0437\u0430",
+    base64url:
+      "base64url-\u0435\u043D\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0430 \u043D\u0438\u0437\u0430",
     json_string: "JSON \u043D\u0438\u0437\u0430",
     e164: "E.164 \u0431\u0440\u043E\u0458",
     jwt: "JWT",
-    template_literal: "\u0432\u043D\u0435\u0441"
+    template_literal: "\u0432\u043D\u0435\u0441",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0431\u0440\u043E\u0458",
-    array: "\u043D\u0438\u0437\u0430"
+    array: "\u043D\u0438\u0437\u0430",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8794,7 +9009,7 @@ var error29 = () => {
 };
 function mk_default() {
   return {
-    localeError: error29()
+    localeError: error29(),
   };
 }
 
@@ -8804,7 +9019,7 @@ var error30 = () => {
     string: { unit: "aksara", verb: "mempunyai" },
     file: { unit: "bait", verb: "mempunyai" },
     array: { unit: "elemen", verb: "mempunyai" },
-    set: { unit: "elemen", verb: "mempunyai" }
+    set: { unit: "elemen", verb: "mempunyai" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -8837,11 +9052,11 @@ var error30 = () => {
     json_string: "string JSON",
     e164: "nombor E.164",
     jwt: "JWT",
-    template_literal: "input"
+    template_literal: "input",
   };
   const TypeDictionary = {
     nan: "NaN",
-    number: "nombor"
+    number: "nombor",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8902,7 +9117,7 @@ var error30 = () => {
 };
 function ms_default() {
   return {
-    localeError: error30()
+    localeError: error30(),
   };
 }
 
@@ -8912,7 +9127,7 @@ var error31 = () => {
     string: { unit: "tekens", verb: "heeft" },
     file: { unit: "bytes", verb: "heeft" },
     array: { unit: "elementen", verb: "heeft" },
-    set: { unit: "elementen", verb: "heeft" }
+    set: { unit: "elementen", verb: "heeft" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -8945,11 +9160,11 @@ var error31 = () => {
     json_string: "JSON string",
     e164: "E.164-nummer",
     jwt: "JWT",
-    template_literal: "invoer"
+    template_literal: "invoer",
   };
   const TypeDictionary = {
     nan: "NaN",
-    number: "getal"
+    number: "getal",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -8969,7 +9184,8 @@ var error31 = () => {
       case "too_big": {
         const adj = issue2.inclusive ? "<=" : "<";
         const sizing = getSizing(issue2.origin);
-        const longName = issue2.origin === "date" ? "laat" : issue2.origin === "string" ? "lang" : "groot";
+        const longName =
+          issue2.origin === "date" ? "laat" : issue2.origin === "string" ? "lang" : "groot";
         if (sizing)
           return `Te ${longName}: verwacht dat ${issue2.origin ?? "waarde"} ${adj}${issue2.maximum.toString()} ${sizing.unit ?? "elementen"} ${sizing.verb}`;
         return `Te ${longName}: verwacht dat ${issue2.origin ?? "waarde"} ${adj}${issue2.maximum.toString()} is`;
@@ -8977,7 +9193,8 @@ var error31 = () => {
       case "too_small": {
         const adj = issue2.inclusive ? ">=" : ">";
         const sizing = getSizing(issue2.origin);
-        const shortName = issue2.origin === "date" ? "vroeg" : issue2.origin === "string" ? "kort" : "klein";
+        const shortName =
+          issue2.origin === "date" ? "vroeg" : issue2.origin === "string" ? "kort" : "klein";
         if (sizing) {
           return `Te ${shortName}: verwacht dat ${issue2.origin} ${adj}${issue2.minimum.toString()} ${sizing.unit} ${sizing.verb}`;
         }
@@ -9013,7 +9230,7 @@ var error31 = () => {
 };
 function nl_default() {
   return {
-    localeError: error31()
+    localeError: error31(),
   };
 }
 
@@ -9023,7 +9240,7 @@ var error32 = () => {
     string: { unit: "tegn", verb: "\xE5 ha" },
     file: { unit: "bytes", verb: "\xE5 ha" },
     array: { unit: "elementer", verb: "\xE5 inneholde" },
-    set: { unit: "elementer", verb: "\xE5 inneholde" }
+    set: { unit: "elementer", verb: "\xE5 inneholde" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9056,12 +9273,12 @@ var error32 = () => {
     json_string: "JSON-streng",
     e164: "E.164-nummer",
     jwt: "JWT",
-    template_literal: "input"
+    template_literal: "input",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "tall",
-    array: "liste"
+    array: "liste",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -9122,7 +9339,7 @@ var error32 = () => {
 };
 function no_default() {
   return {
-    localeError: error32()
+    localeError: error32(),
   };
 }
 
@@ -9132,7 +9349,7 @@ var error33 = () => {
     string: { unit: "harf", verb: "olmal\u0131d\u0131r" },
     file: { unit: "bayt", verb: "olmal\u0131d\u0131r" },
     array: { unit: "unsur", verb: "olmal\u0131d\u0131r" },
-    set: { unit: "unsur", verb: "olmal\u0131d\u0131r" }
+    set: { unit: "unsur", verb: "olmal\u0131d\u0131r" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9165,13 +9382,13 @@ var error33 = () => {
     json_string: "JSON metin",
     e164: "E.164 say\u0131s\u0131",
     jwt: "JWT",
-    template_literal: "giren"
+    template_literal: "giren",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "numara",
     array: "saf",
-    null: "gayb"
+    null: "gayb",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -9207,8 +9424,7 @@ var error33 = () => {
         const _issue = issue2;
         if (_issue.format === "starts_with")
           return `F\xE2sit metin: "${_issue.prefix}" ile ba\u015Flamal\u0131.`;
-        if (_issue.format === "ends_with")
-          return `F\xE2sit metin: "${_issue.suffix}" ile bitmeli.`;
+        if (_issue.format === "ends_with") return `F\xE2sit metin: "${_issue.suffix}" ile bitmeli.`;
         if (_issue.format === "includes")
           return `F\xE2sit metin: "${_issue.includes}" ihtiv\xE2 etmeli.`;
         if (_issue.format === "regex")
@@ -9232,7 +9448,7 @@ var error33 = () => {
 };
 function ota_default() {
   return {
-    localeError: error33()
+    localeError: error33(),
   };
 }
 
@@ -9242,7 +9458,7 @@ var error34 = () => {
     string: { unit: "\u062A\u0648\u06A9\u064A", verb: "\u0648\u0644\u0631\u064A" },
     file: { unit: "\u0628\u0627\u06CC\u067C\u0633", verb: "\u0648\u0644\u0631\u064A" },
     array: { unit: "\u062A\u0648\u06A9\u064A", verb: "\u0648\u0644\u0631\u064A" },
-    set: { unit: "\u062A\u0648\u06A9\u064A", verb: "\u0648\u0644\u0631\u064A" }
+    set: { unit: "\u062A\u0648\u06A9\u064A", verb: "\u0648\u0644\u0631\u064A" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9275,12 +9491,12 @@ var error34 = () => {
     json_string: "JSON \u0645\u062A\u0646",
     e164: "\u062F E.164 \u0634\u0645\u06D0\u0631\u0647",
     jwt: "JWT",
-    template_literal: "\u0648\u0631\u0648\u062F\u064A"
+    template_literal: "\u0648\u0631\u0648\u062F\u064A",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0639\u062F\u062F",
-    array: "\u0627\u0631\u06D0"
+    array: "\u0627\u0631\u06D0",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -9347,7 +9563,7 @@ var error34 = () => {
 };
 function ps_default() {
   return {
-    localeError: error34()
+    localeError: error34(),
   };
 }
 
@@ -9357,7 +9573,7 @@ var error35 = () => {
     string: { unit: "znak\xF3w", verb: "mie\u0107" },
     file: { unit: "bajt\xF3w", verb: "mie\u0107" },
     array: { unit: "element\xF3w", verb: "mie\u0107" },
-    set: { unit: "element\xF3w", verb: "mie\u0107" }
+    set: { unit: "element\xF3w", verb: "mie\u0107" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9390,12 +9606,12 @@ var error35 = () => {
     json_string: "ci\u0105g znak\xF3w w formacie JSON",
     e164: "liczba E.164",
     jwt: "JWT",
-    template_literal: "wej\u015Bcie"
+    template_literal: "wej\u015Bcie",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "liczba",
-    array: "tablica"
+    array: "tablica",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -9457,7 +9673,7 @@ var error35 = () => {
 };
 function pl_default() {
   return {
-    localeError: error35()
+    localeError: error35(),
   };
 }
 
@@ -9467,7 +9683,7 @@ var error36 = () => {
     string: { unit: "caracteres", verb: "ter" },
     file: { unit: "bytes", verb: "ter" },
     array: { unit: "itens", verb: "ter" },
-    set: { unit: "itens", verb: "ter" }
+    set: { unit: "itens", verb: "ter" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9500,12 +9716,12 @@ var error36 = () => {
     json_string: "texto JSON",
     e164: "n\xFAmero E.164",
     jwt: "JWT",
-    template_literal: "entrada"
+    template_literal: "entrada",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "n\xFAmero",
-    null: "nulo"
+    null: "nulo",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -9566,7 +9782,7 @@ var error36 = () => {
 };
 function pt_default() {
   return {
-    localeError: error36()
+    localeError: error36(),
   };
 }
 
@@ -9577,7 +9793,7 @@ var error37 = () => {
     file: { unit: "octe\u021Bi", verb: "s\u0103 aib\u0103" },
     array: { unit: "elemente", verb: "s\u0103 aib\u0103" },
     set: { unit: "elemente", verb: "s\u0103 aib\u0103" },
-    map: { unit: "intr\u0103ri", verb: "s\u0103 aib\u0103" }
+    map: { unit: "intr\u0103ri", verb: "s\u0103 aib\u0103" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9611,7 +9827,7 @@ var error37 = () => {
     json_string: "\u0219ir JSON",
     e164: "num\u0103r E.164",
     jwt: "JWT",
-    template_literal: "intrare"
+    template_literal: "intrare",
   };
   const TypeDictionary = {
     nan: "NaN",
@@ -9627,7 +9843,7 @@ var error37 = () => {
     void: "void",
     never: "never",
     map: "hart\u0103",
-    set: "set"
+    set: "set",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -9686,7 +9902,7 @@ var error37 = () => {
 };
 function ro_default() {
   return {
-    localeError: error37()
+    localeError: error37(),
   };
 }
 
@@ -9712,34 +9928,34 @@ var error38 = () => {
       unit: {
         one: "\u0441\u0438\u043C\u0432\u043E\u043B",
         few: "\u0441\u0438\u043C\u0432\u043E\u043B\u0430",
-        many: "\u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432"
+        many: "\u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432",
       },
-      verb: "\u0438\u043C\u0435\u0442\u044C"
+      verb: "\u0438\u043C\u0435\u0442\u044C",
     },
     file: {
       unit: {
         one: "\u0431\u0430\u0439\u0442",
         few: "\u0431\u0430\u0439\u0442\u0430",
-        many: "\u0431\u0430\u0439\u0442"
+        many: "\u0431\u0430\u0439\u0442",
       },
-      verb: "\u0438\u043C\u0435\u0442\u044C"
+      verb: "\u0438\u043C\u0435\u0442\u044C",
     },
     array: {
       unit: {
         one: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442",
         few: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u0430",
-        many: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432"
+        many: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432",
       },
-      verb: "\u0438\u043C\u0435\u0442\u044C"
+      verb: "\u0438\u043C\u0435\u0442\u044C",
     },
     set: {
       unit: {
         one: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442",
         few: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u0430",
-        many: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432"
+        many: "\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432",
       },
-      verb: "\u0438\u043C\u0435\u0442\u044C"
-    }
+      verb: "\u0438\u043C\u0435\u0442\u044C",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9767,17 +9983,19 @@ var error38 = () => {
     ipv6: "IPv6 \u0430\u0434\u0440\u0435\u0441",
     cidrv4: "IPv4 \u0434\u0438\u0430\u043F\u0430\u0437\u043E\u043D",
     cidrv6: "IPv6 \u0434\u0438\u0430\u043F\u0430\u0437\u043E\u043D",
-    base64: "\u0441\u0442\u0440\u043E\u043A\u0430 \u0432 \u0444\u043E\u0440\u043C\u0430\u0442\u0435 base64",
-    base64url: "\u0441\u0442\u0440\u043E\u043A\u0430 \u0432 \u0444\u043E\u0440\u043C\u0430\u0442\u0435 base64url",
+    base64:
+      "\u0441\u0442\u0440\u043E\u043A\u0430 \u0432 \u0444\u043E\u0440\u043C\u0430\u0442\u0435 base64",
+    base64url:
+      "\u0441\u0442\u0440\u043E\u043A\u0430 \u0432 \u0444\u043E\u0440\u043C\u0430\u0442\u0435 base64url",
     json_string: "JSON \u0441\u0442\u0440\u043E\u043A\u0430",
     e164: "\u043D\u043E\u043C\u0435\u0440 E.164",
     jwt: "JWT",
-    template_literal: "\u0432\u0432\u043E\u0434"
+    template_literal: "\u0432\u0432\u043E\u0434",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0447\u0438\u0441\u043B\u043E",
-    array: "\u043C\u0430\u0441\u0441\u0438\u0432"
+    array: "\u043C\u0430\u0441\u0441\u0438\u0432",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -9799,7 +10017,12 @@ var error38 = () => {
         const sizing = getSizing(issue2.origin);
         if (sizing) {
           const maxValue = Number(issue2.maximum);
-          const unit = getRussianPlural(maxValue, sizing.unit.one, sizing.unit.few, sizing.unit.many);
+          const unit = getRussianPlural(
+            maxValue,
+            sizing.unit.one,
+            sizing.unit.few,
+            sizing.unit.many,
+          );
           return `\u0421\u043B\u0438\u0448\u043A\u043E\u043C \u0431\u043E\u043B\u044C\u0448\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435: \u043E\u0436\u0438\u0434\u0430\u043B\u043E\u0441\u044C, \u0447\u0442\u043E ${issue2.origin ?? "\u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435"} \u0431\u0443\u0434\u0435\u0442 \u0438\u043C\u0435\u0442\u044C ${adj}${issue2.maximum.toString()} ${unit}`;
         }
         return `\u0421\u043B\u0438\u0448\u043A\u043E\u043C \u0431\u043E\u043B\u044C\u0448\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435: \u043E\u0436\u0438\u0434\u0430\u043B\u043E\u0441\u044C, \u0447\u0442\u043E ${issue2.origin ?? "\u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435"} \u0431\u0443\u0434\u0435\u0442 ${adj}${issue2.maximum.toString()}`;
@@ -9809,7 +10032,12 @@ var error38 = () => {
         const sizing = getSizing(issue2.origin);
         if (sizing) {
           const minValue = Number(issue2.minimum);
-          const unit = getRussianPlural(minValue, sizing.unit.one, sizing.unit.few, sizing.unit.many);
+          const unit = getRussianPlural(
+            minValue,
+            sizing.unit.one,
+            sizing.unit.few,
+            sizing.unit.many,
+          );
           return `\u0421\u043B\u0438\u0448\u043A\u043E\u043C \u043C\u0430\u043B\u0435\u043D\u044C\u043A\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435: \u043E\u0436\u0438\u0434\u0430\u043B\u043E\u0441\u044C, \u0447\u0442\u043E ${issue2.origin} \u0431\u0443\u0434\u0435\u0442 \u0438\u043C\u0435\u0442\u044C ${adj}${issue2.minimum.toString()} ${unit}`;
         }
         return `\u0421\u043B\u0438\u0448\u043A\u043E\u043C \u043C\u0430\u043B\u0435\u043D\u044C\u043A\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435: \u043E\u0436\u0438\u0434\u0430\u043B\u043E\u0441\u044C, \u0447\u0442\u043E ${issue2.origin} \u0431\u0443\u0434\u0435\u0442 ${adj}${issue2.minimum.toString()}`;
@@ -9843,7 +10071,7 @@ var error38 = () => {
 };
 function ru_default() {
   return {
-    localeError: error38()
+    localeError: error38(),
   };
 }
 
@@ -9853,7 +10081,7 @@ var error39 = () => {
     string: { unit: "znakov", verb: "imeti" },
     file: { unit: "bajtov", verb: "imeti" },
     array: { unit: "elementov", verb: "imeti" },
-    set: { unit: "elementov", verb: "imeti" }
+    set: { unit: "elementov", verb: "imeti" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9886,12 +10114,12 @@ var error39 = () => {
     json_string: "JSON niz",
     e164: "E.164 \u0161tevilka",
     jwt: "JWT",
-    template_literal: "vnos"
+    template_literal: "vnos",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0161tevilo",
-    array: "tabela"
+    array: "tabela",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -9953,7 +10181,7 @@ var error39 = () => {
 };
 function sl_default() {
   return {
-    localeError: error39()
+    localeError: error39(),
   };
 }
 
@@ -9963,7 +10191,7 @@ var error40 = () => {
     string: { unit: "tecken", verb: "att ha" },
     file: { unit: "bytes", verb: "att ha" },
     array: { unit: "objekt", verb: "att inneh\xE5lla" },
-    set: { unit: "objekt", verb: "att inneh\xE5lla" }
+    set: { unit: "objekt", verb: "att inneh\xE5lla" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -9996,12 +10224,12 @@ var error40 = () => {
     json_string: "JSON-str\xE4ng",
     e164: "E.164-nummer",
     jwt: "JWT",
-    template_literal: "mall-literal"
+    template_literal: "mall-literal",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "antal",
-    array: "lista"
+    array: "lista",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10064,24 +10292,37 @@ var error40 = () => {
 };
 function sv_default() {
   return {
-    localeError: error40()
+    localeError: error40(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/ta.js
 var error41 = () => {
   const Sizable = {
-    string: { unit: "\u0B8E\u0BB4\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD\u0B95\u0BB3\u0BCD", verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD" },
-    file: { unit: "\u0BAA\u0BC8\u0B9F\u0BCD\u0B9F\u0BC1\u0B95\u0BB3\u0BCD", verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD" },
-    array: { unit: "\u0B89\u0BB1\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD", verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD" },
-    set: { unit: "\u0B89\u0BB1\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD", verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD" }
+    string: {
+      unit: "\u0B8E\u0BB4\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD\u0B95\u0BB3\u0BCD",
+      verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD",
+    },
+    file: {
+      unit: "\u0BAA\u0BC8\u0B9F\u0BCD\u0B9F\u0BC1\u0B95\u0BB3\u0BCD",
+      verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD",
+    },
+    array: {
+      unit: "\u0B89\u0BB1\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD",
+      verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD",
+    },
+    set: {
+      unit: "\u0B89\u0BB1\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD",
+      verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
   }
   const FormatDictionary = {
     regex: "\u0B89\u0BB3\u0BCD\u0BB3\u0BC0\u0B9F\u0BC1",
-    email: "\u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BCD \u0BAE\u0BC1\u0B95\u0BB5\u0BB0\u0BBF",
+    email:
+      "\u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BCD \u0BAE\u0BC1\u0B95\u0BB5\u0BB0\u0BBF",
     url: "URL",
     emoji: "emoji",
     uuid: "UUID",
@@ -10107,13 +10348,13 @@ var error41 = () => {
     json_string: "JSON \u0B9A\u0BB0\u0BAE\u0BCD",
     e164: "E.164 \u0B8E\u0BA3\u0BCD",
     jwt: "JWT",
-    template_literal: "input"
+    template_literal: "input",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0B8E\u0BA3\u0BCD",
     array: "\u0B85\u0BA3\u0BBF",
-    null: "\u0BB5\u0BC6\u0BB1\u0BC1\u0BAE\u0BC8"
+    null: "\u0BB5\u0BC6\u0BB1\u0BC1\u0BAE\u0BC8",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10175,17 +10416,20 @@ var error41 = () => {
 };
 function ta_default() {
   return {
-    localeError: error41()
+    localeError: error41(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/th.js
 var error42 = () => {
   const Sizable = {
-    string: { unit: "\u0E15\u0E31\u0E27\u0E2D\u0E31\u0E01\u0E29\u0E23", verb: "\u0E04\u0E27\u0E23\u0E21\u0E35" },
+    string: {
+      unit: "\u0E15\u0E31\u0E27\u0E2D\u0E31\u0E01\u0E29\u0E23",
+      verb: "\u0E04\u0E27\u0E23\u0E21\u0E35",
+    },
     file: { unit: "\u0E44\u0E1A\u0E15\u0E4C", verb: "\u0E04\u0E27\u0E23\u0E21\u0E35" },
     array: { unit: "\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23", verb: "\u0E04\u0E27\u0E23\u0E21\u0E35" },
-    set: { unit: "\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23", verb: "\u0E04\u0E27\u0E23\u0E21\u0E35" }
+    set: { unit: "\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23", verb: "\u0E04\u0E27\u0E23\u0E21\u0E35" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -10214,17 +10458,19 @@ var error42 = () => {
     cidrv4: "\u0E0A\u0E48\u0E27\u0E07 IP \u0E41\u0E1A\u0E1A IPv4",
     cidrv6: "\u0E0A\u0E48\u0E27\u0E07 IP \u0E41\u0E1A\u0E1A IPv6",
     base64: "\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E41\u0E1A\u0E1A Base64",
-    base64url: "\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E41\u0E1A\u0E1A Base64 \u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A URL",
+    base64url:
+      "\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E41\u0E1A\u0E1A Base64 \u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A URL",
     json_string: "\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E41\u0E1A\u0E1A JSON",
     e164: "\u0E40\u0E1A\u0E2D\u0E23\u0E4C\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C\u0E23\u0E30\u0E2B\u0E27\u0E48\u0E32\u0E07\u0E1B\u0E23\u0E30\u0E40\u0E17\u0E28 (E.164)",
     jwt: "\u0E42\u0E17\u0E40\u0E04\u0E19 JWT",
-    template_literal: "\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E17\u0E35\u0E48\u0E1B\u0E49\u0E2D\u0E19"
+    template_literal:
+      "\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E17\u0E35\u0E48\u0E1B\u0E49\u0E2D\u0E19",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0E15\u0E31\u0E27\u0E40\u0E25\u0E02",
     array: "\u0E2D\u0E32\u0E23\u0E4C\u0E40\u0E23\u0E22\u0E4C (Array)",
-    null: "\u0E44\u0E21\u0E48\u0E21\u0E35\u0E04\u0E48\u0E32 (null)"
+    null: "\u0E44\u0E21\u0E48\u0E21\u0E35\u0E04\u0E48\u0E32 (null)",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10242,14 +10488,18 @@ var error42 = () => {
           return `\u0E04\u0E48\u0E32\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07: \u0E04\u0E27\u0E23\u0E40\u0E1B\u0E47\u0E19 ${stringifyPrimitive(issue2.values[0])}`;
         return `\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07: \u0E04\u0E27\u0E23\u0E40\u0E1B\u0E47\u0E19\u0E2B\u0E19\u0E36\u0E48\u0E07\u0E43\u0E19 ${joinValues(issue2.values, "|")}`;
       case "too_big": {
-        const adj = issue2.inclusive ? "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19" : "\u0E19\u0E49\u0E2D\u0E22\u0E01\u0E27\u0E48\u0E32";
+        const adj = issue2.inclusive
+          ? "\u0E44\u0E21\u0E48\u0E40\u0E01\u0E34\u0E19"
+          : "\u0E19\u0E49\u0E2D\u0E22\u0E01\u0E27\u0E48\u0E32";
         const sizing = getSizing(issue2.origin);
         if (sizing)
           return `\u0E40\u0E01\u0E34\u0E19\u0E01\u0E33\u0E2B\u0E19\u0E14: ${issue2.origin ?? "\u0E04\u0E48\u0E32"} \u0E04\u0E27\u0E23\u0E21\u0E35${adj} ${issue2.maximum.toString()} ${sizing.unit ?? "\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23"}`;
         return `\u0E40\u0E01\u0E34\u0E19\u0E01\u0E33\u0E2B\u0E19\u0E14: ${issue2.origin ?? "\u0E04\u0E48\u0E32"} \u0E04\u0E27\u0E23\u0E21\u0E35${adj} ${issue2.maximum.toString()}`;
       }
       case "too_small": {
-        const adj = issue2.inclusive ? "\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E19\u0E49\u0E2D\u0E22" : "\u0E21\u0E32\u0E01\u0E01\u0E27\u0E48\u0E32";
+        const adj = issue2.inclusive
+          ? "\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E19\u0E49\u0E2D\u0E22"
+          : "\u0E21\u0E32\u0E01\u0E01\u0E27\u0E48\u0E32";
         const sizing = getSizing(issue2.origin);
         if (sizing) {
           return `\u0E19\u0E49\u0E2D\u0E22\u0E01\u0E27\u0E48\u0E32\u0E01\u0E33\u0E2B\u0E19\u0E14: ${issue2.origin} \u0E04\u0E27\u0E23\u0E21\u0E35${adj} ${issue2.minimum.toString()} ${sizing.unit}`;
@@ -10286,7 +10536,7 @@ var error42 = () => {
 };
 function th_default() {
   return {
-    localeError: error42()
+    localeError: error42(),
   };
 }
 
@@ -10296,7 +10546,7 @@ var error43 = () => {
     string: { unit: "karakter", verb: "olmal\u0131" },
     file: { unit: "bayt", verb: "olmal\u0131" },
     array: { unit: "\xF6\u011Fe", verb: "olmal\u0131" },
-    set: { unit: "\xF6\u011Fe", verb: "olmal\u0131" }
+    set: { unit: "\xF6\u011Fe", verb: "olmal\u0131" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -10329,10 +10579,10 @@ var error43 = () => {
     json_string: "JSON dizesi",
     e164: "E.164 say\u0131s\u0131",
     jwt: "JWT",
-    template_literal: "\u015Eablon dizesi"
+    template_literal: "\u015Eablon dizesi",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10392,24 +10642,37 @@ var error43 = () => {
 };
 function tr_default() {
   return {
-    localeError: error43()
+    localeError: error43(),
   };
 }
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/locales/uk.js
 var error44 = () => {
   const Sizable = {
-    string: { unit: "\u0441\u0438\u043C\u0432\u043E\u043B\u0456\u0432", verb: "\u043C\u0430\u0442\u0438\u043C\u0435" },
-    file: { unit: "\u0431\u0430\u0439\u0442\u0456\u0432", verb: "\u043C\u0430\u0442\u0438\u043C\u0435" },
-    array: { unit: "\u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0456\u0432", verb: "\u043C\u0430\u0442\u0438\u043C\u0435" },
-    set: { unit: "\u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0456\u0432", verb: "\u043C\u0430\u0442\u0438\u043C\u0435" }
+    string: {
+      unit: "\u0441\u0438\u043C\u0432\u043E\u043B\u0456\u0432",
+      verb: "\u043C\u0430\u0442\u0438\u043C\u0435",
+    },
+    file: {
+      unit: "\u0431\u0430\u0439\u0442\u0456\u0432",
+      verb: "\u043C\u0430\u0442\u0438\u043C\u0435",
+    },
+    array: {
+      unit: "\u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0456\u0432",
+      verb: "\u043C\u0430\u0442\u0438\u043C\u0435",
+    },
+    set: {
+      unit: "\u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0456\u0432",
+      verb: "\u043C\u0430\u0442\u0438\u043C\u0435",
+    },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
   }
   const FormatDictionary = {
     regex: "\u0432\u0445\u0456\u0434\u043D\u0456 \u0434\u0430\u043D\u0456",
-    email: "\u0430\u0434\u0440\u0435\u0441\u0430 \u0435\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u043E\u0457 \u043F\u043E\u0448\u0442\u0438",
+    email:
+      "\u0430\u0434\u0440\u0435\u0441\u0430 \u0435\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u043E\u0457 \u043F\u043E\u0448\u0442\u0438",
     url: "URL",
     emoji: "\u0435\u043C\u043E\u0434\u0437\u0456",
     uuid: "UUID",
@@ -10430,17 +10693,19 @@ var error44 = () => {
     ipv6: "\u0430\u0434\u0440\u0435\u0441\u0430 IPv6",
     cidrv4: "\u0434\u0456\u0430\u043F\u0430\u0437\u043E\u043D IPv4",
     cidrv6: "\u0434\u0456\u0430\u043F\u0430\u0437\u043E\u043D IPv6",
-    base64: "\u0440\u044F\u0434\u043E\u043A \u0443 \u043A\u043E\u0434\u0443\u0432\u0430\u043D\u043D\u0456 base64",
-    base64url: "\u0440\u044F\u0434\u043E\u043A \u0443 \u043A\u043E\u0434\u0443\u0432\u0430\u043D\u043D\u0456 base64url",
+    base64:
+      "\u0440\u044F\u0434\u043E\u043A \u0443 \u043A\u043E\u0434\u0443\u0432\u0430\u043D\u043D\u0456 base64",
+    base64url:
+      "\u0440\u044F\u0434\u043E\u043A \u0443 \u043A\u043E\u0434\u0443\u0432\u0430\u043D\u043D\u0456 base64url",
     json_string: "\u0440\u044F\u0434\u043E\u043A JSON",
     e164: "\u043D\u043E\u043C\u0435\u0440 E.164",
     jwt: "JWT",
-    template_literal: "\u0432\u0445\u0456\u0434\u043D\u0456 \u0434\u0430\u043D\u0456"
+    template_literal: "\u0432\u0445\u0456\u0434\u043D\u0456 \u0434\u0430\u043D\u0456",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0447\u0438\u0441\u043B\u043E",
-    array: "\u043C\u0430\u0441\u0438\u0432"
+    array: "\u043C\u0430\u0441\u0438\u0432",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10501,7 +10766,7 @@ var error44 = () => {
 };
 function uk_default() {
   return {
-    localeError: error44()
+    localeError: error44(),
   };
 }
 
@@ -10516,7 +10781,7 @@ var error45 = () => {
     string: { unit: "\u062D\u0631\u0648\u0641", verb: "\u06C1\u0648\u0646\u0627" },
     file: { unit: "\u0628\u0627\u0626\u0679\u0633", verb: "\u06C1\u0648\u0646\u0627" },
     array: { unit: "\u0622\u0626\u0679\u0645\u0632", verb: "\u06C1\u0648\u0646\u0627" },
-    set: { unit: "\u0622\u0626\u0679\u0645\u0632", verb: "\u06C1\u0648\u0646\u0627" }
+    set: { unit: "\u0622\u0626\u0679\u0645\u0632", verb: "\u06C1\u0648\u0646\u0627" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -10536,7 +10801,8 @@ var error45 = () => {
     ulid: "\u06CC\u0648 \u0627\u06CC\u0644 \u0622\u0626\u06CC \u0688\u06CC",
     xid: "\u0627\u06CC\u06A9\u0633 \u0622\u0626\u06CC \u0688\u06CC",
     ksuid: "\u06A9\u06D2 \u0627\u06CC\u0633 \u06CC\u0648 \u0622\u0626\u06CC \u0688\u06CC",
-    datetime: "\u0622\u0626\u06CC \u0627\u06CC\u0633 \u0627\u0648 \u0688\u06CC\u0679 \u0679\u0627\u0626\u0645",
+    datetime:
+      "\u0622\u0626\u06CC \u0627\u06CC\u0633 \u0627\u0648 \u0688\u06CC\u0679 \u0679\u0627\u0626\u0645",
     date: "\u0622\u0626\u06CC \u0627\u06CC\u0633 \u0627\u0648 \u062A\u0627\u0631\u06CC\u062E",
     time: "\u0622\u0626\u06CC \u0627\u06CC\u0633 \u0627\u0648 \u0648\u0642\u062A",
     duration: "\u0622\u0626\u06CC \u0627\u06CC\u0633 \u0627\u0648 \u0645\u062F\u062A",
@@ -10544,18 +10810,21 @@ var error45 = () => {
     ipv6: "\u0622\u0626\u06CC \u067E\u06CC \u0648\u06CC 6 \u0627\u06CC\u0688\u0631\u06CC\u0633",
     cidrv4: "\u0622\u0626\u06CC \u067E\u06CC \u0648\u06CC 4 \u0631\u06CC\u0646\u062C",
     cidrv6: "\u0622\u0626\u06CC \u067E\u06CC \u0648\u06CC 6 \u0631\u06CC\u0646\u062C",
-    base64: "\u0628\u06CC\u0633 64 \u0627\u0646 \u06A9\u0648\u0688\u0688 \u0633\u0679\u0631\u0646\u06AF",
-    base64url: "\u0628\u06CC\u0633 64 \u06CC\u0648 \u0622\u0631 \u0627\u06CC\u0644 \u0627\u0646 \u06A9\u0648\u0688\u0688 \u0633\u0679\u0631\u0646\u06AF",
-    json_string: "\u062C\u06D2 \u0627\u06CC\u0633 \u0627\u0648 \u0627\u06CC\u0646 \u0633\u0679\u0631\u0646\u06AF",
+    base64:
+      "\u0628\u06CC\u0633 64 \u0627\u0646 \u06A9\u0648\u0688\u0688 \u0633\u0679\u0631\u0646\u06AF",
+    base64url:
+      "\u0628\u06CC\u0633 64 \u06CC\u0648 \u0622\u0631 \u0627\u06CC\u0644 \u0627\u0646 \u06A9\u0648\u0688\u0688 \u0633\u0679\u0631\u0646\u06AF",
+    json_string:
+      "\u062C\u06D2 \u0627\u06CC\u0633 \u0627\u0648 \u0627\u06CC\u0646 \u0633\u0679\u0631\u0646\u06AF",
     e164: "\u0627\u06CC 164 \u0646\u0645\u0628\u0631",
     jwt: "\u062C\u06D2 \u0688\u0628\u0644\u06CC\u0648 \u0679\u06CC",
-    template_literal: "\u0627\u0646 \u067E\u0679"
+    template_literal: "\u0627\u0646 \u067E\u0679",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u0646\u0645\u0628\u0631",
     array: "\u0622\u0631\u06D2",
-    null: "\u0646\u0644"
+    null: "\u0646\u0644",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10617,7 +10886,7 @@ var error45 = () => {
 };
 function ur_default() {
   return {
-    localeError: error45()
+    localeError: error45(),
   };
 }
 
@@ -10628,7 +10897,7 @@ var error46 = () => {
     file: { unit: "bayt", verb: "bo\u2018lishi kerak" },
     array: { unit: "element", verb: "bo\u2018lishi kerak" },
     set: { unit: "element", verb: "bo\u2018lishi kerak" },
-    map: { unit: "yozuv", verb: "bo\u2018lishi kerak" }
+    map: { unit: "yozuv", verb: "bo\u2018lishi kerak" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -10662,12 +10931,12 @@ var error46 = () => {
     json_string: "JSON satr",
     e164: "E.164 raqam",
     jwt: "JWT",
-    template_literal: "kirish"
+    template_literal: "kirish",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "raqam",
-    array: "massiv"
+    array: "massiv",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10728,7 +10997,7 @@ var error46 = () => {
 };
 function uz_default() {
   return {
-    localeError: error46()
+    localeError: error46(),
   };
 }
 
@@ -10738,7 +11007,7 @@ var error47 = () => {
     string: { unit: "k\xFD t\u1EF1", verb: "c\xF3" },
     file: { unit: "byte", verb: "c\xF3" },
     array: { unit: "ph\u1EA7n t\u1EED", verb: "c\xF3" },
-    set: { unit: "ph\u1EA7n t\u1EED", verb: "c\xF3" }
+    set: { unit: "ph\u1EA7n t\u1EED", verb: "c\xF3" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -10771,12 +11040,12 @@ var error47 = () => {
     json_string: "chu\u1ED7i JSON",
     e164: "s\u1ED1 E.164",
     jwt: "JWT",
-    template_literal: "\u0111\u1EA7u v\xE0o"
+    template_literal: "\u0111\u1EA7u v\xE0o",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "s\u1ED1",
-    array: "m\u1EA3ng"
+    array: "m\u1EA3ng",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10837,7 +11106,7 @@ var error47 = () => {
 };
 function vi_default() {
   return {
-    localeError: error47()
+    localeError: error47(),
   };
 }
 
@@ -10847,7 +11116,7 @@ var error48 = () => {
     string: { unit: "\u5B57\u7B26", verb: "\u5305\u542B" },
     file: { unit: "\u5B57\u8282", verb: "\u5305\u542B" },
     array: { unit: "\u9879", verb: "\u5305\u542B" },
-    set: { unit: "\u9879", verb: "\u5305\u542B" }
+    set: { unit: "\u9879", verb: "\u5305\u542B" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -10880,13 +11149,13 @@ var error48 = () => {
     json_string: "JSON\u5B57\u7B26\u4E32",
     e164: "E.164\u53F7\u7801",
     jwt: "JWT",
-    template_literal: "\u8F93\u5165"
+    template_literal: "\u8F93\u5165",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "\u6570\u5B57",
     array: "\u6570\u7EC4",
-    null: "\u7A7A\u503C(null)"
+    null: "\u7A7A\u503C(null)",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -10947,7 +11216,7 @@ var error48 = () => {
 };
 function zh_CN_default() {
   return {
-    localeError: error48()
+    localeError: error48(),
   };
 }
 
@@ -10957,7 +11226,7 @@ var error49 = () => {
     string: { unit: "\u5B57\u5143", verb: "\u64C1\u6709" },
     file: { unit: "\u4F4D\u5143\u7D44", verb: "\u64C1\u6709" },
     array: { unit: "\u9805\u76EE", verb: "\u64C1\u6709" },
-    set: { unit: "\u9805\u76EE", verb: "\u64C1\u6709" }
+    set: { unit: "\u9805\u76EE", verb: "\u64C1\u6709" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -10990,10 +11259,10 @@ var error49 = () => {
     json_string: "JSON \u5B57\u4E32",
     e164: "E.164 \u6578\u503C",
     jwt: "JWT",
-    template_literal: "\u8F38\u5165"
+    template_literal: "\u8F38\u5165",
   };
   const TypeDictionary = {
-    nan: "NaN"
+    nan: "NaN",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -11055,7 +11324,7 @@ var error49 = () => {
 };
 function zh_TW_default() {
   return {
-    localeError: error49()
+    localeError: error49(),
   };
 }
 
@@ -11065,7 +11334,7 @@ var error50 = () => {
     string: { unit: "\xE0mi", verb: "n\xED" },
     file: { unit: "bytes", verb: "n\xED" },
     array: { unit: "nkan", verb: "n\xED" },
-    set: { unit: "nkan", verb: "n\xED" }
+    set: { unit: "nkan", verb: "n\xED" },
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -11098,12 +11367,12 @@ var error50 = () => {
     json_string: "\u1ECD\u0300r\u1ECD\u0300 JSON",
     e164: "n\u1ECD\u0301mb\xE0 E.164",
     jwt: "JWT",
-    template_literal: "\u1EB9\u0300r\u1ECD \xECb\xE1w\u1ECDl\xE9"
+    template_literal: "\u1EB9\u0300r\u1ECD \xECb\xE1w\u1ECDl\xE9",
   };
   const TypeDictionary = {
     nan: "NaN",
     number: "n\u1ECD\u0301mb\xE0",
-    array: "akop\u1ECD"
+    array: "akop\u1ECD",
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -11163,7 +11432,7 @@ var error50 = () => {
 };
 function yo_default() {
   return {
-    localeError: error50()
+    localeError: error50(),
   };
 }
 
@@ -11200,7 +11469,7 @@ var $ZodRegistry = class {
   get(schema) {
     const p = schema._zod.parent;
     if (p) {
-      const pm = { ...this.get(p) ?? {} };
+      const pm = { ...(this.get(p) ?? {}) };
       delete pm.id;
       const f = { ...pm, ...this._map.get(schema) };
       return Object.keys(f).length ? f : void 0;
@@ -11222,7 +11491,7 @@ var globalRegistry = globalThis.__zod_globalRegistry;
 function _string(Class2, params) {
   return new Class2({
     type: "string",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11230,7 +11499,7 @@ function _coercedString(Class2, params) {
   return new Class2({
     type: "string",
     coerce: true,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11240,7 +11509,7 @@ function _email(Class2, params) {
     format: "email",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11250,7 +11519,7 @@ function _guid(Class2, params) {
     format: "guid",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11260,7 +11529,7 @@ function _uuid(Class2, params) {
     format: "uuid",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11271,7 +11540,7 @@ function _uuidv4(Class2, params) {
     check: "string_format",
     abort: false,
     version: "v4",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11282,7 +11551,7 @@ function _uuidv6(Class2, params) {
     check: "string_format",
     abort: false,
     version: "v6",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11293,7 +11562,7 @@ function _uuidv7(Class2, params) {
     check: "string_format",
     abort: false,
     version: "v7",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11303,7 +11572,7 @@ function _url(Class2, params) {
     format: "url",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11313,7 +11582,7 @@ function _emoji2(Class2, params) {
     format: "emoji",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11323,7 +11592,7 @@ function _nanoid(Class2, params) {
     format: "nanoid",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11333,7 +11602,7 @@ function _cuid(Class2, params) {
     format: "cuid",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11343,7 +11612,7 @@ function _cuid2(Class2, params) {
     format: "cuid2",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11353,7 +11622,7 @@ function _ulid(Class2, params) {
     format: "ulid",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11363,7 +11632,7 @@ function _xid(Class2, params) {
     format: "xid",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11373,7 +11642,7 @@ function _ksuid(Class2, params) {
     format: "ksuid",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11383,7 +11652,7 @@ function _ipv4(Class2, params) {
     format: "ipv4",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11393,7 +11662,7 @@ function _ipv6(Class2, params) {
     format: "ipv6",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11403,7 +11672,7 @@ function _mac(Class2, params) {
     format: "mac",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11413,7 +11682,7 @@ function _cidrv4(Class2, params) {
     format: "cidrv4",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11423,7 +11692,7 @@ function _cidrv6(Class2, params) {
     format: "cidrv6",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11433,7 +11702,7 @@ function _base64(Class2, params) {
     format: "base64",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11443,7 +11712,7 @@ function _base64url(Class2, params) {
     format: "base64url",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11453,7 +11722,7 @@ function _e164(Class2, params) {
     format: "e164",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11463,7 +11732,7 @@ function _jwt(Class2, params) {
     format: "jwt",
     check: "string_format",
     abort: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 var TimePrecision = {
@@ -11471,7 +11740,7 @@ var TimePrecision = {
   Minute: -1,
   Second: 0,
   Millisecond: 3,
-  Microsecond: 6
+  Microsecond: 6,
 };
 // @__NO_SIDE_EFFECTS__
 function _isoDateTime(Class2, params) {
@@ -11482,7 +11751,7 @@ function _isoDateTime(Class2, params) {
     offset: false,
     local: false,
     precision: null,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11491,7 +11760,7 @@ function _isoDate(Class2, params) {
     type: "string",
     format: "date",
     check: "string_format",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11501,7 +11770,7 @@ function _isoTime(Class2, params) {
     format: "time",
     check: "string_format",
     precision: null,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11510,7 +11779,7 @@ function _isoDuration(Class2, params) {
     type: "string",
     format: "duration",
     check: "string_format",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11518,7 +11787,7 @@ function _number(Class2, params) {
   return new Class2({
     type: "number",
     checks: [],
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11527,7 +11796,7 @@ function _coercedNumber(Class2, params) {
     type: "number",
     coerce: true,
     checks: [],
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11537,7 +11806,7 @@ function _int(Class2, params) {
     check: "number_format",
     abort: false,
     format: "safeint",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11547,7 +11816,7 @@ function _float32(Class2, params) {
     check: "number_format",
     abort: false,
     format: "float32",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11557,7 +11826,7 @@ function _float64(Class2, params) {
     check: "number_format",
     abort: false,
     format: "float64",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11567,7 +11836,7 @@ function _int32(Class2, params) {
     check: "number_format",
     abort: false,
     format: "int32",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11577,14 +11846,14 @@ function _uint32(Class2, params) {
     check: "number_format",
     abort: false,
     format: "uint32",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _boolean(Class2, params) {
   return new Class2({
     type: "boolean",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11592,14 +11861,14 @@ function _coercedBoolean(Class2, params) {
   return new Class2({
     type: "boolean",
     coerce: true,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _bigint(Class2, params) {
   return new Class2({
     type: "bigint",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11607,7 +11876,7 @@ function _coercedBigint(Class2, params) {
   return new Class2({
     type: "bigint",
     coerce: true,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11617,7 +11886,7 @@ function _int64(Class2, params) {
     check: "bigint_format",
     abort: false,
     format: "int64",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11627,61 +11896,61 @@ function _uint64(Class2, params) {
     check: "bigint_format",
     abort: false,
     format: "uint64",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _symbol(Class2, params) {
   return new Class2({
     type: "symbol",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _undefined2(Class2, params) {
   return new Class2({
     type: "undefined",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _null2(Class2, params) {
   return new Class2({
     type: "null",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _any(Class2) {
   return new Class2({
-    type: "any"
+    type: "any",
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _unknown(Class2) {
   return new Class2({
-    type: "unknown"
+    type: "unknown",
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _never(Class2, params) {
   return new Class2({
     type: "never",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _void(Class2, params) {
   return new Class2({
     type: "void",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _date(Class2, params) {
   return new Class2({
     type: "date",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11689,14 +11958,14 @@ function _coercedDate(Class2, params) {
   return new Class2({
     type: "date",
     coerce: true,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _nan(Class2, params) {
   return new Class2({
     type: "nan",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11705,7 +11974,7 @@ function _lt(value, params) {
     check: "less_than",
     ...normalizeParams(params),
     value,
-    inclusive: false
+    inclusive: false,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11714,7 +11983,7 @@ function _lte(value, params) {
     check: "less_than",
     ...normalizeParams(params),
     value,
-    inclusive: true
+    inclusive: true,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11723,7 +11992,7 @@ function _gt(value, params) {
     check: "greater_than",
     ...normalizeParams(params),
     value,
-    inclusive: false
+    inclusive: false,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11732,7 +12001,7 @@ function _gte(value, params) {
     check: "greater_than",
     ...normalizeParams(params),
     value,
-    inclusive: true
+    inclusive: true,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11756,7 +12025,7 @@ function _multipleOf(value, params) {
   return new $ZodCheckMultipleOf({
     check: "multiple_of",
     ...normalizeParams(params),
-    value
+    value,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11764,7 +12033,7 @@ function _maxSize(maximum, params) {
   return new $ZodCheckMaxSize({
     check: "max_size",
     ...normalizeParams(params),
-    maximum
+    maximum,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11772,7 +12041,7 @@ function _minSize(minimum, params) {
   return new $ZodCheckMinSize({
     check: "min_size",
     ...normalizeParams(params),
-    minimum
+    minimum,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11780,7 +12049,7 @@ function _size(size, params) {
   return new $ZodCheckSizeEquals({
     check: "size_equals",
     ...normalizeParams(params),
-    size
+    size,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11788,7 +12057,7 @@ function _maxLength(maximum, params) {
   const ch = new $ZodCheckMaxLength({
     check: "max_length",
     ...normalizeParams(params),
-    maximum
+    maximum,
   });
   return ch;
 }
@@ -11797,7 +12066,7 @@ function _minLength(minimum, params) {
   return new $ZodCheckMinLength({
     check: "min_length",
     ...normalizeParams(params),
-    minimum
+    minimum,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11805,7 +12074,7 @@ function _length(length, params) {
   return new $ZodCheckLengthEquals({
     check: "length_equals",
     ...normalizeParams(params),
-    length
+    length,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11814,7 +12083,7 @@ function _regex(pattern, params) {
     check: "string_format",
     format: "regex",
     ...normalizeParams(params),
-    pattern
+    pattern,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11822,7 +12091,7 @@ function _lowercase(params) {
   return new $ZodCheckLowerCase({
     check: "string_format",
     format: "lowercase",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11830,7 +12099,7 @@ function _uppercase(params) {
   return new $ZodCheckUpperCase({
     check: "string_format",
     format: "uppercase",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11839,7 +12108,7 @@ function _includes(includes, params) {
     check: "string_format",
     format: "includes",
     ...normalizeParams(params),
-    includes
+    includes,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11848,7 +12117,7 @@ function _startsWith(prefix, params) {
     check: "string_format",
     format: "starts_with",
     ...normalizeParams(params),
-    prefix
+    prefix,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11857,7 +12126,7 @@ function _endsWith(suffix, params) {
     check: "string_format",
     format: "ends_with",
     ...normalizeParams(params),
-    suffix
+    suffix,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11866,7 +12135,7 @@ function _property(property, schema, params) {
     check: "property",
     property,
     schema,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11874,14 +12143,14 @@ function _mime(types, params) {
   return new $ZodCheckMimeType({
     check: "mime_type",
     mime: types,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _overwrite(tx) {
   return new $ZodCheckOverwrite({
     check: "overwrite",
-    tx
+    tx,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11912,7 +12181,7 @@ function _array(Class2, element, params) {
     // get element() {
     //   return element;
     // },
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11920,7 +12189,7 @@ function _union(Class2, options, params) {
   return new Class2({
     type: "union",
     options,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 function _xor(Class2, options, params) {
@@ -11928,7 +12197,7 @@ function _xor(Class2, options, params) {
     type: "union",
     options,
     inclusive: false,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11937,7 +12206,7 @@ function _discriminatedUnion(Class2, discriminator, options, params) {
     type: "union",
     options,
     discriminator,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11945,7 +12214,7 @@ function _intersection(Class2, left, right) {
   return new Class2({
     type: "intersection",
     left,
-    right
+    right,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11957,7 +12226,7 @@ function _tuple(Class2, items, _paramsOrRest, _params) {
     type: "tuple",
     items,
     rest,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11966,7 +12235,7 @@ function _record(Class2, keyType, valueType, params) {
     type: "record",
     keyType,
     valueType,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11975,7 +12244,7 @@ function _map(Class2, keyType, valueType, params) {
     type: "map",
     keyType,
     valueType,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11983,7 +12252,7 @@ function _set(Class2, valueType, params) {
   return new Class2({
     type: "set",
     valueType,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -11992,7 +12261,7 @@ function _enum(Class2, values, params) {
   return new Class2({
     type: "enum",
     entries,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -12000,7 +12269,7 @@ function _nativeEnum(Class2, entries, params) {
   return new Class2({
     type: "enum",
     entries,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -12008,35 +12277,35 @@ function _literal(Class2, value, params) {
   return new Class2({
     type: "literal",
     values: Array.isArray(value) ? value : [value],
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _file(Class2, params) {
   return new Class2({
     type: "file",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _transform(Class2, fn) {
   return new Class2({
     type: "transform",
-    transform: fn
+    transform: fn,
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _optional(Class2, innerType) {
   return new Class2({
     type: "optional",
-    innerType
+    innerType,
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _nullable(Class2, innerType) {
   return new Class2({
     type: "nullable",
-    innerType
+    innerType,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -12046,7 +12315,7 @@ function _default(Class2, innerType, defaultValue) {
     innerType,
     get defaultValue() {
       return typeof defaultValue === "function" ? defaultValue() : shallowClone(defaultValue);
-    }
+    },
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -12054,14 +12323,14 @@ function _nonoptional(Class2, innerType, params) {
   return new Class2({
     type: "nonoptional",
     innerType,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _success(Class2, innerType) {
   return new Class2({
     type: "success",
-    innerType
+    innerType,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -12069,7 +12338,7 @@ function _catch(Class2, innerType, catchValue) {
   return new Class2({
     type: "catch",
     innerType,
-    catchValue: typeof catchValue === "function" ? catchValue : () => catchValue
+    catchValue: typeof catchValue === "function" ? catchValue : () => catchValue,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -12077,14 +12346,14 @@ function _pipe(Class2, in_, out) {
   return new Class2({
     type: "pipe",
     in: in_,
-    out
+    out,
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _readonly(Class2, innerType) {
   return new Class2({
     type: "readonly",
-    innerType
+    innerType,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -12092,21 +12361,21 @@ function _templateLiteral(Class2, parts, params) {
   return new Class2({
     type: "template_literal",
     parts,
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _lazy(Class2, getter) {
   return new Class2({
     type: "lazy",
-    getter
+    getter,
   });
 }
 // @__NO_SIDE_EFFECTS__
 function _promise(Class2, innerType) {
   return new Class2({
     type: "promise",
-    innerType
+    innerType,
   });
 }
 // @__NO_SIDE_EFFECTS__
@@ -12117,7 +12386,7 @@ function _custom(Class2, fn, _params) {
     type: "custom",
     check: "custom",
     fn,
-    ...norm
+    ...norm,
   });
   return schema;
 }
@@ -12127,7 +12396,7 @@ function _refine(Class2, fn, _params) {
     type: "custom",
     check: "custom",
     fn,
-    ...normalizeParams(_params)
+    ...normalizeParams(_params),
   });
   return schema;
 }
@@ -12139,8 +12408,7 @@ function _superRefine(fn, params) {
         payload.issues.push(issue(issue2, payload.value, ch._zod.def));
       } else {
         const _issue = issue2;
-        if (_issue.fatal)
-          _issue.continue = false;
+        if (_issue.fatal) _issue.continue = false;
         _issue.code ?? (_issue.code = "custom");
         _issue.input ?? (_issue.input = payload.value);
         _issue.inst ?? (_issue.inst = ch);
@@ -12156,7 +12424,7 @@ function _superRefine(fn, params) {
 function _check(fn, params) {
   const ch = new $ZodCheck({
     check: "custom",
-    ...normalizeParams(params)
+    ...normalizeParams(params),
   });
   ch._zod.check = fn;
   return ch;
@@ -12168,10 +12436,9 @@ function describe(description) {
     (inst) => {
       const existing = globalRegistry.get(inst) ?? {};
       globalRegistry.add(inst, { ...existing, description });
-    }
+    },
   ];
-  ch._zod.check = () => {
-  };
+  ch._zod.check = () => {};
   return ch;
 }
 // @__NO_SIDE_EFFECTS__
@@ -12181,10 +12448,9 @@ function meta(metadata) {
     (inst) => {
       const existing = globalRegistry.get(inst) ?? {};
       globalRegistry.add(inst, { ...existing, ...metadata });
-    }
+    },
   ];
-  ch._zod.check = () => {
-  };
+  ch._zod.check = () => {};
   return ch;
 }
 // @__NO_SIDE_EFFECTS__
@@ -12193,8 +12459,8 @@ function _stringbool(Classes, _params) {
   let truthyArray = params.truthy ?? ["true", "1", "yes", "on", "y", "enabled"];
   let falsyArray = params.falsy ?? ["false", "0", "no", "off", "n", "disabled"];
   if (params.case !== "sensitive") {
-    truthyArray = truthyArray.map((v) => typeof v === "string" ? v.toLowerCase() : v);
-    falsyArray = falsyArray.map((v) => typeof v === "string" ? v.toLowerCase() : v);
+    truthyArray = truthyArray.map((v) => (typeof v === "string" ? v.toLowerCase() : v));
+    falsyArray = falsyArray.map((v) => (typeof v === "string" ? v.toLowerCase() : v));
   }
   const truthySet = new Set(truthyArray);
   const falsySet = new Set(falsyArray);
@@ -12207,10 +12473,9 @@ function _stringbool(Classes, _params) {
     type: "pipe",
     in: stringSchema,
     out: booleanSchema,
-    transform: ((input, payload) => {
+    transform: (input, payload) => {
       let data = input;
-      if (params.case !== "sensitive")
-        data = data.toLowerCase();
+      if (params.case !== "sensitive") data = data.toLowerCase();
       if (truthySet.has(data)) {
         return true;
       } else if (falsySet.has(data)) {
@@ -12222,19 +12487,19 @@ function _stringbool(Classes, _params) {
           values: [...truthySet, ...falsySet],
           input: payload.value,
           inst: codec2,
-          continue: false
+          continue: false,
         });
         return {};
       }
-    }),
-    reverseTransform: ((input, _payload) => {
+    },
+    reverseTransform: (input, _payload) => {
       if (input === true) {
         return truthyArray[0] || "true";
       } else {
         return falsyArray[0] || "false";
       }
-    }),
-    error: params.error
+    },
+    error: params.error,
   });
   return codec2;
 }
@@ -12247,7 +12512,7 @@ function _stringFormat(Class2, format, fnOrRegex, _params = {}) {
     type: "string",
     format,
     fn: typeof fnOrRegex === "function" ? fnOrRegex : (val) => fnOrRegex.test(val),
-    ...params
+    ...params,
   };
   if (fnOrRegex instanceof RegExp) {
     def.pattern = fnOrRegex;
@@ -12259,23 +12524,20 @@ function _stringFormat(Class2, format, fnOrRegex, _params = {}) {
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/core/to-json-schema.js
 function initializeContext(params) {
   let target2 = params?.target ?? "draft-2020-12";
-  if (target2 === "draft-4")
-    target2 = "draft-04";
-  if (target2 === "draft-7")
-    target2 = "draft-07";
+  if (target2 === "draft-4") target2 = "draft-04";
+  if (target2 === "draft-7") target2 = "draft-07";
   return {
     processors: params.processors ?? {},
     metadataRegistry: params?.metadata ?? globalRegistry,
     target: target2,
     unrepresentable: params?.unrepresentable ?? "throw",
-    override: params?.override ?? (() => {
-    }),
+    override: params?.override ?? (() => {}),
     io: params?.io ?? "output",
     counter: 0,
     seen: /* @__PURE__ */ new Map(),
     cycles: params?.cycles ?? "ref",
     reused: params?.reused ?? "inline",
-    external: params?.external ?? void 0
+    external: params?.external ?? void 0,
   };
 }
 function process2(schema, ctx, _params = { path: [], schemaPath: [] }) {
@@ -12299,7 +12561,7 @@ function process2(schema, ctx, _params = { path: [], schemaPath: [] }) {
     const params = {
       ..._params,
       schemaPath: [..._params.schemaPath, schema],
-      path: _params.path
+      path: _params.path,
     };
     if (schema._zod.processJSONSchema) {
       schema._zod.processJSONSchema(ctx, result.schema, params);
@@ -12313,15 +12575,13 @@ function process2(schema, ctx, _params = { path: [], schemaPath: [] }) {
     }
     const parent = schema._zod.parent;
     if (parent) {
-      if (!result.ref)
-        result.ref = parent;
+      if (!result.ref) result.ref = parent;
       process2(parent, ctx, params);
       ctx.seen.get(parent).isParent = true;
     }
   }
   const meta3 = ctx.metadataRegistry.get(schema);
-  if (meta3)
-    Object.assign(result.schema, meta3);
+  if (meta3) Object.assign(result.schema, meta3);
   if (ctx.io === "input" && isTransforming(schema)) {
     delete result.schema.examples;
     delete result.schema.default;
@@ -12334,15 +12594,16 @@ function process2(schema, ctx, _params = { path: [], schemaPath: [] }) {
 }
 function extractDefs(ctx, schema) {
   const root = ctx.seen.get(schema);
-  if (!root)
-    throw new Error("Unprocessed schema. This is a bug in Zod.");
+  if (!root) throw new Error("Unprocessed schema. This is a bug in Zod.");
   const idToSchema = /* @__PURE__ */ new Map();
   for (const entry of ctx.seen.entries()) {
     const id = ctx.metadataRegistry.get(entry[0])?.id;
     if (id) {
       const existing = idToSchema.get(id);
       if (existing && existing !== entry[0]) {
-        throw new Error(`Duplicate schema id "${id}" detected during JSON Schema conversion. Two different schemas cannot share the same id when converted together.`);
+        throw new Error(
+          `Duplicate schema id "${id}" detected during JSON Schema conversion. Two different schemas cannot share the same id when converted together.`,
+        );
       }
       idToSchema.set(id, entry[0]);
     }
@@ -12374,8 +12635,7 @@ function extractDefs(ctx, schema) {
     const seen = entry[1];
     const { ref, defId } = makeURI(entry);
     seen.def = { ...seen.schema };
-    if (defId)
-      seen.defId = defId;
+    if (defId) seen.defId = defId;
     const schema2 = seen.schema;
     for (const key in schema2) {
       delete schema2[key];
@@ -12424,12 +12684,10 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
 }
 function finalize(ctx, schema) {
   const root = ctx.seen.get(schema);
-  if (!root)
-    throw new Error("Unprocessed schema. This is a bug in Zod.");
+  if (!root) throw new Error("Unprocessed schema. This is a bug in Zod.");
   const flattenRef = (zodSchema) => {
     const seen = ctx.seen.get(zodSchema);
-    if (seen.ref === null)
-      return;
+    if (seen.ref === null) return;
     const schema2 = seen.def ?? seen.schema;
     const _cached = { ...schema2 };
     const ref = seen.ref;
@@ -12438,7 +12696,10 @@ function finalize(ctx, schema) {
       flattenRef(ref);
       const refSeen = ctx.seen.get(ref);
       const refSchema = refSeen.schema;
-      if (refSchema.$ref && (ctx.target === "draft-07" || ctx.target === "draft-04" || ctx.target === "openapi-3.0")) {
+      if (
+        refSchema.$ref &&
+        (ctx.target === "draft-07" || ctx.target === "draft-04" || ctx.target === "openapi-3.0")
+      ) {
         schema2.allOf = schema2.allOf ?? [];
         schema2.allOf.push(refSchema);
       } else {
@@ -12448,8 +12709,7 @@ function finalize(ctx, schema) {
       const isParentRef = zodSchema._zod.parent === ref;
       if (isParentRef) {
         for (const key in schema2) {
-          if (key === "$ref" || key === "allOf")
-            continue;
+          if (key === "$ref" || key === "allOf") continue;
           if (!(key in _cached)) {
             delete schema2[key];
           }
@@ -12457,9 +12717,11 @@ function finalize(ctx, schema) {
       }
       if (refSchema.$ref && refSeen.def) {
         for (const key in schema2) {
-          if (key === "$ref" || key === "allOf")
-            continue;
-          if (key in refSeen.def && JSON.stringify(schema2[key]) === JSON.stringify(refSeen.def[key])) {
+          if (key === "$ref" || key === "allOf") continue;
+          if (
+            key in refSeen.def &&
+            JSON.stringify(schema2[key]) === JSON.stringify(refSeen.def[key])
+          ) {
             delete schema2[key];
           }
         }
@@ -12473,9 +12735,11 @@ function finalize(ctx, schema) {
         schema2.$ref = parentSeen.schema.$ref;
         if (parentSeen.def) {
           for (const key in schema2) {
-            if (key === "$ref" || key === "allOf")
-              continue;
-            if (key in parentSeen.def && JSON.stringify(schema2[key]) === JSON.stringify(parentSeen.def[key])) {
+            if (key === "$ref" || key === "allOf") continue;
+            if (
+              key in parentSeen.def &&
+              JSON.stringify(schema2[key]) === JSON.stringify(parentSeen.def[key])
+            ) {
               delete schema2[key];
             }
           }
@@ -12485,7 +12749,7 @@ function finalize(ctx, schema) {
     ctx.override({
       zodSchema,
       jsonSchema: schema2,
-      path: seen.path ?? []
+      path: seen.path ?? [],
     });
   };
   for (const entry of [...ctx.seen.entries()].reverse()) {
@@ -12503,20 +12767,17 @@ function finalize(ctx, schema) {
   }
   if (ctx.external?.uri) {
     const id = ctx.external.registry.get(schema)?.id;
-    if (!id)
-      throw new Error("Schema is missing an `id` property");
+    if (!id) throw new Error("Schema is missing an `id` property");
     result.$id = ctx.external.uri(id);
   }
   Object.assign(result, root.def ?? root.schema);
   const rootMetaId = ctx.metadataRegistry.get(schema)?.id;
-  if (rootMetaId !== void 0 && result.id === rootMetaId)
-    delete result.id;
+  if (rootMetaId !== void 0 && result.id === rootMetaId) delete result.id;
   const defs = ctx.external?.defs ?? {};
   for (const entry of ctx.seen.entries()) {
     const seen = entry[1];
     if (seen.def && seen.defId) {
-      if (seen.def.id === seen.defId)
-        delete seen.def.id;
+      if (seen.def.id === seen.defId) delete seen.def.id;
       defs[seen.defId] = seen.def;
     }
   }
@@ -12537,11 +12798,11 @@ function finalize(ctx, schema) {
         ...schema["~standard"],
         jsonSchema: {
           input: createStandardJSONSchemaMethod(schema, "input", ctx.processors),
-          output: createStandardJSONSchemaMethod(schema, "output", ctx.processors)
-        }
+          output: createStandardJSONSchemaMethod(schema, "output", ctx.processors),
+        },
       },
       enumerable: false,
-      writable: false
+      writable: false,
     });
     return finalized;
   } catch (_err) {
@@ -12550,19 +12811,22 @@ function finalize(ctx, schema) {
 }
 function isTransforming(_schema, _ctx) {
   const ctx = _ctx ?? { seen: /* @__PURE__ */ new Set() };
-  if (ctx.seen.has(_schema))
-    return false;
+  if (ctx.seen.has(_schema)) return false;
   ctx.seen.add(_schema);
   const def = _schema._zod.def;
-  if (def.type === "transform")
-    return true;
-  if (def.type === "array")
-    return isTransforming(def.element, ctx);
-  if (def.type === "set")
-    return isTransforming(def.valueType, ctx);
-  if (def.type === "lazy")
-    return isTransforming(def.getter(), ctx);
-  if (def.type === "promise" || def.type === "optional" || def.type === "nonoptional" || def.type === "nullable" || def.type === "readonly" || def.type === "default" || def.type === "prefault") {
+  if (def.type === "transform") return true;
+  if (def.type === "array") return isTransforming(def.element, ctx);
+  if (def.type === "set") return isTransforming(def.valueType, ctx);
+  if (def.type === "lazy") return isTransforming(def.getter(), ctx);
+  if (
+    def.type === "promise" ||
+    def.type === "optional" ||
+    def.type === "nonoptional" ||
+    def.type === "nullable" ||
+    def.type === "readonly" ||
+    def.type === "default" ||
+    def.type === "prefault"
+  ) {
     return isTransforming(def.innerType, ctx);
   }
   if (def.type === "intersection") {
@@ -12572,48 +12836,47 @@ function isTransforming(_schema, _ctx) {
     return isTransforming(def.keyType, ctx) || isTransforming(def.valueType, ctx);
   }
   if (def.type === "pipe") {
-    if (_schema._zod.traits.has("$ZodCodec"))
-      return true;
+    if (_schema._zod.traits.has("$ZodCodec")) return true;
     return isTransforming(def.in, ctx) || isTransforming(def.out, ctx);
   }
   if (def.type === "object") {
     for (const key in def.shape) {
-      if (isTransforming(def.shape[key], ctx))
-        return true;
+      if (isTransforming(def.shape[key], ctx)) return true;
     }
     return false;
   }
   if (def.type === "union") {
     for (const option of def.options) {
-      if (isTransforming(option, ctx))
-        return true;
+      if (isTransforming(option, ctx)) return true;
     }
     return false;
   }
   if (def.type === "tuple") {
     for (const item of def.items) {
-      if (isTransforming(item, ctx))
-        return true;
+      if (isTransforming(item, ctx)) return true;
     }
-    if (def.rest && isTransforming(def.rest, ctx))
-      return true;
+    if (def.rest && isTransforming(def.rest, ctx)) return true;
     return false;
   }
   return false;
 }
-var createToJSONSchemaMethod = (schema, processors = {}) => (params) => {
-  const ctx = initializeContext({ ...params, processors });
-  process2(schema, ctx);
-  extractDefs(ctx, schema);
-  return finalize(ctx, schema);
-};
-var createStandardJSONSchemaMethod = (schema, io, processors = {}) => (params) => {
-  const { libraryOptions, target: target2 } = params ?? {};
-  const ctx = initializeContext({ ...libraryOptions ?? {}, target: target2, io, processors });
-  process2(schema, ctx);
-  extractDefs(ctx, schema);
-  return finalize(ctx, schema);
-};
+var createToJSONSchemaMethod =
+  (schema, processors = {}) =>
+  (params) => {
+    const ctx = initializeContext({ ...params, processors });
+    process2(schema, ctx);
+    extractDefs(ctx, schema);
+    return finalize(ctx, schema);
+  };
+var createStandardJSONSchemaMethod =
+  (schema, io, processors = {}) =>
+  (params) => {
+    const { libraryOptions, target: target2 } = params ?? {};
+    const ctx = initializeContext({ ...(libraryOptions ?? {}), target: target2, io, processors });
+    process2(schema, ctx);
+    extractDefs(ctx, schema);
+    return finalize(ctx, schema);
+  };
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/core/json-schema-processors.js
 var formatMap = {
@@ -12621,50 +12884,50 @@ var formatMap = {
   url: "uri",
   datetime: "date-time",
   json_string: "json-string",
-  regex: ""
+  regex: "",
   // do not set
 };
 var stringProcessor = (schema, ctx, _json, _params) => {
   const json2 = _json;
   json2.type = "string";
   const { minimum, maximum, format, patterns, contentEncoding } = schema._zod.bag;
-  if (typeof minimum === "number")
-    json2.minLength = minimum;
-  if (typeof maximum === "number")
-    json2.maxLength = maximum;
+  if (typeof minimum === "number") json2.minLength = minimum;
+  if (typeof maximum === "number") json2.maxLength = maximum;
   if (format) {
     json2.format = formatMap[format] ?? format;
-    if (json2.format === "")
-      delete json2.format;
+    if (json2.format === "") delete json2.format;
     if (format === "time") {
       delete json2.format;
     }
   }
-  if (contentEncoding)
-    json2.contentEncoding = contentEncoding;
+  if (contentEncoding) json2.contentEncoding = contentEncoding;
   if (patterns && patterns.size > 0) {
     const regexes = [...patterns];
-    if (regexes.length === 1)
-      json2.pattern = regexes[0].source;
+    if (regexes.length === 1) json2.pattern = regexes[0].source;
     else if (regexes.length > 1) {
       json2.allOf = [
         ...regexes.map((regex) => ({
-          ...ctx.target === "draft-07" || ctx.target === "draft-04" || ctx.target === "openapi-3.0" ? { type: "string" } : {},
-          pattern: regex.source
-        }))
+          ...(ctx.target === "draft-07" || ctx.target === "draft-04" || ctx.target === "openapi-3.0"
+            ? { type: "string" }
+            : {}),
+          pattern: regex.source,
+        })),
       ];
     }
   }
 };
 var numberProcessor = (schema, ctx, _json, _params) => {
   const json2 = _json;
-  const { minimum, maximum, format, multipleOf, exclusiveMaximum, exclusiveMinimum } = schema._zod.bag;
-  if (typeof format === "string" && format.includes("int"))
-    json2.type = "integer";
-  else
-    json2.type = "number";
-  const exMin = typeof exclusiveMinimum === "number" && exclusiveMinimum >= (minimum ?? Number.NEGATIVE_INFINITY);
-  const exMax = typeof exclusiveMaximum === "number" && exclusiveMaximum <= (maximum ?? Number.POSITIVE_INFINITY);
+  const { minimum, maximum, format, multipleOf, exclusiveMaximum, exclusiveMinimum } =
+    schema._zod.bag;
+  if (typeof format === "string" && format.includes("int")) json2.type = "integer";
+  else json2.type = "number";
+  const exMin =
+    typeof exclusiveMinimum === "number" &&
+    exclusiveMinimum >= (minimum ?? Number.NEGATIVE_INFINITY);
+  const exMax =
+    typeof exclusiveMaximum === "number" &&
+    exclusiveMaximum <= (maximum ?? Number.POSITIVE_INFINITY);
   const legacy = ctx.target === "draft-04" || ctx.target === "openapi-3.0";
   if (exMin) {
     if (legacy) {
@@ -12686,8 +12949,7 @@ var numberProcessor = (schema, ctx, _json, _params) => {
   } else if (typeof maximum === "number") {
     json2.maximum = maximum;
   }
-  if (typeof multipleOf === "number")
-    json2.multipleOf = multipleOf;
+  if (typeof multipleOf === "number") json2.multipleOf = multipleOf;
 };
 var booleanProcessor = (_schema, _ctx, json2, _params) => {
   json2.type = "boolean";
@@ -12724,10 +12986,8 @@ var voidProcessor = (_schema, ctx, _json, _params) => {
 var neverProcessor = (_schema, _ctx, json2, _params) => {
   json2.not = {};
 };
-var anyProcessor = (_schema, _ctx, _json, _params) => {
-};
-var unknownProcessor = (_schema, _ctx, _json, _params) => {
-};
+var anyProcessor = (_schema, _ctx, _json, _params) => {};
+var unknownProcessor = (_schema, _ctx, _json, _params) => {};
 var dateProcessor = (_schema, ctx, _json, _params) => {
   if (ctx.unrepresentable === "throw") {
     throw new Error("Date cannot be represented in JSON Schema");
@@ -12736,10 +12996,8 @@ var dateProcessor = (_schema, ctx, _json, _params) => {
 var enumProcessor = (schema, _ctx, json2, _params) => {
   const def = schema._zod.def;
   const values = getEnumValues(def.entries);
-  if (values.every((v) => typeof v === "number"))
-    json2.type = "number";
-  if (values.every((v) => typeof v === "string"))
-    json2.type = "string";
+  if (values.every((v) => typeof v === "number")) json2.type = "number";
+  if (values.every((v) => typeof v === "string")) json2.type = "string";
   json2.enum = values;
 };
 var literalProcessor = (schema, ctx, json2, _params) => {
@@ -12771,14 +13029,10 @@ var literalProcessor = (schema, ctx, json2, _params) => {
       json2.const = val;
     }
   } else {
-    if (vals.every((v) => typeof v === "number"))
-      json2.type = "number";
-    if (vals.every((v) => typeof v === "string"))
-      json2.type = "string";
-    if (vals.every((v) => typeof v === "boolean"))
-      json2.type = "boolean";
-    if (vals.every((v) => v === null))
-      json2.type = "null";
+    if (vals.every((v) => typeof v === "number")) json2.type = "number";
+    if (vals.every((v) => typeof v === "string")) json2.type = "string";
+    if (vals.every((v) => typeof v === "boolean")) json2.type = "boolean";
+    if (vals.every((v) => v === null)) json2.type = "null";
     json2.enum = vals;
   }
 };
@@ -12790,8 +13044,7 @@ var nanProcessor = (_schema, ctx, _json, _params) => {
 var templateLiteralProcessor = (schema, _ctx, json2, _params) => {
   const _json = json2;
   const pattern = schema._zod.pattern;
-  if (!pattern)
-    throw new Error("Pattern not found in template literal");
+  if (!pattern) throw new Error("Pattern not found in template literal");
   _json.type = "string";
   _json.pattern = pattern.source;
 };
@@ -12800,13 +13053,11 @@ var fileProcessor = (schema, _ctx, json2, _params) => {
   const file2 = {
     type: "string",
     format: "binary",
-    contentEncoding: "binary"
+    contentEncoding: "binary",
   };
   const { minimum, maximum, mime } = schema._zod.bag;
-  if (minimum !== void 0)
-    file2.minLength = minimum;
-  if (maximum !== void 0)
-    file2.maxLength = maximum;
+  if (minimum !== void 0) file2.minLength = minimum;
+  if (maximum !== void 0) file2.maxLength = maximum;
   if (mime) {
     if (mime.length === 1) {
       file2.contentMediaType = mime[0];
@@ -12851,14 +13102,12 @@ var arrayProcessor = (schema, ctx, _json, params) => {
   const json2 = _json;
   const def = schema._zod.def;
   const { minimum, maximum } = schema._zod.bag;
-  if (typeof minimum === "number")
-    json2.minItems = minimum;
-  if (typeof maximum === "number")
-    json2.maxItems = maximum;
+  if (typeof minimum === "number") json2.minItems = minimum;
+  if (typeof maximum === "number") json2.maxItems = maximum;
   json2.type = "array";
   json2.items = process2(def.element, ctx, {
     ...params,
-    path: [...params.path, "items"]
+    path: [...params.path, "items"],
   });
 };
 var objectProcessor = (schema, ctx, _json, params) => {
@@ -12870,40 +13119,43 @@ var objectProcessor = (schema, ctx, _json, params) => {
   for (const key in shape) {
     json2.properties[key] = process2(shape[key], ctx, {
       ...params,
-      path: [...params.path, "properties", key]
+      path: [...params.path, "properties", key],
     });
   }
   const allKeys = new Set(Object.keys(shape));
-  const requiredKeys = new Set([...allKeys].filter((key) => {
-    const v = def.shape[key]._zod;
-    if (ctx.io === "input") {
-      return v.optin === void 0;
-    } else {
-      return v.optout === void 0;
-    }
-  }));
+  const requiredKeys = new Set(
+    [...allKeys].filter((key) => {
+      const v = def.shape[key]._zod;
+      if (ctx.io === "input") {
+        return v.optin === void 0;
+      } else {
+        return v.optout === void 0;
+      }
+    }),
+  );
   if (requiredKeys.size > 0) {
     json2.required = Array.from(requiredKeys);
   }
   if (def.catchall?._zod.def.type === "never") {
     json2.additionalProperties = false;
   } else if (!def.catchall) {
-    if (ctx.io === "output")
-      json2.additionalProperties = false;
+    if (ctx.io === "output") json2.additionalProperties = false;
   } else if (def.catchall) {
     json2.additionalProperties = process2(def.catchall, ctx, {
       ...params,
-      path: [...params.path, "additionalProperties"]
+      path: [...params.path, "additionalProperties"],
     });
   }
 };
 var unionProcessor = (schema, ctx, json2, params) => {
   const def = schema._zod.def;
   const isExclusive = def.inclusive === false;
-  const options = def.options.map((x, i) => process2(x, ctx, {
-    ...params,
-    path: [...params.path, isExclusive ? "oneOf" : "anyOf", i]
-  }));
+  const options = def.options.map((x, i) =>
+    process2(x, ctx, {
+      ...params,
+      path: [...params.path, isExclusive ? "oneOf" : "anyOf", i],
+    }),
+  );
   if (isExclusive) {
     json2.oneOf = options;
   } else {
@@ -12914,16 +13166,16 @@ var intersectionProcessor = (schema, ctx, json2, params) => {
   const def = schema._zod.def;
   const a = process2(def.left, ctx, {
     ...params,
-    path: [...params.path, "allOf", 0]
+    path: [...params.path, "allOf", 0],
   });
   const b = process2(def.right, ctx, {
     ...params,
-    path: [...params.path, "allOf", 1]
+    path: [...params.path, "allOf", 1],
   });
   const isSimpleIntersection = (val) => "allOf" in val && Object.keys(val).length === 1;
   const allOf = [
-    ...isSimpleIntersection(a) ? a.allOf : [a],
-    ...isSimpleIntersection(b) ? b.allOf : [b]
+    ...(isSimpleIntersection(a) ? a.allOf : [a]),
+    ...(isSimpleIntersection(b) ? b.allOf : [b]),
   ];
   json2.allOf = allOf;
 };
@@ -12932,15 +13184,28 @@ var tupleProcessor = (schema, ctx, _json, params) => {
   const def = schema._zod.def;
   json2.type = "array";
   const prefixPath = ctx.target === "draft-2020-12" ? "prefixItems" : "items";
-  const restPath = ctx.target === "draft-2020-12" ? "items" : ctx.target === "openapi-3.0" ? "items" : "additionalItems";
-  const prefixItems = def.items.map((x, i) => process2(x, ctx, {
-    ...params,
-    path: [...params.path, prefixPath, i]
-  }));
-  const rest = def.rest ? process2(def.rest, ctx, {
-    ...params,
-    path: [...params.path, restPath, ...ctx.target === "openapi-3.0" ? [def.items.length] : []]
-  }) : null;
+  const restPath =
+    ctx.target === "draft-2020-12"
+      ? "items"
+      : ctx.target === "openapi-3.0"
+        ? "items"
+        : "additionalItems";
+  const prefixItems = def.items.map((x, i) =>
+    process2(x, ctx, {
+      ...params,
+      path: [...params.path, prefixPath, i],
+    }),
+  );
+  const rest = def.rest
+    ? process2(def.rest, ctx, {
+        ...params,
+        path: [
+          ...params.path,
+          restPath,
+          ...(ctx.target === "openapi-3.0" ? [def.items.length] : []),
+        ],
+      })
+    : null;
   if (ctx.target === "draft-2020-12") {
     json2.prefixItems = prefixItems;
     if (rest) {
@@ -12948,7 +13213,7 @@ var tupleProcessor = (schema, ctx, _json, params) => {
     }
   } else if (ctx.target === "openapi-3.0") {
     json2.items = {
-      anyOf: prefixItems
+      anyOf: prefixItems,
     };
     if (rest) {
       json2.items.anyOf.push(rest);
@@ -12964,10 +13229,8 @@ var tupleProcessor = (schema, ctx, _json, params) => {
     }
   }
   const { minimum, maximum } = schema._zod.bag;
-  if (typeof minimum === "number")
-    json2.minItems = minimum;
-  if (typeof maximum === "number")
-    json2.maxItems = maximum;
+  if (typeof minimum === "number") json2.minItems = minimum;
+  if (typeof maximum === "number") json2.maxItems = maximum;
 };
 var recordProcessor = (schema, ctx, _json, params) => {
   const json2 = _json;
@@ -12979,7 +13242,7 @@ var recordProcessor = (schema, ctx, _json, params) => {
   if (def.mode === "loose" && patterns && patterns.size > 0) {
     const valueSchema = process2(def.valueType, ctx, {
       ...params,
-      path: [...params.path, "patternProperties", "*"]
+      path: [...params.path, "patternProperties", "*"],
     });
     json2.patternProperties = {};
     for (const pattern of patterns) {
@@ -12989,17 +13252,19 @@ var recordProcessor = (schema, ctx, _json, params) => {
     if (ctx.target === "draft-07" || ctx.target === "draft-2020-12") {
       json2.propertyNames = process2(def.keyType, ctx, {
         ...params,
-        path: [...params.path, "propertyNames"]
+        path: [...params.path, "propertyNames"],
       });
     }
     json2.additionalProperties = process2(def.valueType, ctx, {
       ...params,
-      path: [...params.path, "additionalProperties"]
+      path: [...params.path, "additionalProperties"],
     });
   }
   const keyValues = keyType._zod.values;
   if (keyValues) {
-    const validKeyValues = [...keyValues].filter((v) => typeof v === "string" || typeof v === "number");
+    const validKeyValues = [...keyValues].filter(
+      (v) => typeof v === "string" || typeof v === "number",
+    );
     if (validKeyValues.length > 0) {
       json2.required = validKeyValues;
     }
@@ -13034,8 +13299,7 @@ var prefaultProcessor = (schema, ctx, json2, params) => {
   process2(def.innerType, ctx, params);
   const seen = ctx.seen.get(schema);
   seen.ref = def.innerType;
-  if (ctx.io === "input")
-    json2._prefault = JSON.parse(JSON.stringify(def.defaultValue));
+  if (ctx.io === "input") json2._prefault = JSON.parse(JSON.stringify(def.defaultValue));
 };
 var catchProcessor = (schema, ctx, json2, params) => {
   const def = schema._zod.def;
@@ -13053,7 +13317,7 @@ var catchProcessor = (schema, ctx, json2, params) => {
 var pipeProcessor = (schema, ctx, _json, params) => {
   const def = schema._zod.def;
   const inIsTransform = def.in._zod.traits.has("$ZodTransform");
-  const innerType = ctx.io === "input" ? inIsTransform ? def.out : def.in : def.out;
+  const innerType = ctx.io === "input" ? (inIsTransform ? def.out : def.in) : def.out;
   process2(innerType, ctx, params);
   const seen = ctx.seen.get(schema);
   seen.ref = innerType;
@@ -13122,7 +13386,7 @@ var allProcessors = {
   readonly: readonlyProcessor,
   promise: promiseProcessor,
   optional: optionalProcessor,
-  lazy: lazyProcessor
+  lazy: lazyProcessor,
 };
 function toJSONSchema(input, params) {
   if ("_idmap" in input) {
@@ -13137,7 +13401,7 @@ function toJSONSchema(input, params) {
     const external = {
       registry: registry2,
       uri: params?.uri,
-      defs
+      defs,
     };
     ctx2.external = external;
     for (const entry of registry2._idmap.entries()) {
@@ -13148,7 +13412,7 @@ function toJSONSchema(input, params) {
     if (Object.keys(defs).length > 0) {
       const defsSegment = ctx2.target === "draft-2020-12" ? "$defs" : "definitions";
       schemas.__shared = {
-        [defsSegment]: defs
+        [defsSegment]: defs,
       };
     }
     return { schemas };
@@ -13194,17 +13458,15 @@ var JSONSchemaGenerator = class {
   }
   constructor(params) {
     let normalizedTarget = params?.target ?? "draft-2020-12";
-    if (normalizedTarget === "draft-4")
-      normalizedTarget = "draft-04";
-    if (normalizedTarget === "draft-7")
-      normalizedTarget = "draft-07";
+    if (normalizedTarget === "draft-4") normalizedTarget = "draft-04";
+    if (normalizedTarget === "draft-7") normalizedTarget = "draft-07";
     this.ctx = initializeContext({
       processors: allProcessors,
       target: normalizedTarget,
-      ...params?.metadata && { metadata: params.metadata },
-      ...params?.unrepresentable && { unrepresentable: params.unrepresentable },
-      ...params?.override && { override: params.override },
-      ...params?.io && { io: params.io }
+      ...(params?.metadata && { metadata: params.metadata }),
+      ...(params?.unrepresentable && { unrepresentable: params.unrepresentable }),
+      ...(params?.override && { override: params.override }),
+      ...(params?.io && { io: params.io }),
     });
   }
   /**
@@ -13220,12 +13482,9 @@ var JSONSchemaGenerator = class {
    */
   emit(schema, _params) {
     if (_params) {
-      if (_params.cycles)
-        this.ctx.cycles = _params.cycles;
-      if (_params.reused)
-        this.ctx.reused = _params.reused;
-      if (_params.external)
-        this.ctx.external = _params.external;
+      if (_params.cycles) this.ctx.cycles = _params.cycles;
+      if (_params.reused) this.ctx.reused = _params.reused;
+      if (_params.external) this.ctx.external = _params.external;
     }
     extractDefs(this.ctx, schema);
     const result = finalize(this.ctx, schema);
@@ -13405,7 +13664,7 @@ __export(schemas_exports2, {
   uuidv7: () => uuidv7,
   void: () => _void2,
   xid: () => xid2,
-  xor: () => xor
+  xor: () => xor,
 });
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/classic/checks.js
@@ -13439,7 +13698,7 @@ __export(checks_exports2, {
   toLowerCase: () => _toLowerCase,
   toUpperCase: () => _toUpperCase,
   trim: () => _trim,
-  uppercase: () => _uppercase
+  uppercase: () => _uppercase,
 });
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/classic/iso.js
@@ -13452,7 +13711,7 @@ __export(iso_exports, {
   date: () => date2,
   datetime: () => datetime2,
   duration: () => duration2,
-  time: () => time2
+  time: () => time2,
 });
 var ZodISODateTime = /* @__PURE__ */ $constructor("ZodISODateTime", (inst, def) => {
   $ZodISODateTime.init(inst, def);
@@ -13489,38 +13748,38 @@ var initializer2 = (inst, issues) => {
   inst.name = "ZodError";
   Object.defineProperties(inst, {
     format: {
-      value: (mapper) => formatError(inst, mapper)
+      value: (mapper) => formatError(inst, mapper),
       // enumerable: false,
     },
     flatten: {
-      value: (mapper) => flattenError(inst, mapper)
+      value: (mapper) => flattenError(inst, mapper),
       // enumerable: false,
     },
     addIssue: {
       value: (issue2) => {
         inst.issues.push(issue2);
         inst.message = JSON.stringify(inst.issues, jsonStringifyReplacer, 2);
-      }
+      },
       // enumerable: false,
     },
     addIssues: {
       value: (issues2) => {
         inst.issues.push(...issues2);
         inst.message = JSON.stringify(inst.issues, jsonStringifyReplacer, 2);
-      }
+      },
       // enumerable: false,
     },
     isEmpty: {
       get() {
         return inst.issues.length === 0;
-      }
+      },
       // enumerable: false,
-    }
+    },
   });
 };
 var ZodError = /* @__PURE__ */ $constructor("ZodError", initializer2);
 var ZodRealError = /* @__PURE__ */ $constructor("ZodError", initializer2, {
-  Parent: Error
+  Parent: Error,
 });
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/classic/parse.js
@@ -13546,8 +13805,7 @@ function _installLazyMethods(inst, group, methods) {
     installed = /* @__PURE__ */ new Set();
     _installedGroups.set(proto, installed);
   }
-  if (installed.has(group))
-    return;
+  if (installed.has(group)) return;
   installed.add(group);
   for (const key in methods) {
     const fn = methods[key];
@@ -13560,7 +13818,7 @@ function _installLazyMethods(inst, group, methods) {
           configurable: true,
           writable: true,
           enumerable: true,
-          value: bound
+          value: bound,
         });
         return bound;
       },
@@ -13569,9 +13827,9 @@ function _installLazyMethods(inst, group, methods) {
           configurable: true,
           writable: true,
           enumerable: true,
-          value: v
+          value: v,
         });
-      }
+      },
     });
   }
 }
@@ -13580,8 +13838,8 @@ var ZodType = /* @__PURE__ */ $constructor("ZodType", (inst, def) => {
   Object.assign(inst["~standard"], {
     jsonSchema: {
       input: createStandardJSONSchemaMethod(inst, "input"),
-      output: createStandardJSONSchemaMethod(inst, "output")
-    }
+      output: createStandardJSONSchemaMethod(inst, "output"),
+    },
   });
   inst.toJSONSchema = createToJSONSchemaMethod(inst, {});
   inst.def = def;
@@ -13589,7 +13847,8 @@ var ZodType = /* @__PURE__ */ $constructor("ZodType", (inst, def) => {
   Object.defineProperty(inst, "_def", { value: def });
   inst.parse = (data, params) => parse2(inst, data, params, { callee: inst.parse });
   inst.safeParse = (data, params) => safeParse2(inst, data, params);
-  inst.parseAsync = async (data, params) => parseAsync2(inst, data, params, { callee: inst.parseAsync });
+  inst.parseAsync = async (data, params) =>
+    parseAsync2(inst, data, params, { callee: inst.parseAsync });
   inst.safeParseAsync = async (data, params) => safeParseAsync2(inst, data, params);
   inst.spa = inst.safeParseAsync;
   inst.encode = (data, params) => encode2(inst, data, params);
@@ -13603,12 +13862,19 @@ var ZodType = /* @__PURE__ */ $constructor("ZodType", (inst, def) => {
   _installLazyMethods(inst, "ZodType", {
     check(...chks) {
       const def2 = this.def;
-      return this.clone(util_exports.mergeDefs(def2, {
-        checks: [
-          ...def2.checks ?? [],
-          ...chks.map((ch) => typeof ch === "function" ? { _zod: { check: ch, def: { check: "custom" }, onattach: [] } } : ch)
-        ]
-      }), { parent: true });
+      return this.clone(
+        util_exports.mergeDefs(def2, {
+          checks: [
+            ...(def2.checks ?? []),
+            ...chks.map((ch) =>
+              typeof ch === "function"
+                ? { _zod: { check: ch, def: { check: "custom" }, onattach: [] } }
+                : ch,
+            ),
+          ],
+        }),
+        { parent: true },
+      );
     },
     with(...chks) {
       return this.check(...chks);
@@ -13680,8 +13946,7 @@ var ZodType = /* @__PURE__ */ $constructor("ZodType", (inst, def) => {
       return cl;
     },
     meta(...args) {
-      if (args.length === 0)
-        return globalRegistry.get(this);
+      if (args.length === 0) return globalRegistry.get(this);
       const cl = this.clone();
       globalRegistry.add(cl, args[0]);
       return cl;
@@ -13694,13 +13959,13 @@ var ZodType = /* @__PURE__ */ $constructor("ZodType", (inst, def) => {
     },
     apply(fn) {
       return fn(this);
-    }
+    },
   });
   Object.defineProperty(inst, "description", {
     get() {
       return globalRegistry.get(inst)?.description;
     },
-    configurable: true
+    configurable: true,
   });
   return inst;
 });
@@ -13757,7 +14022,7 @@ var _ZodString = /* @__PURE__ */ $constructor("_ZodString", (inst, def) => {
     },
     slugify() {
       return this.check(_slugify());
-    }
+    },
   });
 });
 var ZodString = /* @__PURE__ */ $constructor("ZodString", (inst, def) => {
@@ -13839,7 +14104,7 @@ function httpUrl(params) {
   return _url(ZodURL, {
     protocol: regexes_exports.httpProtocol,
     hostname: regexes_exports.domain,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodEmoji = /* @__PURE__ */ $constructor("ZodEmoji", (inst, def) => {
@@ -13971,8 +14236,7 @@ function hash(alg, params) {
   const enc = params?.enc ?? "hex";
   const format = `${alg}_${enc}`;
   const regex = regexes_exports[format];
-  if (!regex)
-    throw new Error(`Unrecognized hash format: ${format}`);
+  if (!regex) throw new Error(`Unrecognized hash format: ${format}`);
   return _stringFormat(ZodCustomStringFormat, format, regex, params);
 }
 var ZodNumber = /* @__PURE__ */ $constructor("ZodNumber", (inst, def) => {
@@ -14024,11 +14288,19 @@ var ZodNumber = /* @__PURE__ */ $constructor("ZodNumber", (inst, def) => {
     },
     finite() {
       return this;
-    }
+    },
   });
   const bag = inst._zod.bag;
-  inst.minValue = Math.max(bag.minimum ?? Number.NEGATIVE_INFINITY, bag.exclusiveMinimum ?? Number.NEGATIVE_INFINITY) ?? null;
-  inst.maxValue = Math.min(bag.maximum ?? Number.POSITIVE_INFINITY, bag.exclusiveMaximum ?? Number.POSITIVE_INFINITY) ?? null;
+  inst.minValue =
+    Math.max(
+      bag.minimum ?? Number.NEGATIVE_INFINITY,
+      bag.exclusiveMinimum ?? Number.NEGATIVE_INFINITY,
+    ) ?? null;
+  inst.maxValue =
+    Math.min(
+      bag.maximum ?? Number.POSITIVE_INFINITY,
+      bag.exclusiveMaximum ?? Number.POSITIVE_INFINITY,
+    ) ?? null;
   inst.isInt = (bag.format ?? "").includes("int") || Number.isSafeInteger(bag.multipleOf ?? 0.5);
   inst.isFinite = true;
   inst.format = bag.format ?? null;
@@ -14109,7 +14381,8 @@ function symbol(params) {
 var ZodUndefined = /* @__PURE__ */ $constructor("ZodUndefined", (inst, def) => {
   $ZodUndefined.init(inst, def);
   ZodType.init(inst, def);
-  inst._zod.processJSONSchema = (ctx, json2, params) => undefinedProcessor(inst, ctx, json2, params);
+  inst._zod.processJSONSchema = (ctx, json2, params) =>
+    undefinedProcessor(inst, ctx, json2, params);
 });
 function _undefined3(params) {
   return _undefined2(ZodUndefined, params);
@@ -14187,7 +14460,7 @@ var ZodArray = /* @__PURE__ */ $constructor("ZodArray", (inst, def) => {
     },
     unwrap() {
       return this.element;
-    }
+    },
   });
 });
 function array(element, params) {
@@ -14243,14 +14516,14 @@ var ZodObject = /* @__PURE__ */ $constructor("ZodObject", (inst, def) => {
     },
     required(...args) {
       return util_exports.required(ZodNonOptional, this, args[0]);
-    }
+    },
   });
 });
 function object(shape, params) {
   const def = {
     type: "object",
     shape: shape ?? {},
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   };
   return new ZodObject(def);
 }
@@ -14259,7 +14532,7 @@ function strictObject(shape, params) {
     type: "object",
     shape,
     catchall: never(),
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 function looseObject(shape, params) {
@@ -14267,7 +14540,7 @@ function looseObject(shape, params) {
     type: "object",
     shape,
     catchall: unknown(),
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodUnion = /* @__PURE__ */ $constructor("ZodUnion", (inst, def) => {
@@ -14280,7 +14553,7 @@ function union(options, params) {
   return new ZodUnion({
     type: "union",
     options,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodXor = /* @__PURE__ */ $constructor("ZodXor", (inst, def) => {
@@ -14294,7 +14567,7 @@ function xor(options, params) {
     type: "union",
     options,
     inclusive: false,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodDiscriminatedUnion = /* @__PURE__ */ $constructor("ZodDiscriminatedUnion", (inst, def) => {
@@ -14306,29 +14579,31 @@ function discriminatedUnion(discriminator, options, params) {
     type: "union",
     options,
     discriminator,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodIntersection = /* @__PURE__ */ $constructor("ZodIntersection", (inst, def) => {
   $ZodIntersection.init(inst, def);
   ZodType.init(inst, def);
-  inst._zod.processJSONSchema = (ctx, json2, params) => intersectionProcessor(inst, ctx, json2, params);
+  inst._zod.processJSONSchema = (ctx, json2, params) =>
+    intersectionProcessor(inst, ctx, json2, params);
 });
 function intersection(left, right) {
   return new ZodIntersection({
     type: "intersection",
     left,
-    right
+    right,
   });
 }
 var ZodTuple = /* @__PURE__ */ $constructor("ZodTuple", (inst, def) => {
   $ZodTuple.init(inst, def);
   ZodType.init(inst, def);
   inst._zod.processJSONSchema = (ctx, json2, params) => tupleProcessor(inst, ctx, json2, params);
-  inst.rest = (rest) => inst.clone({
-    ...inst._zod.def,
-    rest
-  });
+  inst.rest = (rest) =>
+    inst.clone({
+      ...inst._zod.def,
+      rest,
+    });
 });
 function tuple(items, _paramsOrRest, _params) {
   const hasRest = _paramsOrRest instanceof $ZodType;
@@ -14338,7 +14613,7 @@ function tuple(items, _paramsOrRest, _params) {
     type: "tuple",
     items,
     rest,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodRecord = /* @__PURE__ */ $constructor("ZodRecord", (inst, def) => {
@@ -14354,14 +14629,14 @@ function record(keyType, valueType, params) {
       type: "record",
       keyType: string2(),
       valueType: keyType,
-      ...util_exports.normalizeParams(valueType)
+      ...util_exports.normalizeParams(valueType),
     });
   }
   return new ZodRecord({
     type: "record",
     keyType,
     valueType,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 function partialRecord(keyType, valueType, params) {
@@ -14371,7 +14646,7 @@ function partialRecord(keyType, valueType, params) {
     type: "record",
     keyType: k,
     valueType,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 function looseRecord(keyType, valueType, params) {
@@ -14380,7 +14655,7 @@ function looseRecord(keyType, valueType, params) {
     keyType,
     valueType,
     mode: "loose",
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodMap = /* @__PURE__ */ $constructor("ZodMap", (inst, def) => {
@@ -14399,7 +14674,7 @@ function map(keyType, valueType, params) {
     type: "map",
     keyType,
     valueType,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodSet = /* @__PURE__ */ $constructor("ZodSet", (inst, def) => {
@@ -14415,7 +14690,7 @@ function set(valueType, params) {
   return new ZodSet({
     type: "set",
     valueType,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodEnum = /* @__PURE__ */ $constructor("ZodEnum", (inst, def) => {
@@ -14430,14 +14705,13 @@ var ZodEnum = /* @__PURE__ */ $constructor("ZodEnum", (inst, def) => {
     for (const value of values) {
       if (keys.has(value)) {
         newEntries[value] = def.entries[value];
-      } else
-        throw new Error(`Key ${value} not found in enum`);
+      } else throw new Error(`Key ${value} not found in enum`);
     }
     return new ZodEnum({
       ...def,
       checks: [],
       ...util_exports.normalizeParams(params),
-      entries: newEntries
+      entries: newEntries,
     });
   };
   inst.exclude = (values, params) => {
@@ -14445,14 +14719,13 @@ var ZodEnum = /* @__PURE__ */ $constructor("ZodEnum", (inst, def) => {
     for (const value of values) {
       if (keys.has(value)) {
         delete newEntries[value];
-      } else
-        throw new Error(`Key ${value} not found in enum`);
+      } else throw new Error(`Key ${value} not found in enum`);
     }
     return new ZodEnum({
       ...def,
       checks: [],
       ...util_exports.normalizeParams(params),
-      entries: newEntries
+      entries: newEntries,
     });
   };
 });
@@ -14461,14 +14734,14 @@ function _enum2(values, params) {
   return new ZodEnum({
     type: "enum",
     entries,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 function nativeEnum(entries, params) {
   return new ZodEnum({
     type: "enum",
     entries,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodLiteral = /* @__PURE__ */ $constructor("ZodLiteral", (inst, def) => {
@@ -14479,17 +14752,19 @@ var ZodLiteral = /* @__PURE__ */ $constructor("ZodLiteral", (inst, def) => {
   Object.defineProperty(inst, "value", {
     get() {
       if (def.values.length > 1) {
-        throw new Error("This schema contains multiple valid literal values. Use `.values` instead.");
+        throw new Error(
+          "This schema contains multiple valid literal values. Use `.values` instead.",
+        );
       }
       return def.values[0];
-    }
+    },
   });
 });
 function literal(value, params) {
   return new ZodLiteral({
     type: "literal",
     values: Array.isArray(value) ? value : [value],
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodFile = /* @__PURE__ */ $constructor("ZodFile", (inst, def) => {
@@ -14506,7 +14781,8 @@ function file(params) {
 var ZodTransform = /* @__PURE__ */ $constructor("ZodTransform", (inst, def) => {
   $ZodTransform.init(inst, def);
   ZodType.init(inst, def);
-  inst._zod.processJSONSchema = (ctx, json2, params) => transformProcessor(inst, ctx, json2, params);
+  inst._zod.processJSONSchema = (ctx, json2, params) =>
+    transformProcessor(inst, ctx, json2, params);
   inst._zod.parse = (payload, _ctx) => {
     if (_ctx.direction === "backward") {
       throw new $ZodEncodeError(inst.constructor.name);
@@ -14516,8 +14792,7 @@ var ZodTransform = /* @__PURE__ */ $constructor("ZodTransform", (inst, def) => {
         payload.issues.push(util_exports.issue(issue2, payload.value, def));
       } else {
         const _issue = issue2;
-        if (_issue.fatal)
-          _issue.continue = false;
+        if (_issue.fatal) _issue.continue = false;
         _issue.code ?? (_issue.code = "custom");
         _issue.input ?? (_issue.input = payload.value);
         _issue.inst ?? (_issue.inst = inst);
@@ -14540,7 +14815,7 @@ var ZodTransform = /* @__PURE__ */ $constructor("ZodTransform", (inst, def) => {
 function transform(fn) {
   return new ZodTransform({
     type: "transform",
-    transform: fn
+    transform: fn,
   });
 }
 var ZodOptional = /* @__PURE__ */ $constructor("ZodOptional", (inst, def) => {
@@ -14552,7 +14827,7 @@ var ZodOptional = /* @__PURE__ */ $constructor("ZodOptional", (inst, def) => {
 function optional(innerType) {
   return new ZodOptional({
     type: "optional",
-    innerType
+    innerType,
   });
 }
 var ZodExactOptional = /* @__PURE__ */ $constructor("ZodExactOptional", (inst, def) => {
@@ -14564,7 +14839,7 @@ var ZodExactOptional = /* @__PURE__ */ $constructor("ZodExactOptional", (inst, d
 function exactOptional(innerType) {
   return new ZodExactOptional({
     type: "optional",
-    innerType
+    innerType,
   });
 }
 var ZodNullable = /* @__PURE__ */ $constructor("ZodNullable", (inst, def) => {
@@ -14576,7 +14851,7 @@ var ZodNullable = /* @__PURE__ */ $constructor("ZodNullable", (inst, def) => {
 function nullable(innerType) {
   return new ZodNullable({
     type: "nullable",
-    innerType
+    innerType,
   });
 }
 function nullish2(innerType) {
@@ -14594,8 +14869,10 @@ function _default2(innerType, defaultValue) {
     type: "default",
     innerType,
     get defaultValue() {
-      return typeof defaultValue === "function" ? defaultValue() : util_exports.shallowClone(defaultValue);
-    }
+      return typeof defaultValue === "function"
+        ? defaultValue()
+        : util_exports.shallowClone(defaultValue);
+    },
   });
 }
 var ZodPrefault = /* @__PURE__ */ $constructor("ZodPrefault", (inst, def) => {
@@ -14609,21 +14886,24 @@ function prefault(innerType, defaultValue) {
     type: "prefault",
     innerType,
     get defaultValue() {
-      return typeof defaultValue === "function" ? defaultValue() : util_exports.shallowClone(defaultValue);
-    }
+      return typeof defaultValue === "function"
+        ? defaultValue()
+        : util_exports.shallowClone(defaultValue);
+    },
   });
 }
 var ZodNonOptional = /* @__PURE__ */ $constructor("ZodNonOptional", (inst, def) => {
   $ZodNonOptional.init(inst, def);
   ZodType.init(inst, def);
-  inst._zod.processJSONSchema = (ctx, json2, params) => nonoptionalProcessor(inst, ctx, json2, params);
+  inst._zod.processJSONSchema = (ctx, json2, params) =>
+    nonoptionalProcessor(inst, ctx, json2, params);
   inst.unwrap = () => inst._zod.def.innerType;
 });
 function nonoptional(innerType, params) {
   return new ZodNonOptional({
     type: "nonoptional",
     innerType,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodSuccess = /* @__PURE__ */ $constructor("ZodSuccess", (inst, def) => {
@@ -14635,7 +14915,7 @@ var ZodSuccess = /* @__PURE__ */ $constructor("ZodSuccess", (inst, def) => {
 function success(innerType) {
   return new ZodSuccess({
     type: "success",
-    innerType
+    innerType,
   });
 }
 var ZodCatch = /* @__PURE__ */ $constructor("ZodCatch", (inst, def) => {
@@ -14649,7 +14929,7 @@ function _catch2(innerType, catchValue) {
   return new ZodCatch({
     type: "catch",
     innerType,
-    catchValue: typeof catchValue === "function" ? catchValue : () => catchValue
+    catchValue: typeof catchValue === "function" ? catchValue : () => catchValue,
   });
 }
 var ZodNaN = /* @__PURE__ */ $constructor("ZodNaN", (inst, def) => {
@@ -14671,7 +14951,7 @@ function pipe(in_, out) {
   return new ZodPipe({
     type: "pipe",
     in: in_,
-    out
+    out,
     // ...util.normalizeParams(params),
   });
 }
@@ -14685,7 +14965,7 @@ function codec(in_, out, params) {
     in: in_,
     out,
     transform: params.decode,
-    reverseTransform: params.encode
+    reverseTransform: params.encode,
   });
 }
 function invertCodec(codec2) {
@@ -14695,7 +14975,7 @@ function invertCodec(codec2) {
     in: def.out,
     out: def.in,
     transform: def.reverseTransform,
-    reverseTransform: def.transform
+    reverseTransform: def.transform,
   });
 }
 var ZodPreprocess = /* @__PURE__ */ $constructor("ZodPreprocess", (inst, def) => {
@@ -14711,19 +14991,20 @@ var ZodReadonly = /* @__PURE__ */ $constructor("ZodReadonly", (inst, def) => {
 function readonly(innerType) {
   return new ZodReadonly({
     type: "readonly",
-    innerType
+    innerType,
   });
 }
 var ZodTemplateLiteral = /* @__PURE__ */ $constructor("ZodTemplateLiteral", (inst, def) => {
   $ZodTemplateLiteral.init(inst, def);
   ZodType.init(inst, def);
-  inst._zod.processJSONSchema = (ctx, json2, params) => templateLiteralProcessor(inst, ctx, json2, params);
+  inst._zod.processJSONSchema = (ctx, json2, params) =>
+    templateLiteralProcessor(inst, ctx, json2, params);
 });
 function templateLiteral(parts, params) {
   return new ZodTemplateLiteral({
     type: "template_literal",
     parts,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
 }
 var ZodLazy = /* @__PURE__ */ $constructor("ZodLazy", (inst, def) => {
@@ -14735,7 +15016,7 @@ var ZodLazy = /* @__PURE__ */ $constructor("ZodLazy", (inst, def) => {
 function lazy(getter) {
   return new ZodLazy({
     type: "lazy",
-    getter
+    getter,
   });
 }
 var ZodPromise = /* @__PURE__ */ $constructor("ZodPromise", (inst, def) => {
@@ -14747,7 +15028,7 @@ var ZodPromise = /* @__PURE__ */ $constructor("ZodPromise", (inst, def) => {
 function promise(innerType) {
   return new ZodPromise({
     type: "promise",
-    innerType
+    innerType,
   });
 }
 var ZodFunction = /* @__PURE__ */ $constructor("ZodFunction", (inst, def) => {
@@ -14758,8 +15039,10 @@ var ZodFunction = /* @__PURE__ */ $constructor("ZodFunction", (inst, def) => {
 function _function(params) {
   return new ZodFunction({
     type: "function",
-    input: Array.isArray(params?.input) ? tuple(params?.input) : params?.input ?? array(unknown()),
-    output: params?.output ?? unknown()
+    input: Array.isArray(params?.input)
+      ? tuple(params?.input)
+      : (params?.input ?? array(unknown())),
+    output: params?.output ?? unknown(),
   });
 }
 var ZodCustom = /* @__PURE__ */ $constructor("ZodCustom", (inst, def) => {
@@ -14769,7 +15052,7 @@ var ZodCustom = /* @__PURE__ */ $constructor("ZodCustom", (inst, def) => {
 });
 function check(fn) {
   const ch = new $ZodCheck({
-    check: "custom"
+    check: "custom",
     // ...util.normalizeParams(params),
   });
   ch._zod.check = fn;
@@ -14792,7 +15075,7 @@ function _instanceof(cls, params = {}) {
     check: "custom",
     fn: (data) => data instanceof cls,
     abort: true,
-    ...util_exports.normalizeParams(params)
+    ...util_exports.normalizeParams(params),
   });
   inst._zod.bag.Class = cls;
   inst._zod.check = (payload) => {
@@ -14802,20 +15085,31 @@ function _instanceof(cls, params = {}) {
         expected: cls.name,
         input: payload.value,
         inst,
-        path: [...inst._zod.def.path ?? []]
+        path: [...(inst._zod.def.path ?? [])],
       });
     }
   };
   return inst;
 }
-var stringbool = (...args) => _stringbool({
-  Codec: ZodCodec,
-  Boolean: ZodBoolean,
-  String: ZodString
-}, ...args);
+var stringbool = (...args) =>
+  _stringbool(
+    {
+      Codec: ZodCodec,
+      Boolean: ZodBoolean,
+      String: ZodString,
+    },
+    ...args,
+  );
 function json(params) {
   const jsonSchema = lazy(() => {
-    return union([string2(params), number2(), boolean2(), _null3(), array(jsonSchema), record(string2(), jsonSchema)]);
+    return union([
+      string2(params),
+      number2(),
+      boolean2(),
+      _null3(),
+      array(jsonSchema),
+      record(string2(), jsonSchema),
+    ]);
   });
   return jsonSchema;
 }
@@ -14823,7 +15117,7 @@ function preprocess(fn, schema) {
   return new ZodPreprocess({
     type: "pipe",
     in: transform(fn),
-    out: schema
+    out: schema,
   });
 }
 
@@ -14839,25 +15133,26 @@ var ZodIssueCode = {
   invalid_key: "invalid_key",
   invalid_element: "invalid_element",
   invalid_value: "invalid_value",
-  custom: "custom"
+  custom: "custom",
 };
 function setErrorMap(map2) {
   config({
-    customError: map2
+    customError: map2,
   });
 }
 function getErrorMap() {
   return config().customError;
 }
 var ZodFirstPartyTypeKind;
-/* @__PURE__ */ (function(ZodFirstPartyTypeKind2) {
-})(ZodFirstPartyTypeKind || (ZodFirstPartyTypeKind = {}));
+/* @__PURE__ */ (function (ZodFirstPartyTypeKind2) {})(
+  ZodFirstPartyTypeKind || (ZodFirstPartyTypeKind = {}),
+);
 
 // node_modules/.pnpm/zod@4.4.3/node_modules/zod/v4/classic/from-json-schema.js
 var z = {
   ...schemas_exports2,
   ...checks_exports2,
-  iso: iso_exports
+  iso: iso_exports,
 };
 var RECOGNIZED_KEYS = /* @__PURE__ */ new Set([
   // Schema identification
@@ -14928,7 +15223,7 @@ var RECOGNIZED_KEYS = /* @__PURE__ */ new Set([
   "dependentRequired",
   // OpenAPI
   "nullable",
-  "readOnly"
+  "readOnly",
 ]);
 function detectVersion(schema, defaultTarget) {
   const $schema = schema.$schema;
@@ -15002,7 +15297,12 @@ function convertBaseSchema(schema, ctx) {
   }
   if (schema.enum !== void 0) {
     const enumValues = schema.enum;
-    if (ctx.version === "openapi-3.0" && schema.nullable === true && enumValues.length === 1 && enumValues[0] === null) {
+    if (
+      ctx.version === "openapi-3.0" &&
+      schema.nullable === true &&
+      enumValues.length === 1 &&
+      enumValues[0] === null
+    ) {
       return z.null();
     }
     if (enumValues.length === 0) {
@@ -15149,7 +15449,10 @@ function convertBaseSchema(schema, ctx) {
       }
       if (schema.propertyNames) {
         const keySchema = convertSchema(schema.propertyNames, ctx);
-        const valueSchema = schema.additionalProperties && typeof schema.additionalProperties === "object" ? convertSchema(schema.additionalProperties, ctx) : z.any();
+        const valueSchema =
+          schema.additionalProperties && typeof schema.additionalProperties === "object"
+            ? convertSchema(schema.additionalProperties, ctx)
+            : z.any();
         if (Object.keys(shape).length === 0) {
           zodSchema = z.record(keySchema, valueSchema);
           break;
@@ -15201,7 +15504,10 @@ function convertBaseSchema(schema, ctx) {
       const items = schema.items;
       if (prefixItems && Array.isArray(prefixItems)) {
         const tupleItems = prefixItems.map((item) => convertSchema(item, ctx));
-        const rest = items && typeof items === "object" && !Array.isArray(items) ? convertSchema(items, ctx) : void 0;
+        const rest =
+          items && typeof items === "object" && !Array.isArray(items)
+            ? convertSchema(items, ctx)
+            : void 0;
         if (rest) {
           zodSchema = z.tuple(tupleItems).rest(rest);
         } else {
@@ -15215,7 +15521,10 @@ function convertBaseSchema(schema, ctx) {
         }
       } else if (Array.isArray(items)) {
         const tupleItems = items.map((item) => convertSchema(item, ctx));
-        const rest = schema.additionalItems && typeof schema.additionalItems === "object" ? convertSchema(schema.additionalItems, ctx) : void 0;
+        const rest =
+          schema.additionalItems && typeof schema.additionalItems === "object"
+            ? convertSchema(schema.additionalItems, ctx)
+            : void 0;
         if (rest) {
           zodSchema = z.tuple(tupleItems).rest(rest);
         } else {
@@ -15285,7 +15594,15 @@ function convertSchema(schema, ctx) {
     baseSchema = baseSchema.default(schema.default);
   }
   const extraMeta = {};
-  const coreMetadataKeys = ["$id", "id", "$comment", "$anchor", "$vocabulary", "$dynamicRef", "$dynamicAnchor"];
+  const coreMetadataKeys = [
+    "$id",
+    "id",
+    "$comment",
+    "$anchor",
+    "$vocabulary",
+    "$dynamicRef",
+    "$dynamicAnchor",
+  ];
   for (const key of coreMetadataKeys) {
     if (key in schema) {
       extraMeta[key] = schema[key];
@@ -15318,7 +15635,9 @@ function fromJSONSchema(schema, params) {
   try {
     normalized = JSON.parse(JSON.stringify(schema));
   } catch {
-    throw new Error("fromJSONSchema input is not valid JSON (possibly cyclic); use $defs/$ref for recursive schemas");
+    throw new Error(
+      "fromJSONSchema input is not valid JSON (possibly cyclic); use $defs/$ref for recursive schemas",
+    );
   }
   const version2 = detectVersion(normalized, params?.defaultTarget);
   const defs = normalized.$defs || normalized.definitions || {};
@@ -15328,7 +15647,7 @@ function fromJSONSchema(schema, params) {
     refs: /* @__PURE__ */ new Map(),
     processing: /* @__PURE__ */ new Set(),
     rootSchema: normalized,
-    registry: params?.registry ?? globalRegistry
+    registry: params?.registry ?? globalRegistry,
   };
   return convertSchema(normalized, ctx);
 }
@@ -15340,7 +15659,7 @@ __export(coerce_exports, {
   boolean: () => boolean3,
   date: () => date4,
   number: () => number3,
-  string: () => string3
+  string: () => string3,
 });
 function string3(params) {
   return _coercedString(ZodString, params);
@@ -15371,8 +15690,7 @@ var v4_default = classic_default;
 var decoder;
 try {
   decoder = new TextDecoder();
-} catch (error51) {
-}
+} catch (error51) {}
 var src;
 var srcEnd;
 var position = 0;
@@ -15401,7 +15719,7 @@ var dataView;
 var restoreMapsAsObject;
 var defaultOptions = {
   useRecords: false,
-  mapsAsObjects: true
+  mapsAsObjects: true,
 };
 var sequentialMode = false;
 var inlineObjectReadThreshold = 2;
@@ -15419,10 +15737,8 @@ var Decoder = class _Decoder {
       }
       if (options.useRecords === false && options.mapsAsObjects === void 0)
         options.mapsAsObjects = true;
-      if (options.getStructures)
-        options.getShared = options.getStructures;
-      if (options.getShared && !options.structures)
-        (options.structures = []).uninitialized = true;
+      if (options.getStructures) options.getShared = options.getStructures;
+      if (options.getShared && !options.structures) (options.structures = []).uninitialized = true;
       if (options.keyMap) {
         this.mapKey = /* @__PURE__ */ new Map();
         for (let [k, v] of Object.entries(options.keyMap)) this.mapKey.set(v, k);
@@ -15446,7 +15762,8 @@ var Decoder = class _Decoder {
   encodeKeys(rec) {
     if (!this._keyMap) return rec;
     let map2 = /* @__PURE__ */ new Map();
-    for (let [k, v] of Object.entries(rec)) map2.set(this._keyMap.hasOwnProperty(k) ? this._keyMap[k] : k, v);
+    for (let [k, v] of Object.entries(rec))
+      map2.set(this._keyMap.hasOwnProperty(k) ? this._keyMap[k] : k, v);
     return map2;
   }
   decodeKeys(map2) {
@@ -15456,7 +15773,7 @@ var Decoder = class _Decoder {
       for (let [k, v] of Object.entries(this._keyMap)) this._mapKey.set(v, k);
     }
     let res = {};
-    map2.forEach((v, k) => res[safeKey(this._mapKey.has(k) ? this._mapKey.get(k) : k)] = v);
+    map2.forEach((v, k) => (res[safeKey(this._mapKey.has(k) ? this._mapKey.get(k) : k)] = v));
     return res;
   }
   mapDecode(source, end) {
@@ -15473,7 +15790,9 @@ var Decoder = class _Decoder {
     if (src) {
       return saveState(() => {
         clearSource();
-        return this ? this.decode(source, end) : _Decoder.prototype.decode.call(defaultOptions, source, end);
+        return this
+          ? this.decode(source, end)
+          : _Decoder.prototype.decode.call(defaultOptions, source, end);
       });
     }
     srcEnd = end > -1 ? end : source.length;
@@ -15485,16 +15804,24 @@ var Decoder = class _Decoder {
     bundledStrings = null;
     src = source;
     try {
-      dataView = source.dataView || (source.dataView = new DataView(source.buffer, source.byteOffset, source.byteLength));
+      dataView =
+        source.dataView ||
+        (source.dataView = new DataView(source.buffer, source.byteOffset, source.byteLength));
     } catch (error51) {
       src = null;
-      if (source instanceof Uint8Array)
-        throw error51;
-      throw new Error("Source must be a Uint8Array or Buffer but was a " + (source && typeof source == "object" ? source.constructor.name : typeof source));
+      if (source instanceof Uint8Array) throw error51;
+      throw new Error(
+        "Source must be a Uint8Array or Buffer but was a " +
+          (source && typeof source == "object" ? source.constructor.name : typeof source),
+      );
     }
     if (this instanceof _Decoder) {
       currentDecoder = this;
-      packedValues = this.sharedValues && (this.pack ? new Array(this.maxPrivatePackedValues || 16).concat(this.sharedValues) : this.sharedValues);
+      packedValues =
+        this.sharedValues &&
+        (this.pack
+          ? new Array(this.maxPrivatePackedValues || 16).concat(this.sharedValues)
+          : this.sharedValues);
       if (this.structures) {
         currentStructures = this.structures;
         return checkedRead();
@@ -15503,14 +15830,14 @@ var Decoder = class _Decoder {
       }
     } else {
       currentDecoder = defaultOptions;
-      if (!currentStructures || currentStructures.length > 0)
-        currentStructures = [];
+      if (!currentStructures || currentStructures.length > 0) currentStructures = [];
       packedValues = null;
     }
     return checkedRead();
   }
   decodeMultiple(source, forEach) {
-    let values, lastPosition = 0;
+    let values,
+      lastPosition = 0;
     try {
       let size = source.length;
       sequentialMode = true;
@@ -15558,8 +15885,7 @@ function checkedRead() {
     if (position == srcEnd) {
       currentStructures = null;
       src = null;
-      if (referenceMap)
-        referenceMap = null;
+      if (referenceMap) referenceMap = null;
     } else if (position > srcEnd) {
       let error51 = new Error("Unexpected end of CBOR data");
       error51.incomplete = true;
@@ -15603,9 +15929,9 @@ function read() {
         if (majorType == 7) {
           let value = dataView.getFloat32(position);
           if (currentDecoder.useFloat32 > 2) {
-            let multiplier = mult10[(src[position] & 127) << 1 | src[position + 1] >> 7];
+            let multiplier = mult10[((src[position] & 127) << 1) | (src[position + 1] >> 7)];
             position += 4;
-            return (multiplier * value + (value > 0 ? 0.5 : -0.5) >> 0) / multiplier;
+            return ((multiplier * value + (value > 0 ? 0.5 : -0.5)) >> 0) / multiplier;
           }
           position += 4;
           return value;
@@ -15622,7 +15948,9 @@ function read() {
         }
         if (majorType > 1) {
           if (dataView.getUint32(position) > 0)
-            throw new Error("JavaScript does not support arrays, maps, or strings with length over 4294967295");
+            throw new Error(
+              "JavaScript does not support arrays, maps, or strings with length over 4294967295",
+            );
           token = dataView.getUint32(position + 4);
         } else if (currentDecoder.int64AsNumber) {
           token = dataView.getUint32(position) * 4294967296;
@@ -15638,12 +15966,17 @@ function read() {
             throw new Error("Indefinite length not supported for byte or text strings");
           case 4:
             let array2 = [];
-            let value, i = 0;
+            let value,
+              i = 0;
             while ((value = read()) != STOP_CODE) {
               if (i >= maxArraySize) throw new Error(`Array length exceeds ${maxArraySize}`);
               array2[i++] = value;
             }
-            return majorType == 4 ? array2 : majorType == 3 ? array2.join("") : Buffer.concat(array2);
+            return majorType == 4
+              ? array2
+              : majorType == 3
+                ? array2.join("")
+                : Buffer.concat(array2);
           case 5:
             let key;
             if (currentDecoder.mapsAsObjects) {
@@ -15708,8 +16041,7 @@ function read() {
       }
       if (srcStringEnd == 0 && srcEnd < 140 && token < 32) {
         let string4 = token < 16 ? shortStringInJS(token) : longStringInJS(token);
-        if (string4 != null)
-          return string4;
+        if (string4 != null) return string4;
       }
       return readFixedString(token);
     case 4:
@@ -15723,7 +16055,9 @@ function read() {
       if (token > (srcEnd - position) / 2) throw endOfCBORError();
       if (currentDecoder.mapsAsObjects) {
         let object2 = {};
-        if (currentDecoder.keyMap) for (let i = 0; i < token; i++) object2[safeKey(currentDecoder.decodeKey(read()))] = read();
+        if (currentDecoder.keyMap)
+          for (let i = 0; i < token; i++)
+            object2[safeKey(currentDecoder.decodeKey(read()))] = read();
         else for (let i = 0; i < token; i++) object2[safeKey(read())] = read();
         return object2;
       } else {
@@ -15732,7 +16066,8 @@ function read() {
           restoreMapsAsObject = false;
         }
         let map2 = /* @__PURE__ */ new Map();
-        if (currentDecoder.keyMap) for (let i = 0; i < token; i++) map2.set(currentDecoder.decodeKey(read()), read());
+        if (currentDecoder.keyMap)
+          for (let i = 0; i < token; i++) map2.set(currentDecoder.decodeKey(read()), read());
         else for (let i = 0; i < token; i++) map2.set(read(), read());
         return map2;
       }
@@ -15750,14 +16085,16 @@ function read() {
             let structure2 = read();
             recordDefinition(id, structure2);
             let object2 = {};
-            if (currentDecoder.keyMap) for (let i = 2; i < length; i++) {
-              let key = currentDecoder.decodeKey(structure2[i - 2]);
-              object2[safeKey(key)] = read();
-            }
-            else for (let i = 2; i < length; i++) {
-              let key = structure2[i - 2];
-              object2[safeKey(key)] = read();
-            }
+            if (currentDecoder.keyMap)
+              for (let i = 2; i < length; i++) {
+                let key = currentDecoder.decodeKey(structure2[i - 2]);
+                object2[safeKey(key)] = read();
+              }
+            else
+              for (let i = 2; i < length; i++) {
+                let key = structure2[i - 2];
+                object2[safeKey(key)] = read();
+              }
             return object2;
           } else if (token == RECORD_DEFINITIONS_ID) {
             let length = readJustLength();
@@ -15773,8 +16110,7 @@ function read() {
             loadShared();
             structure = currentStructures[token & 8191];
             if (structure) {
-              if (!structure.read)
-                structure.read = createStructureReader(structure);
+              if (!structure.read) structure.read = createStructureReader(structure);
               return structure.read();
             }
           }
@@ -15782,16 +16118,13 @@ function read() {
       }
       let extension = currentExtensions[token];
       if (extension) {
-        if (extension.handlesRead)
-          return extension(read);
-        else
-          return extension(read());
+        if (extension.handlesRead) return extension(read);
+        else return extension(read());
       } else {
         let input = read();
         for (let i = 0; i < currentExtensionRanges.length; i++) {
           let value = currentExtensionRanges[i](token, input);
-          if (value !== void 0)
-            return value;
+          if (value !== void 0) return value;
         }
         return new Tag(input, token);
       }
@@ -15809,8 +16142,7 @@ function read() {
         case 31:
         default:
           let packedValue = (packedValues || getPackedValues())[token];
-          if (packedValue !== void 0)
-            return packedValue;
+          if (packedValue !== void 0) return packedValue;
           throw new Error("Unknown token " + token);
       }
     default:
@@ -15843,24 +16175,45 @@ function createStructureReader(structure) {
     }
     let compiledReader = this.compiledReader;
     while (compiledReader) {
-      if (compiledReader.propertyCount === length)
-        return compiledReader(read);
+      if (compiledReader.propertyCount === length) return compiledReader(read);
       compiledReader = compiledReader.next;
     }
     if (this.slowReads++ >= inlineObjectReadThreshold) {
       let array2 = this.length == length ? this : this.slice(0, length);
-      compiledReader = currentDecoder.keyMap ? new Function("r", "return {" + array2.map((k) => currentDecoder.decodeKey(k)).map((k) => validName.test(k) ? safeKey(k) + ":r()" : "[" + JSON.stringify(k) + "]:r()").join(",") + "}") : new Function("r", "return {" + array2.map((key) => validName.test(key) ? safeKey(key) + ":r()" : "[" + JSON.stringify(key) + "]:r()").join(",") + "}");
-      if (this.compiledReader)
-        compiledReader.next = this.compiledReader;
+      compiledReader = currentDecoder.keyMap
+        ? new Function(
+            "r",
+            "return {" +
+              array2
+                .map((k) => currentDecoder.decodeKey(k))
+                .map((k) =>
+                  validName.test(k) ? safeKey(k) + ":r()" : "[" + JSON.stringify(k) + "]:r()",
+                )
+                .join(",") +
+              "}",
+          )
+        : new Function(
+            "r",
+            "return {" +
+              array2
+                .map((key) =>
+                  validName.test(key) ? safeKey(key) + ":r()" : "[" + JSON.stringify(key) + "]:r()",
+                )
+                .join(",") +
+              "}",
+          );
+      if (this.compiledReader) compiledReader.next = this.compiledReader;
       compiledReader.propertyCount = length;
       this.compiledReader = compiledReader;
       return compiledReader(read);
     }
     let object2 = {};
-    if (currentDecoder.keyMap) for (let i = 0; i < length; i++) object2[safeKey(currentDecoder.decodeKey(this[i]))] = read();
-    else for (let i = 0; i < length; i++) {
-      object2[safeKey(this[i])] = read();
-    }
+    if (currentDecoder.keyMap)
+      for (let i = 0; i < length; i++) object2[safeKey(currentDecoder.decodeKey(this[i]))] = read();
+    else
+      for (let i = 0; i < length; i++) {
+        object2[safeKey(this[i])] = read();
+      }
     return object2;
   }
   structure.slowReads = 0;
@@ -15868,7 +16221,8 @@ function createStructureReader(structure) {
 }
 function safeKey(key) {
   if (typeof key === "string") return key === "__proto__" ? "__proto_" : key;
-  if (typeof key === "number" || typeof key === "boolean" || typeof key === "bigint") return key.toString();
+  if (typeof key === "number" || typeof key === "boolean" || typeof key === "bigint")
+    return key.toString();
   if (key == null) return key + "";
   throw new Error("Invalid property name type " + typeof key);
 }
@@ -15876,11 +16230,9 @@ var readFixedString = readStringJS;
 function readStringJS(length) {
   let result;
   if (length < 16) {
-    if (result = shortStringInJS(length))
-      return result;
+    if ((result = shortStringInJS(length))) return result;
   }
-  if (length > 64 && decoder)
-    return decoder.decode(src.subarray(position, position += length));
+  if (length > 64 && decoder) return decoder.decode(src.subarray(position, (position += length)));
   const end = position + length;
   const units = [];
   result = "";
@@ -15893,11 +16245,16 @@ function readStringJS(length) {
         units.push(65533);
       } else {
         const byte2 = src[position++] & 63;
-        units.push((byte1 & 31) << 6 | byte2);
+        units.push(((byte1 & 31) << 6) | byte2);
       }
     } else if ((byte1 & 240) === 224) {
       const byte2 = position < end ? src[position] : 0;
-      if (position >= end || (byte2 & 192) !== 128 || byte1 === 224 && byte2 < 160 || byte1 === 237 && byte2 >= 160) {
+      if (
+        position >= end ||
+        (byte2 & 192) !== 128 ||
+        (byte1 === 224 && byte2 < 160) ||
+        (byte1 === 237 && byte2 >= 160)
+      ) {
         units.push(65533);
       } else {
         position++;
@@ -15905,12 +16262,18 @@ function readStringJS(length) {
           units.push(65533);
         } else {
           const byte3 = src[position++] & 63;
-          units.push((byte1 & 31) << 12 | (byte2 & 63) << 6 | byte3);
+          units.push(((byte1 & 31) << 12) | ((byte2 & 63) << 6) | byte3);
         }
       }
     } else if ((byte1 & 248) === 240) {
       const byte2 = position < end ? src[position] : 0;
-      if (byte1 > 244 || position >= end || (byte2 & 192) !== 128 || byte1 === 240 && byte2 < 144 || byte1 === 244 && byte2 >= 144) {
+      if (
+        byte1 > 244 ||
+        position >= end ||
+        (byte2 & 192) !== 128 ||
+        (byte1 === 240 && byte2 < 144) ||
+        (byte1 === 244 && byte2 >= 144)
+      ) {
         units.push(65533);
       } else {
         position++;
@@ -15922,10 +16285,10 @@ function readStringJS(length) {
             units.push(65533);
           } else {
             const byte4 = src[position++] & 63;
-            let unit = (byte1 & 7) << 18 | (byte2 & 63) << 12 | byte3 << 6 | byte4;
+            let unit = ((byte1 & 7) << 18) | ((byte2 & 63) << 12) | (byte3 << 6) | byte4;
             unit -= 65536;
-            units.push(unit >>> 10 & 1023 | 55296);
-            units.push(56320 | unit & 1023);
+            units.push(((unit >>> 10) & 1023) | 55296);
+            units.push(56320 | (unit & 1023));
           }
         }
       }
@@ -15959,8 +16322,7 @@ function longStringInJS(length) {
 function shortStringInJS(length) {
   if (length < 4) {
     if (length < 2) {
-      if (length === 0)
-        return "";
+      if (length === 0) return "";
       else {
         let a = src[position++];
         if ((a & 128) > 1) {
@@ -15976,8 +16338,7 @@ function shortStringInJS(length) {
         position -= 2;
         return;
       }
-      if (length < 3)
-        return fromCharCode(a, b);
+      if (length < 3) return fromCharCode(a, b);
       let c = src[position++];
       if ((c & 128) > 0) {
         position -= 3;
@@ -15995,8 +16356,7 @@ function shortStringInJS(length) {
       return;
     }
     if (length < 6) {
-      if (length === 4)
-        return fromCharCode(a, b, c, d);
+      if (length === 4) return fromCharCode(a, b, c, d);
       else {
         let e = src[position++];
         if ((e & 128) > 0) {
@@ -16012,8 +16372,7 @@ function shortStringInJS(length) {
         position -= 6;
         return;
       }
-      if (length < 7)
-        return fromCharCode(a, b, c, d, e, f);
+      if (length < 7) return fromCharCode(a, b, c, d, e, f);
       let g = src[position++];
       if ((g & 128) > 0) {
         position -= 7;
@@ -16030,8 +16389,7 @@ function shortStringInJS(length) {
         return;
       }
       if (length < 10) {
-        if (length === 8)
-          return fromCharCode(a, b, c, d, e, f, g, h);
+        if (length === 8) return fromCharCode(a, b, c, d, e, f, g, h);
         else {
           let i = src[position++];
           if ((i & 128) > 0) {
@@ -16047,8 +16405,7 @@ function shortStringInJS(length) {
           position -= 10;
           return;
         }
-        if (length < 11)
-          return fromCharCode(a, b, c, d, e, f, g, h, i, j);
+        if (length < 11) return fromCharCode(a, b, c, d, e, f, g, h, i, j);
         let k = src[position++];
         if ((k & 128) > 0) {
           position -= 11;
@@ -16065,8 +16422,7 @@ function shortStringInJS(length) {
           return;
         }
         if (length < 14) {
-          if (length === 12)
-            return fromCharCode(a, b, c, d, e, f, g, h, i, j, k, l);
+          if (length === 12) return fromCharCode(a, b, c, d, e, f, g, h, i, j, k, l);
           else {
             let m = src[position++];
             if ((m & 128) > 0) {
@@ -16082,8 +16438,7 @@ function shortStringInJS(length) {
             position -= 14;
             return;
           }
-          if (length < 15)
-            return fromCharCode(a, b, c, d, e, f, g, h, i, j, k, l, m, n);
+          if (length < 15) return fromCharCode(a, b, c, d, e, f, g, h, i, j, k, l, m, n);
           let o = src[position++];
           if ((o & 128) > 0) {
             position -= 15;
@@ -16096,10 +16451,10 @@ function shortStringInJS(length) {
   }
 }
 function readBin(length) {
-  return currentDecoder.copyBuffers ? (
-    // specifically use the copying slice (not the node one)
-    Uint8Array.prototype.slice.call(src, position, position += length)
-  ) : src.subarray(position, position += length);
+  return currentDecoder.copyBuffers
+    ? // specifically use the copying slice (not the node one)
+      Uint8Array.prototype.slice.call(src, position, (position += length))
+    : src.subarray(position, (position += length));
 }
 var f32Array = new Float32Array(1);
 var u8Array = new Uint8Array(f32Array.buffer, 0, 4);
@@ -16108,18 +16463,19 @@ function getFloat16() {
   let byte1 = src[position++];
   let exponent = (byte0 & 127) >> 2;
   if (exponent === 31) {
-    if (byte1 || byte0 & 3)
-      return NaN;
+    if (byte1 || byte0 & 3) return NaN;
     return byte0 & 128 ? -Infinity : Infinity;
   }
   if (exponent === 0) {
-    let abs = ((byte0 & 3) << 8 | byte1) / (1 << 24);
+    let abs = (((byte0 & 3) << 8) | byte1) / (1 << 24);
     return byte0 & 128 ? -abs : abs;
   }
-  u8Array[3] = byte0 & 128 | // sign bit
-  (exponent >> 1) + 56;
-  u8Array[2] = (byte0 & 7) << 5 | // last exponent bit and first two mantissa bits
-  byte1 >> 3;
+  u8Array[3] =
+    (byte0 & 128) | // sign bit
+    ((exponent >> 1) + 56);
+  u8Array[2] =
+    ((byte0 & 7) << 5) | // last exponent bit and first two mantissa bits
+    (byte1 >> 3);
   u8Array[1] = byte1 << 5;
   u8Array[0] = 0;
   return f32Array[0];
@@ -16157,7 +16513,8 @@ var recordDefinition = (id, structure) => {
   id = id - 57344;
   let existingStructure = currentStructures[id];
   if (existingStructure && existingStructure.isShared) {
-    (currentStructures.restoreStructures || (currentStructures.restoreStructures = []))[id] = existingStructure;
+    (currentStructures.restoreStructures || (currentStructures.restoreStructures = []))[id] =
+      existingStructure;
   }
   currentStructures[id] = structure;
   structure.read = createStructureReader(structure);
@@ -16175,12 +16532,12 @@ currentExtensions[LEGACY_RECORD_INLINE_ID] = (data) => {
 };
 currentExtensions[14] = (value) => {
   if (bundledStrings)
-    return bundledStrings[0].slice(bundledStrings.position0, bundledStrings.position0 += value);
+    return bundledStrings[0].slice(bundledStrings.position0, (bundledStrings.position0 += value));
   return new Tag(value, 14);
 };
 currentExtensions[15] = (value) => {
   if (bundledStrings)
-    return bundledStrings[1].slice(bundledStrings.position1, bundledStrings.position1 += value);
+    return bundledStrings[1].slice(bundledStrings.position1, (bundledStrings.position1 += value));
   return new Tag(value, 15);
 };
 var glbl = { Error, RegExp };
@@ -16190,8 +16547,7 @@ currentExtensions[27] = (data) => {
 var packedTable = (read6) => {
   if (src[position++] != 132) {
     let error51 = new Error("Packed values structure must be followed by a 4 element array");
-    if (src.length < position)
-      error51.incomplete = true;
+    if (src.length < position) error51.incomplete = true;
     throw error51;
   }
   let newPackedValues = read6();
@@ -16200,7 +16556,9 @@ var packedTable = (read6) => {
     error51.incomplete = true;
     throw error51;
   }
-  packedValues = packedValues ? newPackedValues.concat(packedValues.slice(newPackedValues.length)) : newPackedValues;
+  packedValues = packedValues
+    ? newPackedValues.concat(packedValues.slice(newPackedValues.length))
+    : newPackedValues;
   packedValues.prefixes = read6();
   packedValues.suffixes = read6();
   return read6();
@@ -16209,16 +16567,12 @@ packedTable.handlesRead = true;
 currentExtensions[51] = packedTable;
 currentExtensions[PACKED_REFERENCE_TAG_ID] = (data) => {
   if (!packedValues) {
-    if (currentDecoder.getShared)
-      loadShared();
-    else
-      return new Tag(data, PACKED_REFERENCE_TAG_ID);
+    if (currentDecoder.getShared) loadShared();
+    else return new Tag(data, PACKED_REFERENCE_TAG_ID);
   }
-  if (typeof data == "number")
-    return packedValues[16 + (data >= 0 ? 2 * data : -2 * data - 1)];
+  if (typeof data == "number") return packedValues[16 + (data >= 0 ? 2 * data : -2 * data - 1)];
   let error51 = new Error("No support for non-integer packed references yet");
-  if (data === void 0)
-    error51.incomplete = true;
+  if (data === void 0) error51.incomplete = true;
   throw error51;
 };
 currentExtensions[28] = (read6) => {
@@ -16230,10 +16584,8 @@ currentExtensions[28] = (read6) => {
   let startingPosition = position;
   let token = src[position];
   let target2;
-  if (token >> 5 == 4)
-    target2 = [];
-  else
-    target2 = {};
+  if (token >> 5 == 4) target2 = [];
+  else target2 = {};
   let refEntry = { target: target2 };
   referenceMap.set(id, refEntry);
   let targetProperties = read6();
@@ -16264,44 +16616,35 @@ currentExtensions[258] = (array2) => new Set(array2);
   return read6();
 }).handlesRead = true;
 function combine(a, b) {
-  if (typeof a === "string")
-    return a + b;
-  if (a instanceof Array)
-    return a.concat(b);
+  if (typeof a === "string") return a + b;
+  if (a instanceof Array) return a.concat(b);
   return Object.assign({}, a, b);
 }
 function getPackedValues() {
   if (!packedValues) {
-    if (currentDecoder.getShared)
-      loadShared();
-    else
-      throw new Error("No packed values available");
+    if (currentDecoder.getShared) loadShared();
+    else throw new Error("No packed values available");
   }
   return packedValues;
 }
 var SHARED_DATA_TAG_ID = 1399353956;
 currentExtensionRanges.push((tag, input) => {
-  if (tag >= 225 && tag <= 255)
-    return combine(getPackedValues().prefixes[tag - 224], input);
-  if (tag >= 28704 && tag <= 32767)
-    return combine(getPackedValues().prefixes[tag - 28672], input);
+  if (tag >= 225 && tag <= 255) return combine(getPackedValues().prefixes[tag - 224], input);
+  if (tag >= 28704 && tag <= 32767) return combine(getPackedValues().prefixes[tag - 28672], input);
   if (tag >= 1879052288 && tag <= 2147483647)
     return combine(getPackedValues().prefixes[tag - 1879048192], input);
-  if (tag >= 216 && tag <= 223)
-    return combine(input, getPackedValues().suffixes[tag - 216]);
-  if (tag >= 27647 && tag <= 28671)
-    return combine(input, getPackedValues().suffixes[tag - 27639]);
+  if (tag >= 216 && tag <= 223) return combine(input, getPackedValues().suffixes[tag - 216]);
+  if (tag >= 27647 && tag <= 28671) return combine(input, getPackedValues().suffixes[tag - 27639]);
   if (tag >= 1811940352 && tag <= 1879048191)
     return combine(input, getPackedValues().suffixes[tag - 1811939328]);
   if (tag == SHARED_DATA_TAG_ID) {
     return {
       packedValues,
       structures: currentStructures.slice(0),
-      version: input
+      version: input,
     };
   }
-  if (tag == 55799)
-    return input;
+  if (tag == 55799) return input;
 });
 var isLittleEndianMachine = new Uint8Array(new Uint16Array([1]).buffer)[0] == 1;
 var typedArrays = [
@@ -16315,7 +16658,7 @@ var typedArrays = [
   Int32Array,
   typeof BigInt64Array == "undefined" ? { name: "BigInt64Array" } : BigInt64Array,
   Float32Array,
-  Float64Array
+  Float64Array,
 ];
 var typedArrayTags = [64, 68, 69, 70, 71, 72, 77, 78, 79, 85, 86];
 for (let i = 0; i < typedArrays.length; i++) {
@@ -16324,34 +16667,42 @@ for (let i = 0; i < typedArrays.length; i++) {
 function registerTypedArray(TypedArray, tag) {
   let dvMethod = "get" + TypedArray.name.slice(0, -5);
   let bytesPerElement;
-  if (typeof TypedArray === "function")
-    bytesPerElement = TypedArray.BYTES_PER_ELEMENT;
-  else
-    TypedArray = null;
+  if (typeof TypedArray === "function") bytesPerElement = TypedArray.BYTES_PER_ELEMENT;
+  else TypedArray = null;
   for (let littleEndian = 0; littleEndian < 2; littleEndian++) {
-    if (!littleEndian && bytesPerElement == 1)
-      continue;
-    let sizeShift = bytesPerElement == 2 ? 1 : bytesPerElement == 4 ? 2 : bytesPerElement == 8 ? 3 : 0;
-    currentExtensions[littleEndian ? tag : tag - 4] = bytesPerElement == 1 || littleEndian == isLittleEndianMachine ? (buffer) => {
-      if (!TypedArray)
-        throw new Error("Could not find typed array for code " + tag);
-      if (!currentDecoder.copyBuffers) {
-        if (bytesPerElement === 1 || bytesPerElement === 2 && !(buffer.byteOffset & 1) || bytesPerElement === 4 && !(buffer.byteOffset & 3) || bytesPerElement === 8 && !(buffer.byteOffset & 7))
-          return new TypedArray(buffer.buffer, buffer.byteOffset, buffer.byteLength >> sizeShift);
-      }
-      return new TypedArray(Uint8Array.prototype.slice.call(buffer, 0).buffer);
-    } : (buffer) => {
-      if (!TypedArray)
-        throw new Error("Could not find typed array for code " + tag);
-      let dv = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
-      let elements = buffer.length >> sizeShift;
-      let ta = new TypedArray(elements);
-      let method = dv[dvMethod];
-      for (let i = 0; i < elements; i++) {
-        ta[i] = method.call(dv, i << sizeShift, littleEndian);
-      }
-      return ta;
-    };
+    if (!littleEndian && bytesPerElement == 1) continue;
+    let sizeShift =
+      bytesPerElement == 2 ? 1 : bytesPerElement == 4 ? 2 : bytesPerElement == 8 ? 3 : 0;
+    currentExtensions[littleEndian ? tag : tag - 4] =
+      bytesPerElement == 1 || littleEndian == isLittleEndianMachine
+        ? (buffer) => {
+            if (!TypedArray) throw new Error("Could not find typed array for code " + tag);
+            if (!currentDecoder.copyBuffers) {
+              if (
+                bytesPerElement === 1 ||
+                (bytesPerElement === 2 && !(buffer.byteOffset & 1)) ||
+                (bytesPerElement === 4 && !(buffer.byteOffset & 3)) ||
+                (bytesPerElement === 8 && !(buffer.byteOffset & 7))
+              )
+                return new TypedArray(
+                  buffer.buffer,
+                  buffer.byteOffset,
+                  buffer.byteLength >> sizeShift,
+                );
+            }
+            return new TypedArray(Uint8Array.prototype.slice.call(buffer, 0).buffer);
+          }
+        : (buffer) => {
+            if (!TypedArray) throw new Error("Could not find typed array for code " + tag);
+            let dv = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+            let elements = buffer.length >> sizeShift;
+            let ta = new TypedArray(elements);
+            let method = dv[dvMethod];
+            for (let i = 0; i < elements; i++) {
+              ta[i] = method.call(dv, i << sizeShift, littleEndian);
+            }
+            return ta;
+          };
   }
 }
 function readBundleExt() {
@@ -16393,17 +16744,21 @@ function readJustLength() {
 }
 function loadShared() {
   if (currentDecoder.getShared) {
-    let sharedData = saveState(() => {
-      src = null;
-      return currentDecoder.getShared();
-    }) || {};
+    let sharedData =
+      saveState(() => {
+        src = null;
+        return currentDecoder.getShared();
+      }) || {};
     let updatedStructures = sharedData.structures || [];
     currentDecoder.sharedVersion = sharedData.version;
     packedValues = currentDecoder.sharedValues = sharedData.packedValues;
     if (currentStructures === true)
       currentDecoder.structures = currentStructures = updatedStructures;
     else
-      currentStructures.splice.apply(currentStructures, [0, updatedStructures.length].concat(updatedStructures));
+      currentStructures.splice.apply(
+        currentStructures,
+        [0, updatedStructures.length].concat(updatedStructures),
+      );
   }
 }
 function saveState(callback) {
@@ -16453,15 +16808,14 @@ var FLOAT32_OPTIONS = {
   NEVER: 0,
   ALWAYS: 1,
   DECIMAL_ROUND: 3,
-  DECIMAL_FIT: 4
+  DECIMAL_FIT: 4,
 };
 
 // node_modules/.pnpm/cbor-x@1.6.6/node_modules/cbor-x/encode.js
 var textEncoder;
 try {
   textEncoder = new TextEncoder();
-} catch (error51) {
-}
+} catch (error51) {}
 var extensions;
 var extensionClasses;
 var Buffer2 = typeof globalThis === "object" && globalThis.Buffer;
@@ -16490,27 +16844,29 @@ var Encoder = class extends Decoder {
     let structures;
     let referenceMap2;
     options = options || {};
-    let encodeUtf8 = ByteArray.prototype.utf8Write ? function(string4, position3) {
-      return target.utf8Write(string4, position3, target.byteLength - position3);
-    } : textEncoder && textEncoder.encodeInto ? function(string4, position3) {
-      return textEncoder.encodeInto(string4, target.subarray(position3)).written;
-    } : false;
+    let encodeUtf8 = ByteArray.prototype.utf8Write
+      ? function (string4, position3) {
+          return target.utf8Write(string4, position3, target.byteLength - position3);
+        }
+      : textEncoder && textEncoder.encodeInto
+        ? function (string4, position3) {
+            return textEncoder.encodeInto(string4, target.subarray(position3)).written;
+          }
+        : false;
     let encoder = this;
     let hasSharedStructures = options.structures || options.saveStructures;
     let maxSharedStructures = options.maxSharedStructures;
-    if (maxSharedStructures == null)
-      maxSharedStructures = hasSharedStructures ? 128 : 0;
-    if (maxSharedStructures > 8190)
-      throw new Error("Maximum maxSharedStructure is 8190");
+    if (maxSharedStructures == null) maxSharedStructures = hasSharedStructures ? 128 : 0;
+    if (maxSharedStructures > 8190) throw new Error("Maximum maxSharedStructure is 8190");
     let isSequential = options.sequential;
     if (isSequential) {
       maxSharedStructures = 0;
     }
-    if (!this.structures)
-      this.structures = [];
-    if (this.saveStructures)
-      this.saveShared = this.saveStructures;
-    let samplingPackedValues, packedObjectMap2, sharedValues = options.sharedValues;
+    if (!this.structures) this.structures = [];
+    if (this.saveStructures) this.saveShared = this.saveStructures;
+    let samplingPackedValues,
+      packedObjectMap2,
+      sharedValues = options.sharedValues;
     let sharedPackedObjectMap2;
     if (sharedValues) {
       sharedPackedObjectMap2 = /* @__PURE__ */ Object.create(null);
@@ -16521,7 +16877,7 @@ var Encoder = class extends Decoder {
     let recordIdsToRemove = [];
     let transitionsCount = 0;
     let serializationsSinceTransitionRebuild = 0;
-    this.mapEncode = function(value, encodeOptions) {
+    this.mapEncode = function (value, encodeOptions) {
       if (this._keyMap && !this._mapped) {
         switch (value.constructor.name) {
           case "Array":
@@ -16531,7 +16887,7 @@ var Encoder = class extends Decoder {
       }
       return this.encode(value, encodeOptions);
     };
-    this.encode = function(value, encodeOptions) {
+    this.encode = function (value, encodeOptions) {
       if (!target) {
         target = new ByteArrayAllocate(8192);
         targetView = new DataView(target.buffer, 0, 8192);
@@ -16543,8 +16899,7 @@ var Encoder = class extends Decoder {
         targetView = new DataView(target.buffer, 0, target.length);
         safeEnd = target.length - 10;
         position2 = 0;
-      } else if (encodeOptions === REUSE_BUFFER_MODE)
-        position2 = position2 + 7 & 2147483640;
+      } else if (encodeOptions === REUSE_BUFFER_MODE) position2 = (position2 + 7) & 2147483640;
       start = position2;
       if (encoder.useSelfDescribedHeader) {
         targetView.setUint32(position2, 3654940416);
@@ -16554,15 +16909,14 @@ var Encoder = class extends Decoder {
       if (encoder.bundleStrings && typeof value !== "string") {
         bundledStrings2 = [];
         bundledStrings2.size = Infinity;
-      } else
-        bundledStrings2 = null;
+      } else bundledStrings2 = null;
       sharedStructures = encoder.structures;
       if (sharedStructures) {
         if (sharedStructures.uninitialized) {
           let sharedData = encoder.getShared() || {};
           encoder.structures = sharedStructures = sharedData.structures || [];
           encoder.sharedVersion = sharedData.version;
-          let sharedValues2 = encoder.sharedValues = sharedData.packedValues;
+          let sharedValues2 = (encoder.sharedValues = sharedData.packedValues);
           if (sharedValues2) {
             sharedPackedObjectMap2 = {};
             for (let i = 0, l = sharedValues2.length; i < l; i++)
@@ -16576,12 +16930,11 @@ var Encoder = class extends Decoder {
           sharedStructures.transitions = /* @__PURE__ */ Object.create(null);
           for (let i = 0; i < sharedStructuresLength; i++) {
             let keys = sharedStructures[i];
-            if (!keys)
-              continue;
-            let nextTransition, transition = sharedStructures.transitions;
+            if (!keys) continue;
+            let nextTransition,
+              transition = sharedStructures.transitions;
             for (let j = 0, l = keys.length; j < l; j++) {
-              if (transition[RECORD_SYMBOL] === void 0)
-                transition[RECORD_SYMBOL] = i;
+              if (transition[RECORD_SYMBOL] === void 0) transition[RECORD_SYMBOL] = i;
               let key = keys[j];
               nextTransition = transition[key];
               if (!nextTransition) {
@@ -16592,18 +16945,17 @@ var Encoder = class extends Decoder {
             transition[RECORD_SYMBOL] = i | 1048576;
           }
         }
-        if (!isSequential)
-          sharedStructures.nextId = sharedStructuresLength;
+        if (!isSequential) sharedStructures.nextId = sharedStructuresLength;
       }
-      if (hasSharedUpdate)
-        hasSharedUpdate = false;
+      if (hasSharedUpdate) hasSharedUpdate = false;
       structures = sharedStructures || [];
       packedObjectMap2 = sharedPackedObjectMap2;
       if (options.pack) {
         let packedValues2 = /* @__PURE__ */ new Map();
         packedValues2.values = [];
         packedValues2.encoder = encoder;
-        packedValues2.maxValues = options.maxPrivatePackedValues || (sharedPackedObjectMap2 ? 16 : Infinity);
+        packedValues2.maxValues =
+          options.maxPrivatePackedValues || (sharedPackedObjectMap2 ? 16 : Infinity);
         packedValues2.objectMap = sharedPackedObjectMap2 || false;
         packedValues2.samplingPackedValues = samplingPackedValues;
         findRepetitiveStrings(value, packedValues2);
@@ -16623,8 +16975,7 @@ var Encoder = class extends Decoder {
       }
       throwOnIterable = encodeOptions & THROW_ON_ITERABLE;
       try {
-        if (throwOnIterable)
-          return;
+        if (throwOnIterable) return;
         encode4(value);
         if (bundledStrings2) {
           writeBundles(start, encode4);
@@ -16632,8 +16983,7 @@ var Encoder = class extends Decoder {
         encoder.offset = position2;
         if (referenceMap2 && referenceMap2.idsToInsert) {
           position2 += referenceMap2.idsToInsert.length * 2;
-          if (position2 > safeEnd)
-            makeRoom(position2);
+          if (position2 > safeEnd) makeRoom(position2);
           encoder.offset = position2;
           let serialized = insertIds(target.subarray(start, position2), referenceMap2.idsToInsert);
           referenceMap2 = null;
@@ -16647,16 +16997,14 @@ var Encoder = class extends Decoder {
         return target.subarray(start, position2);
       } finally {
         if (sharedStructures) {
-          if (serializationsSinceTransitionRebuild < 10)
-            serializationsSinceTransitionRebuild++;
+          if (serializationsSinceTransitionRebuild < 10) serializationsSinceTransitionRebuild++;
           if (sharedStructures.length > maxSharedStructures)
             sharedStructures.length = maxSharedStructures;
           if (transitionsCount > 1e4) {
             sharedStructures.transitions = null;
             serializationsSinceTransitionRebuild = 0;
             transitionsCount = 0;
-            if (recordIdsToRemove.length > 0)
-              recordIdsToRemove = [];
+            if (recordIdsToRemove.length > 0) recordIdsToRemove = [];
           } else if (recordIdsToRemove.length > 0 && !isSequential) {
             for (let i = 0, l = recordIdsToRemove.length; i < l; i++) {
               recordIdsToRemove[i][RECORD_SYMBOL] = void 0;
@@ -16669,23 +17017,19 @@ var Encoder = class extends Decoder {
             encoder.structures = encoder.structures.slice(0, maxSharedStructures);
           }
           let returnBuffer = target.subarray(start, position2);
-          if (encoder.updateSharedData() === false)
-            return encoder.encode(value);
+          if (encoder.updateSharedData() === false) return encoder.encode(value);
           return returnBuffer;
         }
-        if (encodeOptions & RESET_BUFFER_MODE)
-          position2 = start;
+        if (encodeOptions & RESET_BUFFER_MODE) position2 = start;
       }
     };
     this.findCommonStringsToPack = () => {
       samplingPackedValues = /* @__PURE__ */ new Map();
-      if (!sharedPackedObjectMap2)
-        sharedPackedObjectMap2 = /* @__PURE__ */ Object.create(null);
+      if (!sharedPackedObjectMap2) sharedPackedObjectMap2 = /* @__PURE__ */ Object.create(null);
       return (options2) => {
-        let threshold = options2 && options2.threshold || 4;
+        let threshold = (options2 && options2.threshold) || 4;
         let position3 = this.pack ? options2.maxPrivatePackedValues || 16 : 0;
-        if (!sharedValues)
-          sharedValues = this.sharedValues = [];
+        if (!sharedValues) sharedValues = this.sharedValues = [];
         for (let [key, status] of samplingPackedValues) {
           if (status.count > threshold) {
             sharedPackedObjectMap2[key] = position3++;
@@ -16693,37 +17037,31 @@ var Encoder = class extends Decoder {
             hasSharedUpdate = true;
           }
         }
-        while (this.saveShared && this.updateSharedData() === false) {
-        }
+        while (this.saveShared && this.updateSharedData() === false) {}
         samplingPackedValues = null;
       };
     };
     const encode4 = (value) => {
-      if (position2 > safeEnd)
-        target = makeRoom(position2);
+      if (position2 > safeEnd) target = makeRoom(position2);
       var type = typeof value;
       var length;
       if (type === "string") {
         if (packedObjectMap2) {
           let packedPosition = packedObjectMap2[value];
           if (packedPosition >= 0) {
-            if (packedPosition < 16)
-              target[position2++] = packedPosition + 224;
+            if (packedPosition < 16) target[position2++] = packedPosition + 224;
             else {
               target[position2++] = 198;
-              if (packedPosition & 1)
-                encode4(15 - packedPosition >> 1);
-              else
-                encode4(packedPosition - 16 >> 1);
+              if (packedPosition & 1) encode4((15 - packedPosition) >> 1);
+              else encode4((packedPosition - 16) >> 1);
             }
             return;
           } else if (samplingPackedValues && !options.pack) {
             let status = samplingPackedValues.get(value);
-            if (status)
-              status.count++;
+            if (status) status.count++;
             else
               samplingPackedValues.set(value, {
-                count: 1
+                count: 1,
               });
           }
         }
@@ -16731,9 +17069,10 @@ var Encoder = class extends Decoder {
         if (bundledStrings2 && strLength >= 4 && strLength < 1024) {
           if ((bundledStrings2.size += strLength) > MAX_BUNDLE_SIZE) {
             let extStart;
-            let maxBytes2 = (bundledStrings2[0] ? bundledStrings2[0].length * 3 + bundledStrings2[1].length : 0) + 10;
-            if (position2 + maxBytes2 > safeEnd)
-              target = makeRoom(position2 + maxBytes2);
+            let maxBytes2 =
+              (bundledStrings2[0] ? bundledStrings2[0].length * 3 + bundledStrings2[1].length : 0) +
+              10;
+            if (position2 + maxBytes2 > safeEnd) target = makeRoom(position2 + maxBytes2);
             target[position2++] = 217;
             target[position2++] = 223;
             target[position2++] = 249;
@@ -16765,28 +17104,33 @@ var Encoder = class extends Decoder {
           headerSize = 5;
         }
         let maxBytes = strLength * 3;
-        if (position2 + maxBytes > safeEnd)
-          target = makeRoom(position2 + maxBytes);
+        if (position2 + maxBytes > safeEnd) target = makeRoom(position2 + maxBytes);
         if (strLength < 64 || !encodeUtf8) {
-          let i, c1, c2, strPosition = position2 + headerSize;
+          let i,
+            c1,
+            c2,
+            strPosition = position2 + headerSize;
           for (i = 0; i < strLength; i++) {
             c1 = value.charCodeAt(i);
             if (c1 < 128) {
               target[strPosition++] = c1;
             } else if (c1 < 2048) {
-              target[strPosition++] = c1 >> 6 | 192;
-              target[strPosition++] = c1 & 63 | 128;
-            } else if ((c1 & 64512) === 55296 && ((c2 = value.charCodeAt(i + 1)) & 64512) === 56320) {
+              target[strPosition++] = (c1 >> 6) | 192;
+              target[strPosition++] = (c1 & 63) | 128;
+            } else if (
+              (c1 & 64512) === 55296 &&
+              ((c2 = value.charCodeAt(i + 1)) & 64512) === 56320
+            ) {
               c1 = 65536 + ((c1 & 1023) << 10) + (c2 & 1023);
               i++;
-              target[strPosition++] = c1 >> 18 | 240;
-              target[strPosition++] = c1 >> 12 & 63 | 128;
-              target[strPosition++] = c1 >> 6 & 63 | 128;
-              target[strPosition++] = c1 & 63 | 128;
+              target[strPosition++] = (c1 >> 18) | 240;
+              target[strPosition++] = ((c1 >> 12) & 63) | 128;
+              target[strPosition++] = ((c1 >> 6) & 63) | 128;
+              target[strPosition++] = (c1 & 63) | 128;
             } else {
-              target[strPosition++] = c1 >> 12 | 224;
-              target[strPosition++] = c1 >> 6 & 63 | 128;
-              target[strPosition++] = c1 & 63 | 128;
+              target[strPosition++] = (c1 >> 12) | 224;
+              target[strPosition++] = ((c1 >> 6) & 63) | 128;
+              target[strPosition++] = (c1 & 63) | 128;
             }
           }
           length = strPosition - position2 - headerSize;
@@ -16848,7 +17192,12 @@ var Encoder = class extends Decoder {
             targetView.setUint32(position2, ~value);
             position2 += 4;
           }
-        } else if (!this.alwaysUseFloat && value < 0 && value >= -4294967296 && Math.floor(value) === value) {
+        } else if (
+          !this.alwaysUseFloat &&
+          value < 0 &&
+          value >= -4294967296 &&
+          Math.floor(value) === value
+        ) {
           target[position2++] = 58;
           targetView.setUint32(position2, -1 - value);
           position2 += 4;
@@ -16858,20 +17207,23 @@ var Encoder = class extends Decoder {
             target[position2++] = 250;
             targetView.setFloat32(position2, value);
             let xShifted;
-            if (useFloat32 < 4 || // this checks for rounding of numbers that were encoded in 32-bit float to nearest significant decimal digit that could be preserved
-            (xShifted = value * mult10[(target[position2] & 127) << 1 | target[position2 + 1] >> 7]) >> 0 === xShifted) {
+            if (
+              useFloat32 < 4 || // this checks for rounding of numbers that were encoded in 32-bit float to nearest significant decimal digit that could be preserved
+              (xShifted =
+                value * mult10[((target[position2] & 127) << 1) | (target[position2 + 1] >> 7)]) >>
+                0 ===
+                xShifted
+            ) {
               position2 += 4;
               return;
-            } else
-              position2--;
+            } else position2--;
           }
           target[position2++] = 251;
           targetView.setFloat64(position2, value);
           position2 += 8;
         }
       } else if (type === "object") {
-        if (!value)
-          target[position2++] = 246;
+        if (!value) target[position2++] = 246;
         else {
           if (referenceMap2) {
             let referee = referenceMap2.get(value);
@@ -16887,13 +17239,16 @@ var Encoder = class extends Decoder {
               referee.references.push(position2 - start);
               position2 += 2;
               return;
-            } else
-              referenceMap2.set(value, { offset: position2 - start });
+            } else referenceMap2.set(value, { offset: position2 - start });
           }
           let constructor = value.constructor;
           if (constructor === Object) {
             if (this.skipFunction === true) {
-              value = Object.fromEntries([...Object.keys(value).filter((x) => typeof value[x] !== "function").map((x) => [x, value[x]])]);
+              value = Object.fromEntries([
+                ...Object.keys(value)
+                  .filter((x) => typeof value[x] !== "function")
+                  .map((x) => [x, value[x]]),
+              ]);
             }
             writeObject(value);
           } else if (constructor === Array) {
@@ -16944,8 +17299,7 @@ var Encoder = class extends Decoder {
               if (value instanceof extensionClass) {
                 let extension = extensions[i];
                 let tag = extension.tag;
-                if (tag == void 0)
-                  tag = extension.getTag && extension.getTag.call(this, value);
+                if (tag == void 0) tag = extension.getTag && extension.getTag.call(this, value);
                 if (tag < 24) {
                   target[position2++] = 192 | tag;
                 } else if (tag < 256) {
@@ -16984,8 +17338,7 @@ var Encoder = class extends Decoder {
             }
             if (this.useToJSON && value.toJSON) {
               const json2 = value.toJSON();
-              if (json2 !== value)
-                return encode4(json2);
+              if (json2 !== value) return encode4(json2);
             }
             writeObject(value);
           }
@@ -17004,8 +17357,7 @@ var Encoder = class extends Decoder {
             target[position2++] = 251;
             targetView.setFloat64(position2, Number(value));
           } else {
-            if (value >= BigInt(0))
-              target[position2++] = 194;
+            if (value >= BigInt(0)) target[position2++] = 194;
             else {
               target[position2++] = 195;
               value = BigInt(-1) - value;
@@ -17026,151 +17378,161 @@ var Encoder = class extends Decoder {
         throw new Error("Unknown type: " + type);
       }
     };
-    const writeObject = this.useRecords === false ? this.variableMapSize ? (object2) => {
-      let keys = Object.keys(object2);
-      let vals = Object.values(object2);
-      let length = keys.length;
-      if (length < 24) {
-        target[position2++] = 160 | length;
-      } else if (length < 256) {
-        target[position2++] = 184;
-        target[position2++] = length;
-      } else if (length < 65536) {
-        target[position2++] = 185;
-        target[position2++] = length >> 8;
-        target[position2++] = length & 255;
-      } else {
-        target[position2++] = 186;
-        targetView.setUint32(position2, length);
-        position2 += 4;
-      }
-      let key;
-      if (encoder.keyMap) {
-        for (let i = 0; i < length; i++) {
-          encode4(encoder.encodeKey(keys[i]));
-          encode4(vals[i]);
-        }
-      } else {
-        for (let i = 0; i < length; i++) {
-          encode4(keys[i]);
-          encode4(vals[i]);
-        }
-      }
-    } : (object2) => {
-      target[position2++] = 185;
-      let objectOffset = position2 - start;
-      position2 += 2;
-      let size = 0;
-      if (encoder.keyMap) {
-        for (let key in object2) if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key)) {
-          encode4(encoder.encodeKey(key));
-          encode4(object2[key]);
-          size++;
-        }
-      } else {
-        for (let key in object2) if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key)) {
-          encode4(key);
-          encode4(object2[key]);
-          size++;
-        }
-      }
-      target[objectOffset++ + start] = size >> 8;
-      target[objectOffset + start] = size & 255;
-    } : (object2, skipValues) => {
-      let nextTransition, transition = structures.transitions || (structures.transitions = /* @__PURE__ */ Object.create(null));
-      let newTransitions = 0;
-      let length = 0;
-      let parentRecordId;
-      let keys;
-      if (this.keyMap) {
-        keys = Object.keys(object2).map((k) => this.encodeKey(k));
-        length = keys.length;
-        for (let i = 0; i < length; i++) {
-          let key = keys[i];
-          nextTransition = transition[key];
-          if (!nextTransition) {
-            nextTransition = transition[key] = /* @__PURE__ */ Object.create(null);
-            newTransitions++;
-          }
-          transition = nextTransition;
-        }
-      } else {
-        for (let key in object2) if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key)) {
-          nextTransition = transition[key];
-          if (!nextTransition) {
-            if (transition[RECORD_SYMBOL] & 1048576) {
-              parentRecordId = transition[RECORD_SYMBOL] & 65535;
+    const writeObject =
+      this.useRecords === false
+        ? this.variableMapSize
+          ? (object2) => {
+              let keys = Object.keys(object2);
+              let vals = Object.values(object2);
+              let length = keys.length;
+              if (length < 24) {
+                target[position2++] = 160 | length;
+              } else if (length < 256) {
+                target[position2++] = 184;
+                target[position2++] = length;
+              } else if (length < 65536) {
+                target[position2++] = 185;
+                target[position2++] = length >> 8;
+                target[position2++] = length & 255;
+              } else {
+                target[position2++] = 186;
+                targetView.setUint32(position2, length);
+                position2 += 4;
+              }
+              let key;
+              if (encoder.keyMap) {
+                for (let i = 0; i < length; i++) {
+                  encode4(encoder.encodeKey(keys[i]));
+                  encode4(vals[i]);
+                }
+              } else {
+                for (let i = 0; i < length; i++) {
+                  encode4(keys[i]);
+                  encode4(vals[i]);
+                }
+              }
             }
-            nextTransition = transition[key] = /* @__PURE__ */ Object.create(null);
-            newTransitions++;
-          }
-          transition = nextTransition;
-          length++;
-        }
-      }
-      let recordId = transition[RECORD_SYMBOL];
-      if (recordId !== void 0) {
-        recordId &= 65535;
-        target[position2++] = 217;
-        target[position2++] = recordId >> 8 | 224;
-        target[position2++] = recordId & 255;
-      } else {
-        if (!keys)
-          keys = transition.__keys__ || (transition.__keys__ = Object.keys(object2));
-        if (parentRecordId === void 0) {
-          recordId = structures.nextId++;
-          if (!recordId) {
-            recordId = 0;
-            structures.nextId = 1;
-          }
-          if (recordId >= MAX_STRUCTURES) {
-            structures.nextId = (recordId = maxSharedStructures) + 1;
-          }
-        } else {
-          recordId = parentRecordId;
-        }
-        structures[recordId] = keys;
-        if (recordId < maxSharedStructures) {
-          target[position2++] = 217;
-          target[position2++] = recordId >> 8 | 224;
-          target[position2++] = recordId & 255;
-          transition = structures.transitions;
-          for (let i = 0; i < length; i++) {
-            if (transition[RECORD_SYMBOL] === void 0 || transition[RECORD_SYMBOL] & 1048576)
-              transition[RECORD_SYMBOL] = recordId;
-            transition = transition[keys[i]];
-          }
-          transition[RECORD_SYMBOL] = recordId | 1048576;
-          hasSharedUpdate = true;
-        } else {
-          transition[RECORD_SYMBOL] = recordId;
-          targetView.setUint32(position2, 3655335680);
-          position2 += 3;
-          if (newTransitions)
-            transitionsCount += serializationsSinceTransitionRebuild * newTransitions;
-          if (recordIdsToRemove.length >= MAX_STRUCTURES - maxSharedStructures)
-            recordIdsToRemove.shift()[RECORD_SYMBOL] = void 0;
-          recordIdsToRemove.push(transition);
-          writeArrayHeader(length + 2);
-          encode4(57344 + recordId);
-          encode4(keys);
-          if (skipValues) return;
-          for (let key in object2)
-            if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key))
-              encode4(object2[key]);
-          return;
-        }
-      }
-      if (length < 24) {
-        target[position2++] = 128 | length;
-      } else {
-        writeArrayHeader(length);
-      }
-      if (skipValues) return;
-      for (let key in object2)
-        if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key))
-          encode4(object2[key]);
-    };
+          : (object2) => {
+              target[position2++] = 185;
+              let objectOffset = position2 - start;
+              position2 += 2;
+              let size = 0;
+              if (encoder.keyMap) {
+                for (let key in object2)
+                  if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key)) {
+                    encode4(encoder.encodeKey(key));
+                    encode4(object2[key]);
+                    size++;
+                  }
+              } else {
+                for (let key in object2)
+                  if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key)) {
+                    encode4(key);
+                    encode4(object2[key]);
+                    size++;
+                  }
+              }
+              target[objectOffset++ + start] = size >> 8;
+              target[objectOffset + start] = size & 255;
+            }
+        : (object2, skipValues) => {
+            let nextTransition,
+              transition =
+                structures.transitions ||
+                (structures.transitions = /* @__PURE__ */ Object.create(null));
+            let newTransitions = 0;
+            let length = 0;
+            let parentRecordId;
+            let keys;
+            if (this.keyMap) {
+              keys = Object.keys(object2).map((k) => this.encodeKey(k));
+              length = keys.length;
+              for (let i = 0; i < length; i++) {
+                let key = keys[i];
+                nextTransition = transition[key];
+                if (!nextTransition) {
+                  nextTransition = transition[key] = /* @__PURE__ */ Object.create(null);
+                  newTransitions++;
+                }
+                transition = nextTransition;
+              }
+            } else {
+              for (let key in object2)
+                if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key)) {
+                  nextTransition = transition[key];
+                  if (!nextTransition) {
+                    if (transition[RECORD_SYMBOL] & 1048576) {
+                      parentRecordId = transition[RECORD_SYMBOL] & 65535;
+                    }
+                    nextTransition = transition[key] = /* @__PURE__ */ Object.create(null);
+                    newTransitions++;
+                  }
+                  transition = nextTransition;
+                  length++;
+                }
+            }
+            let recordId = transition[RECORD_SYMBOL];
+            if (recordId !== void 0) {
+              recordId &= 65535;
+              target[position2++] = 217;
+              target[position2++] = (recordId >> 8) | 224;
+              target[position2++] = recordId & 255;
+            } else {
+              if (!keys) keys = transition.__keys__ || (transition.__keys__ = Object.keys(object2));
+              if (parentRecordId === void 0) {
+                recordId = structures.nextId++;
+                if (!recordId) {
+                  recordId = 0;
+                  structures.nextId = 1;
+                }
+                if (recordId >= MAX_STRUCTURES) {
+                  structures.nextId = (recordId = maxSharedStructures) + 1;
+                }
+              } else {
+                recordId = parentRecordId;
+              }
+              structures[recordId] = keys;
+              if (recordId < maxSharedStructures) {
+                target[position2++] = 217;
+                target[position2++] = (recordId >> 8) | 224;
+                target[position2++] = recordId & 255;
+                transition = structures.transitions;
+                for (let i = 0; i < length; i++) {
+                  if (transition[RECORD_SYMBOL] === void 0 || transition[RECORD_SYMBOL] & 1048576)
+                    transition[RECORD_SYMBOL] = recordId;
+                  transition = transition[keys[i]];
+                }
+                transition[RECORD_SYMBOL] = recordId | 1048576;
+                hasSharedUpdate = true;
+              } else {
+                transition[RECORD_SYMBOL] = recordId;
+                targetView.setUint32(position2, 3655335680);
+                position2 += 3;
+                if (newTransitions)
+                  transitionsCount += serializationsSinceTransitionRebuild * newTransitions;
+                if (recordIdsToRemove.length >= MAX_STRUCTURES - maxSharedStructures)
+                  recordIdsToRemove.shift()[RECORD_SYMBOL] = void 0;
+                recordIdsToRemove.push(transition);
+                writeArrayHeader(length + 2);
+                encode4(57344 + recordId);
+                encode4(keys);
+                if (skipValues) return;
+                for (let key in object2)
+                  if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key))
+                    encode4(object2[key]);
+                return;
+              }
+            }
+            if (length < 24) {
+              target[position2++] = 128 | length;
+            } else {
+              writeArrayHeader(length);
+            }
+            if (skipValues) return;
+            for (let key in object2)
+              if (typeof object2.hasOwnProperty !== "function" || object2.hasOwnProperty(key))
+                encode4(object2[key]);
+          };
     const makeRoom = (end) => {
       let newSize;
       if (end > 16777216) {
@@ -17178,45 +17540,39 @@ var Encoder = class extends Decoder {
           throw new Error("Encoded buffer would be larger than maximum buffer size");
         newSize = Math.min(
           MAX_BUFFER_SIZE,
-          Math.round(Math.max((end - start) * (end > 67108864 ? 1.25 : 2), 4194304) / 4096) * 4096
+          Math.round(Math.max((end - start) * (end > 67108864 ? 1.25 : 2), 4194304) / 4096) * 4096,
         );
-      } else
-        newSize = (Math.max(end - start << 2, target.length - 1) >> 12) + 1 << 12;
+      } else newSize = ((Math.max((end - start) << 2, target.length - 1) >> 12) + 1) << 12;
       let newBuffer = new ByteArrayAllocate(newSize);
       targetView = new DataView(newBuffer.buffer, 0, newSize);
-      if (target.copy)
-        target.copy(newBuffer, 0, start, end);
-      else
-        newBuffer.set(target.slice(start, end));
+      if (target.copy) target.copy(newBuffer, 0, start, end);
+      else newBuffer.set(target.slice(start, end));
       position2 -= start;
       start = 0;
       safeEnd = newBuffer.length - 10;
-      return target = newBuffer;
+      return (target = newBuffer);
     };
     let chunkThreshold = 100;
     let continuedChunkThreshold = 1e3;
-    this.encodeAsIterable = function(value, options2) {
+    this.encodeAsIterable = function (value, options2) {
       return startEncoding(value, options2, encodeObjectAsIterable);
     };
-    this.encodeAsAsyncIterable = function(value, options2) {
+    this.encodeAsAsyncIterable = function (value, options2) {
       return startEncoding(value, options2, encodeObjectAsAsyncIterable);
     };
     function* encodeObjectAsIterable(object2, iterateProperties, finalIterable) {
       let constructor = object2.constructor;
       if (constructor === Object) {
         let useRecords = encoder.useRecords !== false;
-        if (useRecords)
-          writeObject(object2, true);
-        else
-          writeEntityLength(Object.keys(object2).length, 160);
+        if (useRecords) writeObject(object2, true);
+        else writeEntityLength(Object.keys(object2).length, 160);
         for (let key in object2) {
           let value = object2[key];
           if (!useRecords) encode4(key);
           if (value && typeof value === "object") {
             if (iterateProperties[key])
               yield* encodeObjectAsIterable(value, iterateProperties[key]);
-            else
-              yield* tryEncode(value, iterateProperties, key);
+            else yield* tryEncode(value, iterateProperties, key);
           } else encode4(value);
         }
       } else if (constructor === Array) {
@@ -17227,8 +17583,7 @@ var Encoder = class extends Decoder {
           if (value && (typeof value === "object" || position2 - start > chunkThreshold)) {
             if (iterateProperties.element)
               yield* encodeObjectAsIterable(value, iterateProperties.element);
-            else
-              yield* tryEncode(value, iterateProperties, "element");
+            else yield* tryEncode(value, iterateProperties, "element");
           } else encode4(value);
         }
       } else if (object2[Symbol.iterator] && !object2.buffer) {
@@ -17237,8 +17592,7 @@ var Encoder = class extends Decoder {
           if (value && (typeof value === "object" || position2 - start > chunkThreshold)) {
             if (iterateProperties.element)
               yield* encodeObjectAsIterable(value, iterateProperties.element);
-            else
-              yield* tryEncode(value, iterateProperties, "element");
+            else yield* tryEncode(value, iterateProperties, "element");
           } else encode4(value);
         }
         target[position2++] = 255;
@@ -17285,19 +17639,21 @@ var Encoder = class extends Decoder {
     function startEncoding(value, options2, encodeIterable) {
       if (options2 && options2.chunkThreshold)
         chunkThreshold = continuedChunkThreshold = options2.chunkThreshold;
-      else
-        chunkThreshold = 100;
+      else chunkThreshold = 100;
       if (value && typeof value === "object") {
         encoder.encode(null, THROW_ON_ITERABLE);
-        return encodeIterable(value, encoder.iterateProperties || (encoder.iterateProperties = {}), true);
+        return encodeIterable(
+          value,
+          encoder.iterateProperties || (encoder.iterateProperties = {}),
+          true,
+        );
       }
       return [encoder.encode(value)];
     }
     async function* encodeObjectAsAsyncIterable(value, iterateProperties) {
       for (let encodedValue of encodeObjectAsIterable(value, iterateProperties, true)) {
         let constructor = encodedValue.constructor;
-        if (constructor === ByteArray || constructor === Uint8Array)
-          yield encodedValue;
+        if (constructor === ByteArray || constructor === Uint8Array) yield encodedValue;
         else if (isBlob(encodedValue)) {
           let reader = encodedValue.stream().getReader();
           let next;
@@ -17308,7 +17664,10 @@ var Encoder = class extends Decoder {
           for await (let asyncValue of encodedValue) {
             restartEncoding();
             if (asyncValue)
-              yield* encodeObjectAsAsyncIterable(asyncValue, iterateProperties.async || (iterateProperties.async = {}));
+              yield* encodeObjectAsAsyncIterable(
+                asyncValue,
+                iterateProperties.async || (iterateProperties.async = {}),
+              );
             else yield encoder.encode(asyncValue);
           }
         } else {
@@ -17323,10 +17682,8 @@ var Encoder = class extends Decoder {
     position2 = 0;
   }
   clearSharedData() {
-    if (this.structures)
-      this.structures = [];
-    if (this.sharedValues)
-      this.sharedValues = void 0;
+    if (this.structures) this.structures = [];
+    if (this.sharedValues) this.sharedValues = void 0;
   }
   updateSharedData() {
     let lastVersion = this.sharedVersion || 0;
@@ -17335,7 +17692,7 @@ var Encoder = class extends Decoder {
     let sharedData = new SharedData(structuresCopy, this.sharedValues, this.sharedVersion);
     let saveResults = this.saveShared(
       sharedData,
-      (existingShared) => (existingShared && existingShared.version || 0) == lastVersion
+      (existingShared) => ((existingShared && existingShared.version) || 0) == lastVersion,
     );
     if (saveResults === false) {
       sharedData = this.getShared() || {};
@@ -17344,14 +17701,13 @@ var Encoder = class extends Decoder {
       this.sharedVersion = sharedData.version;
       this.structures.nextId = this.structures.length;
     } else {
-      structuresCopy.forEach((structure, i) => this.structures[i] = structure);
+      structuresCopy.forEach((structure, i) => (this.structures[i] = structure));
     }
     return saveResults;
   }
 };
 function writeEntityLength(length, majorValue) {
-  if (length < 24)
-    target[position2++] = majorValue | length;
+  if (length < 24) target[position2++] = majorValue | length;
   else if (length < 256) {
     target[position2++] = majorValue | 24;
     target[position2++] = length;
@@ -17373,8 +17729,7 @@ var SharedData = class {
   }
 };
 function writeArrayHeader(length) {
-  if (length < 24)
-    target[position2++] = 128 | length;
+  if (length < 24) target[position2++] = 128 | length;
   else if (length < 256) {
     target[position2++] = 152;
     target[position2++] = length;
@@ -17388,11 +17743,9 @@ function writeArrayHeader(length) {
     position2 += 4;
   }
 }
-var BlobConstructor = typeof Blob === "undefined" ? function() {
-} : Blob;
+var BlobConstructor = typeof Blob === "undefined" ? function () {} : Blob;
 function isBlob(object2) {
-  if (object2 instanceof BlobConstructor)
-    return true;
+  if (object2 instanceof BlobConstructor) return true;
   let tag = object2[Symbol.toStringTag];
   return tag === "Blob" || tag === "File";
 }
@@ -17400,7 +17753,10 @@ function findRepetitiveStrings(value, packedValues2) {
   switch (typeof value) {
     case "string":
       if (value.length > 3) {
-        if (packedValues2.objectMap[value] > -1 || packedValues2.values.length >= packedValues2.maxValues)
+        if (
+          packedValues2.objectMap[value] > -1 ||
+          packedValues2.values.length >= packedValues2.maxValues
+        )
           return;
         let packedStatus = packedValues2.get(value);
         if (packedStatus) {
@@ -17409,15 +17765,14 @@ function findRepetitiveStrings(value, packedValues2) {
           }
         } else {
           packedValues2.set(value, {
-            count: 1
+            count: 1,
           });
           if (packedValues2.samplingPackedValues) {
             let status = packedValues2.samplingPackedValues.get(value);
-            if (status)
-              status.count++;
+            if (status) status.count++;
             else
               packedValues2.samplingPackedValues.set(value, {
-                count: 1
+                count: 1,
               });
           }
         }
@@ -17433,8 +17788,7 @@ function findRepetitiveStrings(value, packedValues2) {
           let includeKeys = !packedValues2.encoder.useRecords;
           for (var key in value) {
             if (value.hasOwnProperty(key)) {
-              if (includeKeys)
-                findRepetitiveStrings(key, packedValues2);
+              if (includeKeys) findRepetitiveStrings(key, packedValues2);
               findRepetitiveStrings(value[key], packedValues2);
             }
           }
@@ -17457,16 +17811,14 @@ extensionClasses = [
   Uint8ClampedArray,
   Uint16Array,
   Uint32Array,
-  typeof BigUint64Array == "undefined" ? function() {
-  } : BigUint64Array,
+  typeof BigUint64Array == "undefined" ? function () {} : BigUint64Array,
   Int8Array,
   Int16Array,
   Int32Array,
-  typeof BigInt64Array == "undefined" ? function() {
-  } : BigInt64Array,
+  typeof BigInt64Array == "undefined" ? function () {} : BigInt64Array,
   Float32Array,
   Float64Array,
-  SharedData
+  SharedData,
 ];
 extensions = [
   {
@@ -17474,7 +17826,11 @@ extensions = [
     tag: 1,
     encode(date5, encode4) {
       let seconds = date5.getTime() / 1e3;
-      if ((this.useTimestamp32 || date5.getMilliseconds() === 0) && seconds >= 0 && seconds < 4294967296) {
+      if (
+        (this.useTimestamp32 || date5.getMilliseconds() === 0) &&
+        seconds >= 0 &&
+        seconds < 4294967296
+      ) {
         target[position2++] = 26;
         targetView.setUint32(position2, seconds);
         position2 += 4;
@@ -17483,7 +17839,7 @@ extensions = [
         targetView.setFloat64(position2, seconds);
         position2 += 8;
       }
-    }
+    },
   },
   {
     // Set
@@ -17492,7 +17848,7 @@ extensions = [
     encode(set2, encode4) {
       let array2 = Array.from(set2);
       encode4(array2);
-    }
+    },
   },
   {
     // Error
@@ -17500,7 +17856,7 @@ extensions = [
     // http://cbor.schmorp.de/generic-object
     encode(error51, encode4) {
       encode4([error51.name, error51.message]);
-    }
+    },
   },
   {
     // RegExp
@@ -17508,7 +17864,7 @@ extensions = [
     // http://cbor.schmorp.de/generic-object
     encode(regex, encode4) {
       encode4(["RegExp", regex.source, regex.flags]);
-    }
+    },
   },
   {
     // Tag
@@ -17517,25 +17873,24 @@ extensions = [
     },
     encode(tag, encode4) {
       encode4(tag.value);
-    }
+    },
   },
   {
     // ArrayBuffer
     encode(arrayBuffer, encode4, makeRoom) {
       writeBuffer(arrayBuffer, makeRoom);
-    }
+    },
   },
   {
     // Uint8Array
     getTag(typedArray) {
       if (typedArray.constructor === Uint8Array) {
-        if (this.tagUint8Array || hasNodeBuffer && this.tagUint8Array !== false)
-          return 64;
+        if (this.tagUint8Array || (hasNodeBuffer && this.tagUint8Array !== false)) return 64;
       }
     },
     encode(typedArray, encode4, makeRoom) {
       writeBuffer(typedArray, makeRoom);
-    }
+    },
   },
   typedArrayEncoder(68, 1),
   typedArrayEncoder(69, 2),
@@ -17571,22 +17926,24 @@ extensions = [
         definitions.unshift(57344);
         definitions.push(new Tag(sharedData.version, 1399353956));
         encode4(definitions);
-      } else
-        encode4(new Tag(sharedData.version, 1399353956));
-    }
-  }
+      } else encode4(new Tag(sharedData.version, 1399353956));
+    },
+  },
 ];
 function typedArrayEncoder(tag, size) {
-  if (!isLittleEndianMachine2 && size > 1)
-    tag -= 4;
+  if (!isLittleEndianMachine2 && size > 1) tag -= 4;
   return {
     tag,
     encode: function writeExtBuffer(typedArray, encode4) {
       let length = typedArray.byteLength;
       let offset = typedArray.byteOffset || 0;
       let buffer = typedArray.buffer || typedArray;
-      encode4(hasNodeBuffer ? Buffer2.from(buffer, offset, length) : new Uint8Array(buffer, offset, length));
-    }
+      encode4(
+        hasNodeBuffer
+          ? Buffer2.from(buffer, offset, length)
+          : new Uint8Array(buffer, offset, length),
+      );
+    },
   };
 }
 function writeBuffer(buffer, makeRoom) {
@@ -17615,7 +17972,7 @@ function insertIds(serialized, idsToInsert) {
   let nextId;
   let distanceToMove = idsToInsert.length * 2;
   let lastEnd = serialized.length - distanceToMove;
-  idsToInsert.sort((a, b) => a.offset > b.offset ? 1 : -1);
+  idsToInsert.sort((a, b) => (a.offset > b.offset ? 1 : -1));
   for (let id = 0; id < idsToInsert.length; id++) {
     let referee = idsToInsert[id];
     referee.id = id;
@@ -17624,7 +17981,7 @@ function insertIds(serialized, idsToInsert) {
       serialized[position3] = id & 255;
     }
   }
-  while (nextId = idsToInsert.pop()) {
+  while ((nextId = idsToInsert.pop())) {
     let offset = nextId.offset;
     serialized.copyWithin(offset + distanceToMove, offset, lastEnd);
     distanceToMove -= 2;
@@ -17636,7 +17993,10 @@ function insertIds(serialized, idsToInsert) {
   return serialized;
 }
 function writeBundles(start, encode4) {
-  targetView.setUint32(bundledStrings2.position + start, position2 - bundledStrings2.position - start + 1);
+  targetView.setUint32(
+    bundledStrings2.position + start,
+    position2 - bundledStrings2.position - start + 1,
+  );
   let writeStrings = bundledStrings2;
   bundledStrings2 = null;
   encode4(writeStrings[0]);
@@ -17799,7 +18159,7 @@ function reserve(bc, min) {
   if (DEV) {
     assert2(isU32(min));
   }
-  const minLen = bc.offset + min | 0;
+  const minLen = (bc.offset + min) | 0;
   if (minLen > bc.bytes.length) {
     grow(bc, minLen);
   }
@@ -17810,10 +18170,13 @@ function grow(bc, minLen) {
   }
   const buffer = bc.bytes.buffer;
   let newBytes;
-  if (isEs2024ArrayBufferLike(buffer) && // Make sure that the view covers the end of the buffer.
-  // If it is not the case, this indicates that the user don't want
-  // to override the trailing bytes.
-  bc.bytes.byteOffset + bc.bytes.byteLength === buffer.byteLength && bc.bytes.byteLength + minLen <= buffer.maxByteLength) {
+  if (
+    isEs2024ArrayBufferLike(buffer) && // Make sure that the view covers the end of the buffer.
+    // If it is not the case, this indicates that the user don't want
+    // to override the trailing bytes.
+    bc.bytes.byteOffset + bc.bytes.byteLength === buffer.byteLength &&
+    bc.bytes.byteLength + minLen <= buffer.maxByteLength
+  ) {
     const newLen = Math.min(minLen << 1, bc.config.maxBufferLength, buffer.maxByteLength);
     if (buffer instanceof ArrayBuffer) {
       buffer.resize(newLen);
@@ -17882,8 +18245,7 @@ function readUint(bc) {
     do {
       byte = readU8(bc);
       low += (byte & 127) * shiftMul;
-      shiftMul *= /* 2**7 */
-      128;
+      shiftMul *= /* 2**7 */ 128;
       byteCount++;
     } while (byte >= 128 && byteCount < 7);
     let height = 0;
@@ -17891,11 +18253,10 @@ function readUint(bc) {
     while (byte >= 128 && byteCount < UINT_MAX_BYTE_COUNT) {
       byte = readU8(bc);
       height += (byte & 127) * shiftMul;
-      shiftMul *= /* 2**7 */
-      128;
+      shiftMul *= /* 2**7 */ 128;
       byteCount++;
     }
-    if (byte === 0 || byteCount === UINT_MAX_BYTE_COUNT && byte > 1) {
+    if (byte === 0 || (byteCount === UINT_MAX_BYTE_COUNT && byte > 1)) {
       bc.offset -= byteCount;
       throw new BareError(bc.offset, NON_CANONICAL_REPRESENTATION);
     }
@@ -17915,9 +18276,8 @@ function writeUintTruncated(bc, x) {
   let rest = Number(x >> BigInt(7 * 7));
   let byteCount = 0;
   while (tmp >= 128 || rest > 0) {
-    writeU8(bc, 128 | tmp & 127);
-    tmp = Math.floor(tmp / /* 2**7 */
-    128);
+    writeU8(bc, 128 | (tmp & 127));
+    tmp = Math.floor(tmp /* 2**7 */ / 128);
     byteCount++;
     if (byteCount === 7) {
       tmp = rest;
@@ -17935,7 +18295,7 @@ function readUintSafe32(bc) {
     let byte;
     do {
       byte = readU8(bc);
-      result += (byte & 127) << shift >>> 0;
+      result += ((byte & 127) << shift) >>> 0;
       shift += 7;
       byteCount++;
     } while (byte >= 128 && byteCount < UINT_SAFE32_MAX_BYTE_COUNT);
@@ -17956,7 +18316,7 @@ function writeUintSafe32(bc, x) {
   }
   let zigZag = x >>> 0;
   while (zigZag >= 128) {
-    writeU8(bc, 128 | zigZag & 127);
+    writeU8(bc, 128 | (zigZag & 127));
     zigZag >>>= 7;
   }
   writeU8(bc, zigZag);
@@ -18041,30 +18401,33 @@ function readUtf8Js(bc, byteLen) {
       const byte1 = codePoint;
       if (offset < upperOffset && codePoint < 224) {
         const byte2 = bytes[offset++];
-        codePoint = (byte1 & 31) << 6 | byte2 & 63;
-        malformed = codePoint >> 7 === 0 || // non-canonical char
-        byte1 >> 5 !== 6 || // invalid tag
-        byte2 >> 6 !== 2;
+        codePoint = ((byte1 & 31) << 6) | (byte2 & 63);
+        malformed =
+          codePoint >> 7 === 0 || // non-canonical char
+          byte1 >> 5 !== 6 || // invalid tag
+          byte2 >> 6 !== 2;
       } else if (offset + 1 < upperOffset && codePoint < 240) {
         const byte2 = bytes[offset++];
         const byte3 = bytes[offset++];
-        codePoint = (byte1 & 15) << 12 | (byte2 & 63) << 6 | byte3 & 63;
-        malformed = codePoint >> 11 === 0 || // non-canonical char or missing data
-        codePoint >> 11 === 27 || // surrogate char (0xD800 <= codePoint <= 0xDFFF)
-        byte1 >> 4 !== 14 || // invalid tag
-        byte2 >> 6 !== 2 || // invalid tag
-        byte3 >> 6 !== 2;
+        codePoint = ((byte1 & 15) << 12) | ((byte2 & 63) << 6) | (byte3 & 63);
+        malformed =
+          codePoint >> 11 === 0 || // non-canonical char or missing data
+          codePoint >> 11 === 27 || // surrogate char (0xD800 <= codePoint <= 0xDFFF)
+          byte1 >> 4 !== 14 || // invalid tag
+          byte2 >> 6 !== 2 || // invalid tag
+          byte3 >> 6 !== 2;
       } else if (offset + 2 < upperOffset) {
         const byte2 = bytes[offset++];
         const byte3 = bytes[offset++];
         const byte4 = bytes[offset++];
-        codePoint = (byte1 & 7) << 18 | (byte2 & 63) << 12 | (byte3 & 63) << 6 | byte4 & 63;
-        malformed = codePoint >> 16 === 0 || // non-canonical char or missing data
-        codePoint > 1114111 || // too large code point
-        byte1 >> 3 !== 30 || // invalid tag
-        byte2 >> 6 !== 2 || // invalid tag
-        byte3 >> 6 !== 2 || // invalid tag
-        byte4 >> 6 !== 2;
+        codePoint = ((byte1 & 7) << 18) | ((byte2 & 63) << 12) | ((byte3 & 63) << 6) | (byte4 & 63);
+        malformed =
+          codePoint >> 16 === 0 || // non-canonical char or missing data
+          codePoint > 1114111 || // too large code point
+          byte1 >> 3 !== 30 || // invalid tag
+          byte2 >> 6 !== 2 || // invalid tag
+          byte3 >> 6 !== 2 || // invalid tag
+          byte4 >> 6 !== 2;
       }
       if (malformed) {
         throw new BareError(bc.offset, INVALID_UTF8_STRING);
@@ -18085,18 +18448,18 @@ function writeUtf8Js(bc, s) {
       bytes[offset++] = codePoint;
     } else {
       if (codePoint < 2048) {
-        bytes[offset++] = 192 | codePoint >> 6;
+        bytes[offset++] = 192 | (codePoint >> 6);
       } else {
         if (codePoint < 65536) {
-          bytes[offset++] = 224 | codePoint >> 12;
+          bytes[offset++] = 224 | (codePoint >> 12);
         } else {
-          bytes[offset++] = 240 | codePoint >> 18;
-          bytes[offset++] = 128 | codePoint >> 12 & 63;
+          bytes[offset++] = 240 | (codePoint >> 18);
+          bytes[offset++] = 128 | ((codePoint >> 12) & 63);
           i++;
         }
-        bytes[offset++] = 128 | codePoint >> 6 & 63;
+        bytes[offset++] = 128 | ((codePoint >> 6) & 63);
       }
-      bytes[offset++] = 128 | codePoint & 63;
+      bytes[offset++] = 128 | (codePoint & 63);
     }
   }
   bc.offset = offset;
@@ -18125,11 +18488,14 @@ function Config({ initialBufferLength = 1024, maxBufferLength = 1024 * 1024 * 32
   if (DEV) {
     assert2(isU32(initialBufferLength), TOO_LARGE_NUMBER);
     assert2(isU32(maxBufferLength), TOO_LARGE_NUMBER);
-    assert2(initialBufferLength <= maxBufferLength, "initialBufferLength must be lower than or equal to maxBufferLength");
+    assert2(
+      initialBufferLength <= maxBufferLength,
+      "initialBufferLength must be lower than or equal to maxBufferLength",
+    );
   }
   return {
     initialBufferLength,
-    maxBufferLength
+    maxBufferLength,
   };
 }
 
@@ -18154,22 +18520,29 @@ var errorMessages = /* @__PURE__ */ new Set([
   // Undici (Node.js)
   " A network error occurred.",
   // Bun (WebKit)
-  "Network connection lost"
+  "Network connection lost",
   // Cloudflare Workers (fetch)
 ]);
 function isNetworkError(error51) {
-  const isValid = error51 && isError(error51) && error51.name === "TypeError" && typeof error51.message === "string";
+  const isValid =
+    error51 &&
+    isError(error51) &&
+    error51.name === "TypeError" &&
+    typeof error51.message === "string";
   if (!isValid) {
     return false;
   }
   const { message, stack } = error51;
-  if (message === "Load failed" || message.startsWith("Load failed (") && message.endsWith(")")) {
+  if (message === "Load failed" || (message.startsWith("Load failed (") && message.endsWith(")"))) {
     return stack === void 0 || "__sentry_captured__" in error51;
   }
   if (message.startsWith("error sending request for url")) {
     return true;
   }
-  if (message === "Failed to fetch" || message.startsWith("Failed to fetch (") && message.endsWith(")")) {
+  if (
+    message === "Failed to fetch" ||
+    (message.startsWith("Failed to fetch (") && message.endsWith(")"))
+  ) {
     return true;
   }
   return errorMessages.has(message);
@@ -18199,8 +18572,7 @@ var decorateErrorWithCounts = (error51, attemptNumber, options) => {
 async function pRetry(input, options) {
   return new Promise((resolve, reject) => {
     options = { ...options };
-    options.onFailedAttempt ??= () => {
-    };
+    options.onFailedAttempt ??= () => {};
     options.shouldRetry ??= () => true;
     options.retries ??= 10;
     const operation = import_retry.default.operation(options);
@@ -18223,7 +18595,9 @@ async function pRetry(input, options) {
       } catch (error51) {
         try {
           if (!(error51 instanceof Error)) {
-            throw new TypeError(`Non-error was thrown: "${error51}". You should only throw errors.`);
+            throw new TypeError(
+              `Non-error was thrown: "${error51}". You should only throw errors.`,
+            );
           }
           if (error51 instanceof AbortError) {
             throw error51.originalError;
@@ -18232,7 +18606,7 @@ async function pRetry(input, options) {
             throw error51;
           }
           decorateErrorWithCounts(error51, attemptNumber, options);
-          if (!await options.shouldRetry(error51)) {
+          if (!(await options.shouldRetry(error51))) {
             operation.stop();
             reject(error51);
           }
@@ -18255,19 +18629,44 @@ var import_invariant4 = __toESM(require_browser2(), 1);
 var INTERNAL_ERROR_CODE = "internal_error";
 var INTERNAL_ERROR_DESCRIPTION = "An internal error occurred";
 function looksLikeRivetErrorOptions(value) {
-  return typeof value === "object" && value !== null && ("public" in value || "metadata" in value || "rayId" in value || "statusCode" in value || "actor" in value || "cause" in value);
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    ("public" in value ||
+      "metadata" in value ||
+      "rayId" in value ||
+      "statusCode" in value ||
+      "actor" in value ||
+      "cause" in value)
+  );
 }
 function isTypedErrorTag(value) {
   return value === "ActorError" || value === "RivetError";
 }
 function errorMessage(error51, fallback = String(error51)) {
-  if (error51 && typeof error51 === "object" && "message" in error51 && typeof error51.message === "string") {
+  if (
+    error51 &&
+    typeof error51 === "object" &&
+    "message" in error51 &&
+    typeof error51.message === "string"
+  ) {
     return error51.message;
   }
   return fallback;
 }
 function isRivetErrorLike(error51) {
-  return typeof error51 === "object" && error51 !== null && "group" in error51 && typeof error51.group === "string" && "code" in error51 && typeof error51.code === "string" && "message" in error51 && typeof error51.message === "string" && (!("rayId" in error51) || error51.rayId === void 0 || typeof error51.rayId === "string") && (!("__type" in error51) || isTypedErrorTag(error51.__type));
+  return (
+    typeof error51 === "object" &&
+    error51 !== null &&
+    "group" in error51 &&
+    typeof error51.group === "string" &&
+    "code" in error51 &&
+    typeof error51.code === "string" &&
+    "message" in error51 &&
+    typeof error51.message === "string" &&
+    (!("rayId" in error51) || error51.rayId === void 0 || typeof error51.rayId === "string") &&
+    (!("__type" in error51) || isTypedErrorTag(error51.__type))
+  );
 }
 var RivetError = class extends Error {
   __type = "RivetError";
@@ -18307,23 +18706,37 @@ function invalidRequest(error51) {
     `Invalid request: ${errorMessage(error51, String(error51))}`,
     {
       public: true,
-      cause: error51 instanceof Error ? error51 : void 0
-    }
+      cause: error51 instanceof Error ? error51 : void 0,
+    },
   );
 }
 function actorNotFound(identifier) {
   return new RivetError(
     "actor",
     "not_found",
-    identifier ? `Actor not found: ${identifier} (https://www.rivet.dev/docs/clients/javascript)` : "Actor not found (https://www.rivet.dev/docs/clients/javascript)",
-    { public: true }
+    identifier
+      ? `Actor not found: ${identifier} (https://www.rivet.dev/docs/clients/javascript)`
+      : "Actor not found (https://www.rivet.dev/docs/clients/javascript)",
+    { public: true },
   );
 }
 function assertUnreachable(x) {
   throw new Error(`Unreachable case: ${x}`);
 }
 function isCanonicalStructuredRivetError(error51) {
-  return error51 instanceof RivetError || typeof error51 === "object" && error51 !== null && "__type" in error51 && error51.__type === "RivetError" && "group" in error51 && typeof error51.group === "string" && "code" in error51 && typeof error51.code === "string" && "message" in error51 && typeof error51.message === "string";
+  return (
+    error51 instanceof RivetError ||
+    (typeof error51 === "object" &&
+      error51 !== null &&
+      "__type" in error51 &&
+      error51.__type === "RivetError" &&
+      "group" in error51 &&
+      typeof error51.group === "string" &&
+      "code" in error51 &&
+      typeof error51.code === "string" &&
+      "message" in error51 &&
+      typeof error51.message === "string")
+  );
 }
 function deconstructError(error51, exposeInternalError = false) {
   let statusCode;
@@ -18335,7 +18748,8 @@ function deconstructError(error51, exposeInternalError = false) {
   let rayId;
   let actor;
   if (isCanonicalStructuredRivetError(error51)) {
-    statusCode = typeof error51.statusCode === "number" ? error51.statusCode : error51.public ? 400 : 500;
+    statusCode =
+      typeof error51.statusCode === "number" ? error51.statusCode : error51.public ? 400 : 500;
     public_ = error51.public ?? false;
     group = error51.group;
     code = error51.code;
@@ -18391,7 +18805,7 @@ function deconstructError(error51, exposeInternalError = false) {
     message,
     metadata,
     rayId,
-    actor
+    actor,
   };
 }
 function stringifyError(error51) {
@@ -18403,8 +18817,12 @@ function stringifyError(error51) {
       } catch {
         stack = void 0;
       }
-      return `${error51.name}: ${error51.message}${stack ? `
-${stack}` : ""}`;
+      return `${error51.name}: ${error51.message}${
+        stack
+          ? `
+${stack}`
+          : ""
+      }`;
     } else {
       return `${error51.name}: ${error51.message}`;
     }
@@ -18428,8 +18846,7 @@ function getErrorMessage(err) {
   }
 }
 function noopNext() {
-  return async () => {
-  };
+  return async () => {};
 }
 var package_default = {
   name: "rivetkit",
@@ -18445,186 +18862,179 @@ var package_default = {
     "realtime",
     "websocket",
     "actors",
-    "framework"
+    "framework",
   ],
-  files: [
-    "dist",
-    "schemas",
-    "src",
-    "package.json"
-  ],
+  files: ["dist", "schemas", "src", "package.json"],
   type: "module",
   exports: {
     ".": {
       import: {
         types: "./dist/tsup/mod.d.ts",
-        default: "./dist/tsup/mod.js"
+        default: "./dist/tsup/mod.js",
       },
       require: {
         types: "./dist/tsup/mod.d.cts",
-        default: "./dist/tsup/mod.cjs"
-      }
+        default: "./dist/tsup/mod.cjs",
+      },
     },
     "./workflow": {
       import: {
         types: "./dist/tsup/workflow/mod.d.ts",
-        default: "./dist/tsup/workflow/mod.js"
+        default: "./dist/tsup/workflow/mod.js",
       },
       require: {
         types: "./dist/tsup/workflow/mod.d.cts",
-        default: "./dist/tsup/workflow/mod.cjs"
-      }
+        default: "./dist/tsup/workflow/mod.cjs",
+      },
     },
     "./test": {
       import: {
         types: "./dist/tsup/test/mod.d.ts",
-        default: "./dist/tsup/test/mod.js"
+        default: "./dist/tsup/test/mod.js",
       },
       require: {
         types: "./dist/tsup/test/mod.d.cts",
-        default: "./dist/tsup/test/mod.cjs"
-      }
+        default: "./dist/tsup/test/mod.cjs",
+      },
     },
     "./db": {
       import: {
         types: "./dist/tsup/db/mod.d.ts",
-        default: "./dist/tsup/db/mod.js"
+        default: "./dist/tsup/db/mod.js",
       },
       require: {
         types: "./dist/tsup/db/mod.d.cts",
-        default: "./dist/tsup/db/mod.cjs"
-      }
+        default: "./dist/tsup/db/mod.cjs",
+      },
     },
     "./db/drizzle": {
       import: {
         types: "./dist/tsup/db/drizzle.d.ts",
-        default: "./dist/tsup/db/drizzle.js"
+        default: "./dist/tsup/db/drizzle.js",
       },
       require: {
         types: "./dist/tsup/db/drizzle.d.cts",
-        default: "./dist/tsup/db/drizzle.cjs"
-      }
+        default: "./dist/tsup/db/drizzle.cjs",
+      },
     },
     "./unstable/migrations": {
       import: {
         types: "./dist/tsup/unstable/migrations.d.ts",
-        default: "./dist/tsup/unstable/migrations.js"
+        default: "./dist/tsup/unstable/migrations.js",
       },
       require: {
         types: "./dist/tsup/unstable/migrations.d.cts",
-        default: "./dist/tsup/unstable/migrations.cjs"
-      }
+        default: "./dist/tsup/unstable/migrations.cjs",
+      },
     },
     "./dynamic": {
       import: {
         types: "./dist/tsup/dynamic/mod.d.ts",
-        default: "./dist/tsup/dynamic/mod.js"
+        default: "./dist/tsup/dynamic/mod.js",
       },
       require: {
         types: "./dist/tsup/dynamic/mod.d.cts",
-        default: "./dist/tsup/dynamic/mod.cjs"
-      }
+        default: "./dist/tsup/dynamic/mod.cjs",
+      },
     },
     "./client": {
       import: {
         browser: {
           types: "./dist/browser/client.d.ts",
-          default: "./dist/browser/client.js"
+          default: "./dist/browser/client.js",
         },
         types: "./dist/tsup/client/mod.d.ts",
-        default: "./dist/tsup/client/mod.js"
+        default: "./dist/tsup/client/mod.js",
       },
       require: {
         types: "./dist/tsup/client/mod.d.cts",
-        default: "./dist/tsup/client/mod.cjs"
-      }
+        default: "./dist/tsup/client/mod.cjs",
+      },
     },
     "./log": {
       import: {
         types: "./dist/tsup/common/log.d.ts",
-        default: "./dist/tsup/common/log.js"
+        default: "./dist/tsup/common/log.js",
       },
       require: {
         types: "./dist/tsup/common/log.d.cts",
-        default: "./dist/tsup/common/log.cjs"
-      }
+        default: "./dist/tsup/common/log.cjs",
+      },
     },
     "./errors": {
       import: {
         types: "./dist/tsup/actor/errors.d.ts",
-        default: "./dist/tsup/actor/errors.js"
+        default: "./dist/tsup/actor/errors.js",
       },
       require: {
         types: "./dist/tsup/actor/errors.d.cts",
-        default: "./dist/tsup/actor/errors.cjs"
-      }
+        default: "./dist/tsup/actor/errors.cjs",
+      },
     },
     "./inspector": {
       import: {
         types: "./dist/tsup/inspector/mod.d.ts",
-        default: "./dist/tsup/inspector/mod.js"
+        default: "./dist/tsup/inspector/mod.js",
       },
       require: {
         types: "./dist/tsup/inspector/mod.d.cts",
-        default: "./dist/tsup/inspector/mod.cjs"
-      }
+        default: "./dist/tsup/inspector/mod.cjs",
+      },
     },
     "./experimental/inspector/workflow": {
       import: {
         types: "./dist/tsup/inspector/workflow.d.ts",
-        default: "./dist/tsup/inspector/workflow.js"
+        default: "./dist/tsup/inspector/workflow.js",
       },
       require: {
         types: "./dist/tsup/inspector/workflow.d.cts",
-        default: "./dist/tsup/inspector/workflow.cjs"
-      }
+        default: "./dist/tsup/inspector/workflow.cjs",
+      },
     },
     "./inspector-tab": {
       import: {
         types: "./dist/tsup/inspector-tab/mod.d.ts",
-        default: "./dist/tsup/inspector-tab/mod.js"
+        default: "./dist/tsup/inspector-tab/mod.js",
       },
       require: {
         types: "./dist/tsup/inspector-tab/mod.d.cts",
-        default: "./dist/tsup/inspector-tab/mod.cjs"
-      }
+        default: "./dist/tsup/inspector-tab/mod.cjs",
+      },
     },
     "./inspector/client": {
       import: {
         types: "./dist/browser/inspector/client.d.ts",
-        default: "./dist/browser/inspector/client.js"
-      }
+        default: "./dist/browser/inspector/client.js",
+      },
     },
     "./utils": {
       import: {
         types: "./dist/tsup/utils.d.ts",
-        default: "./dist/tsup/utils.js"
+        default: "./dist/tsup/utils.js",
       },
       require: {
         types: "./dist/tsup/utils.d.cts",
-        default: "./dist/tsup/utils.cjs"
-      }
+        default: "./dist/tsup/utils.cjs",
+      },
     },
     "./agent-os": {
       import: {
         types: "./dist/tsup/agent-os/index.d.ts",
-        default: "./dist/tsup/agent-os/index.js"
+        default: "./dist/tsup/agent-os/index.js",
       },
       require: {
         types: "./dist/tsup/agent-os/index.d.cts",
-        default: "./dist/tsup/agent-os/index.cjs"
-      }
-    }
+        default: "./dist/tsup/agent-os/index.cjs",
+      },
+    },
   },
   engines: {
-    node: ">=22.0.0"
+    node: ">=22.0.0",
   },
-  sideEffects: [
-    "./dist/tsup/chunk-*.js",
-    "./dist/tsup/chunk-*.cjs"
-  ],
+  sideEffects: ["./dist/tsup/chunk-*.js", "./dist/tsup/chunk-*.cjs"],
   scripts: {
-    build: "tsup src/mod.ts src/client/mod.ts src/common/log.ts src/common/websocket.ts src/actor/errors.ts src/utils.ts src/workflow/mod.ts src/test/mod.ts src/inspector/mod.ts src/inspector/workflow.ts src/inspector-tab/mod.ts src/db/mod.ts src/db/drizzle.ts src/dynamic/mod.ts src/unstable/migrations.ts && tsup src/agent-os/index.ts --no-clean --out-dir dist/tsup/agent-os && node scripts/check-built-commonjs.mjs",
+    build:
+      "tsup src/mod.ts src/client/mod.ts src/common/log.ts src/common/websocket.ts src/actor/errors.ts src/utils.ts src/workflow/mod.ts src/test/mod.ts src/inspector/mod.ts src/inspector/workflow.ts src/inspector-tab/mod.ts src/db/mod.ts src/db/drizzle.ts src/dynamic/mod.ts src/unstable/migrations.ts && tsup src/agent-os/index.ts --no-clean --out-dir dist/tsup/agent-os && node scripts/check-built-commonjs.mjs",
     "build:browser": "tsup --config tsup.browser.config.ts",
     "check-types": "tsc --noEmit",
     lint: "biome check . && pnpm run check:test-skips && pnpm run check:wait-for-comments",
@@ -18634,11 +19044,12 @@ var package_default = {
     format: "biome format .",
     "format:write": "biome format --write .",
     test: "vitest run",
-    "test:platforms": "pnpm run build && RIVETKIT_INCLUDE_PLATFORM_TESTS=1 vitest run tests/platforms --passWithNoTests",
+    "test:platforms":
+      "pnpm run build && RIVETKIT_INCLUDE_PLATFORM_TESTS=1 vitest run tests/platforms --passWithNoTests",
     "test:watch": "vitest",
     "dump-asyncapi": "tsx scripts/dump-asyncapi.ts",
     "registry-config-schema-gen": "tsx scripts/registry-config-schema-gen.ts",
-    "actor-config-schema-gen": "tsx scripts/actor-config-schema-gen.ts"
+    "actor-config-schema-gen": "tsx scripts/actor-config-schema-gen.ts",
   },
   dependencies: {
     "@hono/zod-openapi": "^1.1.5",
@@ -18661,7 +19072,7 @@ var package_default = {
     pino: "^9.5.0",
     uuid: "^12.0.0",
     vbare: "^0.0.4",
-    zod: "^4.1.0"
+    zod: "^4.1.0",
   },
   devDependencies: {
     "@biomejs/biome": "^2.3",
@@ -18680,25 +19091,25 @@ var package_default = {
     typescript: "^5.7.3",
     "vite-tsconfig-paths": "^5.1.4",
     vitest: "^3.1.1",
-    ws: "^8.18.1"
+    ws: "^8.18.1",
   },
   peerDependencies: {
     "drizzle-kit": "^0.31.2",
     eventsource: "^4.0.0",
-    ws: "^8.0.0"
+    ws: "^8.0.0",
   },
   peerDependenciesMeta: {
     "drizzle-kit": {
-      optional: true
+      optional: true,
     },
     eventsource: {
-      optional: true
+      optional: true,
     },
     ws: {
-      optional: true
-    }
+      optional: true,
+    },
   },
-  stableVersion: "0.8.0"
+  stableVersion: "0.8.0",
 };
 function uint8ArrayToBase642(uint8Array) {
   if (typeof Buffer !== "undefined") {
@@ -18726,7 +19137,15 @@ function encodeCborCompat(value) {
 function decodeCborCompat(buffer) {
   return reviveJsonCompatValue(decode3(buffer));
 }
-function serializeWithEncoding(encoding, value, versionedDataHandler, version2, zodSchema, toJson, toBare) {
+function serializeWithEncoding(
+  encoding,
+  value,
+  versionedDataHandler,
+  version2,
+  zodSchema,
+  toJson,
+  toBare,
+) {
   if (encoding === "json") {
     const jsonValue = toJson(value);
     const validated = zodSchema.parse(jsonValue);
@@ -18737,23 +19156,25 @@ function serializeWithEncoding(encoding, value, versionedDataHandler, version2, 
     return encode3(validated);
   } else if (encoding === "bare") {
     if (!versionedDataHandler) {
-      throw new Error(
-        "VersionedDataHandler is required for 'bare' encoding"
-      );
+      throw new Error("VersionedDataHandler is required for 'bare' encoding");
     }
     if (version2 === void 0) {
       throw new Error("version is required for 'bare' encoding");
     }
     const bareValue = toBare(value);
-    return versionedDataHandler.serializeWithEmbeddedVersion(
-      bareValue,
-      version2
-    );
+    return versionedDataHandler.serializeWithEmbeddedVersion(bareValue, version2);
   } else {
     assertUnreachable(encoding);
   }
 }
-function deserializeWithEncoding(encoding, buffer, versionedDataHandler, zodSchema, fromJson, fromBare) {
+function deserializeWithEncoding(
+  encoding,
+  buffer,
+  versionedDataHandler,
+  zodSchema,
+  fromJson,
+  fromBare,
+) {
   if (encoding === "json") {
     let parsed;
     if (typeof buffer === "string") {
@@ -18768,7 +19189,7 @@ function deserializeWithEncoding(encoding, buffer, versionedDataHandler, zodSche
   } else if (encoding === "cbor") {
     (0, import_invariant.default)(
       typeof buffer !== "string",
-      "buffer cannot be string for cbor encoding"
+      "buffer cannot be string for cbor encoding",
     );
     const decoded = decodeCborCompat(buffer);
     const validated = zodSchema.parse(decoded);
@@ -18776,12 +19197,10 @@ function deserializeWithEncoding(encoding, buffer, versionedDataHandler, zodSche
   } else if (encoding === "bare") {
     (0, import_invariant.default)(
       typeof buffer !== "string",
-      "buffer cannot be string for bare encoding"
+      "buffer cannot be string for bare encoding",
     );
     if (!versionedDataHandler) {
-      throw new Error(
-        "VersionedDataHandler is required for 'bare' encoding"
-      );
+      throw new Error("VersionedDataHandler is required for 'bare' encoding");
     }
     const bareValue = versionedDataHandler.deserializeWithEmbeddedVersion(buffer);
     return fromBare(bareValue);
@@ -18795,7 +19214,18 @@ var JSON_COMPAT_UINT8_ARRAY = "$Uint8Array";
 var JSON_COMPAT_UNDEFINED = "$Undefined";
 var JSON_COMPAT_SET = "$Set";
 function isTypedArray(value) {
-  return value instanceof Uint8ClampedArray || value instanceof Uint16Array || value instanceof Uint32Array || value instanceof BigUint64Array || value instanceof Int8Array || value instanceof Int16Array || value instanceof Int32Array || value instanceof BigInt64Array || value instanceof Float32Array || value instanceof Float64Array;
+  return (
+    value instanceof Uint8ClampedArray ||
+    value instanceof Uint16Array ||
+    value instanceof Uint32Array ||
+    value instanceof BigUint64Array ||
+    value instanceof Int8Array ||
+    value instanceof Int16Array ||
+    value instanceof Int32Array ||
+    value instanceof BigInt64Array ||
+    value instanceof Float32Array ||
+    value instanceof Float64Array
+  );
 }
 var EncodingSchema = external_exports.enum(["json", "cbor", "bare"]);
 async function inputDataToBuffer(data) {
@@ -18856,25 +19286,18 @@ function encodeJsonCompatValue(input) {
     return input;
   }
   if (input instanceof Set) {
-    const encoded = [...input.values()].map(
-      (v) => encodeJsonCompatValue(v)
-    );
+    const encoded = [...input.values()].map((v) => encodeJsonCompatValue(v));
     return [JSON_COMPAT_SET, encoded];
   }
   if (input instanceof Map) {
     const encoded = /* @__PURE__ */ new Map();
     for (const [k, v] of input.entries()) {
-      encoded.set(
-        encodeJsonCompatValue(k),
-        encodeJsonCompatValue(v)
-      );
+      encoded.set(encodeJsonCompatValue(k), encodeJsonCompatValue(v));
     }
     return encoded;
   }
   if (Array.isArray(input)) {
-    const encoded = input.map(
-      (value) => encodeJsonCompatValue(value)
-    );
+    const encoded = input.map((value) => encodeJsonCompatValue(value));
     if (encoded.length === 2 && typeof encoded[0] === "string" && encoded[0].startsWith("$")) {
       return [`$${encoded[0]}`, encoded[1]];
     }
@@ -18887,12 +19310,19 @@ function encodeJsonCompatValue(input) {
     }
     return encoded;
   }
-  const typeName = typeof input === "object" && input !== null ? input.constructor?.name ?? typeof input : typeof input;
+  const typeName =
+    typeof input === "object" && input !== null
+      ? (input.constructor?.name ?? typeof input)
+      : typeof input;
   throw new TypeError(`Value of type "${typeName}" is not CBOR serializable`);
 }
 function reviveJsonCompatValue(input, options = {}) {
   if (typeof input === "bigint") {
-    if (options.coerceSafeIntegerBigInts && input >= BigInt(Number.MIN_SAFE_INTEGER) && input <= BigInt(Number.MAX_SAFE_INTEGER)) {
+    if (
+      options.coerceSafeIntegerBigInts &&
+      input >= BigInt(Number.MIN_SAFE_INTEGER) &&
+      input <= BigInt(Number.MAX_SAFE_INTEGER)
+    ) {
       return Number(input);
     }
     return input;
@@ -18900,10 +19330,7 @@ function reviveJsonCompatValue(input, options = {}) {
   if (input instanceof Map) {
     const revived = /* @__PURE__ */ new Map();
     for (const [k, v] of input.entries()) {
-      revived.set(
-        reviveJsonCompatValue(k, options),
-        reviveJsonCompatValue(v, options)
-      );
+      revived.set(reviveJsonCompatValue(k, options), reviveJsonCompatValue(v, options));
     }
     return revived;
   }
@@ -18922,19 +19349,14 @@ function reviveJsonCompatValue(input, options = {}) {
         return void 0;
       }
       if (input[0] === JSON_COMPAT_SET) {
-        const items = input[1].map(
-          (v) => reviveJsonCompatValue(v, options)
-        );
+        const items = input[1].map((v) => reviveJsonCompatValue(v, options));
         return new Set(items);
       }
       if (input[0].startsWith("$$")) {
-        return [
-          input[0].substring(1),
-          reviveJsonCompatValue(input[1], options)
-        ];
+        return [input[0].substring(1), reviveJsonCompatValue(input[1], options)];
       }
       throw new Error(
-        `Unknown JSON encoding type: ${input[0]}. This may indicate corrupted data or a version mismatch.`
+        `Unknown JSON encoding type: ${input[0]}. This may indicate corrupted data or a version mismatch.`,
       );
     }
     return input.map((value) => reviveJsonCompatValue(value, options));
@@ -18970,20 +19392,22 @@ function jsonStringifyCompat(input, space) {
         return [JSON_COMPAT_BIGINT, value.toString()];
       }
       if (value instanceof ArrayBuffer) {
-        return [
-          JSON_COMPAT_ARRAY_BUFFER,
-          base64EncodeArrayBuffer(value)
-        ];
+        return [JSON_COMPAT_ARRAY_BUFFER, base64EncodeArrayBuffer(value)];
       }
       if (value instanceof Uint8Array) {
         return [JSON_COMPAT_UINT8_ARRAY, base64EncodeUint8Array(value)];
       }
-      if (Array.isArray(value) && value.length === 2 && typeof value[0] === "string" && value[0].startsWith("$")) {
+      if (
+        Array.isArray(value) &&
+        value.length === 2 &&
+        typeof value[0] === "string" &&
+        value[0].startsWith("$")
+      ) {
         return [`$${value[0]}`, value[1]];
       }
       return value;
     },
-    space
+    space,
   );
 }
 function jsonParseCompat(input) {
@@ -19019,10 +19443,7 @@ function promiseWithResolvers(onReject) {
   return { promise: promise2, resolve, reject };
 }
 function bufferToArrayBuffer(buf) {
-  return buf.buffer.slice(
-    buf.byteOffset,
-    buf.byteOffset + buf.byteLength
-  );
+  return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
 }
 function combineUrlPath(endpoint, path, queryParams) {
   const baseUrl = new URL(endpoint);
@@ -19039,9 +19460,7 @@ function combineUrlPath(endpoint, path, queryParams) {
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== void 0) {
-        queryParts.push(
-          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-        );
+        queryParts.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
       }
     }
   }
@@ -19069,7 +19488,7 @@ var LogLevelSchema = external_exports.enum([
   "warn",
   "error",
   "fatal",
-  "silent"
+  "silent",
 ]);
 function getPinoLevel(logLevel) {
   if (logLevel) {
@@ -19100,11 +19519,11 @@ function makeDefaultLogger(logLevel) {
       formatters: {
         level(_label, number4) {
           return { level: number4 };
-        }
+        },
       },
-      timestamp: getLogTimestamp() ? import_pino.stdTimeFunctions.epochTime : false
+      timestamp: getLogTimestamp() ? import_pino.stdTimeFunctions.epochTime : false,
     },
-    createLogfmtDestination()
+    createLogfmtDestination(),
   );
 }
 function configureDefaultLogger(logLevel) {
@@ -19136,7 +19555,7 @@ var PINO_LEVEL_LABELS = {
   30: "info",
   40: "warn",
   50: "error",
-  60: "fatal"
+  60: "fatal",
 };
 function createLogfmtDestination() {
   return {
@@ -19148,7 +19567,7 @@ function createLogfmtDestination() {
       } else {
         console.log(line);
       }
-    }
+    },
   };
 }
 function formatLogfmtLine(raw) {
@@ -19235,21 +19654,21 @@ var KEYS = {
   QUEUE_PREFIX: Uint8Array.from([5]),
   LAST_PUSHED_ALARM: Uint8Array.from([6]),
   WORKFLOW_PREFIX: Uint8Array.from([6]),
-  TRACES_PREFIX: Uint8Array.from([7])
+  TRACES_PREFIX: Uint8Array.from([7]),
 };
 var STORAGE_VERSION = {
   QUEUE: 1,
   WORKFLOW: 1,
-  TRACES: 1
+  TRACES: 1,
 };
 var STORAGE_VERSION_BYTES = {
   QUEUE: Uint8Array.from([STORAGE_VERSION.QUEUE]),
   WORKFLOW: Uint8Array.from([STORAGE_VERSION.WORKFLOW]),
-  TRACES: Uint8Array.from([STORAGE_VERSION.TRACES])
+  TRACES: Uint8Array.from([STORAGE_VERSION.TRACES]),
 };
 var QUEUE_NAMESPACE = {
   METADATA: Uint8Array.from([1]),
-  MESSAGES: Uint8Array.from([2])
+  MESSAGES: Uint8Array.from([2]),
 };
 function concatPrefix(prefix, suffix) {
   const merged = new Uint8Array(prefix.length + suffix.length);
@@ -19257,26 +19676,11 @@ function concatPrefix(prefix, suffix) {
   merged.set(suffix, prefix.length);
   return merged;
 }
-var QUEUE_STORAGE_PREFIX = concatPrefix(
-  KEYS.QUEUE_PREFIX,
-  STORAGE_VERSION_BYTES.QUEUE
-);
-var QUEUE_METADATA_KEY = concatPrefix(
-  QUEUE_STORAGE_PREFIX,
-  QUEUE_NAMESPACE.METADATA
-);
-var QUEUE_MESSAGES_PREFIX = concatPrefix(
-  QUEUE_STORAGE_PREFIX,
-  QUEUE_NAMESPACE.MESSAGES
-);
-var WORKFLOW_STORAGE_PREFIX = concatPrefix(
-  KEYS.WORKFLOW_PREFIX,
-  STORAGE_VERSION_BYTES.WORKFLOW
-);
-var TRACES_STORAGE_PREFIX = concatPrefix(
-  KEYS.TRACES_PREFIX,
-  STORAGE_VERSION_BYTES.TRACES
-);
+var QUEUE_STORAGE_PREFIX = concatPrefix(KEYS.QUEUE_PREFIX, STORAGE_VERSION_BYTES.QUEUE);
+var QUEUE_METADATA_KEY = concatPrefix(QUEUE_STORAGE_PREFIX, QUEUE_NAMESPACE.METADATA);
+var QUEUE_MESSAGES_PREFIX = concatPrefix(QUEUE_STORAGE_PREFIX, QUEUE_NAMESPACE.MESSAGES);
+var WORKFLOW_STORAGE_PREFIX = concatPrefix(KEYS.WORKFLOW_PREFIX, STORAGE_VERSION_BYTES.WORKFLOW);
+var TRACES_STORAGE_PREFIX = concatPrefix(KEYS.TRACES_PREFIX, STORAGE_VERSION_BYTES.TRACES);
 function serializeActorKey(key) {
   if (key.length === 0) {
     return EMPTY_KEY;
@@ -19370,7 +19774,7 @@ async function sendHttpRequestToGateway(runConfig, gatewayUrl, actorRequest, opt
     headers: guardHeaders,
     body: bodyToSend,
     signal: actorRequest.signal,
-    ...bodyToSend ? { duplex: "half" } : {}
+    ...(bodyToSend ? { duplex: "half" } : {}),
   });
 }
 function buildGuardHeaders(runConfig, actorRequest, options) {
@@ -19394,12 +19798,7 @@ function buildGuardHeaders(runConfig, actorRequest, options) {
   return headers;
 }
 function tryParseEndpoint(ctx, options) {
-  const {
-    endpoint,
-    path = ["endpoint"],
-    namespace: configNamespace,
-    token: configToken
-  } = options;
+  const { endpoint, path = ["endpoint"], namespace: configNamespace, token: configToken } = options;
   let url2;
   try {
     url2 = new URL(endpoint);
@@ -19407,7 +19806,7 @@ function tryParseEndpoint(ctx, options) {
     ctx.addIssue({
       code: "custom",
       message: `invalid URL: ${endpoint}`,
-      path
+      path,
     });
     return void 0;
   }
@@ -19415,7 +19814,7 @@ function tryParseEndpoint(ctx, options) {
     ctx.addIssue({
       code: "custom",
       message: "endpoint cannot contain a query string",
-      path
+      path,
     });
     return void 0;
   }
@@ -19423,7 +19822,7 @@ function tryParseEndpoint(ctx, options) {
     ctx.addIssue({
       code: "custom",
       message: "endpoint cannot contain a fragment",
-      path
+      path,
     });
     return void 0;
   }
@@ -19433,7 +19832,7 @@ function tryParseEndpoint(ctx, options) {
     ctx.addIssue({
       code: "custom",
       message: "endpoint cannot have a token without a namespace",
-      path
+      path,
     });
     return void 0;
   }
@@ -19441,14 +19840,14 @@ function tryParseEndpoint(ctx, options) {
     ctx.addIssue({
       code: "custom",
       message: "cannot specify namespace both in endpoint URL and as a separate config option",
-      path: ["namespace"]
+      path: ["namespace"],
     });
   }
   if (token && configToken) {
     ctx.addIssue({
       code: "custom",
       message: "cannot specify token both in endpoint URL and as a separate config option",
-      path: ["token"]
+      path: ["token"],
     });
   }
   url2.username = "";
@@ -19457,7 +19856,7 @@ function tryParseEndpoint(ctx, options) {
   return {
     endpoint: cleanedEndpoint,
     namespace,
-    token
+    token,
   };
 }
 var DEFAULT_ENDPOINT = "http://localhost:6420";
@@ -19475,27 +19874,42 @@ var ClientConfigSchemaBase = v4_default.object({
    *
    * Defaults to http://localhost:6420.
    */
-  endpoint: v4_default.string().optional().transform((val) => {
-    const resolved = val ?? getRivetEngine() ?? getRivetEndpoint();
-    if (!resolved && !hasWarnedMissingEndpoint) {
-      hasWarnedMissingEndpoint = true;
-      console.warn(
-        `[rivetkit] No endpoint provided to client. Defaulting to ${DEFAULT_ENDPOINT}. Starting in 2.2.0, an explicit endpoint will be required. Pass an endpoint to createClient() or createRivetKit(), or set the RIVET_ENDPOINT environment variable.`
-      );
-    }
-    return resolved ?? DEFAULT_ENDPOINT;
-  }),
+  endpoint: v4_default
+    .string()
+    .optional()
+    .transform((val) => {
+      const resolved = val ?? getRivetEngine() ?? getRivetEndpoint();
+      if (!resolved && !hasWarnedMissingEndpoint) {
+        hasWarnedMissingEndpoint = true;
+        console.warn(
+          `[rivetkit] No endpoint provided to client. Defaulting to ${DEFAULT_ENDPOINT}. Starting in 2.2.0, an explicit endpoint will be required. Pass an endpoint to createClient() or createRivetKit(), or set the RIVET_ENDPOINT environment variable.`,
+        );
+      }
+      return resolved ?? DEFAULT_ENDPOINT;
+    }),
   /** Token to use to authenticate with the API. */
-  token: v4_default.string().optional().transform((val) => val ?? getRivetToken()),
+  token: v4_default
+    .string()
+    .optional()
+    .transform((val) => val ?? getRivetToken()),
   /** Namespace to connect to. */
-  namespace: v4_default.string().optional().transform((val) => val ?? getRivetNamespace()),
+  namespace: v4_default
+    .string()
+    .optional()
+    .transform((val) => val ?? getRivetNamespace()),
   /** Name of the envoy pool. This is used to group together envoys in to different pools. */
   poolName: v4_default.string().default(() => getRivetPool() ?? "default"),
   encoding: EncodingSchema.default("bare"),
-  headers: v4_default.record(v4_default.string(), v4_default.string()).optional().default(() => ({})),
-  gateway: v4_default.object({
-    skipReadyWait: v4_default.boolean().optional().default(false)
-  }).optional().default(() => ({ skipReadyWait: false })),
+  headers: v4_default
+    .record(v4_default.string(), v4_default.string())
+    .optional()
+    .default(() => ({})),
+  gateway: v4_default
+    .object({
+      skipReadyWait: v4_default.boolean().optional().default(false),
+    })
+    .optional()
+    .default(() => ({ skipReadyWait: false })),
   // See RunConfig.getUpgradeWebSocket
   //
   // This is required in the client config in order to support
@@ -19510,25 +19924,29 @@ var ClientConfigSchemaBase = v4_default.object({
    */
   maxInputSize: v4_default.number().int().positive().default(DEFAULT_MAX_QUERY_INPUT_SIZE),
   /** Whether to enable RivetKit Devtools integration. */
-  devtools: v4_default.boolean().default(
-    () => typeof window !== "undefined" && (window?.location?.hostname === "127.0.0.1" || window.location?.hostname === "localhost")
-  )
+  devtools: v4_default
+    .boolean()
+    .default(
+      () =>
+        typeof window !== "undefined" &&
+        (window?.location?.hostname === "127.0.0.1" || window.location?.hostname === "localhost"),
+    ),
 });
-var ClientConfigSchema = ClientConfigSchemaBase.transform(
-  (config2, ctx) => transformClientConfig(config2, ctx)
+var ClientConfigSchema = ClientConfigSchemaBase.transform((config2, ctx) =>
+  transformClientConfig(config2, ctx),
 );
 function transformClientConfig(config2, ctx) {
   const parsedEndpoint = tryParseEndpoint(ctx, {
     endpoint: config2.endpoint,
     path: ["endpoint"],
     namespace: config2.namespace,
-    token: config2.token
+    token: config2.token,
   });
   return {
     ...config2,
     endpoint: parsedEndpoint?.endpoint,
     namespace: parsedEndpoint?.namespace ?? config2.namespace ?? "default",
-    token: parsedEndpoint?.token ?? config2.token
+    token: parsedEndpoint?.token ?? config2.token,
   };
 }
 function logger2() {
@@ -19555,9 +19973,7 @@ async function importWebSocket() {
       } catch {
         _WebSocket = class MockWebSocket {
           constructor() {
-            throw new Error(
-              'WebSocket support requires installing the "ws" peer dependency.'
-            );
+            throw new Error('WebSocket support requires installing the "ws" peer dependency.');
           }
         };
         logger2().debug("using mock websocket");
@@ -19588,7 +20004,7 @@ function setRemoteHibernatableWebSocketAckTestHooks(websocket, token, enabled) {
         const hooks = REMOTE_HIBERNATABLE_WEBSOCKET_ACK_HOOKS.get(token);
         if (!hooks) {
           throw new Error(
-            `remote hibernatable websocket ack hooks are unavailable for token ${token}`
+            `remote hibernatable websocket ack hooks are unavailable for token ${token}`,
           );
         }
         return hooks.getState();
@@ -19597,13 +20013,13 @@ function setRemoteHibernatableWebSocketAckTestHooks(websocket, token, enabled) {
         const hooks = REMOTE_HIBERNATABLE_WEBSOCKET_ACK_HOOKS.get(token);
         if (!hooks) {
           throw new Error(
-            `remote hibernatable websocket ack hooks are unavailable for token ${token}`
+            `remote hibernatable websocket ack hooks are unavailable for token ${token}`,
           );
         }
         await hooks.waitForAck(serverMessageIndex);
-      }
+      },
     },
-    enabled
+    enabled,
   );
 }
 function logger3() {
@@ -19718,7 +20134,16 @@ var BufferedRemoteWebSocket = class {
     }
   }
   #hasConsumer(type) {
-    const handler = type === "open" ? this.#onopen : type === "close" ? this.#onclose : type === "error" ? this.#onerror : type === "message" ? this.#onmessage : null;
+    const handler =
+      type === "open"
+        ? this.#onopen
+        : type === "close"
+          ? this.#onclose
+          : type === "error"
+            ? this.#onerror
+            : type === "message"
+              ? this.#onmessage
+              : null;
     return Boolean(handler) || (this.#listeners.get(type)?.size ?? 0) > 0;
   }
   #dispatchEvent(type, event) {
@@ -19728,7 +20153,16 @@ var BufferedRemoteWebSocket = class {
         listener(event);
       }
     }
-    const handler = type === "open" ? this.#onopen : type === "close" ? this.#onclose : type === "error" ? this.#onerror : type === "message" ? this.#onmessage : null;
+    const handler =
+      type === "open"
+        ? this.#onopen
+        : type === "close"
+          ? this.#onclose
+          : type === "error"
+            ? this.#onerror
+            : type === "message"
+              ? this.#onmessage
+              : null;
     handler?.(event);
     return true;
   }
@@ -19738,7 +20172,17 @@ function buildActorGatewayUrl(endpoint, actorId, token, path = "") {
   const gatewayPath = `/gateway/${encodeURIComponent(actorId)}${tokenSegment}${path}`;
   return combineUrlPath(endpoint, gatewayPath);
 }
-function buildActorQueryGatewayUrl(endpoint, namespace, query, token, path = "", maxInputSize = DEFAULT_MAX_QUERY_INPUT_SIZE, crashPolicy = void 0, runnerName, options = {}) {
+function buildActorQueryGatewayUrl(
+  endpoint,
+  namespace,
+  query,
+  token,
+  path = "",
+  maxInputSize = DEFAULT_MAX_QUERY_INPUT_SIZE,
+  crashPolicy = void 0,
+  runnerName,
+  options = {},
+) {
   if (namespace.length === 0) {
     throw new Error("actor query namespace must not be empty");
   }
@@ -19750,38 +20194,26 @@ function buildActorQueryGatewayUrl(endpoint, namespace, query, token, path = "",
     params.append("rvt-method", "get");
     pushKeyQueryParams(params, query.getForKey.key);
     if (crashPolicy !== void 0) {
-      throw new Error(
-        "Actor query method=get does not support crashPolicy."
-      );
+      throw new Error("Actor query method=get does not support crashPolicy.");
     }
     if (runnerName !== void 0) {
-      throw new Error(
-        "Actor query method=get does not support runnerName."
-      );
+      throw new Error("Actor query method=get does not support runnerName.");
     }
   } else if ("getOrCreateForKey" in query) {
     name = query.getOrCreateForKey.name;
     params.append("rvt-method", "getOrCreate");
     if (runnerName === void 0) {
-      throw new Error(
-        "Actor query method=getOrCreate requires runnerName."
-      );
+      throw new Error("Actor query method=getOrCreate requires runnerName.");
     }
     params.append("rvt-runner", runnerName);
     pushKeyQueryParams(params, query.getOrCreateForKey.key);
-    pushInputQueryParam(
-      params,
-      query.getOrCreateForKey.input,
-      maxInputSize
-    );
+    pushInputQueryParam(params, query.getOrCreateForKey.input, maxInputSize);
     if (query.getOrCreateForKey.region !== void 0) {
       params.append("rvt-region", query.getOrCreateForKey.region);
     }
     params.append("rvt-crash-policy", crashPolicy ?? "sleep");
   } else {
-    throw new Error(
-      "Actor query gateway URLs only support get and getOrCreate."
-    );
+    throw new Error("Actor query gateway URLs only support get and getOrCreate.");
   }
   if (name.length === 0) {
     throw new Error("actor query name must not be empty");
@@ -19816,7 +20248,7 @@ function pushInputQueryParam(params, input, maxInputSize) {
   const encodedInput = encodeCborCompat(input);
   if (encodedInput.byteLength > maxInputSize) {
     throw new Error(
-      `Actor query input exceeds maxInputSize (${encodedInput.byteLength} > ${maxInputSize} bytes). Increase client maxInputSize to allow larger query payloads.`
+      `Actor query input exceeds maxInputSize (${encodedInput.byteLength} > ${maxInputSize} bytes). Increase client maxInputSize to allow larger query payloads.`,
     );
   }
   params.append("rvt-input", uint8ArrayToBase64Url(encodedInput));
@@ -19826,10 +20258,11 @@ function uint8ArrayToBase64Url(value) {
 }
 async function openWebSocketToGateway(runConfig, gatewayUrl, encoding, params, options = {}) {
   const WebSocket2 = await importWebSocket();
-  const ackHookToken = typeof process !== "undefined" && process.env.VITEST ? crypto.randomUUID() : void 0;
+  const ackHookToken =
+    typeof process !== "undefined" && process.env.VITEST ? crypto.randomUUID() : void 0;
   logger3().debug({
     msg: "opening websocket to actor via guard",
-    gatewayUrl
+    gatewayUrl,
   });
   const ws = new WebSocket2(
     gatewayUrl,
@@ -19838,23 +20271,19 @@ async function openWebSocketToGateway(runConfig, gatewayUrl, encoding, params, o
       encoding,
       params,
       ackHookToken,
-      options.directActorId ? {
-        target: "actor",
-        actorId: options.directActorId
-      } : void 0,
-      options
-    )
+      options.directActorId
+        ? {
+            target: "actor",
+            actorId: options.directActorId,
+          }
+        : void 0,
+      options,
+    ),
   );
   ws.binaryType = "arraybuffer";
-  const bufferedWs = new BufferedRemoteWebSocket(
-    ws
-  );
+  const bufferedWs = new BufferedRemoteWebSocket(ws);
   if (ackHookToken) {
-    setRemoteHibernatableWebSocketAckTestHooks(
-      bufferedWs,
-      ackHookToken,
-      true
-    );
+    setRemoteHibernatableWebSocketAckTestHooks(bufferedWs, ackHookToken, true);
   }
   return bufferedWs;
 }
@@ -19873,14 +20302,10 @@ function buildWebSocketProtocols(runConfig, encoding, params, ackHookToken, targ
     protocols.push(WS_PROTOCOL_SKIP_READY_WAIT);
   }
   if (params) {
-    protocols.push(
-      `${WS_PROTOCOL_CONN_PARAMS}${encodeURIComponent(JSON.stringify(params))}`
-    );
+    protocols.push(`${WS_PROTOCOL_CONN_PARAMS}${encodeURIComponent(JSON.stringify(params))}`);
   }
   if (ackHookToken) {
-    protocols.push(
-      `${WS_PROTOCOL_TEST_ACK_HOOK}${encodeURIComponent(ackHookToken)}`
-    );
+    protocols.push(`${WS_PROTOCOL_TEST_ACK_HOOK}${encodeURIComponent(ackHookToken)}`);
   }
   return protocols;
 }
@@ -19895,7 +20320,7 @@ function readInit(bc) {
   return {
     actorId: readString(bc),
     connectionId: readString(bc),
-    connectionToken: readString(bc)
+    connectionToken: readString(bc),
   };
 }
 function writeInit(bc, x) {
@@ -19927,7 +20352,7 @@ function readError(bc) {
     code: readString(bc),
     message: readString(bc),
     metadata: read0(bc),
-    actionId: read1(bc)
+    actionId: read1(bc),
   };
 }
 function writeError(bc, x) {
@@ -19940,7 +20365,7 @@ function writeError(bc, x) {
 function readActionResponse(bc) {
   return {
     id: readUint(bc),
-    output: readCbor(bc)
+    output: readCbor(bc),
   };
 }
 function writeActionResponse(bc, x) {
@@ -19950,7 +20375,7 @@ function writeActionResponse(bc, x) {
 function readEvent(bc) {
   return {
     name: readString(bc),
-    args: readCbor(bc)
+    args: readCbor(bc),
   };
 }
 function writeEvent(bc, x) {
@@ -20001,7 +20426,7 @@ function writeToClientBody(bc, x) {
 }
 function readToClient(bc) {
   return {
-    body: readToClientBody(bc)
+    body: readToClientBody(bc),
   };
 }
 function writeToClient(bc, x) {
@@ -20009,10 +20434,7 @@ function writeToClient(bc, x) {
 }
 function encodeToClient(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeToClient(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20028,7 +20450,7 @@ function readActionRequest(bc) {
   return {
     id: readUint(bc),
     name: readString(bc),
-    args: readCbor(bc)
+    args: readCbor(bc),
   };
 }
 function writeActionRequest(bc, x) {
@@ -20039,7 +20461,7 @@ function writeActionRequest(bc, x) {
 function readSubscriptionRequest(bc) {
   return {
     eventName: readString(bc),
-    subscribe: readBool(bc)
+    subscribe: readBool(bc),
   };
 }
 function writeSubscriptionRequest(bc, x) {
@@ -20076,7 +20498,7 @@ function writeToServerBody(bc, x) {
 }
 function readToServer(bc) {
   return {
-    body: readToServerBody(bc)
+    body: readToServerBody(bc),
   };
 }
 function writeToServer(bc, x) {
@@ -20084,10 +20506,7 @@ function writeToServer(bc, x) {
 }
 function encodeToServer(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeToServer(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20101,7 +20520,7 @@ function decodeToServer(bytes) {
 }
 function readHttpActionRequest(bc) {
   return {
-    args: readCbor(bc)
+    args: readCbor(bc),
   };
 }
 function writeHttpActionRequest(bc, x) {
@@ -20109,10 +20528,7 @@ function writeHttpActionRequest(bc, x) {
 }
 function encodeHttpActionRequest(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpActionRequest(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20126,7 +20542,7 @@ function decodeHttpActionRequest(bytes) {
 }
 function readHttpActionResponse(bc) {
   return {
-    output: readCbor(bc)
+    output: readCbor(bc),
   };
 }
 function writeHttpActionResponse(bc, x) {
@@ -20134,10 +20550,7 @@ function writeHttpActionResponse(bc, x) {
 }
 function encodeHttpActionResponse(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpActionResponse(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20154,7 +20567,7 @@ function readHttpResponseError(bc) {
     group: readString(bc),
     code: readString(bc),
     message: readString(bc),
-    metadata: read0(bc)
+    metadata: read0(bc),
   };
 }
 function writeHttpResponseError(bc, x) {
@@ -20165,10 +20578,7 @@ function writeHttpResponseError(bc, x) {
 }
 function encodeHttpResponseError(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpResponseError(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20182,7 +20592,7 @@ function decodeHttpResponseError(bytes) {
 }
 function readHttpResolveResponse(bc) {
   return {
-    actorId: readString(bc)
+    actorId: readString(bc),
   };
 }
 function writeHttpResolveResponse(bc, x) {
@@ -20190,10 +20600,7 @@ function writeHttpResolveResponse(bc, x) {
 }
 function encodeHttpResolveResponse(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpResolveResponse(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20215,7 +20622,7 @@ function writeCbor2(bc, x) {
 function readInit2(bc) {
   return {
     actorId: readString(bc),
-    connectionId: readString(bc)
+    connectionId: readString(bc),
   };
 }
 function writeInit2(bc, x) {
@@ -20246,7 +20653,7 @@ function readError2(bc) {
     code: readString(bc),
     message: readString(bc),
     metadata: read02(bc),
-    actionId: read12(bc)
+    actionId: read12(bc),
   };
 }
 function writeError2(bc, x) {
@@ -20259,7 +20666,7 @@ function writeError2(bc, x) {
 function readActionResponse2(bc) {
   return {
     id: readUint(bc),
-    output: readCbor2(bc)
+    output: readCbor2(bc),
   };
 }
 function writeActionResponse2(bc, x) {
@@ -20269,7 +20676,7 @@ function writeActionResponse2(bc, x) {
 function readEvent2(bc) {
   return {
     name: readString(bc),
-    args: readCbor2(bc)
+    args: readCbor2(bc),
   };
 }
 function writeEvent2(bc, x) {
@@ -20320,7 +20727,7 @@ function writeToClientBody2(bc, x) {
 }
 function readToClient2(bc) {
   return {
-    body: readToClientBody2(bc)
+    body: readToClientBody2(bc),
   };
 }
 function writeToClient2(bc, x) {
@@ -20328,10 +20735,7 @@ function writeToClient2(bc, x) {
 }
 function encodeToClient2(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG2;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeToClient2(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20347,7 +20751,7 @@ function readActionRequest2(bc) {
   return {
     id: readUint(bc),
     name: readString(bc),
-    args: readCbor2(bc)
+    args: readCbor2(bc),
   };
 }
 function writeActionRequest2(bc, x) {
@@ -20358,7 +20762,7 @@ function writeActionRequest2(bc, x) {
 function readSubscriptionRequest2(bc) {
   return {
     eventName: readString(bc),
-    subscribe: readBool(bc)
+    subscribe: readBool(bc),
   };
 }
 function writeSubscriptionRequest2(bc, x) {
@@ -20395,7 +20799,7 @@ function writeToServerBody2(bc, x) {
 }
 function readToServer2(bc) {
   return {
-    body: readToServerBody2(bc)
+    body: readToServerBody2(bc),
   };
 }
 function writeToServer2(bc, x) {
@@ -20403,10 +20807,7 @@ function writeToServer2(bc, x) {
 }
 function encodeToServer2(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG2;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeToServer2(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20420,7 +20821,7 @@ function decodeToServer2(bytes) {
 }
 function readHttpActionRequest2(bc) {
   return {
-    args: readCbor2(bc)
+    args: readCbor2(bc),
   };
 }
 function writeHttpActionRequest2(bc, x) {
@@ -20428,10 +20829,7 @@ function writeHttpActionRequest2(bc, x) {
 }
 function encodeHttpActionRequest2(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG2;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpActionRequest2(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20445,7 +20843,7 @@ function decodeHttpActionRequest2(bytes) {
 }
 function readHttpActionResponse2(bc) {
   return {
-    output: readCbor2(bc)
+    output: readCbor2(bc),
   };
 }
 function writeHttpActionResponse2(bc, x) {
@@ -20453,10 +20851,7 @@ function writeHttpActionResponse2(bc, x) {
 }
 function encodeHttpActionResponse2(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG2;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpActionResponse2(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20473,7 +20868,7 @@ function readHttpResponseError2(bc) {
     group: readString(bc),
     code: readString(bc),
     message: readString(bc),
-    metadata: read02(bc)
+    metadata: read02(bc),
   };
 }
 function writeHttpResponseError2(bc, x) {
@@ -20484,10 +20879,7 @@ function writeHttpResponseError2(bc, x) {
 }
 function encodeHttpResponseError2(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG2;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpResponseError2(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20501,7 +20893,7 @@ function decodeHttpResponseError2(bytes) {
 }
 function readHttpResolveResponse2(bc) {
   return {
-    actorId: readString(bc)
+    actorId: readString(bc),
   };
 }
 function writeHttpResolveResponse2(bc, x) {
@@ -20509,10 +20901,7 @@ function writeHttpResolveResponse2(bc, x) {
 }
 function encodeHttpResolveResponse2(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG2;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpResolveResponse2(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20534,7 +20923,7 @@ function writeCbor3(bc, x) {
 function readInit3(bc) {
   return {
     actorId: readString(bc),
-    connectionId: readString(bc)
+    connectionId: readString(bc),
   };
 }
 function writeInit3(bc, x) {
@@ -20565,7 +20954,7 @@ function readError3(bc) {
     code: readString(bc),
     message: readString(bc),
     metadata: read03(bc),
-    actionId: read13(bc)
+    actionId: read13(bc),
   };
 }
 function writeError3(bc, x) {
@@ -20578,7 +20967,7 @@ function writeError3(bc, x) {
 function readActionResponse3(bc) {
   return {
     id: readUint(bc),
-    output: readCbor3(bc)
+    output: readCbor3(bc),
   };
 }
 function writeActionResponse3(bc, x) {
@@ -20588,7 +20977,7 @@ function writeActionResponse3(bc, x) {
 function readEvent3(bc) {
   return {
     name: readString(bc),
-    args: readCbor3(bc)
+    args: readCbor3(bc),
   };
 }
 function writeEvent3(bc, x) {
@@ -20639,7 +21028,7 @@ function writeToClientBody3(bc, x) {
 }
 function readToClient3(bc) {
   return {
-    body: readToClientBody3(bc)
+    body: readToClientBody3(bc),
   };
 }
 function writeToClient3(bc, x) {
@@ -20647,10 +21036,7 @@ function writeToClient3(bc, x) {
 }
 function encodeToClient3(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG3;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeToClient3(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20666,7 +21052,7 @@ function readActionRequest3(bc) {
   return {
     id: readUint(bc),
     name: readString(bc),
-    args: readCbor3(bc)
+    args: readCbor3(bc),
   };
 }
 function writeActionRequest3(bc, x) {
@@ -20677,7 +21063,7 @@ function writeActionRequest3(bc, x) {
 function readSubscriptionRequest3(bc) {
   return {
     eventName: readString(bc),
-    subscribe: readBool(bc)
+    subscribe: readBool(bc),
   };
 }
 function writeSubscriptionRequest3(bc, x) {
@@ -20714,7 +21100,7 @@ function writeToServerBody3(bc, x) {
 }
 function readToServer3(bc) {
   return {
-    body: readToServerBody3(bc)
+    body: readToServerBody3(bc),
   };
 }
 function writeToServer3(bc, x) {
@@ -20722,10 +21108,7 @@ function writeToServer3(bc, x) {
 }
 function encodeToServer3(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG3;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeToServer3(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20739,7 +21122,7 @@ function decodeToServer3(bytes) {
 }
 function readHttpActionRequest3(bc) {
   return {
-    args: readCbor3(bc)
+    args: readCbor3(bc),
   };
 }
 function writeHttpActionRequest3(bc, x) {
@@ -20747,10 +21130,7 @@ function writeHttpActionRequest3(bc, x) {
 }
 function encodeHttpActionRequest3(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG3;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpActionRequest3(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20764,7 +21144,7 @@ function decodeHttpActionRequest3(bytes) {
 }
 function readHttpActionResponse3(bc) {
   return {
-    output: readCbor3(bc)
+    output: readCbor3(bc),
   };
 }
 function writeHttpActionResponse3(bc, x) {
@@ -20772,10 +21152,7 @@ function writeHttpActionResponse3(bc, x) {
 }
 function encodeHttpActionResponse3(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG3;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpActionResponse3(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20819,7 +21196,7 @@ function readHttpQueueSendRequest(bc) {
     body: readCbor3(bc),
     name: read2(bc),
     wait: read3(bc),
-    timeout: read4(bc)
+    timeout: read4(bc),
   };
 }
 function writeHttpQueueSendRequest(bc, x) {
@@ -20830,10 +21207,7 @@ function writeHttpQueueSendRequest(bc, x) {
 }
 function encodeHttpQueueSendRequest(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG3;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpQueueSendRequest(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20848,7 +21222,7 @@ function decodeHttpQueueSendRequest(bytes) {
 function readHttpQueueSendResponse(bc) {
   return {
     status: readString(bc),
-    response: read03(bc)
+    response: read03(bc),
   };
 }
 function writeHttpQueueSendResponse(bc, x) {
@@ -20857,10 +21231,7 @@ function writeHttpQueueSendResponse(bc, x) {
 }
 function encodeHttpQueueSendResponse(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG3;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpQueueSendResponse(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20877,7 +21248,7 @@ function readHttpResponseError3(bc) {
     group: readString(bc),
     code: readString(bc),
     message: readString(bc),
-    metadata: read03(bc)
+    metadata: read03(bc),
   };
 }
 function writeHttpResponseError3(bc, x) {
@@ -20888,10 +21259,7 @@ function writeHttpResponseError3(bc, x) {
 }
 function encodeHttpResponseError3(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG3;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpResponseError3(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20905,7 +21273,7 @@ function decodeHttpResponseError3(bytes) {
 }
 function readHttpResolveResponse3(bc) {
   return {
-    actorId: readString(bc)
+    actorId: readString(bc),
   };
 }
 function writeHttpResolveResponse3(bc, x) {
@@ -20913,10 +21281,7 @@ function writeHttpResolveResponse3(bc, x) {
 }
 function encodeHttpResolveResponse3(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG3;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpResolveResponse3(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -20948,7 +21313,7 @@ function readActorSpecifier(bc) {
   return {
     actorId: readString(bc),
     generation: readUint(bc),
-    key: read04(bc)
+    key: read04(bc),
   };
 }
 function writeActorSpecifier(bc, x) {
@@ -20959,7 +21324,7 @@ function writeActorSpecifier(bc, x) {
 function readInit4(bc) {
   return {
     actorId: readString(bc),
-    connectionId: readString(bc)
+    connectionId: readString(bc),
   };
 }
 function writeInit4(bc, x) {
@@ -21000,7 +21365,7 @@ function readError4(bc) {
     message: readString(bc),
     metadata: read14(bc),
     actionId: read22(bc),
-    actor: read32(bc)
+    actor: read32(bc),
   };
 }
 function writeError4(bc, x) {
@@ -21014,7 +21379,7 @@ function writeError4(bc, x) {
 function readActionResponse4(bc) {
   return {
     id: readUint(bc),
-    output: readCbor4(bc)
+    output: readCbor4(bc),
   };
 }
 function writeActionResponse4(bc, x) {
@@ -21024,7 +21389,7 @@ function writeActionResponse4(bc, x) {
 function readEvent4(bc) {
   return {
     name: readString(bc),
-    args: readCbor4(bc)
+    args: readCbor4(bc),
   };
 }
 function writeEvent4(bc, x) {
@@ -21075,7 +21440,7 @@ function writeToClientBody4(bc, x) {
 }
 function readToClient4(bc) {
   return {
-    body: readToClientBody4(bc)
+    body: readToClientBody4(bc),
   };
 }
 function writeToClient4(bc, x) {
@@ -21083,10 +21448,7 @@ function writeToClient4(bc, x) {
 }
 function encodeToClient4(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG4;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeToClient4(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -21102,7 +21464,7 @@ function readActionRequest4(bc) {
   return {
     id: readUint(bc),
     name: readString(bc),
-    args: readCbor4(bc)
+    args: readCbor4(bc),
   };
 }
 function writeActionRequest4(bc, x) {
@@ -21113,7 +21475,7 @@ function writeActionRequest4(bc, x) {
 function readSubscriptionRequest4(bc) {
   return {
     eventName: readString(bc),
-    subscribe: readBool(bc)
+    subscribe: readBool(bc),
   };
 }
 function writeSubscriptionRequest4(bc, x) {
@@ -21150,7 +21512,7 @@ function writeToServerBody4(bc, x) {
 }
 function readToServer4(bc) {
   return {
-    body: readToServerBody4(bc)
+    body: readToServerBody4(bc),
   };
 }
 function writeToServer4(bc, x) {
@@ -21158,10 +21520,7 @@ function writeToServer4(bc, x) {
 }
 function encodeToServer4(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG4;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeToServer4(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -21175,7 +21534,7 @@ function decodeToServer4(bytes) {
 }
 function readHttpActionRequest4(bc) {
   return {
-    args: readCbor4(bc)
+    args: readCbor4(bc),
   };
 }
 function writeHttpActionRequest4(bc, x) {
@@ -21183,10 +21542,7 @@ function writeHttpActionRequest4(bc, x) {
 }
 function encodeHttpActionRequest4(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG4;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpActionRequest4(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -21200,7 +21556,7 @@ function decodeHttpActionRequest4(bytes) {
 }
 function readHttpActionResponse4(bc) {
   return {
-    output: readCbor4(bc)
+    output: readCbor4(bc),
   };
 }
 function writeHttpActionResponse4(bc, x) {
@@ -21208,10 +21564,7 @@ function writeHttpActionResponse4(bc, x) {
 }
 function encodeHttpActionResponse4(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG4;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpActionResponse4(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -21246,7 +21599,7 @@ function readHttpQueueSendRequest2(bc) {
     body: readCbor4(bc),
     name: read04(bc),
     wait: read42(bc),
-    timeout: read5(bc)
+    timeout: read5(bc),
   };
 }
 function writeHttpQueueSendRequest2(bc, x) {
@@ -21257,10 +21610,7 @@ function writeHttpQueueSendRequest2(bc, x) {
 }
 function encodeHttpQueueSendRequest2(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG4;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpQueueSendRequest2(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -21275,7 +21625,7 @@ function decodeHttpQueueSendRequest2(bytes) {
 function readHttpQueueSendResponse2(bc) {
   return {
     status: readString(bc),
-    response: read14(bc)
+    response: read14(bc),
   };
 }
 function writeHttpQueueSendResponse2(bc, x) {
@@ -21284,10 +21634,7 @@ function writeHttpQueueSendResponse2(bc, x) {
 }
 function encodeHttpQueueSendResponse2(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG4;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpQueueSendResponse2(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -21305,7 +21652,7 @@ function readHttpResponseError4(bc) {
     code: readString(bc),
     message: readString(bc),
     metadata: read14(bc),
-    actor: read32(bc)
+    actor: read32(bc),
   };
 }
 function writeHttpResponseError4(bc, x) {
@@ -21317,10 +21664,7 @@ function writeHttpResponseError4(bc, x) {
 }
 function encodeHttpResponseError4(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG4;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpResponseError4(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -21334,7 +21678,7 @@ function decodeHttpResponseError4(bytes) {
 }
 function readHttpResolveResponse4(bc) {
   return {
-    actorId: readString(bc)
+    actorId: readString(bc),
   };
 }
 function writeHttpResolveResponse4(bc, x) {
@@ -21342,10 +21686,7 @@ function writeHttpResolveResponse4(bc, x) {
 }
 function encodeHttpResolveResponse4(x, config2) {
   const fullConfig = config2 != null ? Config(config2) : DEFAULT_CONFIG4;
-  const bc = new ByteCursor(
-    new Uint8Array(fullConfig.initialBufferLength),
-    fullConfig
-  );
+  const bc = new ByteCursor(new Uint8Array(fullConfig.initialBufferLength), fullConfig);
   writeHttpResolveResponse4(bc, x);
   return new Uint8Array(bc.view.buffer, bc.view.byteOffset, bc.offset);
 }
@@ -21366,9 +21707,9 @@ var v1ToV2 = (v1Data) => {
         tag: "Init",
         val: {
           actorId,
-          connectionId
-        }
-      }
+          connectionId,
+        },
+      },
     };
   }
   return v1Data;
@@ -21382,10 +21723,10 @@ var v2ToV1 = (v2Data) => {
         val: {
           actorId,
           connectionId,
-          connectionToken: ""
+          connectionToken: "",
           // Add empty connectionToken for v1 compatibility
-        }
-      }
+        },
+      },
     };
   }
   return v2Data;
@@ -21400,9 +21741,9 @@ var v3ToV4 = (v3Data) => {
         tag: "Error",
         val: {
           ...v3Data.body.val,
-          actor: null
-        }
-      }
+          actor: null,
+        },
+      },
     };
   }
   return v3Data;
@@ -21413,8 +21754,8 @@ var v4ToV3 = (v4Data) => {
     return {
       body: {
         tag: "Error",
-        val
-      }
+        val,
+      },
     };
   }
   return v4Data;
@@ -21442,7 +21783,7 @@ var v2ToServerV1 = (v2Data) => {
 };
 var v3HttpResponseErrorToV4 = (v3Data) => ({
   ...v3Data,
-  actor: null
+  actor: null,
 });
 var v4HttpResponseErrorToV3 = (v4Data) => {
   const { actor: _, ...rest } = v4Data;
@@ -21478,7 +21819,7 @@ var CLIENT_PROTOCOL_TO_SERVER = createVersionedDataHandler({
     }
   },
   deserializeConverters: () => [v1ToServerV2, v2ToServerV3, v3ToServerV4],
-  serializeConverters: () => [v4ToServerV3, v3ToServerV2, v2ToServerV1]
+  serializeConverters: () => [v4ToServerV3, v3ToServerV2, v2ToServerV1],
 });
 var CLIENT_PROTOCOL_TO_CLIENT = createVersionedDataHandler({
   deserializeVersion: (bytes, version2) => {
@@ -21510,7 +21851,7 @@ var CLIENT_PROTOCOL_TO_CLIENT = createVersionedDataHandler({
     }
   },
   deserializeConverters: () => [v1ToV2, v2ToV3, v3ToV4],
-  serializeConverters: () => [v4ToV3, v3ToV2, v2ToV1]
+  serializeConverters: () => [v4ToV3, v3ToV2, v2ToV1],
 });
 var HTTP_ACTION_REQUEST_VERSIONED = createVersionedDataHandler({
   deserializeVersion: (bytes, version2) => {
@@ -21530,27 +21871,19 @@ var HTTP_ACTION_REQUEST_VERSIONED = createVersionedDataHandler({
   serializeVersion: (data, version2) => {
     switch (version2) {
       case 1:
-        return encodeHttpActionRequest(
-          data
-        );
+        return encodeHttpActionRequest(data);
       case 2:
-        return encodeHttpActionRequest2(
-          data
-        );
+        return encodeHttpActionRequest2(data);
       case 3:
-        return encodeHttpActionRequest3(
-          data
-        );
+        return encodeHttpActionRequest3(data);
       case 4:
-        return encodeHttpActionRequest4(
-          data
-        );
+        return encodeHttpActionRequest4(data);
       default:
         throw new Error(`Unknown version ${version2}`);
     }
   },
   deserializeConverters: () => [],
-  serializeConverters: () => []
+  serializeConverters: () => [],
 });
 var HTTP_ACTION_RESPONSE_VERSIONED = createVersionedDataHandler({
   deserializeVersion: (bytes, version2) => {
@@ -21570,27 +21903,19 @@ var HTTP_ACTION_RESPONSE_VERSIONED = createVersionedDataHandler({
   serializeVersion: (data, version2) => {
     switch (version2) {
       case 1:
-        return encodeHttpActionResponse(
-          data
-        );
+        return encodeHttpActionResponse(data);
       case 2:
-        return encodeHttpActionResponse2(
-          data
-        );
+        return encodeHttpActionResponse2(data);
       case 3:
-        return encodeHttpActionResponse3(
-          data
-        );
+        return encodeHttpActionResponse3(data);
       case 4:
-        return encodeHttpActionResponse4(
-          data
-        );
+        return encodeHttpActionResponse4(data);
       default:
         throw new Error(`Unknown version ${version2}`);
     }
   },
   deserializeConverters: () => [],
-  serializeConverters: () => []
+  serializeConverters: () => [],
 });
 var HTTP_QUEUE_SEND_REQUEST_VERSIONED = createVersionedDataHandler({
   deserializeVersion: (bytes, version2) => {
@@ -21600,29 +21925,21 @@ var HTTP_QUEUE_SEND_REQUEST_VERSIONED = createVersionedDataHandler({
       case 4:
         return decodeHttpQueueSendRequest2(bytes);
       default:
-        throw new Error(
-          `HttpQueueSendRequest only exists in version 3+, got version ${version2}`
-        );
+        throw new Error(`HttpQueueSendRequest only exists in version 3+, got version ${version2}`);
     }
   },
   serializeVersion: (data, version2) => {
     switch (version2) {
       case 3:
-        return encodeHttpQueueSendRequest(
-          data
-        );
+        return encodeHttpQueueSendRequest(data);
       case 4:
-        return encodeHttpQueueSendRequest2(
-          data
-        );
+        return encodeHttpQueueSendRequest2(data);
       default:
-        throw new Error(
-          `HttpQueueSendRequest only exists in version 3+, got version ${version2}`
-        );
+        throw new Error(`HttpQueueSendRequest only exists in version 3+, got version ${version2}`);
     }
   },
   deserializeConverters: () => [],
-  serializeConverters: () => []
+  serializeConverters: () => [],
 });
 var HTTP_QUEUE_SEND_RESPONSE_VERSIONED = createVersionedDataHandler({
   deserializeVersion: (bytes, version2) => {
@@ -21632,29 +21949,21 @@ var HTTP_QUEUE_SEND_RESPONSE_VERSIONED = createVersionedDataHandler({
       case 4:
         return decodeHttpQueueSendResponse2(bytes);
       default:
-        throw new Error(
-          `HttpQueueSendResponse only exists in version 3+, got version ${version2}`
-        );
+        throw new Error(`HttpQueueSendResponse only exists in version 3+, got version ${version2}`);
     }
   },
   serializeVersion: (data, version2) => {
     switch (version2) {
       case 3:
-        return encodeHttpQueueSendResponse(
-          data
-        );
+        return encodeHttpQueueSendResponse(data);
       case 4:
-        return encodeHttpQueueSendResponse2(
-          data
-        );
+        return encodeHttpQueueSendResponse2(data);
       default:
-        throw new Error(
-          `HttpQueueSendResponse only exists in version 3+, got version ${version2}`
-        );
+        throw new Error(`HttpQueueSendResponse only exists in version 3+, got version ${version2}`);
     }
   },
   deserializeConverters: () => [],
-  serializeConverters: () => []
+  serializeConverters: () => [],
 });
 var HTTP_RESPONSE_ERROR_VERSIONED = createVersionedDataHandler({
   deserializeVersion: (bytes, version2) => {
@@ -21674,35 +21983,19 @@ var HTTP_RESPONSE_ERROR_VERSIONED = createVersionedDataHandler({
   serializeVersion: (data, version2) => {
     switch (version2) {
       case 1:
-        return encodeHttpResponseError(
-          data
-        );
+        return encodeHttpResponseError(data);
       case 2:
-        return encodeHttpResponseError2(
-          data
-        );
+        return encodeHttpResponseError2(data);
       case 3:
-        return encodeHttpResponseError3(
-          data
-        );
+        return encodeHttpResponseError3(data);
       case 4:
-        return encodeHttpResponseError4(
-          data
-        );
+        return encodeHttpResponseError4(data);
       default:
         throw new Error(`Unknown version ${version2}`);
     }
   },
-  deserializeConverters: () => [
-    (data) => data,
-    (data) => data,
-    v3HttpResponseErrorToV4
-  ],
-  serializeConverters: () => [
-    v4HttpResponseErrorToV3,
-    (data) => data,
-    (data) => data
-  ]
+  deserializeConverters: () => [(data) => data, (data) => data, v3HttpResponseErrorToV4],
+  serializeConverters: () => [v4HttpResponseErrorToV3, (data) => data, (data) => data],
 });
 var HTTP_RESOLVE_RESPONSE_VERSIONED = createVersionedDataHandler({
   deserializeVersion: (bytes, version2) => {
@@ -21722,38 +22015,30 @@ var HTTP_RESOLVE_RESPONSE_VERSIONED = createVersionedDataHandler({
   serializeVersion: (data, version2) => {
     switch (version2) {
       case 1:
-        return encodeHttpResolveResponse(
-          data
-        );
+        return encodeHttpResolveResponse(data);
       case 2:
-        return encodeHttpResolveResponse2(
-          data
-        );
+        return encodeHttpResolveResponse2(data);
       case 3:
-        return encodeHttpResolveResponse3(
-          data
-        );
+        return encodeHttpResolveResponse3(data);
       case 4:
-        return encodeHttpResolveResponse4(
-          data
-        );
+        return encodeHttpResolveResponse4(data);
       default:
         throw new Error(`Unknown version ${version2}`);
     }
   },
   deserializeConverters: () => [],
-  serializeConverters: () => []
+  serializeConverters: () => [],
 });
 var UintSchema = external_exports.bigint();
 var OptionalUintSchema = UintSchema.nullable();
 var ActorSpecifierSchema = external_exports.object({
   actorId: external_exports.string(),
   generation: external_exports.union([external_exports.number(), external_exports.bigint()]),
-  key: external_exports.string().optional()
+  key: external_exports.string().optional(),
 });
 var InitSchema = external_exports.object({
   actorId: external_exports.string(),
-  connectionId: external_exports.string()
+  connectionId: external_exports.string(),
 });
 var ErrorSchema = external_exports.object({
   group: external_exports.string(),
@@ -21761,73 +22046,78 @@ var ErrorSchema = external_exports.object({
   message: external_exports.string(),
   metadata: external_exports.unknown().optional(),
   actionId: OptionalUintSchema,
-  actor: ActorSpecifierSchema.optional()
+  actor: ActorSpecifierSchema.optional(),
 });
 var ActionResponseSchema = external_exports.object({
   id: UintSchema,
-  output: external_exports.unknown()
+  output: external_exports.unknown(),
 });
 var EventSchema = external_exports.object({
   name: external_exports.string(),
-  args: external_exports.unknown()
+  args: external_exports.unknown(),
 });
 var ToClientBodySchema = external_exports.discriminatedUnion("tag", [
   external_exports.object({ tag: external_exports.literal("Init"), val: InitSchema }),
   external_exports.object({ tag: external_exports.literal("Error"), val: ErrorSchema }),
-  external_exports.object({ tag: external_exports.literal("ActionResponse"), val: ActionResponseSchema }),
-  external_exports.object({ tag: external_exports.literal("Event"), val: EventSchema })
+  external_exports.object({
+    tag: external_exports.literal("ActionResponse"),
+    val: ActionResponseSchema,
+  }),
+  external_exports.object({ tag: external_exports.literal("Event"), val: EventSchema }),
 ]);
 var ToClientSchema = external_exports.object({
-  body: ToClientBodySchema
+  body: ToClientBodySchema,
 });
 var ActionRequestSchema = external_exports.object({
   id: UintSchema,
   name: external_exports.string(),
-  args: external_exports.unknown()
+  args: external_exports.unknown(),
 });
 var SubscriptionRequestSchema = external_exports.object({
   eventName: external_exports.string(),
-  subscribe: external_exports.boolean()
+  subscribe: external_exports.boolean(),
 });
 var ToServerBodySchema = external_exports.discriminatedUnion("tag", [
-  external_exports.object({ tag: external_exports.literal("ActionRequest"), val: ActionRequestSchema }),
+  external_exports.object({
+    tag: external_exports.literal("ActionRequest"),
+    val: ActionRequestSchema,
+  }),
   external_exports.object({
     tag: external_exports.literal("SubscriptionRequest"),
-    val: SubscriptionRequestSchema
-  })
+    val: SubscriptionRequestSchema,
+  }),
 ]);
 var ToServerSchema = external_exports.object({
-  body: ToServerBodySchema
+  body: ToServerBodySchema,
 });
 var HttpActionRequestSchema = external_exports.object({
-  args: external_exports.unknown()
+  args: external_exports.unknown(),
 });
 var HttpActionResponseSchema = external_exports.object({
-  output: external_exports.unknown()
+  output: external_exports.unknown(),
 });
 var HttpQueueSendRequestSchema = external_exports.object({
   body: external_exports.unknown(),
   name: external_exports.string().optional(),
   wait: external_exports.boolean().optional(),
-  timeout: external_exports.number().optional()
+  timeout: external_exports.number().optional(),
 });
 var HttpQueueSendResponseSchema = external_exports.object({
   status: external_exports.enum(["completed", "timedOut"]),
-  response: external_exports.unknown().optional()
+  response: external_exports.unknown().optional(),
 });
 var HttpResponseErrorSchema = external_exports.object({
   group: external_exports.string(),
   code: external_exports.string(),
   message: external_exports.string(),
   metadata: external_exports.unknown().optional(),
-  actor: ActorSpecifierSchema.optional()
+  actor: ActorSpecifierSchema.optional(),
 });
 var HttpResolveRequestSchema = external_exports.null();
 var HttpResolveResponseSchema = external_exports.object({
-  actorId: external_exports.string()
+  actorId: external_exports.string(),
 });
-var ActorClientError = class extends Error {
-};
+var ActorClientError = class extends Error {};
 var HttpRequestError = class extends ActorClientError {
   constructor(message, opts) {
     super(`HTTP request error: ${message}`, { cause: opts?.cause });
@@ -21846,12 +22136,12 @@ function actorSchedulingError(group, code, actorId, details, rayId) {
     group,
     code,
     `Actor failed to start (${actorId}): ${JSON.stringify(details)}`,
-    { metadata: { actorId, details }, rayId }
+    { metadata: { actorId, details }, rayId },
   );
 }
 function internalClientError(message, opts) {
   return new RivetError("rivetkit", INTERNAL_ERROR_CODE, message, {
-    cause: opts?.cause
+    cause: opts?.cause,
   });
 }
 function parseWebSocketCloseReason(reason) {
@@ -21864,7 +22154,7 @@ function parseWebSocketCloseReason(reason) {
   return {
     group,
     code,
-    rayId
+    rayId,
   };
 }
 function messageLength(message) {
@@ -21886,7 +22176,7 @@ async function sendHttpRequest(opts) {
   logger2().debug({
     msg: "sending http request",
     url: opts.url,
-    encoding: opts.encoding
+    encoding: opts.encoding,
   });
   let contentType;
   let bodyData;
@@ -21900,7 +22190,7 @@ async function sendHttpRequest(opts) {
       opts.requestVersion,
       opts.requestZodSchema,
       opts.requestToJson,
-      opts.requestToBare
+      opts.requestToBare,
     );
   }
   let response;
@@ -21910,19 +22200,21 @@ async function sendHttpRequest(opts) {
         method: opts.method,
         headers: {
           ...opts.headers,
-          ...contentType ? {
-            "Content-Type": contentType
-          } : {},
-          "User-Agent": httpUserAgent()
+          ...(contentType
+            ? {
+                "Content-Type": contentType,
+              }
+            : {}),
+          "User-Agent": httpUserAgent(),
         },
         body: bodyData,
         credentials: "include",
-        signal: opts.signal
-      })
+        signal: opts.signal,
+      }),
     );
   } catch (error51) {
     throw new HttpRequestError(`Request failed: ${error51}`, {
-      cause: error51
+      cause: error51,
     });
   }
   if (!response.ok) {
@@ -21939,10 +22231,12 @@ async function sendHttpRequest(opts) {
         // JSON/CBOR: normalize actor generation to the public number shape.
         (json2) => ({
           ...json2,
-          actor: json2.actor ? {
-            ...json2.actor,
-            generation: Number(json2.actor.generation)
-          } : void 0
+          actor: json2.actor
+            ? {
+                ...json2.actor,
+                generation: Number(json2.actor.generation),
+              }
+            : void 0,
         }),
         // BARE: decode ArrayBuffer metadata to unknown
         (bare5) => ({
@@ -21950,12 +22244,14 @@ async function sendHttpRequest(opts) {
           code: bare5.code,
           message: bare5.message,
           metadata: bare5.metadata ? decodeCborCompat(new Uint8Array(bare5.metadata)) : void 0,
-          actor: bare5.actor ? {
-            actorId: bare5.actor.actorId,
-            generation: Number(bare5.actor.generation),
-            key: bare5.actor.key ?? void 0
-          } : void 0
-        })
+          actor: bare5.actor
+            ? {
+                actorId: bare5.actor.actorId,
+                generation: Number(bare5.actor.generation),
+                key: bare5.actor.key ?? void 0,
+              }
+            : void 0,
+        }),
       );
       logger2().warn({
         msg: "http error response",
@@ -21966,34 +22262,29 @@ async function sendHttpRequest(opts) {
         rayId,
         actorId: responseData.actor?.actorId,
         generation: responseData.actor?.generation,
-        actorKey: responseData.actor?.key
+        actorKey: responseData.actor?.key,
       });
-      throw new RivetError(
-        responseData.group,
-        responseData.code,
-        responseData.message,
-        {
-          metadata: responseData.metadata,
-          rayId: rayId ?? void 0,
-          actor: responseData.actor
-        }
-      );
+      throw new RivetError(responseData.group, responseData.code, responseData.message, {
+        metadata: responseData.metadata,
+        rayId: rayId ?? void 0,
+        actor: responseData.actor,
+      });
     } catch (error51) {
       if (error51 instanceof RivetError) {
         throw error51;
       }
       const textResponse = new TextDecoder("utf-8", {
-        fatal: false
+        fatal: false,
       }).decode(bufferResponse);
       if (rayId) {
         throw new HttpRequestError(
           `${response.statusText} (${response.status}) (Ray ID: ${rayId}):
-${textResponse}`
+${textResponse}`,
         );
       } else {
         throw new HttpRequestError(
           `${response.statusText} (${response.status}):
-${textResponse}`
+${textResponse}`,
         );
       }
     }
@@ -22009,11 +22300,11 @@ ${textResponse}`
       opts.responseVersionedDataHandler,
       opts.responseZodSchema,
       opts.responseFromJson,
-      opts.responseFromBare
+      opts.responseFromBare,
     );
   } catch (error51) {
     throw new HttpRequestError(`Failed to parse response: ${error51}`, {
-      cause: error51
+      cause: error51,
     });
   }
 }
@@ -22023,11 +22314,11 @@ function getEndpoint(config2) {
 async function apiCall(config2, method, path, body) {
   const endpoint = getEndpoint(config2);
   const url2 = combineUrlPath(endpoint, path, {
-    namespace: config2.namespace
+    namespace: config2.namespace,
   });
   logger3().debug({ msg: "making api call", method, url: url2 });
   const headers = {
-    ...config2.headers
+    ...config2.headers,
   };
   if (config2.token) {
     headers.Authorization = `Bearer ${config2.token}`;
@@ -22049,53 +22340,31 @@ async function apiCall(config2, method, path, body) {
     requestToJson: (value) => value,
     requestToBare: (value) => value,
     responseFromJson: (value) => value,
-    responseFromBare: (value) => value
+    responseFromBare: (value) => value,
   });
 }
 async function getActor(config2, _, actorId) {
-  return apiCall(
-    config2,
-    "GET",
-    `/actors?actor_ids=${encodeURIComponent(actorId)}`
-  );
+  return apiCall(config2, "GET", `/actors?actor_ids=${encodeURIComponent(actorId)}`);
 }
 async function getActorByKey(config2, name, key) {
   const serializedKey = serializeActorKey(key);
   return apiCall(
     config2,
     "GET",
-    `/actors?name=${encodeURIComponent(name)}&key=${encodeURIComponent(serializedKey)}`
+    `/actors?name=${encodeURIComponent(name)}&key=${encodeURIComponent(serializedKey)}`,
   );
 }
 async function listActorsByName(config2, name) {
-  return apiCall(
-    config2,
-    "GET",
-    `/actors?name=${encodeURIComponent(name)}`
-  );
+  return apiCall(config2, "GET", `/actors?name=${encodeURIComponent(name)}`);
 }
 async function getOrCreateActor(config2, request) {
-  return apiCall(
-    config2,
-    "PUT",
-    `/actors`,
-    request
-  );
+  return apiCall(config2, "PUT", `/actors`, request);
 }
 async function createActor(config2, request) {
-  return apiCall(
-    config2,
-    "POST",
-    `/actors`,
-    request
-  );
+  return apiCall(config2, "POST", `/actors`, request);
 }
 async function destroyActor(config2, actorId) {
-  return apiCall(
-    config2,
-    "DELETE",
-    `/actors/${encodeURIComponent(actorId)}`
-  );
+  return apiCall(config2, "DELETE", `/actors/${encodeURIComponent(actorId)}`);
 }
 async function getMetadata(config2) {
   return apiCall(config2, "GET", `/metadata`);
@@ -22111,13 +22380,13 @@ async function lookupMetadataCached(config2) {
     async () => {
       logger3().debug({
         msg: "fetching metadata",
-        endpoint
+        endpoint,
       });
       const metadataData = await getMetadata(config2);
       logger3().debug({
         msg: "received metadata",
         endpoint,
-        clientEndpoint: metadataData.clientEndpoint
+        clientEndpoint: metadataData.clientEndpoint,
       });
       return metadataData;
     },
@@ -22131,11 +22400,11 @@ async function lookupMetadataCached(config2) {
             msg: "failed to fetch metadata, retrying",
             endpoint,
             attempt: error51.attemptNumber,
-            error: stringifyError(error51)
+            error: stringifyError(error51),
           });
         }
-      }
-    }
+      },
+    },
   );
   metadataLookupCache.set(endpoint, metadataLookupPromise);
   return metadataLookupPromise;
@@ -22150,7 +22419,7 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
         logger3().warn({
           msg: "client websocket not open on connection",
           targetUrl,
-          readyState: clientWs.readyState
+          readyState: clientWs.readyState,
         });
         return;
       }
@@ -22160,13 +22429,13 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
         targetWs.addEventListener("open", () => {
           logger3().debug({
             msg: "target websocket connected",
-            targetUrl
+            targetUrl,
           });
           if (clientWs.readyState !== 1) {
             logger3().warn({
               msg: "client websocket closed before target connected",
               targetUrl,
-              clientReadyState: clientWs.readyState
+              clientReadyState: clientWs.readyState,
             });
             targetWs.close(1001, "Client disconnected");
             reject(new Error("Client disconnected"));
@@ -22177,13 +22446,12 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
         targetWs.addEventListener("error", (error51) => {
           logger3().warn({
             msg: "target websocket error during connection",
-            targetUrl
+            targetUrl,
           });
           reject(error51);
         });
       });
-      state.connectPromise.catch(() => {
-      });
+      state.connectPromise.catch(() => {});
       state.targetWs.addEventListener("message", (event) => {
         if (typeof event.data === "string" || event.data instanceof ArrayBuffer) {
           clientWs.send(event.data);
@@ -22198,7 +22466,7 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
           msg: "target websocket closed",
           targetUrl,
           code: event.code,
-          reason: event.reason
+          reason: event.reason,
         });
         closeWebSocketIfOpen(clientWs, event.code, event.reason);
       });
@@ -22206,7 +22474,7 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
         logger3().error({
           msg: "target websocket error",
           targetUrl,
-          error: stringifyError(error51)
+          error: stringifyError(error51),
         });
         closeWebSocketIfOpen(clientWs, 1011, "Target WebSocket error");
       });
@@ -22215,7 +22483,7 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
       if (!state.targetWs || !state.connectPromise) {
         logger3().error({
           msg: "websocket state not initialized",
-          targetUrl
+          targetUrl,
         });
         return;
       }
@@ -22227,20 +22495,16 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
           logger3().warn({
             msg: "target websocket not open",
             targetUrl,
-            readyState: state.targetWs.readyState
+            readyState: state.targetWs.readyState,
           });
         }
       } catch (error51) {
         logger3().error({
           msg: "failed to connect to target websocket",
           targetUrl,
-          error: error51
+          error: error51,
         });
-        closeWebSocketIfOpen(
-          clientWs,
-          1011,
-          "Failed to connect to target"
-        );
+        closeWebSocketIfOpen(clientWs, 1011, "Failed to connect to target");
       }
     },
     onClose: (event, _clientWs) => {
@@ -22249,14 +22513,14 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
         targetUrl,
         code: event.code,
         reason: event.reason,
-        wasClean: event.wasClean
+        wasClean: event.wasClean,
       });
       if (state.targetWs) {
-        if (state.targetWs.readyState === WebSocket2.OPEN || state.targetWs.readyState === WebSocket2.CONNECTING) {
-          state.targetWs.close(
-            1e3,
-            event.reason || "Client disconnected"
-          );
+        if (
+          state.targetWs.readyState === WebSocket2.OPEN ||
+          state.targetWs.readyState === WebSocket2.CONNECTING
+        ) {
+          state.targetWs.close(1e3, event.reason || "Client disconnected");
         }
       }
     },
@@ -22269,7 +22533,7 @@ async function createWebSocketProxy(_c, targetUrl, protocols) {
           state.targetWs.close();
         }
       }
-    }
+    },
   };
 }
 function closeWebSocketIfOpen(ws, code, reason) {
@@ -22284,44 +22548,37 @@ var RemoteEngineControlClient = class {
   #metadataPromise;
   constructor(runConfig) {
     if (getNextPhase() === "phase-production-build") {
-      logger3().info(
-        "detected next.js build phase, disabling health check"
-      );
+      logger3().info("detected next.js build phase, disabling health check");
       runConfig.disableMetadataLookup = true;
     }
     this.#config = { ...runConfig };
     if (!runConfig.disableMetadataLookup) {
-      this.#metadataPromise = lookupMetadataCached(this.#config).then(
-        (metadataData) => {
-          if (metadataData.clientEndpoint) {
-            this.#config.endpoint = metadataData.clientEndpoint;
-            if (metadataData.clientNamespace) {
-              this.#config.namespace = metadataData.clientNamespace;
-            }
-            if (metadataData.clientToken) {
-              this.#config.token = metadataData.clientToken;
-            }
-            logger3().info({
-              msg: "overriding client endpoint",
-              endpoint: metadataData.clientEndpoint,
-              namespace: metadataData.clientNamespace,
-              token: metadataData.clientToken
-            });
+      this.#metadataPromise = lookupMetadataCached(this.#config).then((metadataData) => {
+        if (metadataData.clientEndpoint) {
+          this.#config.endpoint = metadataData.clientEndpoint;
+          if (metadataData.clientNamespace) {
+            this.#config.namespace = metadataData.clientNamespace;
+          }
+          if (metadataData.clientToken) {
+            this.#config.token = metadataData.clientToken;
           }
           logger3().info({
-            msg: "connected to rivetkit runtime",
-            runtime: metadataData.runtime,
-            version: metadataData.version,
-            envoy: metadataData.envoy
+            msg: "overriding client endpoint",
+            endpoint: metadataData.clientEndpoint,
+            namespace: metadataData.clientNamespace,
+            token: metadataData.clientToken,
           });
         }
-      );
+        logger3().info({
+          msg: "connected to rivetkit runtime",
+          runtime: metadataData.runtime,
+          version: metadataData.version,
+          envoy: metadataData.envoy,
+        });
+      });
     }
   }
-  async getForId({
-    name,
-    actorId
-  }) {
+  async getForId({ name, actorId }) {
     await this.#metadataPromise;
     const response = await getActor(this.#config, name, actorId);
     const actor = response.actors[0];
@@ -22331,16 +22588,13 @@ var RemoteEngineControlClient = class {
         msg: "actor name mismatch from api",
         actorId,
         apiName: actor.name,
-        requestedName: name
+        requestedName: name,
       });
       return void 0;
     }
     return apiActorToOutput(actor);
   }
-  async getWithKey({
-    name,
-    key
-  }) {
+  async getWithKey({ name, key }) {
     await this.#metadataPromise;
     logger3().debug({ msg: "getWithKey: searching for actor", name, key });
     try {
@@ -22351,11 +22605,15 @@ var RemoteEngineControlClient = class {
         msg: "getWithKey: found actor via api",
         actorId: actor.actor_id,
         name,
-        key
+        key,
       });
       return apiActorToOutput(actor);
     } catch (error51) {
-      if (error51 instanceof RivetError && error51.group === "actor" && error51.code === "not_found") {
+      if (
+        error51 instanceof RivetError &&
+        error51.group === "actor" &&
+        error51.code === "not_found"
+      ) {
         return void 0;
       }
       throw error51;
@@ -22363,18 +22621,11 @@ var RemoteEngineControlClient = class {
   }
   async getOrCreateWithKey(input) {
     await this.#metadataPromise;
-    const {
-      name,
-      key,
-      input: actorInput,
-      region,
-      crashPolicy,
-      poolName
-    } = input;
+    const { name, key, input: actorInput, region, crashPolicy, poolName } = input;
     logger3().info({
       msg: "getOrCreateWithKey: getting or creating actor via engine api",
       name,
-      key
+      key,
     });
     try {
       const { actor, created } = await getOrCreateActor(this.#config, {
@@ -22382,25 +22633,27 @@ var RemoteEngineControlClient = class {
         name,
         key: serializeActorKey(key),
         runner_name_selector: poolName ?? this.#config.poolName,
-        input: actorInput ? uint8ArrayToBase642(
-          encodeCborCompat(actorInput)
-        ) : void 0,
-        crash_policy: crashPolicy ?? "sleep"
+        input: actorInput ? uint8ArrayToBase642(encodeCborCompat(actorInput)) : void 0,
+        crash_policy: crashPolicy ?? "sleep",
       });
       logger3().info({
         msg: "getOrCreateWithKey: actor ready",
         actorId: actor.actor_id,
         name,
         key,
-        created
+        created,
       });
       return apiActorToOutput(actor);
     } catch (error51) {
-      if (error51 instanceof RivetError && error51.group === "actor" && error51.code === "key_reserved_in_different_datacenter") {
+      if (
+        error51 instanceof RivetError &&
+        error51.group === "actor" &&
+        error51.code === "key_reserved_in_different_datacenter"
+      ) {
         logger3().warn({
           msg: "getOrCreateWithKey: key reserved in different datacenter, retrying as get",
           name,
-          key
+          key,
         });
         const response = await getActorByKey(this.#config, name, key);
         const existing = response.actors[0];
@@ -22409,21 +22662,14 @@ var RemoteEngineControlClient = class {
           msg: "getOrCreateWithKey: resolved existing actor via get",
           actorId: existing.actor_id,
           name,
-          key
+          key,
         });
         return apiActorToOutput(existing);
       }
       throw error51;
     }
   }
-  async createActor({
-    name,
-    key,
-    input,
-    region,
-    crashPolicy,
-    poolName
-  }) {
+  async createActor({ name, key, input, region, crashPolicy, poolName }) {
     await this.#metadataPromise;
     logger3().info({ msg: "creating actor via engine api", name, key });
     const result = await createActor(this.#config, {
@@ -22432,13 +22678,13 @@ var RemoteEngineControlClient = class {
       runner_name_selector: poolName ?? this.#config.poolName,
       key: serializeActorKey(key),
       input: input ? uint8ArrayToBase642(encodeCborCompat(input)) : void 0,
-      crash_policy: crashPolicy ?? "sleep"
+      crash_policy: crashPolicy ?? "sleep",
     });
     logger3().info({
       msg: "actor created",
       actorId: result.actor.actor_id,
       name,
-      key
+      key,
     });
     return apiActorToOutput(result.actor);
   }
@@ -22457,39 +22703,20 @@ var RemoteEngineControlClient = class {
   async sendRequest(target2, actorRequest, options = {}) {
     await this.#metadataPromise;
     const path = requestPath(actorRequest);
-    const gatewayUrl = this.#buildGatewayUrlForTarget(
-      target2,
-      path,
-      options
-    );
+    const gatewayUrl = this.#buildGatewayUrlForTarget(target2, path, options);
     const httpOptions = {
       ...options,
-      directActorId: shouldSkipReadyWait(options) ? directActorIdFromTarget(target2) : void 0
+      directActorId: shouldSkipReadyWait(options) ? directActorIdFromTarget(target2) : void 0,
     };
-    return sendHttpRequestToGateway(
-      this.#config,
-      gatewayUrl,
-      actorRequest,
-      httpOptions
-    );
+    return sendHttpRequestToGateway(this.#config, gatewayUrl, actorRequest, httpOptions);
   }
   async openWebSocket(path, target2, encoding, params, options = {}) {
     await this.#metadataPromise;
-    const gatewayUrl = this.#buildGatewayUrlForTarget(
-      target2,
-      path,
-      options
-    );
-    return openWebSocketToGateway(
-      this.#config,
-      gatewayUrl,
-      encoding,
-      params,
-      {
-        ...options,
-        directActorId: shouldSkipReadyWait(options) ? directActorIdFromTarget(target2) : void 0
-      }
-    );
+    const gatewayUrl = this.#buildGatewayUrlForTarget(target2, path, options);
+    return openWebSocketToGateway(this.#config, gatewayUrl, encoding, params, {
+      ...options,
+      directActorId: shouldSkipReadyWait(options) ? directActorIdFromTarget(target2) : void 0,
+    });
   }
   async buildGatewayUrl(target2, options = {}) {
     await this.#metadataPromise;
@@ -22499,7 +22726,7 @@ var RemoteEngineControlClient = class {
     await this.#metadataPromise;
     const gatewayUrl = this.#buildGatewayUrlForTarget(
       { directId: actorId },
-      requestPath(actorRequest)
+      requestPath(actorRequest),
     );
     return sendHttpRequestToGateway(this.#config, gatewayUrl, actorRequest);
   }
@@ -22514,18 +22741,12 @@ var RemoteEngineControlClient = class {
       msg: "forwarding websocket to actor via guard",
       actorId,
       path,
-      guardUrl
+      guardUrl,
     });
-    const protocols = buildWebSocketProtocols(
-      this.#config,
-      encoding,
-      params,
-      void 0,
-      {
-        target: "actor",
-        actorId
-      }
-    );
+    const protocols = buildWebSocketProtocols(this.#config, encoding, params, void 0, {
+      target: "actor",
+      actorId,
+    });
     const args = await createWebSocketProxy(c, wsGuardUrl, protocols);
     return await upgradeWebSocket(() => args)(c, noopNext());
   }
@@ -22537,24 +22758,18 @@ var RemoteEngineControlClient = class {
   }
   #buildGatewayUrlForTarget(target2, path, options = {}) {
     const endpoint = getEndpoint(this.#config);
-    if (shouldSkipReadyWait(options) && directActorIdFromTarget(target2) && canUseDirectSkipReadyWaitPath(path)) {
+    if (
+      shouldSkipReadyWait(options) &&
+      directActorIdFromTarget(target2) &&
+      canUseDirectSkipReadyWaitPath(path)
+    ) {
       return combineUrlPath(endpoint, path);
     }
     if ("directId" in target2) {
-      return buildActorGatewayUrl(
-        endpoint,
-        target2.directId,
-        this.#config.token,
-        path
-      );
+      return buildActorGatewayUrl(endpoint, target2.directId, this.#config.token, path);
     }
     if ("getForId" in target2) {
-      return buildActorGatewayUrl(
-        endpoint,
-        target2.getForId.actorId,
-        this.#config.token,
-        path
-      );
+      return buildActorGatewayUrl(endpoint, target2.getForId.actorId, this.#config.token, path);
     }
     if ("getForKey" in target2 || "getOrCreateForKey" in target2) {
       return buildActorQueryGatewayUrl(
@@ -22565,27 +22780,35 @@ var RemoteEngineControlClient = class {
         path,
         this.#config.maxInputSize,
         void 0,
-        "getOrCreateForKey" in target2 ? target2.getOrCreateForKey.poolName ?? this.#config.poolName : void 0,
-        options
+        "getOrCreateForKey" in target2
+          ? (target2.getOrCreateForKey.poolName ?? this.#config.poolName)
+          : void 0,
+        options,
       );
     }
     if ("create" in target2) {
-      throw new Error(
-        "Gateway URLs only support direct actor IDs, get, and getOrCreate targets."
-      );
+      throw new Error("Gateway URLs only support direct actor IDs, get, and getOrCreate targets.");
     }
     throw new Error("unreachable: unknown gateway target type");
   }
 };
 function canUseDirectSkipReadyWaitPath(path) {
-  return isActorHttpRequestPath(path) || isPathOrQuery(path, PATH_CONNECT) || isPathOrQuery(path, PATH_WEBSOCKET_BASE) || path.startsWith(PATH_WEBSOCKET_PREFIX);
+  return (
+    isActorHttpRequestPath(path) ||
+    isPathOrQuery(path, PATH_CONNECT) ||
+    isPathOrQuery(path, PATH_WEBSOCKET_BASE) ||
+    path.startsWith(PATH_WEBSOCKET_PREFIX)
+  );
 }
 function isPathOrQuery(path, basePath) {
   return path === basePath || path.startsWith(`${basePath}?`);
 }
 function isActorHttpRequestPath(path) {
   const stripped = path.slice("/request".length);
-  return path.startsWith("/request") && (stripped.length === 0 || stripped.startsWith("/") || stripped.startsWith("?"));
+  return (
+    path.startsWith("/request") &&
+    (stripped.length === 0 || stripped.startsWith("/") || stripped.startsWith("?"))
+  );
 }
 function directActorIdFromTarget(target2) {
   if ("directId" in target2) {
@@ -22610,13 +22833,13 @@ function apiActorToOutput(actor) {
     connectableTs: actor.connectable_ts ?? null,
     sleepTs: actor.sleep_ts ?? null,
     destroyTs: actor.destroy_ts ?? null,
-    error: actor.error ?? void 0
+    error: actor.error ?? void 0,
   };
 }
 function resolveActorGatewayOptions(defaults = {}, overrides) {
   const skipReadyWait = overrides?.skipReadyWait ?? defaults.skipReadyWait ?? false;
   return {
-    skipReadyWait
+    skipReadyWait,
   };
 }
 function getActorNameFromQuery(query) {
@@ -22635,13 +22858,21 @@ function getGatewayTarget(state) {
   }
   if ("create" in state) {
     throw invalidRequest(
-      "create queries cannot be used as gateway targets. Resolve to an actor ID first."
+      "create queries cannot be used as gateway targets. Resolve to an actor ID first.",
     );
   }
   return state;
 }
 function isStaleResolvedActorError(group, code) {
-  return group === "actor" && (code === "not_found" || code === "starting" || code === "stopping" || code === "not_configured" || code === "dropped_reply" || code.startsWith("destroyed_"));
+  return (
+    group === "actor" &&
+    (code === "not_found" ||
+      code === "starting" ||
+      code === "stopping" ||
+      code === "not_configured" ||
+      code === "dropped_reply" ||
+      code.startsWith("destroyed_"))
+  );
 }
 async function checkForSchedulingError(group, code, actorId, query, driver, rayId) {
   const name = getActorNameFromQuery(query);
@@ -22651,21 +22882,15 @@ async function checkForSchedulingError(group, code, actorId, query, driver, rayI
       logger2().info({
         msg: "found actor scheduling error",
         actorId,
-        error: actor.error
+        error: actor.error,
       });
-      return actorSchedulingError(
-        group,
-        code,
-        actorId,
-        actor.error,
-        rayId
-      );
+      return actorSchedulingError(group, code, actorId, actor.error, rayId);
     }
   } catch (err) {
     logger2().warn({
       msg: "failed to fetch actor details for scheduling error check",
       actorId,
-      error: stringifyError(err)
+      error: stringifyError(err),
     });
   }
   return null;
@@ -22690,107 +22915,95 @@ function buildLifecycleBoundaryInfo(kind, source, message, opts) {
     group: opts?.group,
     code: opts?.code,
     message,
-    legacy: opts?.legacy ?? false
+    legacy: opts?.legacy ?? false,
   };
 }
 function classifyActorError(error51) {
-  if (error51.group === "actor" && error51.code === "stopping" && error51.message.includes("database accessed after actor stopped")) {
+  if (
+    error51.group === "actor" &&
+    error51.code === "stopping" &&
+    error51.message.includes("database accessed after actor stopped")
+  ) {
     return void 0;
   }
   if (error51.group === "actor" && error51.code === "restarting") {
-    return buildLifecycleBoundaryInfo(
-      "request_retry",
-      "actor_error",
-      error51.message,
-      {
-        group: error51.group,
-        code: error51.code
-      }
-    );
+    return buildLifecycleBoundaryInfo("request_retry", "actor_error", error51.message, {
+      group: error51.group,
+      code: error51.code,
+    });
   }
   if (error51.group === "guard" && isRetryableGuardGatewayHttpError(error51.code)) {
-    return buildLifecycleBoundaryInfo(
-      "request_retry",
-      "actor_error",
-      error51.message,
-      {
-        group: error51.group,
-        code: error51.code
-      }
-    );
+    return buildLifecycleBoundaryInfo("request_retry", "actor_error", error51.message, {
+      group: error51.group,
+      code: error51.code,
+    });
   }
-  if (error51.group === "actor" && error51.code === "internal_error" && error51.message === "Actor is stopping") {
-    return buildLifecycleBoundaryInfo(
-      "request_retry",
-      "actor_error",
-      error51.message,
-      {
-        group: error51.group,
-        code: error51.code,
-        legacy: true
-      }
-    );
+  if (
+    error51.group === "actor" &&
+    error51.code === "internal_error" &&
+    error51.message === "Actor is stopping"
+  ) {
+    return buildLifecycleBoundaryInfo("request_retry", "actor_error", error51.message, {
+      group: error51.group,
+      code: error51.code,
+      legacy: true,
+    });
   }
-  if (error51.group === "actor" && error51.code === "stopping" && error51.message === "Actor stopping: Cannot accept new connections while actor is stopping") {
-    return buildLifecycleBoundaryInfo(
-      "request_retry",
-      "actor_error",
-      error51.message,
-      {
-        group: error51.group,
-        code: error51.code,
-        legacy: true
-      }
-    );
+  if (
+    error51.group === "actor" &&
+    error51.code === "stopping" &&
+    error51.message === "Actor stopping: Cannot accept new connections while actor is stopping"
+  ) {
+    return buildLifecycleBoundaryInfo("request_retry", "actor_error", error51.message, {
+      group: error51.group,
+      code: error51.code,
+      legacy: true,
+    });
   }
   if (error51.group === "actor" && error51.code === "stopped") {
-    return buildLifecycleBoundaryInfo(
-      "reconnect_only",
-      "actor_error",
-      error51.message,
-      {
-        group: error51.group,
-        code: error51.code,
-        legacy: true
-      }
-    );
+    return buildLifecycleBoundaryInfo("reconnect_only", "actor_error", error51.message, {
+      group: error51.group,
+      code: error51.code,
+      legacy: true,
+    });
   }
   if (error51.group === "ws" && error51.code === "going_away") {
-    return buildLifecycleBoundaryInfo(
-      "reconnect_only",
-      "actor_error",
-      error51.message,
-      {
-        group: error51.group,
-        code: error51.code,
-        legacy: true
-      }
-    );
+    return buildLifecycleBoundaryInfo("reconnect_only", "actor_error", error51.message, {
+      group: error51.group,
+      code: error51.code,
+      legacy: true,
+    });
   }
   return void 0;
 }
 function isRetryableGuardGatewayHttpError(code) {
-  return code === "service_unavailable" || code === "actor_wake_retries_exceeded" || code === "actor_stopped_while_waiting" || code === "tunnel_request_aborted" || code === "tunnel_message_timeout" || code === "tunnel_response_closed" || code === "gateway_response_start_timeout";
+  return (
+    code === "service_unavailable" ||
+    code === "actor_wake_retries_exceeded" ||
+    code === "actor_stopped_while_waiting" ||
+    code === "tunnel_request_aborted" ||
+    code === "tunnel_message_timeout" ||
+    code === "tunnel_response_closed" ||
+    code === "gateway_response_start_timeout"
+  );
 }
 function classifyTransportError(error51) {
   if (error51.message.includes("database accessed after actor stopped")) {
     return void 0;
   }
   if (/^Actor [A-Za-z0-9-]+ stopped$/.test(error51.message)) {
-    return buildLifecycleBoundaryInfo(
-      "request_retry",
-      "transport_error",
-      error51.message,
-      { legacy: true }
-    );
+    return buildLifecycleBoundaryInfo("request_retry", "transport_error", error51.message, {
+      legacy: true,
+    });
   }
-  if (error51.message === "WebSocket connection closed during shutdown" || error51.message === "envoy shut down" || error51.message === "envoy shutting down") {
-    return buildLifecycleBoundaryInfo(
-      "reconnect_only",
-      "transport_error",
-      error51.message,
-      { legacy: true }
-    );
+  if (
+    error51.message === "WebSocket connection closed during shutdown" ||
+    error51.message === "envoy shut down" ||
+    error51.message === "envoy shutting down"
+  ) {
+    return buildLifecycleBoundaryInfo("reconnect_only", "transport_error", error51.message, {
+      legacy: true,
+    });
   }
   return void 0;
 }
@@ -22874,11 +23087,11 @@ function createQueueSender(senderOptions) {
       method: "POST",
       headers: {
         [HEADER_ENCODING]: senderOptions.encoding,
-        ...senderOptions.params !== void 0 ? {
-          [HEADER_CONN_PARAMS]: JSON.stringify(
-            senderOptions.params
-          )
-        } : {}
+        ...(senderOptions.params !== void 0
+          ? {
+              [HEADER_CONN_PARAMS]: JSON.stringify(senderOptions.params),
+            }
+          : {}),
       },
       body: { body, wait, timeout },
       encoding: senderOptions.encoding,
@@ -22892,15 +23105,13 @@ function createQueueSender(senderOptions) {
       responseZodSchema: HttpQueueSendResponseSchema,
       requestToJson: (value) => ({
         ...value,
-        name
+        name,
       }),
       requestToBare: (value) => ({
         name: value.name ?? name,
-        body: bufferToArrayBuffer(
-          encodeCborCompat(value.body)
-        ),
+        body: bufferToArrayBuffer(encodeCborCompat(value.body)),
         wait: value.wait ?? false,
-        timeout: value.timeout !== void 0 ? BigInt(value.timeout) : null
+        timeout: value.timeout !== void 0 ? BigInt(value.timeout) : null,
       }),
       responseFromJson: (json2) => {
         if (json2.response === void 0) {
@@ -22908,7 +23119,7 @@ function createQueueSender(senderOptions) {
         }
         return {
           status: json2.status,
-          response: json2.response
+          response: json2.response,
         };
       },
       responseFromBare: (bare5) => {
@@ -22917,9 +23128,9 @@ function createQueueSender(senderOptions) {
         }
         return {
           status: bare5.status,
-          response: decodeCborCompat(new Uint8Array(bare5.response))
+          response: decodeCborCompat(new Uint8Array(bare5.response)),
         };
-      }
+      },
     });
     if (wait) {
       return result;
@@ -22927,7 +23138,7 @@ function createQueueSender(senderOptions) {
     return;
   }
   return {
-    send
+    send,
   };
 }
 var CONNECT_SYMBOL = /* @__PURE__ */ Symbol("connect");
@@ -22973,7 +23184,15 @@ var ActorConnRaw = class {
    *
    * @protected
    */
-  constructor(client, driver, params, getParams, encoding, actorResolutionState, gatewayOptions = {}) {
+  constructor(
+    client,
+    driver,
+    params,
+    getParams,
+    encoding,
+    actorResolutionState,
+    gatewayOptions = {},
+  ) {
     this.#client = client;
     this.#driver = driver;
     this.#params = params;
@@ -22984,11 +23203,11 @@ var ActorConnRaw = class {
     if ("getForId" in actorResolutionState) {
       this.#actorId = actorResolutionState.getForId.actorId;
     }
-    this.#readyPromise = promiseWithResolvers(
-      (reason) => logger2().warn({
+    this.#readyPromise = promiseWithResolvers((reason) =>
+      logger2().warn({
         msg: "unhandled ready promise rejection",
-        reason
-      })
+        reason,
+      }),
     );
     this.#queueSender = createQueueSender({
       encoding: this.#encoding,
@@ -22997,12 +23216,11 @@ var ActorConnRaw = class {
         return await this.#driver.sendRequest(
           getGatewayTarget(this.#actorResolutionState),
           request,
-          this.#gatewayOptions
+          this.#gatewayOptions,
         );
-      }
+      },
     });
-    this.#keepNodeAliveInterval = setInterval(() => {
-    }, 6e4);
+    this.#keepNodeAliveInterval = setInterval(() => {}, 6e4);
   }
   #clearResolvedActorIdentity() {
     this.#actorId = void 0;
@@ -23017,14 +23235,22 @@ var ActorConnRaw = class {
    * invalidated.
    */
   #invalidateActorIfStale(group, code) {
-    if (!isDynamicActorQuery(this.#actorResolutionState) || !isStaleResolvedActorError(group, code)) {
+    if (
+      !isDynamicActorQuery(this.#actorResolutionState) ||
+      !isStaleResolvedActorError(group, code)
+    ) {
       return false;
     }
     this.#clearResolvedActorIdentity();
     return true;
   }
   #shouldReconnectForStaleActor(group, code) {
-    return isDynamicActorQuery(this.#actorResolutionState) && isStaleResolvedActorError(group, code) && this.#onOpenPromise !== void 0 && this.#connStatus !== "connected";
+    return (
+      isDynamicActorQuery(this.#actorResolutionState) &&
+      isStaleResolvedActorError(group, code) &&
+      this.#onOpenPromise !== void 0 &&
+      this.#connStatus !== "connected"
+    );
   }
   send(name, body, options) {
     return this.#sendQueueMessage(name, body, options);
@@ -23043,30 +23269,39 @@ var ActorConnRaw = class {
    * @returns {Promise<Response>} - A promise that resolves to the response of the action function.
    */
   async action(opts) {
-    if (typeof opts === "string" || typeof opts !== "object" || opts === null || !("name" in opts)) {
+    if (
+      typeof opts === "string" ||
+      typeof opts !== "object" ||
+      opts === null ||
+      !("name" in opts)
+    ) {
       throw new Error(
-        `Invalid action call: expected an options object { name, args }, got ${typeof opts}. Use conn.actionName(...args) for the shorthand API.`
+        `Invalid action call: expected an options object { name, args }, got ${typeof opts}. Use conn.actionName(...args) for the shorthand API.`,
       );
     }
     logger2().debug({ msg: "action", name: opts.name, args: opts.args });
     const actionId = this.#actionIdCounter;
     this.#actionIdCounter += 1;
-    const { promise: promise2, resolve, reject } = promiseWithResolvers(
-      (reason) => logger2().warn({
+    const {
+      promise: promise2,
+      resolve,
+      reject,
+    } = promiseWithResolvers((reason) =>
+      logger2().warn({
         msg: "unhandled action promise rejection",
-        reason
-      })
+        reason,
+      }),
     );
     this.#actionsInFlight.set(actionId, {
       name: opts.name,
       resolve,
-      reject
+      reject,
     });
     logger2().debug({
       msg: "added action to in-flight map",
       actionId,
       actionName: opts.name,
-      inFlightCount: this.#actionsInFlight.size
+      inFlightCount: this.#actionsInFlight.size,
     });
     this.#sendMessage({
       body: {
@@ -23074,15 +23309,13 @@ var ActorConnRaw = class {
         val: {
           id: BigInt(actionId),
           name: opts.name,
-          args: opts.args
-        }
-      }
+          args: opts.args,
+        },
+      },
     });
     const { id: responseId, output } = await promise2;
     if (responseId !== BigInt(actionId))
-      throw new Error(
-        `Request ID ${actionId} does not match response ID ${responseId}`
-      );
+      throw new Error(`Request ID ${actionId} does not match response ID ${responseId}`);
     return output;
   }
   /**
@@ -23104,7 +23337,7 @@ var ActorConnRaw = class {
       } catch (err) {
         logger2().error({
           msg: "error in status change handler",
-          error: stringifyError(err)
+          error: stringifyError(err),
         });
       }
     }
@@ -23116,7 +23349,7 @@ var ActorConnRaw = class {
         } catch (err) {
           logger2().error({
             msg: "error in open handler",
-            error: stringifyError(err)
+            error: stringifyError(err),
           });
         }
       }
@@ -23128,7 +23361,7 @@ var ActorConnRaw = class {
         } catch (err) {
           logger2().error({
             msg: "error in close handler",
-            error: stringifyError(err)
+            error: stringifyError(err),
           });
         }
       }
@@ -23144,31 +23377,34 @@ var ActorConnRaw = class {
         logger2().warn({
           msg: "failed to reconnect",
           attempt: error51.attemptNumber,
-          error: stringifyError(error51)
+          error: stringifyError(error51),
         });
       },
       // Cancel retry if aborted
-      signal: this.#abortController.signal
+      signal: this.#abortController.signal,
     }).catch((err) => {
-      if (err instanceof AbortError || err.name === "AbortError" || !this.#shouldRetryConnectionOpenError(err)) {
+      if (
+        err instanceof AbortError ||
+        err.name === "AbortError" ||
+        !this.#shouldRetryConnectionOpenError(err)
+      ) {
         logger2().info({ msg: "connection retry aborted" });
       } else {
         logger2().error({
           msg: "unexpected error in connection retry",
-          error: stringifyError(err)
+          error: stringifyError(err),
         });
       }
     });
   }
   async #connectAndWait() {
     try {
-      if (this.#onOpenPromise)
-        throw new Error("#onOpenPromise already defined");
-      this.#onOpenPromise = promiseWithResolvers(
-        (reason) => logger2().warn({
+      if (this.#onOpenPromise) throw new Error("#onOpenPromise already defined");
+      this.#onOpenPromise = promiseWithResolvers((reason) =>
+        logger2().warn({
           msg: "unhandled open promise rejection",
-          reason
-        })
+          reason,
+        }),
       );
       await this.#connectWebSocket();
       await this.#onOpenPromise.promise;
@@ -23176,19 +23412,20 @@ var ActorConnRaw = class {
       if (this.#shouldRetryConnectionOpenError(error51)) {
         throw error51;
       }
-      const actorError = error51 instanceof RivetError ? error51 : new RivetError(
-        "client",
-        "connection_open_failed",
-        `Failed to open connection: ${stringifyError(error51)}`,
-        { error: stringifyError(error51) }
-      );
+      const actorError =
+        error51 instanceof RivetError
+          ? error51
+          : new RivetError(
+              "client",
+              "connection_open_failed",
+              `Failed to open connection: ${stringifyError(error51)}`,
+              { error: stringifyError(error51) },
+            );
       this.#clearQueuedMessages();
       this.#rejectPendingPromises(actorError, false);
       this.#dispatchActorError(actorError);
       this.#setConnStatus("idle");
-      throw new AbortError(
-        error51 instanceof Error ? error51 : new Error(stringifyError(error51))
-      );
+      throw new AbortError(error51 instanceof Error ? error51 : new Error(stringifyError(error51)));
     } finally {
       this.#onOpenPromise = void 0;
     }
@@ -23197,10 +23434,17 @@ var ActorConnRaw = class {
     if (error51 instanceof ActorConnDisposed) {
       return false;
     }
-    if (error51 instanceof RivetError && this.#shouldReconnectForStaleActor(error51.group, error51.code)) {
+    if (
+      error51 instanceof RivetError &&
+      this.#shouldReconnectForStaleActor(error51.group, error51.code)
+    ) {
       return true;
     }
-    if (error51 instanceof RivetError && error51.group === "client" && error51.code === "get_params_failed") {
+    if (
+      error51 instanceof RivetError &&
+      error51.group === "client" &&
+      error51.code === "get_params_failed"
+    ) {
       return true;
     }
     return isRetryableLifecycleReconnectSignal(error51);
@@ -23209,7 +23453,7 @@ var ActorConnRaw = class {
     if (this.#messageQueue.length === 0) return;
     logger2().debug({
       msg: "clearing queued connection messages",
-      queueLength: this.#messageQueue.length
+      queueLength: this.#messageQueue.length,
     });
     this.#messageQueue = [];
   }
@@ -23225,7 +23469,7 @@ var ActorConnRaw = class {
         "client",
         "get_params_failed",
         `Failed to resolve connection params: ${errorMessage2}`,
-        { error: errorMessage2 }
+        { error: errorMessage2 },
       );
       this.#clearQueuedMessages();
       this.#rejectPendingPromises(error51, false);
@@ -23241,20 +23485,20 @@ var ActorConnRaw = class {
       target2,
       this.#encoding,
       params,
-      this.#gatewayOptions
+      this.#gatewayOptions,
     );
     (0, import_invariant4.default)(ws, "websocket should have been created");
     logger2().debug({
       msg: "opened websocket",
       connId: this.#connId,
       readyState: ws.readyState,
-      messageQueueLength: this.#messageQueue.length
+      messageQueueLength: this.#messageQueue.length,
     });
     this.#websocket = ws;
     ws.addEventListener("open", () => {
       logger2().debug({
         msg: "client websocket open",
-        connId: this.#connId
+        connId: this.#connId,
       });
     });
     ws.addEventListener("message", async (ev) => {
@@ -23263,7 +23507,7 @@ var ActorConnRaw = class {
       } catch (err) {
         logger2().error({
           msg: "error in websocket message handler",
-          error: stringifyError(err)
+          error: stringifyError(err),
         });
       }
     });
@@ -23273,7 +23517,7 @@ var ActorConnRaw = class {
       } catch (err) {
         logger2().error({
           msg: "error in websocket close handler",
-          error: stringifyError(err)
+          error: stringifyError(err),
         });
       }
     });
@@ -23283,7 +23527,7 @@ var ActorConnRaw = class {
       } catch (err) {
         logger2().error({
           msg: "error in websocket error handler",
-          error: stringifyError(err)
+          error: stringifyError(err),
         });
       }
     });
@@ -23292,7 +23536,7 @@ var ActorConnRaw = class {
   #handleOnOpen() {
     if (this.#disposed) {
       logger2().debug({
-        msg: "handleOnOpen called after dispose, closing websocket"
+        msg: "handleOnOpen called after dispose, closing websocket",
       });
       if (this.#websocket) {
         this.#websocket.close(1e3, "Disposed");
@@ -23308,7 +23552,7 @@ var ActorConnRaw = class {
       this.#openScheduled = false;
       if (this.#disposed) {
         logger2().debug({
-          msg: "handleOnOpen scheduled after dispose, closing websocket"
+          msg: "handleOnOpen scheduled after dispose, closing websocket",
         });
         if (this.#websocket) {
           this.#websocket.close(1e3, "Disposed");
@@ -23319,7 +23563,7 @@ var ActorConnRaw = class {
       logger2().debug({
         msg: "socket open",
         messageQueueLength: this.#messageQueue.length,
-        connId: this.#connId
+        connId: this.#connId,
       });
       this.#setConnStatus("connected");
       if (this.#onOpenPromise) {
@@ -23334,7 +23578,7 @@ var ActorConnRaw = class {
       this.#messageQueue = [];
       logger2().debug({
         msg: "flushing message queue",
-        queueLength: queue.length
+        queueLength: queue.length,
       });
       for (const msg of queue) {
         this.#sendMessage(msg);
@@ -23347,14 +23591,16 @@ var ActorConnRaw = class {
       msg: "received message",
       dataType: typeof data,
       isBlob: data instanceof Blob,
-      isArrayBuffer: data instanceof ArrayBuffer
+      isArrayBuffer: data instanceof ArrayBuffer,
     });
     const response = await this.#parseMessage(data);
     logger2().trace(
-      getLogMessage() ? {
-        msg: "parsed message",
-        message: jsonStringifyCompat(response).substring(0, 100) + "..."
-      } : { msg: "parsed message" }
+      getLogMessage()
+        ? {
+            msg: "parsed message",
+            message: jsonStringifyCompat(response).substring(0, 100) + "...",
+          }
+        : { msg: "parsed message" },
     );
     if (response.body.tag === "Init") {
       this.#actorId = response.body.val.actorId;
@@ -23362,7 +23608,7 @@ var ActorConnRaw = class {
       logger2().trace({
         msg: "received init message",
         actorId: this.#actorId,
-        connId: this.#connId
+        connId: this.#connId,
       });
       this.#handleOnOpen();
     } else if (response.body.tag === "Error") {
@@ -23380,13 +23626,13 @@ var ActorConnRaw = class {
           metadata,
           actorId: actor?.actorId,
           generation: actor?.generation,
-          actorKey: actor?.key
+          actorKey: actor?.key,
         });
         inFlight.reject(
           new RivetError(group, code, message, {
             metadata,
-            actor
-          })
+            actor,
+          }),
         );
       } else {
         logger2().warn({
@@ -23397,21 +23643,21 @@ var ActorConnRaw = class {
           metadata,
           actorId: actor?.actorId,
           generation: actor?.generation,
-          actorKey: actor?.key
+          actorKey: actor?.key,
         });
         if (this.#shouldReconnectForStaleActor(group, code)) {
           this.#clearResolvedActorIdentity();
           this.#onOpenPromise?.reject(
             new RivetError(group, code, message, {
               metadata,
-              actor
-            })
+              actor,
+            }),
           );
           return;
         }
         let errorToThrow = new RivetError(group, code, message, {
           metadata,
-          actor
+          actor,
         });
         if (isSchedulingError(group, code) && this.#actorId) {
           const schedulingError = await checkForSchedulingError(
@@ -23419,7 +23665,7 @@ var ActorConnRaw = class {
             code,
             this.#actorId,
             this.#actorResolutionState,
-            this.#driver
+            this.#driver,
           );
           if (schedulingError) {
             errorToThrow = schedulingError;
@@ -23441,19 +23687,19 @@ var ActorConnRaw = class {
         msg: "received action response",
         actionId: Number(actionId),
         inFlightCount: this.#actionsInFlight.size,
-        inFlightIds: Array.from(this.#actionsInFlight.keys())
+        inFlightIds: Array.from(this.#actionsInFlight.keys()),
       });
       const inFlight = this.#takeActionInFlight(Number(actionId));
       logger2().trace({
         msg: "resolving action promise",
         actionId,
-        actionName: inFlight?.name
+        actionName: inFlight?.name,
       });
       inFlight.resolve(response.body.val);
     } else if (response.body.tag === "Event") {
       logger2().trace({
         msg: "received event",
-        name: response.body.val.name
+        name: response.body.val.name,
       });
       this.#dispatchEvent(response.body.val);
     } else {
@@ -23471,7 +23717,7 @@ var ActorConnRaw = class {
       reason: closeEvent.reason,
       wasClean,
       disposed: this.#disposed,
-      connId: this.#connId
+      connId: this.#connId,
     });
     this.#websocket = void 0;
     if (this.#disposed) {
@@ -23486,12 +23732,7 @@ var ActorConnRaw = class {
         if (this.#shouldReconnectForStaleActor(group, code)) {
           this.#clearResolvedActorIdentity();
           this.#onOpenPromise?.reject(
-            new RivetError(
-              group,
-              code,
-              `Connection closed: ${reason}`,
-              { rayId }
-            )
+            new RivetError(group, code, `Connection closed: ${reason}`, { rayId }),
           );
           return;
         }
@@ -23502,30 +23743,20 @@ var ActorConnRaw = class {
             this.#actorId,
             this.#actorResolutionState,
             this.#driver,
-            rayId
+            rayId,
           );
           if (schedulingError) {
             error51 = schedulingError;
           } else {
-            error51 = new RivetError(
-              group,
-              code,
-              `Connection closed: ${reason}`,
-              { rayId }
-            );
+            error51 = new RivetError(group, code, `Connection closed: ${reason}`, { rayId });
           }
         } else {
-          error51 = new RivetError(
-            group,
-            code,
-            `Connection closed: ${reason}`,
-            { rayId }
-          );
+          error51 = new RivetError(group, code, `Connection closed: ${reason}`, { rayId });
         }
         this.#invalidateActorIfStale(group, code);
       } else {
         error51 = new Error(
-          `${wasClean ? "Connection closed" : "Connection lost"} (code: ${closeEvent.code}, reason: ${reason})`
+          `${wasClean ? "Connection closed" : "Connection lost"} (code: ${closeEvent.code}, reason: ${reason})`,
         );
       }
       this.#rejectPendingPromises(error51, false);
@@ -23535,7 +23766,7 @@ var ActorConnRaw = class {
       if (wasConnected) {
         logger2().debug({
           msg: "triggering reconnect",
-          connId: this.#connId
+          connId: this.#connId,
         });
         this.#connectWithRetry();
       }
@@ -23544,8 +23775,7 @@ var ActorConnRaw = class {
   #rejectPendingPromises(error51, suppressUnhandled) {
     if (this.#onOpenPromise) {
       if (suppressUnhandled) {
-        this.#onOpenPromise.promise.catch(() => {
-        });
+        this.#onOpenPromise.promise.catch(() => {});
       }
       this.#onOpenPromise.reject(error51);
     }
@@ -23567,12 +23797,10 @@ var ActorConnRaw = class {
         lookupId: id,
         inFlightCount: this.#actionsInFlight.size,
         inFlightIds: Array.from(this.#actionsInFlight.keys()),
-        inFlightActions: Array.from(
-          this.#actionsInFlight.entries()
-        ).map(([id2, action]) => ({
+        inFlightActions: Array.from(this.#actionsInFlight.entries()).map(([id2, action]) => ({
           id: id2,
-          name: action.name
-        }))
+          name: action.name,
+        })),
       });
       throw internalClientError(`No in flight response for ${id}`);
     }
@@ -23581,7 +23809,7 @@ var ActorConnRaw = class {
       msg: "removed action from in-flight map",
       actionId: id,
       actionName: inFlight.name,
-      inFlightCount: this.#actionsInFlight.size
+      inFlightCount: this.#actionsInFlight.size,
     });
     return inFlight;
   }
@@ -23606,7 +23834,7 @@ var ActorConnRaw = class {
       } catch (err) {
         logger2().error({
           msg: "error in connection error handler",
-          error: stringifyError(err)
+          error: stringifyError(err),
         });
       }
     }
@@ -23614,7 +23842,7 @@ var ActorConnRaw = class {
   #addEventSubscription(eventName, callback, once) {
     const listener = {
       callback,
-      once
+      once,
     };
     let subscriptionSet = this.#eventSubscriptions.get(eventName);
     if (subscriptionSet === void 0) {
@@ -23713,7 +23941,7 @@ var ActorConnRaw = class {
         } catch (err) {
           logger2().error({
             msg: "error in open handler",
-            error: stringifyError(err)
+            error: stringifyError(err),
           });
         }
       });
@@ -23765,16 +23993,23 @@ var ActorConnRaw = class {
       logger2().debug({
         msg: "websocket send attempt",
         readyState,
-        readyStateString: readyState === 0 ? "CONNECTING" : readyState === 1 ? "OPEN" : readyState === 2 ? "CLOSING" : "CLOSED",
+        readyStateString:
+          readyState === 0
+            ? "CONNECTING"
+            : readyState === 1
+              ? "OPEN"
+              : readyState === 2
+                ? "CLOSING"
+                : "CLOSED",
         connId: this.#connId,
         messageType: message.body.tag,
-        actionName: message.body.val?.name
+        actionName: message.body.val?.name,
       });
       if (this.#connStatus !== "connected") {
         logger2().debug({
           msg: "websocket init pending, queueing message",
           connStatus: this.#connStatus,
-          messageType: message.body.tag
+          messageType: message.body.tag,
         });
         queueMessage = true;
       } else if (readyState === 1) {
@@ -23796,37 +24031,33 @@ var ActorConnRaw = class {
                     val: {
                       id: msg.body.val.id,
                       name: msg.body.val.name,
-                      args: bufferToArrayBuffer(
-                        encodeCborCompat(
-                          msg.body.val.args
-                        )
-                      )
-                    }
-                  }
+                      args: bufferToArrayBuffer(encodeCborCompat(msg.body.val.args)),
+                    },
+                  },
                 };
               } else {
                 return msg;
               }
-            }
+            },
           );
           this.#websocket.send(messageSerialized);
           const serializedLength = messageLength(messageSerialized);
           logger2().trace({
             msg: "sent websocket message",
-            len: serializedLength
+            len: serializedLength,
           });
         } catch (error51) {
           logger2().warn({
             msg: "failed to send message, added to queue",
             error: error51,
-            connId: this.#connId
+            connId: this.#connId,
           });
           queueMessage = true;
         }
       } else {
         logger2().debug({
           msg: "websocket not open, queueing message",
-          readyState
+          readyState,
         });
         queueMessage = true;
       }
@@ -23841,7 +24072,7 @@ var ActorConnRaw = class {
         queueLength: this.#messageQueue.length,
         connId: this.#connId,
         messageType: message.body.tag,
-        actionName: message.body.val?.name
+        actionName: message.body.val?.name,
       });
     }
   }
@@ -23865,12 +24096,10 @@ var ActorConnRaw = class {
               ...msg.body.val,
               actor: {
                 ...msg.body.val.actor,
-                generation: Number(
-                  msg.body.val.actor.generation
-                )
-              }
-            }
-          }
+                generation: Number(msg.body.val.actor.generation),
+              },
+            },
+          },
         };
       },
       // BARE: need to decode ArrayBuffer fields back to unknown
@@ -23883,21 +24112,19 @@ var ActorConnRaw = class {
                 group: msg.body.val.group,
                 code: msg.body.val.code,
                 message: msg.body.val.message,
-                metadata: msg.body.val.metadata ? decodeCborCompat(
-                  new Uint8Array(
-                    msg.body.val.metadata
-                  )
-                ) : null,
+                metadata: msg.body.val.metadata
+                  ? decodeCborCompat(new Uint8Array(msg.body.val.metadata))
+                  : null,
                 actionId: msg.body.val.actionId,
-                actor: msg.body.val.actor ? {
-                  actorId: msg.body.val.actor.actorId,
-                  generation: Number(
-                    msg.body.val.actor.generation
-                  ),
-                  key: msg.body.val.actor.key ?? void 0
-                } : void 0
-              }
-            }
+                actor: msg.body.val.actor
+                  ? {
+                      actorId: msg.body.val.actor.actorId,
+                      generation: Number(msg.body.val.actor.generation),
+                      key: msg.body.val.actor.key ?? void 0,
+                    }
+                  : void 0,
+              },
+            },
           };
         } else if (msg.body.tag === "ActionResponse") {
           return {
@@ -23905,11 +24132,9 @@ var ActorConnRaw = class {
               tag: "ActionResponse",
               val: {
                 id: msg.body.val.id,
-                output: decodeCborCompat(
-                  new Uint8Array(msg.body.val.output)
-                )
-              }
-            }
+                output: decodeCborCompat(new Uint8Array(msg.body.val.output)),
+              },
+            },
           };
         } else if (msg.body.tag === "Event") {
           return {
@@ -23917,16 +24142,14 @@ var ActorConnRaw = class {
               tag: "Event",
               val: {
                 name: msg.body.val.name,
-                args: decodeCborCompat(
-                  new Uint8Array(msg.body.val.args)
-                )
-              }
-            }
+                args: decodeCborCompat(new Uint8Array(msg.body.val.args)),
+              },
+            },
           };
         } else {
           return msg;
         }
-      }
+      },
     );
   }
   /**
@@ -23970,11 +24193,11 @@ var ActorConnRaw = class {
     if (this.#websocket) {
       const ws = this.#websocket;
       if (ws.readyState !== 2 && ws.readyState !== 3) {
-        const { promise: promise2, resolve } = promiseWithResolvers(
-          (reason) => logger2().warn({
+        const { promise: promise2, resolve } = promiseWithResolvers((reason) =>
+          logger2().warn({
             msg: "unhandled websocket close promise rejection",
-            reason
-          })
+            reason,
+          }),
         );
         ws.addEventListener("close", () => resolve(void 0));
         ws.close(1e3, "Disposed");
@@ -23992,19 +24215,31 @@ var ActorConnRaw = class {
           tag: "SubscriptionRequest",
           val: {
             eventName,
-            subscribe
-          }
-        }
+            subscribe,
+          },
+        },
       },
-      { ephemeral: true }
+      { ephemeral: true },
     );
   }
 };
 function isUrlLike(value) {
-  return typeof value === "object" && value !== null && typeof value.href === "string" && typeof value.pathname === "string" && typeof value.search === "string";
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    typeof value.href === "string" &&
+    typeof value.pathname === "string" &&
+    typeof value.search === "string"
+  );
 }
 function isRequestLike(value) {
-  return typeof value === "object" && value !== null && typeof value.url === "string" && typeof value.method === "string" && isHeadersLike(value.headers);
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    typeof value.url === "string" &&
+    typeof value.method === "string" &&
+    isHeadersLike(value.headers)
+  );
 }
 function isHeadersLike(value) {
   return typeof value === "object" && value !== null && typeof value.entries === "function";
@@ -24067,7 +24302,7 @@ async function rawHttpFetch(driver, target2, params, input, init, options = {}) 
       signal: input.signal,
       ...mergedInit,
       // init overrides Request properties
-      headers: mergedHeaders
+      headers: mergedHeaders,
       // headers must be set after spread to ensure proper merge
     };
     if (mergedInit.body) {
@@ -24078,13 +24313,15 @@ async function rawHttpFetch(driver, target2, params, input, init, options = {}) 
   }
   try {
     logger2().debug(
-      "directId" in target2 ? {
-        msg: "sending raw http request to actor",
-        actorId: target2.directId
-      } : {
-        msg: "sending raw http request with actor query",
-        query: target2
-      }
+      "directId" in target2
+        ? {
+            msg: "sending raw http request to actor",
+            actorId: target2.directId,
+          }
+        : {
+            msg: "sending raw http request with actor query",
+            query: target2,
+          },
     );
     const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
     const url2 = new URL(`http://actor/request/${normalizedPath}`);
@@ -24098,7 +24335,7 @@ async function rawHttpFetch(driver, target2, params, input, init, options = {}) 
     }
     const proxyRequest = new Request(url2, {
       ...mergedInit,
-      headers: proxyRequestHeaders
+      headers: proxyRequestHeaders,
     });
     return driver.sendRequest(target2, proxyRequest, options);
   } catch (err) {
@@ -24127,15 +24364,9 @@ async function rawWebSocket(driver, target2, params, path, _protocols, options =
     msg: "opening websocket",
     target: target2,
     encoding,
-    path: fullPath
+    path: fullPath,
   });
-  const ws = await driver.openWebSocket(
-    fullPath,
-    target2,
-    encoding,
-    params,
-    options
-  );
+  const ws = await driver.openWebSocket(fullPath, target2, encoding, params, options);
   return ws;
 }
 async function resolveGatewayTarget(driver, target2) {
@@ -24148,12 +24379,10 @@ async function resolveGatewayTarget(driver, target2) {
   if ("getForKey" in target2) {
     const output = await driver.getWithKey({
       name: target2.getForKey.name,
-      key: target2.getForKey.key
+      key: target2.getForKey.key,
     });
     if (!output) {
-      throw actorNotFound(
-        `${target2.getForKey.name}:${JSON.stringify(target2.getForKey.key)}`
-      );
+      throw actorNotFound(`${target2.getForKey.name}:${JSON.stringify(target2.getForKey.key)}`);
     }
     return output.actorId;
   }
@@ -24163,7 +24392,7 @@ async function resolveGatewayTarget(driver, target2) {
       key: target2.getOrCreateForKey.key,
       input: target2.getOrCreateForKey.input,
       region: target2.getOrCreateForKey.region,
-      poolName: target2.getOrCreateForKey.poolName
+      poolName: target2.getOrCreateForKey.poolName,
     });
     return output.actorId;
   }
@@ -24173,7 +24402,7 @@ async function resolveGatewayTarget(driver, target2) {
       key: target2.create.key,
       input: target2.create.input,
       region: target2.create.region,
-      poolName: target2.create.poolName
+      poolName: target2.create.poolName,
     });
     return output.actorId;
   }
@@ -24197,7 +24426,15 @@ var ActorHandleRaw = class {
    *
    * @protected
    */
-  constructor(client, driver, params, getParams, encoding, actorResolutionState, gatewayOptions = {}) {
+  constructor(
+    client,
+    driver,
+    params,
+    getParams,
+    encoding,
+    actorResolutionState,
+    gatewayOptions = {},
+  ) {
     this.#client = client;
     this.#driver = driver;
     this.#encoding = encoding;
@@ -24218,72 +24455,50 @@ var ActorHandleRaw = class {
   async #sendQueueMessage(name, body, options) {
     return await this.#queueSendMutex.run(async () => {
       const maxAttempts = this.#getDynamicQueryMaxAttempts();
-      let useQueryTarget = isDynamicActorQuery(
-        this.#actorResolutionState
-      );
+      let useQueryTarget = isDynamicActorQuery(this.#actorResolutionState);
       for (let attempt = 0; attempt < maxAttempts; attempt++) {
         let actorId;
         try {
-          const gatewayOptions = resolveActorGatewayOptions(
-            this.#gatewayOptions
-          );
-          const target2 = await this.#resolveGatewayRequestTarget(
-            useQueryTarget,
-            gatewayOptions
-          );
+          const gatewayOptions = resolveActorGatewayOptions(this.#gatewayOptions);
+          const target2 = await this.#resolveGatewayRequestTarget(useQueryTarget, gatewayOptions);
           actorId = "directId" in target2 ? target2.directId : void 0;
           return await createQueueSender({
             encoding: this.#encoding,
             params: this.#params,
             customFetch: async (request) => {
-              return await this.#driver.sendRequest(
-                target2,
-                request,
-                gatewayOptions
-              );
-            }
+              return await this.#driver.sendRequest(target2, request, gatewayOptions);
+            },
           }).send(name, body, options);
         } catch (err) {
           const { group, code, message, metadata, rayId, actor } = deconstructError(err, true);
-          if (this.#shouldRetryQueueDispatchOverload(
-            group,
-            code,
-            metadata,
-            attempt,
-            maxAttempts
-          )) {
+          if (this.#shouldRetryQueueDispatchOverload(group, code, metadata, attempt, maxAttempts)) {
             await this.#waitForRetryWindow();
             continue;
           }
-          if (await this.#shouldRetrySchedulingError(
-            group,
-            code,
-            actorId,
-            attempt,
-            maxAttempts,
-            rayId
-          )) {
+          if (
+            await this.#shouldRetrySchedulingError(
+              group,
+              code,
+              actorId,
+              attempt,
+              maxAttempts,
+              rayId,
+            )
+          ) {
             useQueryTarget = true;
             await this.#waitForRetryWindow();
             continue;
           }
-          if (this.#shouldRetryDynamicLifecycleError(
-            group,
-            code,
-            attempt,
-            maxAttempts
-          )) {
+          if (this.#shouldRetryDynamicLifecycleError(group, code, attempt, maxAttempts)) {
             this.#clearResolvedActorId();
             useQueryTarget = true;
             await this.#waitForRetryWindow();
             continue;
           }
-          const invalidated = this.#invalidateResolvedActorId(
-            group,
-            code
-          );
+          const invalidated = this.#invalidateResolvedActorId(group, code);
           if (invalidated && attempt < maxAttempts - 1) {
-            const waitForReady = code === "starting" || code === "stopping" || code.startsWith("destroyed_");
+            const waitForReady =
+              code === "starting" || code === "stopping" || code.startsWith("destroyed_");
             useQueryTarget = useQueryTarget || waitForReady;
             if (waitForReady) {
               await this.#waitForRetryWindow();
@@ -24293,7 +24508,7 @@ var ActorHandleRaw = class {
           throw new RivetError(group, code, message, {
             metadata,
             rayId,
-            actor
+            actor,
           });
         }
       }
@@ -24308,9 +24523,14 @@ var ActorHandleRaw = class {
    * @template Response - The type of the response returned by the action function.
    */
   async action(opts) {
-    if (typeof opts === "string" || typeof opts !== "object" || opts === null || !("name" in opts)) {
+    if (
+      typeof opts === "string" ||
+      typeof opts !== "object" ||
+      opts === null ||
+      !("name" in opts)
+    ) {
       throw new Error(
-        `Invalid action call: expected an options object { name, args }, got ${typeof opts}. Use handle.actionName(...args) for the shorthand API.`
+        `Invalid action call: expected an options object { name, args }, got ${typeof opts}. Use handle.actionName(...args) for the shorthand API.`,
       );
     }
     const run = async () => await this.#sendActionNow(opts);
@@ -24322,47 +24542,40 @@ var ActorHandleRaw = class {
   async #sendActionNow(opts) {
     const maxAttempts = this.#getDynamicQueryMaxAttempts();
     let useQueryTarget = isDynamicActorQuery(this.#actorResolutionState);
-    const gatewayOptions = resolveActorGatewayOptions(
-      this.#gatewayOptions,
-      opts
-    );
+    const gatewayOptions = resolveActorGatewayOptions(this.#gatewayOptions, opts);
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       let actorId;
       try {
-        const target2 = await this.#resolveGatewayRequestTarget(
-          useQueryTarget,
-          gatewayOptions
-        );
+        const target2 = await this.#resolveGatewayRequestTarget(useQueryTarget, gatewayOptions);
         actorId = "directId" in target2 ? target2.directId : void 0;
         logger2().debug(
-          actorId ? { msg: "using direct actor gateway target", actorId } : {
-            msg: "using query gateway target for action",
-            query: this.#actorResolutionState
-          }
+          actorId
+            ? { msg: "using direct actor gateway target", actorId }
+            : {
+                msg: "using query gateway target for action",
+                query: this.#actorResolutionState,
+              },
         );
         logger2().debug({
           msg: "handling action",
           name: opts.name,
-          encoding: this.#encoding
+          encoding: this.#encoding,
         });
         const output = await sendHttpRequest({
           url: `http://actor/action/${encodeURIComponent(opts.name)}`,
           method: "POST",
           headers: {
             [HEADER_ENCODING]: this.#encoding,
-            ...this.#params !== void 0 ? {
-              [HEADER_CONN_PARAMS]: JSON.stringify(
-                this.#params
-              )
-            } : {}
+            ...(this.#params !== void 0
+              ? {
+                  [HEADER_CONN_PARAMS]: JSON.stringify(this.#params),
+                }
+              : {}),
           },
           body: opts.args,
           encoding: this.#encoding,
-          customFetch: async (request) => await this.#driver.sendRequest(
-            target2,
-            request,
-            gatewayOptions
-          ),
+          customFetch: async (request) =>
+            await this.#driver.sendRequest(target2, request, gatewayOptions),
           signal: opts?.signal,
           requestVersion: CURRENT_VERSION,
           requestVersionedDataHandler: HTTP_ACTION_REQUEST_VERSIONED,
@@ -24371,15 +24584,13 @@ var ActorHandleRaw = class {
           requestZodSchema: HttpActionRequestSchema,
           responseZodSchema: HttpActionResponseSchema,
           requestToJson: (args) => ({
-            args
+            args,
           }),
           requestToBare: (args) => ({
-            args: bufferToArrayBuffer(
-              encodeCborCompat(args)
-            )
+            args: bufferToArrayBuffer(encodeCborCompat(args)),
           }),
           responseFromJson: (json2) => json2.output,
-          responseFromBare: (bare5) => decodeCborCompat(new Uint8Array(bare5.output))
+          responseFromBare: (bare5) => decodeCborCompat(new Uint8Array(bare5.output)),
         });
         if (opts.name === "destroy" && actorId) {
           await this.#waitForDestroyActionToSettle(actorId);
@@ -24387,54 +24598,45 @@ var ActorHandleRaw = class {
         return output;
       } catch (err) {
         const { group, code, message, metadata, rayId, actor } = deconstructError(err, true);
-        if (await this.#shouldRetrySchedulingError(
-          group,
-          code,
-          actorId,
-          attempt,
-          maxAttempts,
-          rayId
-        )) {
+        if (
+          await this.#shouldRetrySchedulingError(group, code, actorId, attempt, maxAttempts, rayId)
+        ) {
           useQueryTarget = true;
           await this.#waitForRetryWindow();
           continue;
         }
-        if (opts.name !== "destroy" && this.#shouldRetryDynamicLifecycleError(
-          group,
-          code,
-          attempt,
-          maxAttempts
-        )) {
+        if (
+          opts.name !== "destroy" &&
+          this.#shouldRetryDynamicLifecycleError(group, code, attempt, maxAttempts)
+        ) {
           this.#clearResolvedActorId();
           useQueryTarget = true;
           await this.#waitForRetryWindow();
           continue;
         }
-        if (group === "actor" && code === "destroyed_while_waiting_for_ready" && "getForId" in this.#actorResolutionState) {
-          throw new RivetError(
-            "actor",
-            "not_found",
-            "The actor does not exist or was destroyed.",
-            { metadata, rayId, actor }
-          );
+        if (
+          group === "actor" &&
+          code === "destroyed_while_waiting_for_ready" &&
+          "getForId" in this.#actorResolutionState
+        ) {
+          throw new RivetError("actor", "not_found", "The actor does not exist or was destroyed.", {
+            metadata,
+            rayId,
+            actor,
+          });
         }
-        const invalidated = this.#invalidateResolvedActorId(
-          group,
-          code
-        );
+        const invalidated = this.#invalidateResolvedActorId(group, code);
         if (invalidated && attempt < maxAttempts - 1) {
           if (group === "actor" && (code === "starting" || code === "stopping")) {
             useQueryTarget = true;
-            await new Promise(
-              (resolve) => setTimeout(resolve, 100)
-            );
+            await new Promise((resolve) => setTimeout(resolve, 100));
           }
           continue;
         }
         throw new RivetError(group, code, message, {
           metadata,
           rayId,
-          actor
+          actor,
         });
       }
     }
@@ -24461,13 +24663,32 @@ var ActorHandleRaw = class {
     return "getOrCreateForKey" in this.#actorResolutionState ? 60 : 24;
   }
   #shouldRetryDynamicLifecycleError(group, code, attempt, maxAttempts) {
-    if (!isDynamicActorQuery(this.#actorResolutionState) || attempt >= maxAttempts - 1 || group !== "actor") {
+    if (
+      !isDynamicActorQuery(this.#actorResolutionState) ||
+      attempt >= maxAttempts - 1 ||
+      group !== "actor"
+    ) {
       return false;
     }
-    return code === "not_found" || code === "starting" || code === "stopping" || code === "not_configured" || code === "dropped_reply" || code === "destroying" || code.startsWith("destroyed_");
+    return (
+      code === "not_found" ||
+      code === "starting" ||
+      code === "stopping" ||
+      code === "not_configured" ||
+      code === "dropped_reply" ||
+      code === "destroying" ||
+      code.startsWith("destroyed_")
+    );
   }
   #shouldRetryQueueDispatchOverload(group, code, metadata, attempt, maxAttempts) {
-    if (!isDynamicActorQuery(this.#actorResolutionState) || attempt >= maxAttempts - 1 || group !== "actor" || code !== "overloaded" || metadata === null || typeof metadata !== "object") {
+    if (
+      !isDynamicActorQuery(this.#actorResolutionState) ||
+      attempt >= maxAttempts - 1 ||
+      group !== "actor" ||
+      code !== "overloaded" ||
+      metadata === null ||
+      typeof metadata !== "object"
+    ) {
       return false;
     }
     const overload = metadata;
@@ -24478,7 +24699,11 @@ var ActorHandleRaw = class {
     this.#resolvingActorId = void 0;
   }
   async #shouldRetrySchedulingError(group, code, actorId, attempt, maxAttempts, rayId) {
-    if (!isDynamicActorQuery(this.#actorResolutionState) || !isSchedulingError(group, code) || attempt >= maxAttempts - 1) {
+    if (
+      !isDynamicActorQuery(this.#actorResolutionState) ||
+      !isSchedulingError(group, code) ||
+      attempt >= maxAttempts - 1
+    ) {
       return false;
     }
     if (actorId) {
@@ -24488,7 +24713,7 @@ var ActorHandleRaw = class {
         actorId,
         this.#actorResolutionState,
         this.#driver,
-        rayId
+        rayId,
       );
       if (schedulingError) {
         throw schedulingError;
@@ -24498,7 +24723,10 @@ var ActorHandleRaw = class {
     return true;
   }
   #invalidateResolvedActorId(group, code) {
-    if (!isDynamicActorQuery(this.#actorResolutionState) || !isStaleResolvedActorError(group, code)) {
+    if (
+      !isDynamicActorQuery(this.#actorResolutionState) ||
+      !isStaleResolvedActorError(group, code)
+    ) {
       return false;
     }
     this.#clearResolvedActorId();
@@ -24515,13 +24743,12 @@ var ActorHandleRaw = class {
       return { directId: this.#resolvedActorId };
     }
     if (!this.#resolvingActorId) {
-      this.#resolvingActorId = resolveGatewayTarget(
-        this.#driver,
-        this.#actorResolutionState
-      ).then((actorId) => {
-        this.#resolvedActorId = actorId;
-        return actorId;
-      });
+      this.#resolvingActorId = resolveGatewayTarget(this.#driver, this.#actorResolutionState).then(
+        (actorId) => {
+          this.#resolvedActorId = actorId;
+          return actorId;
+        },
+      );
     }
     try {
       return { directId: await this.#resolvingActorId };
@@ -24544,7 +24771,7 @@ var ActorHandleRaw = class {
   connect(params, options = {}) {
     logger2().debug({
       msg: "establishing connection from handle",
-      query: this.#actorResolutionState
+      query: this.#actorResolutionState,
     });
     const connParams = params === void 0 ? this.#params : params;
     const getParams = params === void 0 ? this.#getParams : void 0;
@@ -24555,11 +24782,9 @@ var ActorHandleRaw = class {
       getParams,
       this.#encoding,
       this.#actorResolutionState,
-      resolveActorGatewayOptions(this.#gatewayOptions, options)
+      resolveActorGatewayOptions(this.#gatewayOptions, options),
     );
-    return this.#client[CREATE_ACTOR_CONN_PROXY](
-      conn
-    );
+    return this.#client[CREATE_ACTOR_CONN_PROXY](conn);
   }
   /**
    * Fetches a resource from this actor via the /request endpoint. This is a
@@ -24570,22 +24795,19 @@ var ActorHandleRaw = class {
   }
   async #fetchWithResolvedActor(input, init) {
     const { skipReadyWait, ...requestInit } = init ?? {};
-    const hasBody = requestInit.body !== void 0 ? requestInit.body !== null : isRequestLike(input) && input.body !== null;
+    const hasBody =
+      requestInit.body !== void 0
+        ? requestInit.body !== null
+        : isRequestLike(input) && input.body !== null;
     const maxAttempts = hasBody ? 1 : this.#getDynamicQueryMaxAttempts();
     let useQueryTarget = isDynamicActorQuery(this.#actorResolutionState);
-    const gatewayOptions = resolveActorGatewayOptions(
-      this.#gatewayOptions,
-      {
-        skipReadyWait
-      }
-    );
+    const gatewayOptions = resolveActorGatewayOptions(this.#gatewayOptions, {
+      skipReadyWait,
+    });
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       let actorId;
       try {
-        const target2 = await this.#resolveGatewayRequestTarget(
-          useQueryTarget,
-          gatewayOptions
-        );
+        const target2 = await this.#resolveGatewayRequestTarget(useQueryTarget, gatewayOptions);
         actorId = "directId" in target2 ? target2.directId : void 0;
         const response = await rawHttpFetch(
           this.#driver,
@@ -24593,13 +24815,13 @@ var ActorHandleRaw = class {
           this.#params,
           input,
           requestInit,
-          gatewayOptions
+          gatewayOptions,
         );
         const retry2 = await this.#shouldRetryRawFetchResponse(
           response,
           actorId,
           attempt,
-          maxAttempts
+          maxAttempts,
         );
         if (retry2) {
           useQueryTarget = retry2.useQueryTarget;
@@ -24611,35 +24833,23 @@ var ActorHandleRaw = class {
         return response;
       } catch (err) {
         const { group, code, message, metadata, rayId, actor } = deconstructError(err, true);
-        if (await this.#shouldRetrySchedulingError(
-          group,
-          code,
-          actorId,
-          attempt,
-          maxAttempts,
-          rayId
-        )) {
+        if (
+          await this.#shouldRetrySchedulingError(group, code, actorId, attempt, maxAttempts, rayId)
+        ) {
           useQueryTarget = true;
           await this.#waitForRetryWindow();
           continue;
         }
-        if (this.#shouldRetryDynamicLifecycleError(
-          group,
-          code,
-          attempt,
-          maxAttempts
-        )) {
+        if (this.#shouldRetryDynamicLifecycleError(group, code, attempt, maxAttempts)) {
           this.#clearResolvedActorId();
           useQueryTarget = true;
           await this.#waitForRetryWindow();
           continue;
         }
-        const invalidated = this.#invalidateResolvedActorId(
-          group,
-          code
-        );
+        const invalidated = this.#invalidateResolvedActorId(group, code);
         if (invalidated && attempt < maxAttempts - 1) {
-          const waitForReady = code === "starting" || code === "stopping" || code.startsWith("destroyed_");
+          const waitForReady =
+            code === "starting" || code === "stopping" || code.startsWith("destroyed_");
           useQueryTarget = useQueryTarget || waitForReady;
           if (waitForReady) {
             await this.#waitForRetryWindow();
@@ -24649,7 +24859,7 @@ var ActorHandleRaw = class {
         throw new RivetError(group, code, message, {
           metadata,
           rayId,
-          actor
+          actor,
         });
       }
     }
@@ -24664,37 +24874,26 @@ var ActorHandleRaw = class {
       return null;
     }
     const { group, code, rayId } = error51;
-    if (await this.#shouldRetrySchedulingError(
-      group,
-      code,
-      actorId,
-      attempt,
-      maxAttempts,
-      rayId
-    )) {
+    if (await this.#shouldRetrySchedulingError(group, code, actorId, attempt, maxAttempts, rayId)) {
       return {
         useQueryTarget: true,
-        waitForRetryWindow: true
+        waitForRetryWindow: true,
       };
     }
-    if (this.#shouldRetryDynamicLifecycleError(
-      group,
-      code,
-      attempt,
-      maxAttempts
-    )) {
+    if (this.#shouldRetryDynamicLifecycleError(group, code, attempt, maxAttempts)) {
       this.#clearResolvedActorId();
       return {
         useQueryTarget: true,
-        waitForRetryWindow: true
+        waitForRetryWindow: true,
       };
     }
     const invalidated = this.#invalidateResolvedActorId(group, code);
     if (invalidated && attempt < maxAttempts - 1) {
-      const waitForReady = code === "starting" || code === "stopping" || code.startsWith("destroyed_");
+      const waitForReady =
+        code === "starting" || code === "stopping" || code.startsWith("destroyed_");
       return {
         useQueryTarget: true,
-        waitForRetryWindow: waitForReady
+        waitForRetryWindow: waitForReady,
       };
     }
     return null;
@@ -24713,26 +24912,30 @@ var ActorHandleRaw = class {
         HttpResponseErrorSchema,
         (json2) => ({
           ...json2,
-          actor: json2.actor ? {
-            ...json2.actor,
-            generation: Number(json2.actor.generation)
-          } : void 0
+          actor: json2.actor
+            ? {
+                ...json2.actor,
+                generation: Number(json2.actor.generation),
+              }
+            : void 0,
         }),
         (bare5) => ({
           group: bare5.group,
           code: bare5.code,
           message: bare5.message,
           metadata: bare5.metadata ? decodeCborCompat(new Uint8Array(bare5.metadata)) : void 0,
-          actor: bare5.actor ? {
-            actorId: bare5.actor.actorId,
-            generation: Number(bare5.actor.generation),
-            key: bare5.actor.key ?? void 0
-          } : void 0
-        })
+          actor: bare5.actor
+            ? {
+                actorId: bare5.actor.actorId,
+                generation: Number(bare5.actor.generation),
+                key: bare5.actor.key ?? void 0,
+              }
+            : void 0,
+        }),
       );
       return {
         ...error51,
-        rayId: response.headers.get("x-rivet-ray-id") ?? void 0
+        rayId: response.headers.get("x-rivet-ray-id") ?? void 0,
       };
     } catch {
       return null;
@@ -24743,23 +24946,10 @@ var ActorHandleRaw = class {
    */
   async webSocket(path, protocols, options = {}) {
     const params = await this.#resolveConnectionParams();
-    const gatewayOptions = resolveActorGatewayOptions(
-      this.#gatewayOptions,
-      options
-    );
+    const gatewayOptions = resolveActorGatewayOptions(this.#gatewayOptions, options);
     const useQueryTarget = isDynamicActorQuery(this.#actorResolutionState);
-    const target2 = await this.#resolveGatewayRequestTarget(
-      useQueryTarget,
-      gatewayOptions
-    );
-    return await rawWebSocket(
-      this.#driver,
-      target2,
-      params,
-      path,
-      protocols,
-      gatewayOptions
-    );
+    const target2 = await this.#resolveGatewayRequestTarget(useQueryTarget, gatewayOptions);
+    return await rawWebSocket(this.#driver, target2, params, path, protocols, gatewayOptions);
   }
   /**
    * Resolves the actor to get its unique actor ID.
@@ -24772,9 +24962,7 @@ var ActorHandleRaw = class {
     if ("directId" in target2) {
       return target2.directId;
     }
-    throw new Error(
-      "dynamic actor resolution did not produce a direct actor id"
-    );
+    throw new Error("dynamic actor resolution did not produce a direct actor id");
   }
   /**
    * Returns the raw URL for routing traffic to the actor.
@@ -24782,13 +24970,13 @@ var ActorHandleRaw = class {
   async getGatewayUrl() {
     return await this.#driver.buildGatewayUrl(
       getGatewayTarget(this.#actorResolutionState),
-      this.#gatewayOptions
+      this.#gatewayOptions,
     );
   }
   async reload() {
     const target2 = getGatewayTarget(this.#actorResolutionState);
     const request = new Request("http://actor/dynamic/reload", {
-      method: "PUT"
+      method: "PUT",
     });
     const response = await this.#driver.sendRequest(target2, request);
     if (!response.ok) {
@@ -24798,8 +24986,8 @@ var ActorHandleRaw = class {
         "reload_failed",
         `reload failed with status ${response.status}: ${body}`,
         {
-          rayId: response.headers.get("x-rivet-ray-id") ?? void 0
-        }
+          rayId: response.headers.get("x-rivet-ray-id") ?? void 0,
+        },
       );
     }
   }
@@ -24834,19 +25022,15 @@ var ClientRaw = class {
       msg: "get handle to actor with id",
       name,
       actorId,
-      params: opts?.params
+      params: opts?.params,
     });
     const actorQuery = {
       getForId: {
         name,
-        actorId
-      }
+        actorId,
+      },
     };
-    const handle = this.#createHandle(
-      opts?.params,
-      opts?.getParams,
-      actorQuery
-    );
+    const handle = this.#createHandle(opts?.params, opts?.getParams, actorQuery);
     return createActorProxy(handle);
   }
   /**
@@ -24864,19 +25048,15 @@ var ClientRaw = class {
       msg: "get handle to actor",
       name,
       key: keyArray,
-      parameters: opts?.params
+      parameters: opts?.params,
     });
     const actorQuery = {
       getForKey: {
         name,
-        key: keyArray
-      }
+        key: keyArray,
+      },
     };
-    const handle = this.#createHandle(
-      opts?.params,
-      opts?.getParams,
-      actorQuery
-    );
+    const handle = this.#createHandle(opts?.params, opts?.getParams, actorQuery);
     return createActorProxy(handle);
   }
   /**
@@ -24895,7 +25075,7 @@ var ClientRaw = class {
       name,
       key: keyArray,
       parameters: opts?.params,
-      createInRegion: opts?.createInRegion
+      createInRegion: opts?.createInRegion,
     });
     const actorQuery = {
       getOrCreateForKey: {
@@ -24903,14 +25083,10 @@ var ClientRaw = class {
         key: keyArray,
         input: opts?.createWithInput,
         region: opts?.createInRegion,
-        poolName: opts?.poolName
-      }
+        poolName: opts?.poolName,
+      },
     };
-    const handle = this.#createHandle(
-      opts?.params,
-      opts?.getParams,
-      actorQuery
-    );
+    const handle = this.#createHandle(opts?.params, opts?.getParams, actorQuery);
     return createActorProxy(handle);
   }
   /**
@@ -24930,34 +25106,30 @@ var ClientRaw = class {
         ...opts,
         // Do these last to override `opts`
         name,
-        key: keyArray
-      }
+        key: keyArray,
+      },
     };
     logger2().debug({
       msg: "create actor handle",
       name,
       key: keyArray,
       parameters: opts?.params,
-      create: createQuery.create
+      create: createQuery.create,
     });
     const actorId = await resolveGatewayTarget(this.#driver, createQuery);
     logger2().debug({
       msg: "created actor with ID",
       name,
       key: keyArray,
-      actorId
+      actorId,
     });
     const getForIdQuery = {
       getForId: {
         name,
-        actorId
-      }
+        actorId,
+      },
     };
-    const handle = this.#createHandle(
-      opts?.params,
-      opts?.getParams,
-      getForIdQuery
-    );
+    const handle = this.#createHandle(opts?.params, opts?.getParams, getForIdQuery);
     const proxy = createActorProxy(handle);
     return proxy;
   }
@@ -24969,7 +25141,7 @@ var ClientRaw = class {
       getParams,
       this.#encodingKind,
       actorQuery,
-      this.#gatewayOptions
+      this.#gatewayOptions,
     );
   }
   [CREATE_ACTOR_CONN_PROXY](conn) {
@@ -25021,11 +25193,11 @@ function createClientWithDriver(driver, config2 = {}) {
           },
           create: async (key, opts = {}) => {
             return await target2.create(prop, key, opts);
-          }
+          },
         };
       }
       return void 0;
-    }
+    },
   });
 }
 function createActorProxy(handle) {
@@ -25033,17 +25205,13 @@ function createActorProxy(handle) {
   const actionPath = (name) => {
     let method = methodCache.get(name);
     if (method) return method;
-    method = new Proxy(
-      (...args) => handle.action({ name, args }),
-      {
-        get(target2, prop) {
-          if (typeof prop === "symbol")
-            return Reflect.get(target2, prop);
-          if (prop === "then") return void 0;
-          return actionPath(`${name}.${prop}`);
-        }
-      }
-    );
+    method = new Proxy((...args) => handle.action({ name, args }), {
+      get(target2, prop) {
+        if (typeof prop === "symbol") return Reflect.get(target2, prop);
+        if (prop === "then") return void 0;
+        return actionPath(`${name}.${prop}`);
+      },
+    });
     methodCache.set(name, method);
     return method;
   };
@@ -25080,10 +25248,7 @@ function createActorProxy(handle) {
     // Support proper property descriptors
     getOwnPropertyDescriptor(target2, prop) {
       if (prop === "then") return void 0;
-      const targetDescriptor = Reflect.getOwnPropertyDescriptor(
-        target2,
-        prop
-      );
+      const targetDescriptor = Reflect.getOwnPropertyDescriptor(target2, prop);
       if (targetDescriptor) {
         return targetDescriptor;
       }
@@ -25092,15 +25257,20 @@ function createActorProxy(handle) {
           configurable: true,
           enumerable: false,
           writable: false,
-          value: actionPath(prop)
+          value: actionPath(prop),
         };
       }
       return void 0;
-    }
+    },
   });
 }
 function createClient(endpointOrConfig) {
-  const configInput = endpointOrConfig === void 0 ? {} : typeof endpointOrConfig === "string" ? { endpoint: endpointOrConfig } : endpointOrConfig;
+  const configInput =
+    endpointOrConfig === void 0
+      ? {}
+      : typeof endpointOrConfig === "string"
+        ? { endpoint: endpointOrConfig }
+        : endpointOrConfig;
   const config2 = ClientConfigSchema.parse(configInput);
   const driver = new RemoteEngineControlClient(config2);
   if (config2.devtools) {
@@ -25126,14 +25296,14 @@ var depthCells = {
   PENDING: el("depth-PENDING"),
   LEASED: el("depth-LEASED"),
   COMPLETED: el("depth-COMPLETED"),
-  FAILED: el("depth-FAILED")
+  FAILED: el("depth-FAILED"),
 };
 var stdoutLines = [];
 var currentPhase = null;
 var unsubscribers = [];
 var reconnectTimer = null;
 function log(line) {
-  stdoutLines.push(`[${(/* @__PURE__ */ new Date()).toLocaleTimeString()}] ${line}`);
+  stdoutLines.push(`[${/* @__PURE__ */ new Date().toLocaleTimeString()}] ${line}`);
   if (stdoutLines.length > 400) stdoutLines.splice(0, stdoutLines.length - 400);
   stdoutPane.textContent = stdoutLines.join("\n");
   stdoutPane.scrollTop = stdoutPane.scrollHeight;
@@ -25154,7 +25324,8 @@ function setPhase(phase) {
 }
 function setConn(state) {
   connDot.dataset.state = state;
-  connLabel.textContent = state === "open" ? "connected" : state === "connecting" ? "connecting\u2026" : "disconnected";
+  connLabel.textContent =
+    state === "open" ? "connected" : state === "connecting" ? "connecting\u2026" : "disconnected";
 }
 function renderDepth(depth) {
   if (!depth) return;
@@ -25169,8 +25340,7 @@ function teardown() {
   for (const unsub of unsubscribers) {
     try {
       unsub();
-    } catch {
-    }
+    } catch {}
   }
   unsubscribers = [];
 }
@@ -25187,7 +25357,7 @@ function connect() {
     setPhase(e.to);
     feedItem(
       `${e.ts ? new Date(e.ts).toLocaleTimeString() + " " : ""}${e.from} \u2192 ${e.to}`,
-      "transition"
+      "transition",
     );
   });
   worker.on("sandboxStdout", (e) => {
@@ -25198,27 +25368,32 @@ function connect() {
     if (!e || typeof e !== "object") return;
     feedItem(
       `${e.step}${e.detail ? ` \u2014 ${String(e.detail).slice(0, 120)}` : ""}`,
-      e.step?.startsWith("task_") ? e.step : ""
+      e.step?.startsWith("task_") ? e.step : "",
     );
   });
   worker.on("queueStatus", (e) => {
     if (!e || typeof e !== "object") return;
     renderDepth(e.depth);
   });
-  worker.status().then((s) => {
-    taskLabel.textContent = s?.currentTaskId ? String(s.currentTaskId).slice(0, 8) : "\u2014";
-    processedLabel.textContent = String(s?.processedTasks ?? 0);
-    branchLabel.textContent = s?.hasBranch ? "branched" : "none";
-  }).catch((err) => log(`status() failed: ${err}`));
+  worker
+    .status()
+    .then((s) => {
+      taskLabel.textContent = s?.currentTaskId ? String(s.currentTaskId).slice(0, 8) : "\u2014";
+      processedLabel.textContent = String(s?.processedTasks ?? 0);
+      branchLabel.textContent = s?.hasBranch ? "branched" : "none";
+    })
+    .catch((err) => log(`status() failed: ${err}`));
   setConn("open");
   log(`connected to ${location.origin}/api/rivet (worker ${key})`);
   feedItem("dashboard connected");
   const poll = setInterval(() => {
-    worker.status().then((s) => {
-      processedLabel.textContent = String(s?.processedTasks ?? 0);
-      if (s?.currentTaskId) taskLabel.textContent = String(s.currentTaskId).slice(0, 8);
-    }).catch(() => {
-    });
+    worker
+      .status()
+      .then((s) => {
+        processedLabel.textContent = String(s?.processedTasks ?? 0);
+        if (s?.currentTaskId) taskLabel.textContent = String(s.currentTaskId).slice(0, 8);
+      })
+      .catch(() => {});
   }, 1e4);
   unsubscribers.push(() => clearInterval(poll));
 }

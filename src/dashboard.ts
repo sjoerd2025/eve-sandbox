@@ -131,7 +131,8 @@ function connect(): void {
   worker
     .status()
     .then((s: any) => {
-      taskLabel.textContent = s?.currentTaskName ?? (s?.currentTaskId ? String(s.currentTaskId).slice(0, 8) : "—");
+      taskLabel.textContent =
+        s?.currentTaskName ?? (s?.currentTaskId ? String(s.currentTaskId).slice(0, 8) : "—");
       processedLabel.textContent = String(s?.processedTasks ?? 0);
       branchLabel.textContent = s?.hasBranch ? "branched" : "none";
     })

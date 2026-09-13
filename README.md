@@ -73,9 +73,39 @@ npx @rivetkit/cli deploy --token $RIVET_CLOUD_TOKEN \
   --namespace <your-namespace> --env PORT=3000 --yes
 ```
 
-Then verify `https://<app>/api/rivet/health` returns 200 and create a `vm`
-actor (`{"name":"vm","key":"my-agent","crash_policy":"restart"}`) via the
-Engine API or the inspector.
+### Verify the rollout
+
+`pnpm smoke` exercises the minimum live surface — `/health`, session creation on
+a dedicated `smoke-agent` key, and one trivial pi prompt — and exits non-zero on
+failure, so bad rollouts are caught immediately:
+
+```bash
+ENDPOINT=https://<app>/api/rivet OPENROUTER_API_KEY=$OPENROUTER_API_KEY pnpm smoke
+```
+
+### Drive the VM
+
+`examples/agentos-client` boots an actor (`vm/my-agent`), runs a pi prompt, and
+reads back the file it wrote:
+
+```bash
+ENDPOINT=https://<app>/api/rivet OPENROUTER_API_KEY=$OPENROUTER_API_KEY \
+  node --experimental-strip-types examples/agentos-client/client.ts
+```
+
+Contract notes (agentOS on rivetkit 2.3.10, per the
+[agentOS docs](https://rivet.dev/agentos/docs)):
+
+- The VM never inherits host `process.env` — model credentials are injected per
+  session via the session `env`, and provider-named keys work
+  (`OPENROUTER_API_KEY`, `ANTHROPIC_API_KEY`, …). Keep keys server-side: store
+  them as deployment secrets in the Rivet dashboard and read them into `env` at
+  session creation — never hardcode them.
+- Sessions are durable and keyed by a client-supplied `sessionId` (defaults to
+  `main`); after VM sleep the next `prompt` restores the session transparently.
+- Sessions default to `permissionPolicy: allow_all` — pass `ask` in
+  `openSession` when the caller is not fully trusted.
+- The VM home is `/home/agentos` (the default session `cwd`).
 
 ## Swarm workers (ADR-001)
 

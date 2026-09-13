@@ -1,148 +1,299 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Swarm Dashboard — swarmWorker</title>
-<style>
-  :root {
-    --bg: #0b0e14;
-    --panel: #11151f;
-    --border: #1e2530;
-    --text: #d7dde8;
-    --muted: #7d8590;
-    --accent: #4da3ff;
-    --ok: #3fb950;
-    --warn: #d29922;
-    --err: #f85149;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font: 14px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  }
-  header {
-    display: flex; align-items: center; gap: 14px;
-    padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--panel);
-  }
-  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
-  header .spacer { flex: 1; }
-  #conn-dot {
-    width: 9px; height: 9px; border-radius: 50%; display: inline-block; background: var(--muted);
-  }
-  #conn-dot[data-state="open"] { background: var(--ok); }
-  #conn-dot[data-state="connecting"] { background: var(--warn); }
-  #conn-dot[data-state="closed"] { background: var(--err); }
-  #worker-key {
-    background: #0d1117; color: var(--text); border: 1px solid var(--border);
-    border-radius: 6px; padding: 5px 8px; width: 180px; font: inherit;
-  }
-  button {
-    background: #16202e; color: var(--text); border: 1px solid #2b3a4d;
-    border-radius: 6px; padding: 5px 12px; font: inherit; cursor: pointer;
-  }
-  button:hover { background: #1c2940; }
-  main {
-    display: grid; gap: 12px; padding: 14px 16px;
-    grid-template-columns: 1.2fr 1fr;
-    grid-template-areas: "pipeline stats" "stdout feed";
-  }
-  section {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
-    padding: 12px 14px; min-width: 0;
-  }
-  section h2 {
-    margin: 0 0 10px; font-size: 11px; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--muted); font-weight: 600;
-  }
-  #pipeline-section { grid-area: pipeline; }
-  #stats-section { grid-area: stats; }
-  #stdout-section { grid-area: stdout; display: flex; flex-direction: column; }
-  #feed-section { grid-area: feed; display: flex; flex-direction: column; }
-  .pipeline { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-  .phase {
-    padding: 6px 14px; border: 1px solid var(--border); border-radius: 999px;
-    color: var(--muted); font-size: 12px; letter-spacing: .06em;
-  }
-  .phase.active {
-    color: #fff; border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 25%, transparent);
-    box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
-  }
-  .phase.escalate.active { border-color: var(--err); background: color-mix(in srgb, var(--err) 30%, transparent); box-shadow: 0 0 12px color-mix(in srgb, var(--err) 40%, transparent); }
-  .arrow { color: var(--muted); }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .stat { border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
-  .stat .k { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }
-  .stat .v { font-size: 20px; margin-top: 4px; }
-  .depth .v { color: var(--accent); }
-  #stdout {
-    flex: 1; min-height: 260px; max-height: 380px; overflow: auto; margin: 0;
-    background: #0a0d12; border: 1px solid var(--border); border-radius: 6px;
-    padding: 10px; white-space: pre-wrap; word-break: break-word;
-    font-size: 12px; color: #9ecbff;
-  }
-  #feed { list-style: none; margin: 0; padding: 0; flex: 1; overflow: auto; max-height: 380px; }
-  #feed li {
-    padding: 6px 8px; border-bottom: 1px solid var(--border);
-    font-size: 12px; color: var(--muted); overflow-wrap: anywhere;
-  }
-  #feed li.transition { color: var(--accent); }
-  #feed li.task_completed { color: var(--ok); }
-  #feed li.task_failed, #feed li.task_escalated { color: var(--err); }
-  #feed li.task_started { color: var(--warn); }
-  @media (max-width: 900px) {
-    main { grid-template-columns: 1fr; grid-template-areas: "pipeline" "stats" "stdout" "feed"; }
-  }
-</style>
-</head>
-<body>
-<header>
-  <h1>swarm dashboard</h1>
-  <span><span id="conn-dot"></span> <span id="conn-label">disconnected</span></span>
-  <div class="spacer"></div>
-  <label for="worker-key">worker key</label>
-  <input id="worker-key" value="default" spellcheck="false">
-  <button id="connect">connect</button>
-</header>
-<main>
-  <section id="pipeline-section">
-    <h2>SAM pipeline</h2>
-    <div class="pipeline">
-      <span class="phase" id="phase-IDLE">IDLE</span><span class="arrow">→</span>
-      <span class="phase" id="phase-RECALL">RECALL</span><span class="arrow">→</span>
-      <span class="phase" id="phase-PLAN">PLAN</span><span class="arrow">→</span>
-      <span class="phase" id="phase-EXECUTE">EXECUTE</span><span class="arrow">→</span>
-      <span class="phase" id="phase-VERIFY">VERIFY</span><span class="arrow">→</span>
-      <span class="phase" id="phase-COMMIT">COMMIT</span>
-      <span class="arrow">⇢</span>
-      <span class="phase escalate" id="phase-ESCALATE">ESCALATE</span>
-    </div>
-  </section>
-  <section id="stats-section">
-    <h2>Worker &amp; queue</h2>
-    <div class="stats">
-      <div class="stat"><div class="k">agent</div><div class="v" id="agent-id">—</div></div>
-      <div class="stat"><div class="k">task</div><div class="v" id="current-task">—</div></div>
-      <div class="stat"><div class="k">processed</div><div class="v" id="processed">0</div></div>
-      <div class="stat"><div class="k">branch</div><div class="v" id="branch">—</div></div>
-    </div>
-    <div class="stats depth" style="margin-top:10px">
-      <div class="stat depth"><div class="k">pending</div><div class="v" id="depth-PENDING">0</div></div>
-      <div class="stat depth"><div class="k">leased</div><div class="v" id="depth-LEASED">0</div></div>
-      <div class="stat depth"><div class="k">completed</div><div class="v" id="depth-COMPLETED">0</div></div>
-      <div class="stat depth"><div class="k">failed</div><div class="v" id="depth-FAILED">0</div></div>
-    </div>
-  </section>
-  <section id="stdout-section">
-    <h2>Sandbox stdout</h2>
-    <pre id="stdout">—</pre>
-  </section>
-  <section id="feed-section">
-    <h2>Events</h2>
-    <ul id="feed"></ul>
-  </section>
-</main>
-<script src="/dashboard.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Swarm Dashboard — swarmWorker</title>
+    <style>
+      :root {
+        --bg: #0b0e14;
+        --panel: #11151f;
+        --border: #1e2530;
+        --text: #d7dde8;
+        --muted: #7d8590;
+        --accent: #4da3ff;
+        --ok: #3fb950;
+        --warn: #d29922;
+        --err: #f85149;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          14px/1.45 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Consolas,
+          monospace;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border);
+        background: var(--panel);
+      }
+      header h1 {
+        font-size: 15px;
+        margin: 0;
+        font-weight: 600;
+      }
+      header .spacer {
+        flex: 1;
+      }
+      #conn-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        display: inline-block;
+        background: var(--muted);
+      }
+      #conn-dot[data-state="open"] {
+        background: var(--ok);
+      }
+      #conn-dot[data-state="connecting"] {
+        background: var(--warn);
+      }
+      #conn-dot[data-state="closed"] {
+        background: var(--err);
+      }
+      #worker-key {
+        background: #0d1117;
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 5px 8px;
+        width: 180px;
+        font: inherit;
+      }
+      button {
+        background: #16202e;
+        color: var(--text);
+        border: 1px solid #2b3a4d;
+        border-radius: 6px;
+        padding: 5px 12px;
+        font: inherit;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #1c2940;
+      }
+      main {
+        display: grid;
+        gap: 12px;
+        padding: 14px 16px;
+        grid-template-columns: 1.2fr 1fr;
+        grid-template-areas: "pipeline stats" "stdout feed";
+      }
+      section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 14px;
+        min-width: 0;
+      }
+      section h2 {
+        margin: 0 0 10px;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      #pipeline-section {
+        grid-area: pipeline;
+      }
+      #stats-section {
+        grid-area: stats;
+      }
+      #stdout-section {
+        grid-area: stdout;
+        display: flex;
+        flex-direction: column;
+      }
+      #feed-section {
+        grid-area: feed;
+        display: flex;
+        flex-direction: column;
+      }
+      .pipeline {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .phase {
+        padding: 6px 14px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+      }
+      .phase.active {
+        color: #fff;
+        border-color: var(--accent);
+        background: color-mix(in srgb, var(--accent) 25%, transparent);
+        box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
+      }
+      .phase.escalate.active {
+        border-color: var(--err);
+        background: color-mix(in srgb, var(--err) 30%, transparent);
+        box-shadow: 0 0 12px color-mix(in srgb, var(--err) 40%, transparent);
+      }
+      .arrow {
+        color: var(--muted);
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .stat {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px;
+      }
+      .stat .k {
+        color: var(--muted);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .stat .v {
+        font-size: 20px;
+        margin-top: 4px;
+      }
+      .depth .v {
+        color: var(--accent);
+      }
+      #stdout {
+        flex: 1;
+        min-height: 260px;
+        max-height: 380px;
+        overflow: auto;
+        margin: 0;
+        background: #0a0d12;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 10px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 12px;
+        color: #9ecbff;
+      }
+      #feed {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        flex: 1;
+        overflow: auto;
+        max-height: 380px;
+      }
+      #feed li {
+        padding: 6px 8px;
+        border-bottom: 1px solid var(--border);
+        font-size: 12px;
+        color: var(--muted);
+        overflow-wrap: anywhere;
+      }
+      #feed li.transition {
+        color: var(--accent);
+      }
+      #feed li.task_completed {
+        color: var(--ok);
+      }
+      #feed li.task_failed,
+      #feed li.task_escalated {
+        color: var(--err);
+      }
+      #feed li.task_started {
+        color: var(--warn);
+      }
+      @media (max-width: 900px) {
+        main {
+          grid-template-columns: 1fr;
+          grid-template-areas: "pipeline" "stats" "stdout" "feed";
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>swarm dashboard</h1>
+      <span><span id="conn-dot"></span> <span id="conn-label">disconnected</span></span>
+      <div class="spacer"></div>
+      <label for="worker-key">worker key</label>
+      <input id="worker-key" value="default" spellcheck="false" />
+      <button id="connect">connect</button>
+    </header>
+    <main>
+      <section id="pipeline-section">
+        <h2>SAM pipeline</h2>
+        <div class="pipeline">
+          <span class="phase" id="phase-IDLE">IDLE</span><span class="arrow">→</span>
+          <span class="phase" id="phase-RECALL">RECALL</span><span class="arrow">→</span>
+          <span class="phase" id="phase-PLAN">PLAN</span><span class="arrow">→</span>
+          <span class="phase" id="phase-EXECUTE">EXECUTE</span><span class="arrow">→</span>
+          <span class="phase" id="phase-VERIFY">VERIFY</span><span class="arrow">→</span>
+          <span class="phase" id="phase-COMMIT">COMMIT</span>
+          <span class="arrow">⇢</span>
+          <span class="phase escalate" id="phase-ESCALATE">ESCALATE</span>
+        </div>
+      </section>
+      <section id="stats-section">
+        <h2>Worker &amp; queue</h2>
+        <div class="stats">
+          <div class="stat">
+            <div class="k">agent</div>
+            <div class="v" id="agent-id">—</div>
+          </div>
+          <div class="stat">
+            <div class="k">task</div>
+            <div class="v" id="current-task">—</div>
+          </div>
+          <div class="stat">
+            <div class="k">processed</div>
+            <div class="v" id="processed">0</div>
+          </div>
+          <div class="stat">
+            <div class="k">branch</div>
+            <div class="v" id="branch">—</div>
+          </div>
+        </div>
+        <div class="stats depth" style="margin-top: 10px">
+          <div class="stat depth">
+            <div class="k">pending</div>
+            <div class="v" id="depth-PENDING">0</div>
+          </div>
+          <div class="stat depth">
+            <div class="k">leased</div>
+            <div class="v" id="depth-LEASED">0</div>
+          </div>
+          <div class="stat depth">
+            <div class="k">completed</div>
+            <div class="v" id="depth-COMPLETED">0</div>
+          </div>
+          <div class="stat depth">
+            <div class="k">failed</div>
+            <div class="v" id="depth-FAILED">0</div>
+          </div>
+        </div>
+      </section>
+      <section id="stdout-section">
+        <h2>Sandbox stdout</h2>
+        <pre id="stdout">—</pre>
+      </section>
+      <section id="feed-section">
+        <h2>Events</h2>
+        <ul id="feed"></ul>
+      </section>
+    </main>
+    <script src="/dashboard.js"></script>
+  </body>
 </html>

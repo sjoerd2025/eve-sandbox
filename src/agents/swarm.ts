@@ -22,13 +22,13 @@ import { personas } from "./personas/index.js";
  * `openrouter/<model>` resolves against the OPENROUTER_API_KEY.
  */
 export default createAgent(() => ({
-	model: `openrouter/${process.env.SWARM_MODEL ?? "anthropic/claude-sonnet-4.5"}`,
-	instructions: swarmPrompt,
-	skills: [sandboxedTask],
-	subagents: personas,
-	// Task execution is a bounded, well-specified job — the skill spells out
-	// exactly what to do — so "low" keeps the model decisive instead of
-	// deliberating. Non-reasoning models ignore it.
-	thinkingLevel: "low",
-	sandbox: agentOSSandbox({ actor: "vm", registry }),
+  model: `openrouter/${process.env.SWARM_MODEL ?? "anthropic/claude-sonnet-4.5"}`,
+  instructions: swarmPrompt,
+  skills: [sandboxedTask],
+  subagents: personas,
+  // Task execution is a bounded, well-specified job — the skill spells out
+  // exactly what to do — so "low" keeps the model decisive instead of
+  // deliberating. Non-reasoning models ignore it.
+  thinkingLevel: "low",
+  sandbox: agentOSSandbox({ actor: "vm", registry }),
 }));
