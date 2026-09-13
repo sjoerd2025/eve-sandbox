@@ -7,7 +7,7 @@
 // loosely typed (event payloads are `any` below for the same reason). esbuild
 // erases all of this when bundling.
 declare const document: any;
-declare const location: { origin: string };
+declare const location: { origin: string; search: string };
 import { createClient } from "rivetkit/client";
 
 type Phase = "IDLE" | "RECALL" | "PLAN" | "EXECUTE" | "VERIFY" | "COMMIT" | "ESCALATE";
@@ -96,7 +96,13 @@ function connect(): void {
   setConn("connecting");
   agentLabel.textContent = key;
 
-  const client = createClient(`${location.origin}/api/rivet`);
+  // Endpoint override for local dev: the same-origin `/api/rivet` mount does
+  // not serve engine-gateway routes (/gateway/...), so page-initiated action
+  // calls 404 there. Passing ?endpoint=http://127.0.0.1:6420 points the client
+  // at the engine gateway, which forwards to the serverless host (verified
+  // 2026-09-13). Default stays origin-relative for deployed same-origin setups.
+  const endpointParam = new URLSearchParams(location.search).get("endpoint");
+  const client = createClient(endpointParam ?? `${location.origin}/api/rivet`);
   // Untyped dynamic accessor: the registry lives on the server, not in this bundle.
   const worker = (client as any).swarmWorker.get([key]);
 
