@@ -33,8 +33,17 @@ describe.skipIf(!hasTurso)("swarm integration (live Turso)", () => {
 
     // claimNextTask takes the oldest PENDING task in the default queue;
     // require an empty queue so the test can never consume a foreign task.
+    // Reap FIRST: a task left LEASED by a killed run (crash, restart) becomes
+    // PENDING inside claimNextTask's own reapExpiredLeases() — older
+    // created_at wins the oldest-first claim and the test would assert-fail
+    // on the id mismatch (observed 2026-09-13: 'stale-repro-001'). At
+    // depth-check time such a row is still LEASED, so both statuses matter.
+    await queue.reapExpiredLeases();
     const depth = await queue.queueDepth();
-    ctx.skip(depth.PENDING > 0, "default queue holds foreign PENDING tasks");
+    ctx.skip(
+      depth.PENDING > 0 || depth.LEASED > 0,
+      "default queue holds foreign tasks (PENDING or expiring LEASED)",
+    );
 
     const taskId = `integration-${randomUUID()}`;
     const transitions: string[] = [];
