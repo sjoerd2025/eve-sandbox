@@ -1,0 +1,18 @@
+tasks/automation-smoke.md
+  h_d562f3e035a03a 1-66
+tasks/plan.md
+  h_d562f3e035a03a 1-105
+tasks/todo.md
+  h_d562f3e035a03a 1-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c6c7e4aaa7242b6a509710225cf97e6c3293b922",
+  "prompts": {},
+  "humans": {
+    "h_d562f3e035a03a": {
+      "author": "sjoerd2025 <bodbijlsjoerd@gmail.com>"
+    }
+  }
+}
