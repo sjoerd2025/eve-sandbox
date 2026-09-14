@@ -230,8 +230,10 @@ export class TaskQueue {
   async hasPending(queueName: string = DEFAULT_QUEUE): Promise<boolean> {
     const rs = await execWithRetry(this.db, {
       sql: `SELECT 1 FROM task_queue
-            WHERE queue_name = ? AND status = 'PENDING' LIMIT 1`,
-      args: [queueName],
+            WHERE queue_name = ? AND
+              (status = 'PENDING' OR (status = 'LEASED' AND lease_expires_at < ?))
+            LIMIT 1`,
+      args: [queueName, Date.now()],
     });
     return rs.rows.length > 0;
   }
