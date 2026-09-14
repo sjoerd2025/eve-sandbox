@@ -108,9 +108,7 @@ export async function migrateSwarmSchema(db: Client): Promise<void> {
  * rows still on 'default' with a parseable url are touched.
  */
 export async function backfillQueueNamesFromPayload(db: Client): Promise<number> {
-  const rs = await db.execute(
-    "SELECT id, payload FROM task_queue WHERE queue_name = 'default'",
-  );
+  const rs = await db.execute("SELECT id, payload FROM task_queue WHERE queue_name = 'default'");
   let updated = 0;
   for (const row of rs.rows) {
     const repo = repoFromPayloadUrl(String(row.payload));

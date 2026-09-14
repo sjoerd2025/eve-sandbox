@@ -52,11 +52,6 @@
     "version": "changeset version",
     "publish": "pnpm run build && changeset publish"
   },
-  "pnpm": {
-    "overrides": {
-      "rivetkit": "2.3.17"
-    }
-  },
   "dependencies": {
     "@agentos-software/common": "0.2.19",
     "@agentos-software/pi": "0.2.7",
@@ -91,5 +86,10 @@
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "pnpm@9.15.9"
+  "packageManager": "pnpm@9.15.9",
+  "pnpm": {
+    "overrides": {
+      "rivetkit": "2.3.17"
+    }
+  }
 }

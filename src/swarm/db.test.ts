@@ -13,7 +13,10 @@ describe("backfillQueueNamesFromPayload", () => {
         args: [id, payload],
       });
     const queueNameOf = async (id: string) => {
-      const rs = await db.execute({ sql: "SELECT queue_name FROM task_queue WHERE id = ?", args: [id] });
+      const rs = await db.execute({
+        sql: "SELECT queue_name FROM task_queue WHERE id = ?",
+        args: [id],
+      });
       return String(rs.rows[0].queue_name);
     };
 
@@ -21,7 +24,10 @@ describe("backfillQueueNamesFromPayload", () => {
     await insert("gh-2", JSON.stringify({ url: "https://github.com/acme/eve-sandbox/issues/2" }));
     await insert("no-url", "{}");
     await insert("already", JSON.stringify({ url: "https://github.com/acme/widget/issues/9" }));
-    await db.execute({ sql: "UPDATE task_queue SET queue_name = 'widget' WHERE id = 'already'", args: [] });
+    await db.execute({
+      sql: "UPDATE task_queue SET queue_name = 'widget' WHERE id = 'already'",
+      args: [],
+    });
 
     expect(await backfillQueueNamesFromPayload(db)).toBe(2);
 
