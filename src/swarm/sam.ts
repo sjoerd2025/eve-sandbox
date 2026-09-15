@@ -3,9 +3,12 @@ const nowMs = () => Date.now();
 /** Bounded SAM phase set (ADR-001 §3). These are the only telemetry-safe phases. */
 export type SamPhase = "IDLE" | "RECALL" | "PLAN" | "EXECUTE" | "VERIFY" | "COMMIT" | "ESCALATE";
 
+/** One recalled semantic-memory item. */
+export type RecallItem = { id: string; text: string; score: number };
+
 /** Optional semantic-memory hooks (Weaviate). All optional; recall may return []. */
 export interface SamMemoryHooks {
-  recall?: (prompt: string) => Promise<Array<{ id: string; text: string; score: number }>>;
+  recall?: (prompt: string) => Promise<RecallItem[]>;
   /** Persist a completed session's outcome for future recall. */
   persist?: (record: {
     prompt: string;
@@ -21,19 +24,16 @@ export interface SamPlanner {
    * lease provides replay-safety: a crashed run simply loses its lease and the
    * task is re-run from scratch.
    */
-  plan(input: {
-    prompt: string;
-    history: SamStep[];
-    recall: Array<{ id: string; text: string; score: number }>;
-  }): Promise<SamAction>;
+  plan(input: { prompt: string; history: SamStep[]; recall: RecallItem[] }): Promise<SamAction>;
 }
 
 export type SamAction =
   | { type: "run_command"; command: string }
   | { type: "finish"; summary: string };
 
-/** One journaled step of a SAM run. */
-export interface SamStep {
+/** One journaled step of a SAM run. (Type alias, not interface: aliases carry
+ * an implicit index signature, which durable backends' JsonObject checks need.) */
+export type SamStep = {
   seq: number;
   action: SamAction;
   exitCode: number | null;
@@ -41,6 +41,47 @@ export interface SamStep {
   stderr: string;
   startedAt: number;
   endedAt: number;
+};
+
+/** Journal bounds for captured stdio — keeps steps JSON-safe for durable backends. */
+const STDOUT_LIMIT = 8000;
+const STDERR_LIMIT = 2000;
+
+/**
+ * Materialize one journal step from an executor outcome. Single owner of the
+ * step shape: the FSM loop and the durable (Hatchet) driver both journal
+ * through this, so truncation and seq conventions cannot drift apart.
+ */
+export function buildSamStep(
+  seq: number,
+  action: SamAction,
+  startedAt: number,
+  result: { exitCode: number; stdout: string; stderr: string },
+): SamStep {
+  return {
+    seq,
+    action,
+    exitCode: result.exitCode,
+    stdout: result.stdout.slice(0, STDOUT_LIMIT),
+    stderr: result.stderr.slice(0, STDERR_LIMIT),
+    startedAt,
+    endedAt: nowMs(),
+  };
+}
+
+/** ADR-001 §3 verify rule: a step passes iff its command exited 0. */
+export function stepPassed(step: SamStep): boolean {
+  return step.exitCode === 0;
+}
+
+/** Deterministic escalation summary once retries are exhausted. */
+export function escalationSummary(maxRetries: number, lastStderr: string): string {
+  return `escalated after ${maxRetries} failed attempts: last stderr: ${lastStderr.slice(0, 200)}`;
+}
+
+/** Deterministic completion summary when the planner declines to write one. */
+export function completionSummary(iterations: number): string {
+  return `completed after ${iterations} command(s)`;
 }
 
 export interface SamRunOptions {
@@ -140,28 +181,18 @@ export class SamEngine {
 
       this.transition("EXECUTE");
       const startedAt = nowMs();
-      let exitCode = -1;
-      let stdout = "";
-      let stderr = "";
+      let outcome = { exitCode: -1, stdout: "", stderr: "" };
       try {
-        ({ exitCode, stdout, stderr } = await this.executor.exec(action.command));
+        outcome = await this.executor.exec(action.command);
       } catch (error) {
-        stderr = error instanceof Error ? error.message : String(error);
+        outcome = { ...outcome, stderr: error instanceof Error ? error.message : String(error) };
       }
-      const step: SamStep = {
-        seq: this.steps.length + 1,
-        action,
-        exitCode,
-        stdout,
-        stderr,
-        startedAt,
-        endedAt: nowMs(),
-      };
+      const step = buildSamStep(this.steps.length + 1, action, startedAt, outcome);
       this.steps.push(step);
       this.events.onStep?.(step);
 
       this.transition("VERIFY");
-      if (exitCode === 0) {
+      if (stepPassed(step)) {
         // Success: let the planner write the finish summary.
         continue;
       }
@@ -172,7 +203,7 @@ export class SamEngine {
       if (retries > maxRetries) {
         this.transition("ESCALATE");
         escalated = true;
-        summary = `escalated after ${maxRetries} failed attempts: last stderr: ${stderr.slice(0, 200)}`;
+        summary = escalationSummary(maxRetries, outcome.stderr);
         this.transition("COMMIT");
         break;
       }
