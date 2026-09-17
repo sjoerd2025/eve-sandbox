@@ -266,6 +266,15 @@ export class TaskQueue {
     return depth;
   }
 
+  /** Number of COMPLETED tasks for a queue — dashboard "processed" counter. */
+  async completedCount(queueName: string = DEFAULT_QUEUE): Promise<number> {
+    const rs = await this.db.execute({
+      sql: "SELECT COUNT(*) AS n FROM task_queue WHERE queue_name = ? AND status = 'COMPLETED'",
+      args: [queueName],
+    });
+    return Number(rs.rows[0]?.n ?? 0);
+  }
+
   private handles(task: TaskRow, leaseMs: number): ClaimedTask {
     const db = this.db;
     return {

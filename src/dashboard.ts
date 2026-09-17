@@ -148,12 +148,21 @@ function connect(): void {
   log(`connected to ${location.origin}/api/rivet (worker ${key})`);
   feedItem("dashboard connected");
 
-  //rivet-poll: keep status/depth fresh even without live events
+  //rivet-poll: keep status/depth fresh even without live events. Depth and
+  // processed counts come from the same-origin /api/queue-status route (real
+  // Turso counts, covers Hatchet-driven cycles the actor's WS can't see);
+  // current-task/branch still come from the actor's status() when reachable.
   const poll = setInterval(() => {
+    fetch(`${location.origin}/api/queue-status`)
+      .then((r: any) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((s: any) => {
+        if (s?.depth) renderDepth(s.depth);
+        processedLabel.textContent = String(s?.processedTasks ?? 0);
+      })
+      .catch(() => {});
     worker
       .status()
       .then((s: any) => {
-        processedLabel.textContent = String(s?.processedTasks ?? 0);
         if (s?.currentTaskName) taskLabel.textContent = s.currentTaskName;
         else if (s?.currentTaskId) taskLabel.textContent = String(s.currentTaskId).slice(0, 8);
       })

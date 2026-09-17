@@ -57,6 +57,7 @@
     "@agentos-software/pi": "0.2.7",
     "@flue/runtime": "npm:@rivet-dev/labs-flue-runtime@1.0.0-beta.9-rivet.2",
     "@hatchet-dev/typescript-sdk": "^1.31.1",
+    "@hono/node-server": "^2.1.1",
     "@libsql/client": "^0.18.0",
     "@rivet-dev/agentos": "^0.2.19",
     "@rivet-dev/agentos-core": "^0.2.19",
@@ -66,6 +67,7 @@
     "ai": "^7.0.26",
     "e2b": "^2.35.0",
     "eve": "^0.27.0",
+    "hono": "^4.13.7",
     "prom-client": "^15.1.3",
     "rivetkit": "^2.3.17"
   },
