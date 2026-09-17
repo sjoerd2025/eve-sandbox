@@ -15,6 +15,11 @@ permissions:
 
 jobs:
   review:
+    # Non-blocking: the upstream action hardcodes pnpm@11 in its own
+    # pnpm/action-setup step, which errors against any consumer's
+    # packageManager pin (ERR: Multiple versions of pnpm specified).
+    # Reviews are advisory; the core CI gate is the blocking check.
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

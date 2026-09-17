@@ -25517,10 +25517,16 @@ ${textResponse}`,
     log(`connected to ${location.origin}/api/rivet (worker ${key})`);
     feedItem("dashboard connected");
     const poll = setInterval(() => {
+      fetch(`${location.origin}/api/queue-status`)
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+        .then((s) => {
+          if (s?.depth) renderDepth(s.depth);
+          processedLabel.textContent = String(s?.processedTasks ?? 0);
+        })
+        .catch(() => {});
       worker
         .status()
         .then((s) => {
-          processedLabel.textContent = String(s?.processedTasks ?? 0);
           if (s?.currentTaskName) taskLabel.textContent = s.currentTaskName;
           else if (s?.currentTaskId) taskLabel.textContent = String(s.currentTaskId).slice(0, 8);
         })

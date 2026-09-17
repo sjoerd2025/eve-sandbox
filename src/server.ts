@@ -1,7 +1,11 @@
+import { readFile } from "node:fs/promises";
+import { serve } from "@hono/node-server";
 import { agentOS, setup, type Registry } from "@rivet-dev/agentos";
+import { Hono } from "hono";
 import common from "@agentos-software/common";
 import pi from "@agentos-software/pi";
 import { swarmWorker } from "./swarm/actor";
+import { createQueueStatusApp } from "./swarm/queue-status-route";
 
 /**
  * The agentOS VM actor: one isolated virtual Linux per actor key, with durable
@@ -44,6 +48,29 @@ export function createAgentOsRegistry(): Registry<{
 export const registry: Registry<{ vm: typeof vm; swarmWorker: typeof swarmWorker }> =
   createAgentOsRegistry();
 
+function createDashboardApplication(): Hono {
+  const app = createQueueStatusApp();
+  const publicDir =
+    process.env.RIVETKIT_PUBLIC_DIR ?? new URL("../public", import.meta.url).pathname;
+  app.all("/api/rivet/*", (context) => registry.handler(context.req.raw));
+  app.get("*", async (context) => {
+    const file = context.req.path === "/dashboard.js" ? "dashboard.js" : "dashboard.html";
+    try {
+      const body = await readFile(`${publicDir}/${file}`);
+      return new Response(body, {
+        headers: {
+          "content-type": file.endsWith(".js")
+            ? "text/javascript; charset=utf-8"
+            : "text/html; charset=utf-8",
+        },
+      });
+    } catch {
+      return context.notFound();
+    }
+  });
+  return app;
+}
+
 // Only auto-start when run directly as the entrypoint (dist/server.js), not
 // when imported by tests or `agentOSBackend()` consumers that own the
 // registry lifecycle themselves.
@@ -54,8 +81,19 @@ if (
   process.env.RIVETKIT_AUTO_START === "1"
 ) {
   // Serverless mode is automatic on Rivet Compute (it sets
-  // RIVETKIT_RUNTIME_MODE=serverless): start() binds an HTTP listener on
-  // $RIVET_PORT (default 3000) instead of opening a long-lived engine
-  // connection. Locally it runs in engine mode via `npx rivetkit dev`.
-  registry.start();
+  // RIVETKIT_RUNTIME_MODE=serverless): bind the HTTP listener ourselves so we
+  // can pass an `application` fallback — same-origin routes the serverless
+  // mount doesn't serve (e.g. /api/queue-status, which the dashboard polls
+  // because browser calls to engine-gateway action routes are h2-blocked).
+  // This is the documented registry.listen() seam; /api/rivet and publicDir
+  // static serving are unchanged.
+  if (process.env.RIVETKIT_RUNTIME_MODE === "serverless") {
+    serve({
+      fetch: createDashboardApplication().fetch,
+      port: Number(process.env.RIVET_PORT ?? process.env.PORT ?? 3000),
+    });
+  } else {
+    // Engine mode (`npx rivetkit dev`): unchanged start() path.
+    registry.start();
+  }
 }

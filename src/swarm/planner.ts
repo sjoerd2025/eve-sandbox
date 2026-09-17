@@ -90,24 +90,41 @@ export function createOpenRouterPlanner(
 
 /** Parse model output into a {@link SamAction}, defaulting to finish. */
 export function parsePlanAction(content: string): SamAction {
-  const trimmed = content.trim();
-  const jsonText = trimmed.startsWith("```")
-    ? trimmed.replace(/^```(?:json)?\s*/, "").replace(/```\s*$/, "")
-    : trimmed;
-  try {
-    const parsed = JSON.parse(jsonText) as {
-      action?: string;
-      command?: string;
-      summary?: string;
-    };
-    if (parsed.action === "run_command" && parsed.command?.trim()) {
-      return { type: "run_command", command: parsed.command };
+  const fallback = { type: "finish", summary: content || "(empty planner output)" } as SamAction;
+  for (const candidate of jsonCandidates(content)) {
+    try {
+      const parsed = JSON.parse(candidate) as {
+        action?: string;
+        command?: string;
+        summary?: string;
+      };
+      if (parsed.action === "run_command" && parsed.command?.trim()) {
+        return { type: "run_command", command: parsed.command };
+      }
+      if (parsed.action === "finish") {
+        return { type: "finish", summary: parsed.summary ?? content };
+      }
+    } catch {
+      // try the next candidate
     }
-    if (parsed.action === "finish") {
-      return { type: "finish", summary: parsed.summary ?? content };
-    }
-  } catch {
-    // fall through to finish-with-raw-text
   }
-  return { type: "finish", summary: content || "(empty planner output)" };
+  return fallback;
+}
+
+/**
+ * JSON substrings to try, in order: the whole text (bare JSON), then fenced
+ * code blocks (models commonly wrap the action in prose + ```json), then the
+ * outermost brace span. First parseable object wins.
+ */
+function* jsonCandidates(content: string): Generator<string> {
+  const trimmed = content.trim();
+  if (trimmed) yield trimmed;
+  const fence = /```(?:json)?\s*([\s\S]*?)```/g;
+  for (const match of trimmed.matchAll(fence)) {
+    const block = match[1]?.trim() ?? "";
+    if (block) yield block;
+  }
+  const start = trimmed.indexOf("{");
+  const end = trimmed.lastIndexOf("}");
+  if (start !== -1 && end > start) yield trimmed.slice(start, end + 1);
 }

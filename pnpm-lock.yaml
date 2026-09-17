@@ -23,6 +23,9 @@ importers:
       '@hatchet-dev/typescript-sdk':
         specifier: ^1.31.1
         version: 1.33.1(@grpc/grpc-js@1.14.4)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(@opentelemetry/api@1.9.0)(prom-client@15.1.3)(zod@4.4.3)
+      '@hono/node-server':
+        specifier: ^2.1.1
+        version: 2.1.1(hono@4.13.7)
       '@libsql/client':
         specifier: ^0.18.0
         version: 0.18.0
@@ -40,7 +43,7 @@ importers:
         version: 0.2.19(@rivet-dev/agentos-core@0.2.19(@cfworker/json-schema@4.1.1)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3))(@rivet-dev/agentos@0.2.19(@cfworker/json-schema@4.1.1)(@libsql/client@0.18.0)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sql.js@1.14.2)(ws@8.21.3))(@rivet-dev/labs-flue-runtime@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(typebox@1.3.7)(typescript@5.9.3)(ws@8.21.3)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3))
       '@rivet-dev/flue':
         specifier: ^2.3.9
-        version: 2.3.9(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(better-sqlite3@12.11.1)(esbuild@0.27.7)(hono@4.13.5)(sql.js@1.14.2)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)
+        version: 2.3.9(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(better-sqlite3@12.11.1)(esbuild@0.27.7)(hono@4.13.7)(sql.js@1.14.2)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)
       ai:
         specifier: ^7.0.26
         version: 7.0.34(zod@4.4.3)
@@ -50,6 +53,9 @@ importers:
       eve:
         specifier: ^0.27.0
         version: 0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.1)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21))
+      hono:
+        specifier: ^4.13.7
+        version: 4.13.7
       prom-client:
         specifier: ^15.1.3
         version: 15.1.3
@@ -62,7 +68,7 @@ importers:
         version: 2.31.0(@types/node@22.19.21)
       '@flue/cli':
         specifier: npm:@rivet-dev/labs-flue-cli@1.0.0-beta.9-rivet.2
-        version: '@rivet-dev/labs-flue-cli@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(esbuild@0.27.7)(hono@4.13.5)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)'
+        version: '@rivet-dev/labs-flue-cli@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(esbuild@0.27.7)(hono@4.13.7)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)'
       '@types/node':
         specifier: ^22.19.21
         version: 22.19.21
@@ -3552,8 +3558,8 @@ packages:
     peerDependencies:
       hono: ^4.11.2
 
-  hono@4.13.5:
-    resolution: {integrity: sha512-O6+/eCYRkzzzy0rPWwKLiGBR1nFuUPZynnwjxN1MBA62NNqbT0wQEzQyK2gSO5yDIDB336sXQleAhOHrzlYyKw==}
+  hono@4.13.7:
+    resolution: {integrity: sha512-c8/gF9ac8Y78/agExVocyLevgR+JlpNB444Py0FSX8pJoPdYUfUzRcXtYEYGwt6l19qIlVZPN5Mfsw9jFShmQQ==}
     engines: {node: '>=16.9.0'}
 
   hookable@6.1.1:
@@ -3775,6 +3781,7 @@ packages:
 
   libsql@0.5.29:
     resolution: {integrity: sha512-8lMP8iMgiBzzoNbAPQ59qdVcj6UaE/Vnm+fiwX4doX4Narook0a4GPKWBEv+CR8a1OwbfkgL18uBfBjWdF0Fzg==}
+    cpu: [x64, arm64, wasm32, arm]
     os: [darwin, linux, win32]
 
   lightningcss-android-arm64@1.32.0:
@@ -6254,31 +6261,31 @@ snapshots:
       - debug
       - supports-color
 
-  '@hono/node-server@2.1.1(hono@4.13.5)':
+  '@hono/node-server@2.1.1(hono@4.13.7)':
     dependencies:
-      hono: 4.13.5
+      hono: 4.13.7
 
-  '@hono/standard-validator@0.2.3(@standard-schema/spec@1.1.0)(hono@4.13.5)':
-    dependencies:
-      '@standard-schema/spec': 1.1.0
-      hono: 4.13.5
-
-  '@hono/standard-validator@0.4.0(@standard-schema/spec@1.1.0)(hono@4.13.5)':
+  '@hono/standard-validator@0.2.3(@standard-schema/spec@1.1.0)(hono@4.13.7)':
     dependencies:
       '@standard-schema/spec': 1.1.0
-      hono: 4.13.5
+      hono: 4.13.7
 
-  '@hono/zod-openapi@1.6.2(hono@4.13.5)(zod@4.4.3)':
+  '@hono/standard-validator@0.4.0(@standard-schema/spec@1.1.0)(hono@4.13.7)':
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+      hono: 4.13.7
+
+  '@hono/zod-openapi@1.6.2(hono@4.13.7)(zod@4.4.3)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.4.3)
-      '@hono/zod-validator': 0.9.1(hono@4.13.5)(zod@4.4.3)
-      hono: 4.13.5
+      '@hono/zod-validator': 0.9.1(hono@4.13.7)(zod@4.4.3)
+      hono: 4.13.7
       openapi3-ts: 4.6.1
       zod: 4.4.3
 
-  '@hono/zod-validator@0.9.1(hono@4.13.5)(zod@4.4.3)':
+  '@hono/zod-validator@0.9.1(hono@4.13.7)(zod@4.4.3)':
     dependencies:
-      hono: 4.13.5
+      hono: 4.13.7
       zod: 4.4.3
 
   '@img/colour@1.1.0': {}
@@ -6726,7 +6733,7 @@ snapshots:
 
   '@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3)':
     dependencies:
-      '@hono/node-server': 2.1.1(hono@4.13.5)
+      '@hono/node-server': 2.1.1(hono@4.13.7)
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       content-type: 1.0.5
@@ -6736,7 +6743,7 @@ snapshots:
       eventsource-parser: 3.1.0
       express: 5.2.1
       express-rate-limit: 8.7.0(express@5.2.1)
-      hono: 4.13.5
+      hono: 4.13.7
       jose: 6.2.10
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.1
@@ -7106,9 +7113,9 @@ snapshots:
       - utf-8-validate
       - ws
 
-  '@rivet-dev/flue@2.3.9(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(better-sqlite3@12.11.1)(esbuild@0.27.7)(hono@4.13.5)(sql.js@1.14.2)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)':
+  '@rivet-dev/flue@2.3.9(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(better-sqlite3@12.11.1)(esbuild@0.27.7)(hono@4.13.7)(sql.js@1.14.2)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)':
     dependencies:
-      '@flue/cli': '@rivet-dev/labs-flue-cli@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(esbuild@0.27.7)(hono@4.13.5)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)'
+      '@flue/cli': '@rivet-dev/labs-flue-cli@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(esbuild@0.27.7)(hono@4.13.7)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)'
       '@flue/runtime': '@rivet-dev/labs-flue-runtime@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(typebox@1.3.7)(typescript@5.9.3)(ws@8.21.3)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)'
       rivetkit: 2.3.17(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2)(ws@8.21.3)
     transitivePeerDependencies:
@@ -7173,12 +7180,12 @@ snapshots:
       - zod-openapi
       - zod-to-json-schema
 
-  '@rivet-dev/labs-flue-cli@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(esbuild@0.27.7)(hono@4.13.5)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)':
+  '@rivet-dev/labs-flue-cli@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@types/node@22.19.21)(esbuild@0.27.7)(hono@4.13.7)(typebox@1.3.7)(typescript@5.9.3)(wrangler@4.131.1(@types/node@22.19.21))(ws@8.21.3)(yaml@2.9.0)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)':
     dependencies:
       '@cloudflare/vite-plugin': 1.54.8(@types/node@22.19.21)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21))
       '@flue/runtime': '@rivet-dev/labs-flue-runtime@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(typebox@1.3.7)(typescript@5.9.3)(ws@8.21.3)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)'
       '@flue/sdk': '@rivet-dev/labs-flue-sdk@1.0.0-beta.9-rivet.2'
-      '@hono/node-server': 2.1.1(hono@4.13.5)
+      '@hono/node-server': 2.1.1(hono@4.13.7)
       '@vercel/detect-agent': 1.2.5
       debug: 4.4.3
       minisearch: 7.2.0
@@ -7222,14 +7229,14 @@ snapshots:
       '@cfworker/json-schema': 4.1.1
       '@earendil-works/pi-agent-core': 0.80.10(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3)(zod@4.4.3)
       '@earendil-works/pi-ai': 0.81.1(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3)(zod@4.4.3)
-      '@hono/node-server': 2.1.1(hono@4.13.5)
-      '@hono/standard-validator': 0.2.3(@standard-schema/spec@1.1.0)(hono@4.13.5)
+      '@hono/node-server': 2.1.1(hono@4.13.7)
+      '@hono/standard-validator': 0.2.3(@standard-schema/spec@1.1.0)(hono@4.13.7)
       '@modelcontextprotocol/sdk': 1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3)
       '@standard-community/standard-json': 0.3.6(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@5.9.3)))(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)
       '@standard-community/standard-openapi': 0.2.10(@standard-community/standard-json@0.3.6(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@5.9.3)))(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3))(@standard-schema/spec@1.1.0)(openapi-types@12.1.3)(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod@4.4.3)
       '@valibot/to-json-schema': 1.7.1(valibot@1.5.0(typescript@5.9.3))
-      hono: 4.13.5
-      hono-openapi: 1.3.2(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@5.9.3)))(hono@4.13.5)(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)
+      hono: 4.13.7
+      hono-openapi: 1.3.2(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@5.9.3)))(hono@4.13.7)(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)
       js-yaml: 4.2.0
       just-bash: 3.4.2
       openapi-types: 12.1.3
@@ -8967,14 +8974,14 @@ snapshots:
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
 
-  hono-openapi@1.3.2(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@5.9.3)))(hono@4.13.5)(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3):
+  hono-openapi@1.3.2(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@5.9.3)))(hono@4.13.7)(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3):
     dependencies:
-      '@hono/standard-validator': 0.4.0(@standard-schema/spec@1.1.0)(hono@4.13.5)
+      '@hono/standard-validator': 0.4.0(@standard-schema/spec@1.1.0)(hono@4.13.7)
       '@standard-community/standard-json': 0.3.6(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@5.9.3)))(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)
       '@standard-community/standard-openapi': 0.2.10(@standard-community/standard-json@0.3.6(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@5.9.3)))(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3))(@standard-schema/spec@1.1.0)(openapi-types@12.1.3)(typebox@1.3.7)(valibot@1.5.0(typescript@5.9.3))(zod@4.4.3)
       '@standard-schema/spec': 1.1.0
       '@types/json-schema': 7.0.15
-      hono: 4.13.5
+      hono: 4.13.7
       openapi-types: 12.1.3
     transitivePeerDependencies:
       - '@valibot/to-json-schema'
@@ -8987,7 +8994,7 @@ snapshots:
       - zod-openapi
       - zod-to-json-schema
 
-  hono@4.13.5: {}
+  hono@4.13.7: {}
 
   hookable@6.1.1: {}
 
@@ -10022,7 +10029,7 @@ snapshots:
 
   rivetkit@2.3.17(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2)(ws@8.21.3):
     dependencies:
-      '@hono/zod-openapi': 1.6.2(hono@4.13.5)(zod@4.4.3)
+      '@hono/zod-openapi': 1.6.2(hono@4.13.7)(zod@4.4.3)
       '@rivet-dev/agent-os-core': 0.1.1
       '@rivet-dev/services': 0.1.6
       '@rivetkit/bare-ts': 0.6.2
@@ -10036,7 +10043,7 @@ snapshots:
       '@rivetkit/workflow-engine': 2.3.17
       cbor-x: 1.6.6
       drizzle-orm: 0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2)
-      hono: 4.13.5
+      hono: 4.13.7
       invariant: 2.2.4
       p-retry: 6.2.1
       pino: 9.14.0
