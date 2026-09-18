@@ -2,6 +2,14 @@
 # Reviews pull requests against repo conventions (layered from
 # .agents/pr-review/) and posts the review. The swarm's SAM executor opens
 # PRs from worker branches; this is the automated verify pass on them.
+#
+# Pinned to the fork branch fix/pnpm-install-isolated (PR flipt-io/agents#17,
+# still open upstream) because the upstream @main action hardcodes
+# pnpm/action-setup with version 11, which hard-fails against any consumer
+# repo that pins packageManager ("Multiple versions of pnpm specified").
+# The fork replaces that step with `npm install -g pnpm@11`, which never
+# resolves a version from this repo. Once upstream merges, switch back to
+# flipt-io/agents/actions/pr-review@main.
 name: PR Review
 
 on:
@@ -15,15 +23,10 @@ permissions:
 
 jobs:
   review:
-    # Non-blocking: the upstream action hardcodes pnpm@11 in its own
-    # pnpm/action-setup step, which errors against any consumer's
-    # packageManager pin (ERR: Multiple versions of pnpm specified).
-    # Reviews are advisory; the core CI gate is the blocking check.
-    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: flipt-io/agents/actions/pr-review@main
+      - uses: sjoerd2025/agents/actions/pr-review@fix/pnpm-install-isolated
         with:
           pr-number: ${{ github.event.pull_request.number }}
           local-config-dir: .agents/pr-review
