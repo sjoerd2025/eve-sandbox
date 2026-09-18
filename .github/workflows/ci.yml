@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch: # manual trigger / event-delivery fallback
   workflow_call: # reused by the Release workflow's test gate
 
 concurrency:
