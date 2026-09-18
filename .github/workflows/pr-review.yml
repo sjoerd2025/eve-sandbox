@@ -30,3 +30,6 @@ jobs:
         with:
           pr-number: ${{ github.event.pull_request.number }}
           local-config-dir: .agents/pr-review
+          # The default model (github/openai/gpt-4.1) 410s during GitHub Models
+          # retirement brownouts. Workers AI needs no GitHub Models auth.
+          model: cloudflare-workers-ai/@cf/moonshotai/kimi-k2.6
