@@ -37,7 +37,7 @@ importers:
         version: 0.2.19(@cfworker/json-schema@4.1.1)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3)
       '@rivet-dev/agentos-eve':
         specifier: ^0.2.19
-        version: 0.2.19(@rivet-dev/agentos-core@0.2.19(@cfworker/json-schema@4.1.1)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3))(@rivet-dev/agentos@0.2.19(@cfworker/json-schema@4.1.1)(@libsql/client@0.18.0)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sql.js@1.14.2)(ws@8.21.3))(eve@0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.2)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21)))
+        version: 0.2.19(@rivet-dev/agentos-core@0.2.19(@cfworker/json-schema@4.1.1)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3))(@rivet-dev/agentos@0.2.19(@cfworker/json-schema@4.1.1)(@libsql/client@0.18.0)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sql.js@1.14.2)(ws@8.21.3))(eve@0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.1)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21)))
       '@rivet-dev/agentos-flue':
         specifier: ^0.2.19
         version: 0.2.19(@rivet-dev/agentos-core@0.2.19(@cfworker/json-schema@4.1.1)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3))(@rivet-dev/agentos@0.2.19(@cfworker/json-schema@4.1.1)(@libsql/client@0.18.0)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sql.js@1.14.2)(ws@8.21.3))(@rivet-dev/labs-flue-runtime@1.0.0-beta.9-rivet.2(@standard-schema/spec@1.1.0)(@types/json-schema@7.0.15)(typebox@1.3.7)(typescript@5.9.3)(ws@8.21.3)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3))
@@ -52,7 +52,7 @@ importers:
         version: 2.50.0
       eve:
         specifier: ^0.27.0
-        version: 0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.2)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21))
+        version: 0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.1)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21))
       hono:
         specifier: ^4.13.7
         version: 4.13.7
@@ -3877,10 +3877,6 @@ packages:
     resolution: {integrity: sha512-RPimw/7aMdv2oqRrxKwvZXcPfwBrn/JZ2xYcY9Hus/6LaS3VOAKVWKWgNLCFSiOm1ESXinjsDlidVU7JlnCN2A==}
     engines: {node: 20 || >=22}
 
-  lru-cache@11.5.2:
-    resolution: {integrity: sha512-4pfM1Ff0x50o0tQwb5ucw/RzNyD0/YJME6IVcStalZuMWxdt3sR3huStTtxz4PUmvZfRguvDejasvQ2kifR11g==}
-    engines: {node: 20 || >=22}
-
   lru-cache@7.18.3:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
@@ -5196,11 +5192,11 @@ packages:
   vm-browserify@1.1.2:
     resolution: {integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==}
 
-  vscode-languageserver-textdocument@1.0.14:
-    resolution: {integrity: sha512-EQyqJMi552E4ZTf46izQ4Fj6XquqxCySR3J5ZSD1SisMf6RfpeOWHxGBE8Gr6V0/3GHIGdAzDn8F8+1nTGCnoQ==}
+  vscode-languageserver-textdocument@1.0.12:
+    resolution: {integrity: sha512-cxWNPesCnQCcMPeenjKKsOCKQZ/L6Tv19DTRIGuLWe32lyzWhihGVJ/rcckZXJxfdKCFvRLS3fpBIsV/ZGX4zA==}
 
-  vscode-languageserver-types@3.18.3:
-    resolution: {integrity: sha512-XIlzJ7Qp/jzSI1ds7/FwPAWrPeTZA7pAtlW4hdJ1J6xXWJL6dR9QYnDhJOdLzdKhUQ5Mm6mvUMw+3DcOQQasPw==}
+  vscode-languageserver-types@3.18.0:
+    resolution: {integrity: sha512-8TsGPNMIMiiBdkORgRSvLjuiEIiAFtO+KssmYWxQ+uSVvlf7RjK8YKCOjPzZ+YA04jXEV7+7LvkSmHkhpNS99g==}
 
   web-streams-polyfill@3.3.3:
     resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
@@ -6991,9 +6987,9 @@ snapshots:
       - utf-8-validate
       - ws
 
-  '@rivet-dev/agentos-eve@0.2.19(@rivet-dev/agentos-core@0.2.19(@cfworker/json-schema@4.1.1)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3))(@rivet-dev/agentos@0.2.19(@cfworker/json-schema@4.1.1)(@libsql/client@0.18.0)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sql.js@1.14.2)(ws@8.21.3))(eve@0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.2)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21)))':
+  '@rivet-dev/agentos-eve@0.2.19(@rivet-dev/agentos-core@0.2.19(@cfworker/json-schema@4.1.1)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3))(@rivet-dev/agentos@0.2.19(@cfworker/json-schema@4.1.1)(@libsql/client@0.18.0)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sql.js@1.14.2)(ws@8.21.3))(eve@0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.1)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21)))':
     dependencies:
-      eve: 0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.2)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21))
+      eve: 0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.1)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21))
     optionalDependencies:
       '@rivet-dev/agentos': 0.2.19(@cfworker/json-schema@4.1.1)(@libsql/client@0.18.0)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sql.js@1.14.2)(ws@8.21.3)
       '@rivet-dev/agentos-core': 0.2.19(@cfworker/json-schema@4.1.1)(@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@4.4.3))(ws@8.21.3)
@@ -8323,8 +8319,8 @@ snapshots:
 
   dockerfile-ast@0.7.1:
     dependencies:
-      vscode-languageserver-textdocument: 1.0.14
-      vscode-languageserver-types: 3.18.3
+      vscode-languageserver-textdocument: 1.0.12
+      vscode-languageserver-types: 3.18.0
 
   domain-browser@4.22.0: {}
 
@@ -8498,10 +8494,10 @@ snapshots:
 
   etag@1.8.1: {}
 
-  eve@0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.2)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21)):
+  eve@0.27.0(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(ai@7.0.34(zod@4.4.3))(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(just-bash@3.4.2)(lru-cache@11.5.1)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21)):
     dependencies:
       ai: 7.0.34(zod@4.4.3)
-      nitro: 3.0.260610-beta(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(lru-cache@11.5.2)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21))
+      nitro: 3.0.260610-beta(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(lru-cache@11.5.1)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21))
     optionalDependencies:
       '@opentelemetry/api': 1.9.0
       just-bash: 3.4.2
@@ -9277,8 +9273,6 @@ snapshots:
 
   lru-cache@11.5.1: {}
 
-  lru-cache@11.5.2: {}
-
   lru-cache@7.18.3: {}
 
   magic-string@0.30.21:
@@ -9403,7 +9397,7 @@ snapshots:
       abort-controller-x: 0.5.0
       nice-grpc-common: 2.0.4
 
-  nitro@3.0.260610-beta(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(lru-cache@11.5.2)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21)):
+  nitro@3.0.260610-beta(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(chokidar@4.0.3)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))(lru-cache@11.5.1)(rollup@4.62.0)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0))(wrangler@4.131.1(@types/node@22.19.21)):
     dependencies:
       consola: 3.4.2
       crossws: 0.4.6(srvx@0.11.16)
@@ -9418,7 +9412,7 @@ snapshots:
       rolldown: 1.1.1
       srvx: 0.11.16
       unenv: 2.0.0-rc.24
-      unstorage: 2.0.0-alpha.7(chokidar@4.0.3)(db0@0.3.4(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2)))(lru-cache@11.5.2)(ofetch@2.0.0-alpha.3)
+      unstorage: 2.0.0-alpha.7(chokidar@4.0.3)(db0@0.3.4(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2)))(lru-cache@11.5.1)(ofetch@2.0.0-alpha.3)
     optionalDependencies:
       rollup: 4.62.0
       vite: 8.0.16(@types/node@22.19.21)(esbuild@0.27.7)(yaml@2.9.0)
@@ -9721,7 +9715,7 @@ snapshots:
 
   path-scurry@2.0.2:
     dependencies:
-      lru-cache: 11.5.2
+      lru-cache: 11.5.1
       minipass: 7.1.3
 
   path-to-regexp@6.3.0: {}
@@ -10589,11 +10583,11 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unstorage@2.0.0-alpha.7(chokidar@4.0.3)(db0@0.3.4(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2)))(lru-cache@11.5.2)(ofetch@2.0.0-alpha.3):
+  unstorage@2.0.0-alpha.7(chokidar@4.0.3)(db0@0.3.4(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2)))(lru-cache@11.5.1)(ofetch@2.0.0-alpha.3):
     optionalDependencies:
       chokidar: 4.0.3
       db0: 0.3.4(@libsql/client@0.18.0)(better-sqlite3@12.11.1)(drizzle-orm@0.45.2(@libsql/client@0.18.0)(@opentelemetry/api@1.9.0)(better-sqlite3@12.11.1)(sql.js@1.14.2))
-      lru-cache: 11.5.2
+      lru-cache: 11.5.1
       ofetch: 2.0.0-alpha.3
 
   url-template@2.0.8: {}
@@ -10672,9 +10666,9 @@ snapshots:
 
   vm-browserify@1.1.2: {}
 
-  vscode-languageserver-textdocument@1.0.14: {}
+  vscode-languageserver-textdocument@1.0.12: {}
 
-  vscode-languageserver-types@3.18.3: {}
+  vscode-languageserver-types@3.18.0: {}
 
   web-streams-polyfill@3.3.3: {}
 
