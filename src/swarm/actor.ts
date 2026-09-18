@@ -238,6 +238,7 @@ export const swarmWorker: SwarmWorkerDefinition = actor({
       const planner = createOpenRouterPlanner({
         apiKey: process.env.OPENROUTER_API_KEY,
         model: config.model,
+        taskId: claimed.task.id,
       });
 
       const sam = new SamEngine(
