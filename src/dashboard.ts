@@ -7,7 +7,7 @@
 // loosely typed (event payloads are `any` below for the same reason). esbuild
 // erases all of this when bundling.
 declare const document: any;
-declare const location: { origin: string };
+declare const location: { origin: string; search: string };
 import { createClient } from "rivetkit/client";
 
 type Phase = "IDLE" | "RECALL" | "PLAN" | "EXECUTE" | "VERIFY" | "COMMIT" | "ESCALATE";
@@ -96,7 +96,13 @@ function connect(): void {
   setConn("connecting");
   agentLabel.textContent = key;
 
-  const client = createClient(`${location.origin}/api/rivet`);
+  // Endpoint override for local dev: the same-origin `/api/rivet` mount does
+  // not serve engine-gateway routes (/gateway/...), so page-initiated action
+  // calls 404 there. Passing ?endpoint=http://127.0.0.1:6420 points the client
+  // at the engine gateway, which forwards to the serverless host (verified
+  // 2026-09-13). Default stays origin-relative for deployed same-origin setups.
+  const endpointParam = new URLSearchParams(location.search).get("endpoint");
+  const client = createClient(endpointParam ?? `${location.origin}/api/rivet`);
   // Untyped dynamic accessor: the registry lives on the server, not in this bundle.
   const worker = (client as any).swarmWorker.get([key]);
 
@@ -142,12 +148,21 @@ function connect(): void {
   log(`connected to ${location.origin}/api/rivet (worker ${key})`);
   feedItem("dashboard connected");
 
-  //rivet-poll: keep status/depth fresh even without live events
+  //rivet-poll: keep status/depth fresh even without live events. Depth and
+  // processed counts come from the same-origin /api/queue-status route (real
+  // Turso counts, covers Hatchet-driven cycles the actor's WS can't see);
+  // current-task/branch still come from the actor's status() when reachable.
   const poll = setInterval(() => {
+    fetch(`${location.origin}/api/queue-status`)
+      .then((r: any) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((s: any) => {
+        if (s?.depth) renderDepth(s.depth);
+        processedLabel.textContent = String(s?.processedTasks ?? 0);
+      })
+      .catch(() => {});
     worker
       .status()
       .then((s: any) => {
-        processedLabel.textContent = String(s?.processedTasks ?? 0);
         if (s?.currentTaskName) taskLabel.textContent = s.currentTaskName;
         else if (s?.currentTaskId) taskLabel.textContent = String(s.currentTaskId).slice(0, 8);
       })

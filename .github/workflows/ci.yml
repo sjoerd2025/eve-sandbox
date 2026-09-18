@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch: # manual trigger / event-delivery fallback
   workflow_call: # reused by the Release workflow's test gate
 
 concurrency:
@@ -34,3 +35,8 @@ jobs:
       - run: pnpm run type-check
       - run: pnpm test
       - run: pnpm run build
+
+      # Free replacement for the Snyk GitHub App check, which fails on every
+      # PR with "You have used your limit of private tests". Critical-only so
+      # the gate stays meaningful without blocking on transitive noise.
+      - run: pnpm audit --prod --audit-level=critical

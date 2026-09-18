@@ -1,4 +1,5 @@
 import type { SamAction, SamPlanner } from "./sam";
+import { createLangfuseTracer, type LangfuseTracer } from "./tracing";
 
 const SYSTEM_PROMPT = `You are the planner of a sandboxed coding agent.
 Reply with ONE JSON object and nothing else:
@@ -11,6 +12,10 @@ export interface OpenRouterPlanParams {
   /** OpenRouter API key. Falls back to OPENROUTER_API_KEY. */
   apiKey?: string;
   fetchImpl?: typeof fetch;
+  /** LLM call tracer. Defaults to a Langfuse OTel tracer (no-op without credentials). */
+  tracer?: LangfuseTracer;
+  /** Task id attached to traces for correlation with the queue. */
+  taskId?: string;
 }
 
 /** OpenRouter response shape (only the fields we consume). */
@@ -31,6 +36,8 @@ export function createOpenRouterPlanner(
   const apiKey = params.apiKey ?? process.env.OPENROUTER_API_KEY;
   const model = params.model ?? "anthropic/claude-sonnet-4.5";
   const doFetch = params.fetchImpl ?? fetch;
+  const tracer: LangfuseTracer = params.tracer ?? createLangfuseTracer({ fetchImpl: doFetch });
+  const taskId = params.taskId ?? "unknown";
   const state = { lastUsage: null as { promptTokens: number; completionTokens: number } | null };
 
   return {
@@ -48,6 +55,7 @@ export function createOpenRouterPlanner(
 
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 60_000);
+      const startedAt = Date.now();
       try {
         const res = await doFetch("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
@@ -70,6 +78,15 @@ export function createOpenRouterPlanner(
         });
         if (!res.ok) {
           state.lastUsage = null;
+          tracer.record({
+            taskId,
+            model,
+            prompt,
+            status: "http_error",
+            httpStatus: res.status,
+            durationMs: Date.now() - startedAt,
+          });
+          await tracer.flush();
           return { type: "finish", summary: `planner HTTP ${res.status}` } as SamAction;
         }
         const body = (await res.json()) as ChatResponse;
@@ -77,9 +94,28 @@ export function createOpenRouterPlanner(
           promptTokens: body.usage?.prompt_tokens ?? 0,
           completionTokens: body.usage?.completion_tokens ?? 0,
         };
-        return parsePlanAction(body.choices?.[0]?.message?.content ?? "");
+        const action = parsePlanAction(body.choices?.[0]?.message?.content ?? "");
+        tracer.record({
+          taskId,
+          model,
+          prompt,
+          status: "ok",
+          actionType: action.type,
+          durationMs: Date.now() - startedAt,
+          usage: state.lastUsage,
+        });
+        await tracer.flush();
+        return action;
       } catch {
         state.lastUsage = null;
+        tracer.record({
+          taskId,
+          model,
+          prompt,
+          status: "request_failed",
+          durationMs: Date.now() - startedAt,
+        });
+        await tracer.flush();
         return { type: "finish", summary: "planner request failed" } as SamAction;
       } finally {
         clearTimeout(timeout);
@@ -90,24 +126,41 @@ export function createOpenRouterPlanner(
 
 /** Parse model output into a {@link SamAction}, defaulting to finish. */
 export function parsePlanAction(content: string): SamAction {
-  const trimmed = content.trim();
-  const jsonText = trimmed.startsWith("```")
-    ? trimmed.replace(/^```(?:json)?\s*/, "").replace(/```\s*$/, "")
-    : trimmed;
-  try {
-    const parsed = JSON.parse(jsonText) as {
-      action?: string;
-      command?: string;
-      summary?: string;
-    };
-    if (parsed.action === "run_command" && parsed.command?.trim()) {
-      return { type: "run_command", command: parsed.command };
+  const fallback = { type: "finish", summary: content || "(empty planner output)" } as SamAction;
+  for (const candidate of jsonCandidates(content)) {
+    try {
+      const parsed = JSON.parse(candidate) as {
+        action?: string;
+        command?: string;
+        summary?: string;
+      };
+      if (parsed.action === "run_command" && parsed.command?.trim()) {
+        return { type: "run_command", command: parsed.command };
+      }
+      if (parsed.action === "finish") {
+        return { type: "finish", summary: parsed.summary ?? content };
+      }
+    } catch {
+      // try the next candidate
     }
-    if (parsed.action === "finish") {
-      return { type: "finish", summary: parsed.summary ?? content };
-    }
-  } catch {
-    // fall through to finish-with-raw-text
   }
-  return { type: "finish", summary: content || "(empty planner output)" };
+  return fallback;
+}
+
+/**
+ * JSON substrings to try, in order: the whole text (bare JSON), then fenced
+ * code blocks (models commonly wrap the action in prose + ```json), then the
+ * outermost brace span. First parseable object wins.
+ */
+function* jsonCandidates(content: string): Generator<string> {
+  const trimmed = content.trim();
+  if (trimmed) yield trimmed;
+  const fence = /```(?:json)?\s*([\s\S]*?)```/g;
+  for (const match of trimmed.matchAll(fence)) {
+    const block = match[1]?.trim() ?? "";
+    if (block) yield block;
+  }
+  const start = trimmed.indexOf("{");
+  const end = trimmed.lastIndexOf("}");
+  if (start !== -1 && end > start) yield trimmed.slice(start, end + 1);
 }

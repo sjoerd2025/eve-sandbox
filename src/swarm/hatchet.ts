@@ -5,7 +5,8 @@ import { TaskQueue, type ClaimedTask } from "./queue";
 import { createOpenRouterPlanner } from "./planner";
 import { createWeaviateMemory } from "./memory";
 import { localExecutor } from "./executor";
-import type { SamAction, SamStep } from "./sam";
+import { buildSamStep, completionSummary, escalationSummary, stepPassed } from "./sam";
+import type { RecallItem, SamAction, SamStep } from "./sam";
 
 // ---- client ----------------------------------------------------------------
 
@@ -13,18 +14,13 @@ export const hatchet = HatchetClient.init();
 
 // ---- shared JSON-safe types (type aliases: Hatchet inputs must be JsonObject) --
 
-/** One journal step, JSON-safe for Hatchet inputs/outputs. */
-export type SerializedStep = {
-  seq: number;
-  action: SamAction;
-  exitCode: number | null;
-  stdout: string;
-  stderr: string;
-  startedAt: number;
-  endedAt: number;
-};
-
-export type RecallItem = { id: string; text: string; score: number };
+/**
+ * Step and recall shapes are owned by sam.ts (single source for both the FSM
+ * and this durable driver); these aliases keep Hatchet's workflow type names
+ * stable while making drift a type error.
+ */
+export type SerializedStep = SamStep;
+export type { RecallItem };
 
 export type CycleInput = {
   taskId: string;
@@ -75,7 +71,7 @@ const plan = samCycle.task({
     const planner = createOpenRouterPlanner({});
     const action = await planner.plan({
       prompt: input.prompt,
-      history: input.history as unknown as SamStep[],
+      history: input.history,
       recall: input.recall,
     });
     return { action };
@@ -91,18 +87,10 @@ const execute = samCycle.task({
       return { action, step: null };
     }
     const startedAt = Date.now();
-    const { exitCode, stdout, stderr } = await localExecutor.exec(action.command);
+    const result = await localExecutor.exec(action.command);
     return {
       action,
-      step: {
-        seq: input.history.length + 1,
-        action,
-        exitCode,
-        stdout: stdout.slice(0, 8000),
-        stderr: stderr.slice(0, 2000),
-        startedAt,
-        endedAt: Date.now(),
-      } satisfies SerializedStep,
+      step: buildSamStep(input.history.length + 1, action, startedAt, result),
     };
   },
 });
@@ -117,7 +105,7 @@ const verify = samCycle.task({
       return { done: true, passed: true, summary: out.action.summary, step: null };
     }
     const step = out.step!;
-    return { done: false, passed: step.exitCode === 0, summary: "", step };
+    return { done: false, passed: stepPassed(step), summary: "", step };
   },
 });
 
@@ -166,11 +154,11 @@ export const samLoop = hatchet.durableTask({
         const summary =
           finisher.plan.action.type === "finish"
             ? finisher.plan.action.summary
-            : `completed after ${history.length} command(s)`;
+            : completionSummary(history.length);
         return finish(memory, input, history, summary, true);
       }
       if (iteration === maxIterations) {
-        const summary = `escalated after ${maxIterations} failed attempts: last stderr: ${step.stderr.slice(0, 200)}`;
+        const summary = escalationSummary(maxIterations, step.stderr);
         return finish(memory, input, history, summary, false);
       }
       // Non-zero exit: loop back to PLAN with the failure in the journal.
