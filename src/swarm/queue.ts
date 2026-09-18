@@ -226,6 +226,18 @@ export class TaskQueue {
     return claimed ? this.handles(claimed, leaseMs) : null;
   }
 
+  /** True when the queue has claimable PENDING work (dispatcher gate). */
+  async hasPending(queueName: string = DEFAULT_QUEUE): Promise<boolean> {
+    const rs = await execWithRetry(this.db, {
+      sql: `SELECT 1 FROM task_queue
+            WHERE queue_name = ? AND
+              (status = 'PENDING' OR (status = 'LEASED' AND lease_expires_at < ?))
+            LIMIT 1`,
+      args: [queueName, Date.now()],
+    });
+    return rs.rows.length > 0;
+  }
+
   /**
    * Reset expired LEASED tasks to PENDING (crash recovery); tasks whose
    * retries are exhausted go straight to FAILED. Returns the reaped count.
@@ -250,6 +262,24 @@ export class TaskQueue {
       }
     }
     return rs.rows.length;
+  }
+
+  /** Mark a task COMPLETED by id with a result payload (workflow runner path). */
+  async completeById(id: string, result: Record<string, unknown>): Promise<void> {
+    await execWithRetry(this.db, {
+      sql: `UPDATE task_queue SET status = 'COMPLETED', result = ?, lease_expires_at = NULL, updated_at = ?
+            WHERE id = ? AND status = 'LEASED'`,
+      args: [JSON.stringify(result), Date.now(), id],
+    });
+  }
+
+  /** Mark a task FAILED by id with an error message (workflow runner path). */
+  async failById(id: string, error: string): Promise<void> {
+    await execWithRetry(this.db, {
+      sql: `UPDATE task_queue SET status = 'FAILED', error = ?, lease_expires_at = NULL, updated_at = ?
+            WHERE id = ? AND status = 'LEASED'`,
+      args: [error, Date.now(), id],
+    });
   }
 
   /** Snapshot of queue depths by status (bounded labels: status + queue_name). */

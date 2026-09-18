@@ -15,4 +15,4 @@ ENV RIVETKIT_PUBLIC_DIR=/app/public
 
 EXPOSE 3000
 
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/dynamic-apps-host.js"]

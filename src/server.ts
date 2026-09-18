@@ -5,7 +5,7 @@ import { Hono } from "hono";
 import common from "@agentos-software/common";
 import pi from "@agentos-software/pi";
 import { swarmWorker } from "./swarm/actor";
-import { createQueueStatusApp } from "./swarm/queue-status-route";
+import { swarmRunner } from "./swarm/runner";
 
 /**
  * The agentOS VM actor: one isolated virtual Linux per actor key, with durable
@@ -36,8 +36,9 @@ export type AgentOsActorDefinition = ReturnType<typeof agentOS>;
 export function createAgentOsRegistry(): Registry<{
   vm: typeof vm;
   swarmWorker: typeof swarmWorker;
+  swarmRunner: typeof swarmRunner;
 }> {
-  return setup({ use: { vm, swarmWorker } });
+  return setup({ use: { vm, swarmWorker, swarmRunner } });
 }
 
 /**
@@ -45,8 +46,11 @@ export function createAgentOsRegistry(): Registry<{
  * `@rivet-dev/agentos-eve`, re-exported by this package) points Eve at this
  * actor, mapping every Eve sandbox session onto a `vm` actor instance.
  */
-export const registry: Registry<{ vm: typeof vm; swarmWorker: typeof swarmWorker }> =
-  createAgentOsRegistry();
+export const registry: Registry<{
+  vm: typeof vm;
+  swarmWorker: typeof swarmWorker;
+  swarmRunner: typeof swarmRunner;
+}> = createAgentOsRegistry();
 
 function createDashboardApplication(): Hono {
   const app = createQueueStatusApp();

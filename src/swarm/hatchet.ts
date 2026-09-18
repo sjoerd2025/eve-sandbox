@@ -182,6 +182,20 @@ async function finish(
 // ---- dispatcher: Turso queue → Hatchet ---------------------------------------
 
 /**
+ * Cheap gate for the dispatcher tick: true when the queue has claimable work.
+ * Keeps empty-queue ticks as local SELECTs instead of Hatchet runs.
+ */
+export async function hasPendingTasks(): Promise<boolean> {
+  const db = createSwarmDb(swarmDbConfigFromEnv());
+  const queue = new TaskQueue(db);
+  try {
+    return await queue.hasPending(defaultQueueName());
+  } finally {
+    db.close();
+  }
+}
+
+/**
  * Claims the next PENDING task from the Turso queue and runs one durable SAM
  * loop for it. If the dispatcher dies before the child starts, the Turso lease
  * simply expires and another worker retries.
