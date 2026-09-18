@@ -1,4 +1,5 @@
 import type { SamAction, SamPlanner } from "./sam";
+import { createLangfuseTracer, type LangfuseTracer } from "./tracing";
 
 const SYSTEM_PROMPT = `You are the planner of a sandboxed coding agent.
 Reply with ONE JSON object and nothing else:
@@ -11,6 +12,10 @@ export interface OpenRouterPlanParams {
   /** OpenRouter API key. Falls back to OPENROUTER_API_KEY. */
   apiKey?: string;
   fetchImpl?: typeof fetch;
+  /** LLM call tracer. Defaults to a Langfuse OTel tracer (no-op without credentials). */
+  tracer?: LangfuseTracer;
+  /** Task id attached to traces for correlation with the queue. */
+  taskId?: string;
 }
 
 /** OpenRouter response shape (only the fields we consume). */
@@ -31,6 +36,8 @@ export function createOpenRouterPlanner(
   const apiKey = params.apiKey ?? process.env.OPENROUTER_API_KEY;
   const model = params.model ?? "anthropic/claude-sonnet-4.5";
   const doFetch = params.fetchImpl ?? fetch;
+  const tracer: LangfuseTracer = params.tracer ?? createLangfuseTracer({ fetchImpl: doFetch });
+  const taskId = params.taskId ?? "unknown";
   const state = { lastUsage: null as { promptTokens: number; completionTokens: number } | null };
 
   return {
@@ -48,6 +55,7 @@ export function createOpenRouterPlanner(
 
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 60_000);
+      const startedAt = Date.now();
       try {
         const res = await doFetch("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
@@ -70,6 +78,15 @@ export function createOpenRouterPlanner(
         });
         if (!res.ok) {
           state.lastUsage = null;
+          tracer.record({
+            taskId,
+            model,
+            prompt,
+            status: "http_error",
+            httpStatus: res.status,
+            durationMs: Date.now() - startedAt,
+          });
+          await tracer.flush();
           return { type: "finish", summary: `planner HTTP ${res.status}` } as SamAction;
         }
         const body = (await res.json()) as ChatResponse;
@@ -77,9 +94,28 @@ export function createOpenRouterPlanner(
           promptTokens: body.usage?.prompt_tokens ?? 0,
           completionTokens: body.usage?.completion_tokens ?? 0,
         };
-        return parsePlanAction(body.choices?.[0]?.message?.content ?? "");
+        const action = parsePlanAction(body.choices?.[0]?.message?.content ?? "");
+        tracer.record({
+          taskId,
+          model,
+          prompt,
+          status: "ok",
+          actionType: action.type,
+          durationMs: Date.now() - startedAt,
+          usage: state.lastUsage,
+        });
+        await tracer.flush();
+        return action;
       } catch {
         state.lastUsage = null;
+        tracer.record({
+          taskId,
+          model,
+          prompt,
+          status: "request_failed",
+          durationMs: Date.now() - startedAt,
+        });
+        await tracer.flush();
         return { type: "finish", summary: "planner request failed" } as SamAction;
       } finally {
         clearTimeout(timeout);

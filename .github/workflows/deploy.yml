@@ -55,4 +55,7 @@ jobs:
             --env E2B_API_KEY="${{ secrets.E2B_API_KEY }}" \
             --env JINA_API_KEY="${{ secrets.JINA_API_KEY }}" \
             --env ENGRAM_TOKEN="${{ secrets.ENGRAM_TOKEN }}" \
+            --env LANGFUSE_BASE_URL="https://cloud.langfuse.com" \
+            --env LANGFUSE_PUBLIC_KEY="${{ secrets.LANGFUSE_PUBLIC_KEY }}" \
+            --env LANGFUSE_SECRET_KEY="${{ secrets.LANGFUSE_SECRET_KEY }}" \
             --yes
